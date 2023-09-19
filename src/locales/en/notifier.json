@@ -1,0 +1,32 @@
+{
+  "success_full": "SUCCESS",
+  "error_full": "ERROR",
+  "success": {
+    "auth_success": "Authorization was successful",
+    "copied_clipboard": "Copied to clipboard: "
+  },
+  "error": {
+    "default": "Something went wrong...",
+    "api": {
+      "validation_error": "Validation error",
+      "internal_server_error": "Internal server error",
+      "conflict": "Conflict",
+      "unauthorized": "You are not logged in",
+      "forbidden": "You don't have enough rights",
+      "bad_request": "Bad request",
+      "not_found": "Resource not found",
+      "validation": {
+        "must_be_string": "must be string",
+        "must_be_email": "invalid email",
+        "must_be_number": "must be number",
+        "must_be_integer": "must be integer",
+        "must_be_enum": "must be enum",
+        "must_be_date": "must be date",
+        "must_be_boolean": "must be boolean"
+      }
+    }
+  },
+  "info": {
+
+  }
+}

@@ -1,0 +1,10 @@
+export enum RouteKeys {
+  HOME,
+  PUBLICATION,
+  PUBLICATION_ID,
+  VACANCY,
+  VACANCY_ID,
+  PROFILE,
+  PROFILE_ID,
+  WRITE,
+}

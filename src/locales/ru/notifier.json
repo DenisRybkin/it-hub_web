@@ -1,0 +1,31 @@
+{
+  "info_fill": "ИНФО",
+  "success_full": "УСПЕШНО",
+  "error_full": "ОШИБКА",
+  "success": {
+    "auth_success": "Авторизация прошла успешно",
+    "copied_clipboard": "Скопировано в буфер обмена: "
+  },
+  "error": {
+    "default": "Что-то пошло не так...",
+    "api": {
+      "validation_error": "Ошибка валидации",
+      "internal_server_error": "Внутреняя ошибка сервера",
+      "conflict": "Конфликт",
+      "unauthorized": "Вы не авторизованны",
+      "forbidden": "У вас недостаточно прав",
+      "bad_request": "Неправильный запрос",
+      "not_found": "Ресурс не найден",
+      "validation": {
+        "must_be_string": "должно быть строкой",
+        "must_be_email": "некоректная почта",
+        "must_be_number": "должно быть число",
+        "must_be_integer": "должно быть целочисленным",
+        "must_be_enum": "должно быть enum",
+        "must_be_date": "должно быть датой",
+        "must_be_boolean": "должно быть логическим"
+      }
+    }
+  },
+  "info": {}
+}

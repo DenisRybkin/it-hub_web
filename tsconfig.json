@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "module": "ESNext",
+    "target": "es5",
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "esModuleInterop":  true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "@types",
+      "node_modules/@types"
+    ],
+    /* Alias */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@lib/*": ["src/lib/*"],
+      "@locales/*": ["src/locales/*"],
+      "@app/*": ["src/app/*"]
+    }
+  },
+  "include": ["src", "src/locales/**/*.json"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

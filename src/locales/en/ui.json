@@ -1,0 +1,90 @@
+{
+  "placeholder": {
+    "login": "Login",
+    "password": "Password",
+    "confirm_password": "Confirm your password",
+    "code": "Code",
+    "enter_code": "Enter the code",
+    "new_password": "New password",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "phone": "Phone number",
+    "support": "Describe the problem",
+    "wallet_address": "Enter the wallet address",
+    "nickname": "Nickname",
+    "username": "Username",
+    "email": "Email",
+    "category": "Category",
+    "drag_n_drop": "Drag and drop the file here",
+    "come_up_question": "Come up with an question",
+    "come_up_answer": "Come up with an answer"
+  },
+  "subheader": {
+    "status": "Status",
+    "technical_works": "The site is currently unavailable due to technical work being done to improve its performance and functionality. We\"re doing our best to get the work done as soon as possible.",
+    "technical_works_sorry": "We apologize for the temporary inconvenience!",
+    "sign_in_subheader": "Enter your username and password"
+  },
+  "button": {
+    "sign_in": "Sign in",
+    "sign_up": "Sign up",
+    "forgot_password": "Forgot your password?",
+    "lats_go": "Let's go!",
+    "send": "Send",
+    "continue": "Continue",
+    "send_code_to_email": "Send code to email",
+    "verify_code": "Verify code",
+    "read": "Read",
+    "logout": "Log out",
+    "cancel": "Cancel",
+    "change_email": "Change Email",
+    "save_changes": "Save Changes",
+    "yes": "Yes",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "approve": "Approve",
+    "buy": "Buy",
+    "claim_rewards": "Claim Rewards",
+    "receive": "Receive",
+    "try_again": "Try again",
+    "select_file": "Select a file",
+    "connect": "Connect",
+    "add_question": "Add question",
+    "save": "Save"
+  },
+  "label": {
+    "i_read": "I have read the",
+    "coming_soon": "Coming soon",
+    "watch_video": "Watch the video guide on the application"
+  },
+  "title": {
+    "create_test": "Create a test",
+    "name": "Name",
+    "description": "Description",
+    "sign_in_form": "Log in to your account",
+    "sign_up_form": "Create Liquid app account",
+    "confirm_email": "Confirm your Email",
+    "confirm_code": "Confirm code from Email",
+    "apps": "Download App:",
+    "set_email": "Set Email",
+    "email_exists": "This email already exists",
+    "coming_soon": "Coming soon!",
+    "was_send_code": "An email with a confirmation code has been sent to your Email"
+  },
+  "tab": {},
+  "table": {},
+  "checkbox": {},
+  "side_bar": {},
+  "link": {
+    "go_home": "Go to home"
+  },
+  "status": {
+    "success": "Success",
+    "pending": "Pending",
+    "waiting": "Waiting",
+    "error": "Error"
+  },
+  "category_support": {},
+  "tooltip" : {}
+}

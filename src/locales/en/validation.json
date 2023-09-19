@@ -1,0 +1,20 @@
+{
+  "error": {
+    "enter_name": "Enter a name",
+    "enter_description": "Enter a description",
+    "no_answers": "There should be at least 2 answers for each question",
+    "no_rights_answer": "There must be at least 1 correct answer for each question",
+    "no_name_answer": "Please set a name for all answers!",
+    "no_name_question": "Please set a name for all questions!",
+    "incorrect_password": "The password is incorrect",
+    "invalid_email": "Invalid email address",
+    "invalid_code": "Invalid code",
+    "more_6_characters": "The password must contain more than 6 characters",
+    "passwords_no_match": "Passwords don\"t match",
+    "username_matches": "This username is already used by another user",
+    "email_match": "This email is already used by another user",
+    "incorrect_wallet": "The wallet address is invalid. Please provide the correct wallet",
+    "file_over_error": "The file size should not exceed 50 MB",
+    "file_over_amount_error": "You can attach a maximum of 5 files"
+  }
+}
