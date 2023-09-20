@@ -5,6 +5,7 @@ import { LocaleProvider } from '@app/providers/locale';
 import { LocationHistoryProvider } from '@app/providers/location-history';
 import { ErrorBoundaryProvider } from '@app/providers/error-boundary';
 import { ThemeProvider } from '@app/providers/theme';
+import { SetupApi } from '@app/providers/setup-api';
 
 export const RootProvider = (props: IProviderProps) => {
   return (
@@ -13,6 +14,7 @@ export const RootProvider = (props: IProviderProps) => {
         <ThemeProvider>
           <LocaleProvider>
             <LocationHistoryProvider>
+              <SetupApi />
               <ErrorBoundaryProvider>{props.children}</ErrorBoundaryProvider>
             </LocationHistoryProvider>
           </LocaleProvider>

@@ -75,7 +75,13 @@
   "tab": {},
   "table": {},
   "checkbox": {},
-  "side_bar": {},
+  "sidebar": {
+    "home": "Главная",
+    "vacancies": "Вакансии",
+    "latest": "Свежее",
+    "companies": "Компании",
+    "subscriptions": "Подписки"
+  },
   "link": {
     "go_home": "Вернуться"
   },

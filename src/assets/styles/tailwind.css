@@ -59,7 +59,7 @@
     }
 
     .topbar {
-        @apply fixed top-0 z-30 flex w-full items-center justify-between bg-dark-2 px-6 py-3;
+        @apply fixed top-0 z-30 flex w-full items-center justify-between bg-dark-2 px-5 py-4 md:px-6 md:py-5;
     }
 
     .bottombar {
@@ -79,7 +79,7 @@
     }
 
     .leftsidebar_link {
-        @apply relative flex justify-start gap-4 rounded-lg p-4;
+        @apply relative flex justify-start gap-4 rounded-lg p-4 cursor-pointer transition-colors hover:bg-dark-4;
     }
 
     .pagination {

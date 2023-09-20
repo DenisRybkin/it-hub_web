@@ -1,9 +1,8 @@
 import { AxiosInstance } from 'axios';
 import { LockerModel } from '@/lib/api/types';
-import { client } from '@/lib/api/plugins/client';
 import { mutexLocker } from '@/lib/api/plugins/locker';
 import { AuthController } from '@/lib/api/controllers';
-
+import { client } from '@/lib/api/plugins/client';
 class Api {
   auth: AuthController;
 
@@ -11,5 +10,4 @@ class Api {
     this.auth = new AuthController(client, locker);
   }
 }
-
 export const api = new Api(client, mutexLocker);

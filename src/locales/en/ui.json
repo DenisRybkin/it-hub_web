@@ -75,7 +75,13 @@
   "tab": {},
   "table": {},
   "checkbox": {},
-  "side_bar": {},
+  "sidebar": {
+    "home": "Home",
+    "vacancies": "Vacancies",
+    "latest": "Latest",
+    "companies": "Companies",
+    "subscriptions": "Subscriptions"
+  },
   "link": {
     "go_home": "Go to home"
   },

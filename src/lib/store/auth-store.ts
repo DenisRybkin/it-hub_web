@@ -21,20 +21,19 @@ export class AuthStore {
     );
   }
 
-  public getUser() {
+  public get getUser() {
     return this.user;
   }
 
-  public getRole() {
+  public get getRole() {
     return this.user.role;
   }
 
   setUser(user?: User) {
-    this.user = user ?? null;
+    this.user = user;
   }
 
-  setAccessToken(accessToken: string) {
-    this.accessToken =
-      accessToken ?? localStorage.getItem(LocaleStorageKeys.JWT);
+  setAccessToken(accessToken?: string) {
+    this.accessToken = accessToken;
   }
 }

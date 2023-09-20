@@ -1,32 +1,26 @@
 import { useEffect, useState } from 'react';
 
-type DeviceType = 'mobile' | 'tablet' | 'desktop';
+type DeviceType = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export const useDeviceDetermine = (): [DeviceType, number] => {
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
-  const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>(
-    () => {
-      if (window.innerWidth < 768) {
-        return 'mobile';
-      } else if (window.innerWidth < 900) {
-        return 'tablet';
-      } else {
-        return 'desktop';
-      }
-    }
-  );
+  const [deviceType, setDeviceType] = useState<DeviceType>(() => {
+    if (window.innerWidth < 640) return 'sm';
+    else if (window.innerWidth < 768) return 'md';
+    else if (window.innerWidth < 1024) return 'lg';
+    else if (window.innerWidth < 1280) return 'xl';
+    else return '2xl';
+  });
 
   const handleDetermine = () => {
     setScreenWidth(window.innerWidth);
     setDeviceType(() => {
-      if (window.innerWidth <= 768) {
-        return 'mobile';
-      } else if (window.innerWidth <= 900) {
-        return 'tablet';
-      } else {
-        return 'desktop';
-      }
+      if (window.innerWidth < 640) return 'sm';
+      else if (window.innerWidth < 768) return 'md';
+      else if (window.innerWidth < 1024) return 'lg';
+      else if (window.innerWidth < 1280) return 'xl';
+      else return '2xl';
     });
   };
 

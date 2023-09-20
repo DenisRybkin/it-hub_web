@@ -19,12 +19,12 @@
     /* Alias */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@lib/*": ["src/lib/*"],
-      "@locales/*": ["src/locales/*"],
-      "@app/*": ["src/app/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@locales/*": ["./src/locales/*"],
+      "@app/*": ["./src/app/*"]
     }
   },
   "include": ["src", "src/locales/**/*.json"],

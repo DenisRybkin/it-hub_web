@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { LocaleStorageKeys } from '@/lib/constants';
 import { api } from '@/lib/api/plugins/api';
 
 export const client = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: false,
 });
 
@@ -14,7 +14,10 @@ client.interceptors.request.use(config => {
   return config;
 });
 
-export const setupResponseInterceptors = (onLogout: () => void) =>
+export const setupResponseInterceptors = (
+  onRefreshExpired: () => void,
+  onAccessExpired: () => Promise<void>
+) =>
   client.interceptors.response.use(
     config => config,
     async error => {
@@ -27,11 +30,10 @@ export const setupResponseInterceptors = (onLogout: () => void) =>
         originalRequest._isRetry = true;
         localStorage.removeItem(LocaleStorageKeys.JWT);
         try {
-          const { access } = await api.auth.refresh();
-          localStorage.setItem(LocaleStorageKeys.JWT, access);
+          await onAccessExpired();
           return await client.request(originalRequest);
         } catch (e) {
-          onLogout();
+          onRefreshExpired();
         }
       }
     }

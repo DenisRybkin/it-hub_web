@@ -1,5 +1,9 @@
 export enum RouteKeys {
   HOME,
+  SUBSCRIPTIONS,
+  LATEST,
+  COMPANY,
+  COMPANY_ID,
   PUBLICATION,
   PUBLICATION_ID,
   VACANCY,
