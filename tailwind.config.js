@@ -46,6 +46,13 @@ export default {
           fontWeight: '700',
         },
       ],
+      'heading3-semibold': [
+        '24px',
+        {
+          lineHeight: '140%',
+          fontWeight: '500',
+        },
+      ],
       'heading4-medium': [
         '20px',
         {
@@ -174,12 +181,14 @@ export default {
         'primary-500': '#877EFF',
         'secondary-500': '#FFB620',
         blue: '#0095F6',
-        'logout-btn': '#FF5A5A',
+        red: '#FF5A5A',
+        green: '#02d448',
         'navbar-menu': 'rgba(16, 16, 18, 0.6)',
         'dark-1': '#000000',
         'dark-2': '#121417',
         'dark-3': '#101012',
         'dark-4': '#1F1F22',
+        'dark-5': '#1d202b',
         'light-1': '#FFFFFF',
         'light-2': '#EFEFEF',
         'light-3': '#7878A3',

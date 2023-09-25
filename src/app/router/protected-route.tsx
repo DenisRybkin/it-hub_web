@@ -3,7 +3,7 @@ import { useRootStore } from '@lib/utils/hooks';
 import { RoutePaths } from '@app/router/config';
 import type { RoutePropsType } from '@app/router';
 import { Navigate } from 'react-router-dom';
-import { RouteKeys } from '@lib/constants';
+import { LocaleStorageKeys, RouteKeys } from '@lib/constants';
 import { ReactNode } from 'react';
 
 export const ProtectedRoute = observer(
@@ -11,7 +11,9 @@ export const ProtectedRoute = observer(
     const authStore = useRootStore('authStore');
 
     const isUnavailable =
-      (props.isPrivate && !authStore.isAuth) ||
+      (!localStorage.getItem(LocaleStorageKeys.JWT) &&
+        props.isPrivate &&
+        !authStore.isAuth) ||
       (props.requiredRole && authStore.getRole == props.requiredRole);
 
     if (isUnavailable) return <Navigate to={RoutePaths[RouteKeys.HOME]} />;

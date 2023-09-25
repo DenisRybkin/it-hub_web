@@ -10,6 +10,7 @@ export type { CategoryAvatar } from './CategoryAvatar';
 export type { CreateCategoryDto } from './CreateCategoryDto';
 export { CreateRoleDto } from './CreateRoleDto';
 export type { CreateUserDto } from './CreateUserDto';
+export type { EditorImageDto } from './EditorImageDto';
 export type { ImageUploadDto } from './ImageUploadDto';
 export type { LoginDto } from './LoginDto';
 export type { LoginResponseType } from './LoginResponseType';

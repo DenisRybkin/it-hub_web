@@ -1,5 +1,6 @@
 {
   "placeholder": {
+    "enter_something": "Enter something...",
     "login": "Login",
     "password": "Password",
     "confirm_password": "Confirm your password",
@@ -31,6 +32,7 @@
     "forgot_password": "Forgot your password?",
     "lats_go": "Let's go!",
     "send": "Send",
+    "create": "Create",
     "continue": "Continue",
     "send_code_to_email": "Send code to email",
     "verify_code": "Verify code",
@@ -51,7 +53,9 @@
     "select_file": "Select a file",
     "connect": "Connect",
     "add_question": "Add question",
-    "save": "Save"
+    "save": "Save",
+    "save_draft": "Save as draft",
+    "publish": "Publish"
   },
   "label": {
     "i_read": "I have read the",
@@ -59,6 +63,12 @@
     "watch_video": "Watch the video guide on the application"
   },
   "title": {
+    "home": "Home",
+    "vacancies": "Vacancies",
+    "latest": "Latest",
+    "companies": "Companies",
+    "subscriptions": "Subscriptions",
+    "users": "Users",
     "create_test": "Create a test",
     "name": "Name",
     "description": "Description",
@@ -80,7 +90,8 @@
     "vacancies": "Vacancies",
     "latest": "Latest",
     "companies": "Companies",
-    "subscriptions": "Subscriptions"
+    "subscriptions": "Subscriptions",
+    "users": "Users"
   },
   "link": {
     "go_home": "Go to home"
@@ -92,5 +103,19 @@
     "error": "Error"
   },
   "category_support": {},
-  "tooltip" : {}
+  "tooltip" : {},
+  "text_editor": {
+    "text": "Text",
+    "heading_1": "Heading 1",
+    "heading_2": "Heading 2",
+    "heading_3": "Heading 3",
+    "table": "Table",
+    "todo": "ToDo",
+    "code": "Code",
+    "list_ordered": "List ordered",
+    "list_unordered": "List unordered",
+    "warning": "Warning",
+    "delimiter": "Delimiter",
+    "image": "Image"
+  }
 }

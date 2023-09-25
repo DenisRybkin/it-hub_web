@@ -7,6 +7,7 @@
   },
   "error": {
     "default": "Something went wrong...",
+    "small_article": "The article is too small",
     "api": {
       "validation_error": "Validation error",
       "internal_server_error": "Internal server error",
@@ -27,6 +28,6 @@
     }
   },
   "info": {
-
+    "draft_saved": "Draft saved successfully!"
   }
 }

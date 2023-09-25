@@ -9,8 +9,8 @@ import { RoutePaths } from '@app/router';
 
 const routsWithDefaultTitle = [
   RoutePaths[RouteKeys.HOME],
-  RoutePaths[RouteKeys.PUBLICATION],
-  RoutePaths[RouteKeys.PROFILE],
+  RoutePaths[RouteKeys.LATEST],
+  RoutePaths[RouteKeys.SUBSCRIPTIONS],
   RoutePaths[RouteKeys.WRITE],
   RoutePaths[RouteKeys.VACANCY],
 ];

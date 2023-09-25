@@ -14,6 +14,10 @@ export class AuthStore {
     this.accessToken = localStorage.getItem(LocaleStorageKeys.JWT);
   }
 
+  public get hasAccess() {
+    return this.accessToken ?? localStorage.getItem(LocaleStorageKeys.JWT);
+  }
+
   public get isAuth() {
     return (
       (this.accessToken ?? localStorage.getItem(LocaleStorageKeys.JWT)) &&
@@ -35,5 +39,6 @@ export class AuthStore {
 
   setAccessToken(accessToken?: string) {
     this.accessToken = accessToken;
+    if (!accessToken) localStorage.removeItem(LocaleStorageKeys.JWT);
   }
 }

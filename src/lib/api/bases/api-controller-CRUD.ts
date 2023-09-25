@@ -17,8 +17,8 @@ export abstract class ApiControllerCRUD<
 {
   protected constructor(
     client: AxiosInstance,
-    controllerName: string,
-    locker: LockerModel
+    locker: LockerModel,
+    controllerName: string
   ) {
     super(client, locker, controllerName);
   }

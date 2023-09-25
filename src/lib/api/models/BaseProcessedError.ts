@@ -4,10 +4,10 @@
 /* eslint-disable */
 
 export type BaseProcessedError = {
-  statusCode: number;
-  message?: string;
-  messages?: Array<string>;
-  internalMessage?: string;
-  timestamp?: string;
-  path?: string;
+    statusCode: number;
+    message?: string;
+    messages?: Array<string>;
+    internalMessage?: string;
+    timestamp?: string;
+    path?: string;
 };

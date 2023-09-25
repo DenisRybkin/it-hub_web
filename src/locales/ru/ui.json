@@ -1,5 +1,6 @@
 {
   "placeholder": {
+    "enter_something": "Напишите что-нибудь...",
     "login": "Логин",
     "password": "Пароль",
     "confirm_password": "Подтвердите ваш пароль",
@@ -31,6 +32,7 @@
     "forgot_password": "Забыли свой пароль?",
     "lats_go": "Давайте начнем!",
     "send": "Отправить",
+    "create": "Создать",
     "continue": "Продолжить",
     "send_code_to_email": "Отправить код на почту",
     "verify_code": "Подтвердить код",
@@ -51,7 +53,9 @@
     "select_file": "Выберите файл",
     "connect": "Подключить",
     "add_question": "Добавить вопрос",
-    "save": "Сохранить"
+    "save": "Сохранить",
+    "save_draft": "Сохранить как черновик",
+    "publish": "Публиковать"
   },
   "label": {
     "i_read": "Я ознакомился с",
@@ -59,6 +63,12 @@
     "watch_video": "Посмотрите видео-обучение по применению"
   },
   "title": {
+    "home": "Главная",
+    "vacancies": "Вакансии",
+    "latest": "Свежее",
+    "companies": "Компании",
+    "subscriptions": "Подписки",
+    "users": "Пользователи",
     "create_test": "Создание теста",
     "name": "Название",
     "description": "Описание",
@@ -80,7 +90,8 @@
     "vacancies": "Вакансии",
     "latest": "Свежее",
     "companies": "Компании",
-    "subscriptions": "Подписки"
+    "subscriptions": "Подписки",
+    "users": "Пользователи"
   },
   "link": {
     "go_home": "Вернуться"
@@ -91,5 +102,19 @@
     "waiting": "Ожидание",
     "error": "Ошибка"
   },
-  "tooltip" : {}
+  "tooltip" : {},
+  "text_editor": {
+    "text": "Текст",
+    "heading_1": "заголовок 1",
+    "heading_2": "заголовок 2",
+    "heading_3": "заголовок 3",
+    "table": "Таблица",
+    "todo": "Задачи",
+    "code": "Код",
+    "list_ordered": "Упорядоченный список",
+    "list_unordered": "Неупорядоченный список",
+    "warning": "Предупреждение",
+    "delimiter": "Разделитель",
+    "image": "Изображение"
+  }
 }

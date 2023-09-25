@@ -1,0 +1,1 @@
+export { withHeadingTemplate } from './heading';

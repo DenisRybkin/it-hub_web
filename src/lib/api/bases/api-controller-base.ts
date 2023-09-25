@@ -23,7 +23,7 @@ export abstract class ApiControllerBase<
   }
 
   protected url(next?: string): string {
-    return `api/${this.controllerName}` + next ? `/${next}` : '';
+    return `api/${this.controllerName}` + (next ? `/${next}` : '');
   }
 
   protected async process<T>(
@@ -48,8 +48,8 @@ export abstract class ApiControllerBase<
   private static async internalRequest<T = never>(
     req: Promise<AxiosResponse<T>>
   ) {
-    const r = await req;
-    return r.data;
+    const request = await req;
+    return request?.data;
   }
 
   private async runExclusive<T>(request: Promise<T>): Promise<T> {

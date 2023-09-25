@@ -1,0 +1,1 @@
+export { WritePage } from './write';

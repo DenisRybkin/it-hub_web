@@ -1,0 +1,129 @@
+.ce-block--selected {
+    @apply dark:bg-dark-2
+}
+.ce-inline-toolbar {
+    @apply dark:bg-dark-2 dark:border-transparent
+}
+.ce-inline-toolbar__dropdown:hover {
+    @apply dark:bg-dark-3
+}
+.ce-inline-tool:hover {
+    @apply dark:bg-dark-3
+}
+.cdx-notify--error {
+    display: none;
+}
+.ce-inline-tool--active {
+    @apply text-primary-500
+}
+.ce-conversion-toolbar {
+    @apply dark:bg-dark-2 dark:border-transparent
+}
+.ce-conversion-tool:hover {
+    @apply dark:bg-dark-3
+}
+.ce-conversion-tool__icon {
+    @apply text-black
+}
+.ce-popover {
+    @apply dark:bg-dark-2 border-transparent
+}
+.ce-popover {
+    --offset: 0;
+    position: absolute;
+}
+.ce-popover-item {
+    @apply dark:text-white dark:hover:bg-dark-4
+}
+.ce-toolbar__plus:hover {
+    @apply md:bg-primary-500 dark:md:text-white
+}
+.ce-toolbar__settings-btn:hover {
+    @apply bg-primary-500 dark:text-white
+}
+.ce-toolbar__plus {
+    @apply border-transparent bg-primary-500 dark:text-white md:bg-transparent dark:md:text-dark-5
+}
+.ce-toolbar__settings-btn {
+    @apply border-transparent bg-primary-500 dark:text-white md:bg-transparent dark:md:text-dark-5
+}
+.ce-popover-item__icon {
+    @apply dark:text-black
+}
+.ce-paragraph {
+    padding: 0;
+}
+.ce-popover__search {
+    @apply dark:bg-dark-3
+}
+.cdx-search-field__icon svg {
+    @apply dark:text-white
+}
+.ce-block__content h1 {
+    font-size: 28px;
+}
+
+.ce-block__content h2 {
+    font-size: 24px;
+}
+
+.ce-block__content h3 {
+    font-size: 20px;
+}
+.ce-block__content h1 {
+    padding: 0;
+}
+.cdx-checklist__item-checkbox-check {
+    background: transparent !important;
+}
+.cdx-checklist__item--checked > .cdx-checklist__item-checkbox > span {
+    @apply !bg-primary-500 !border-primary-500
+}
+.cdx-checklist__item-checkbox-check::before {
+    @apply !bg-primary-500
+}
+.tc-popover--opened {
+    @apply dark:!bg-dark-2 dark:!border-transparent
+}
+.tc-popover__item-icon {
+    @apply dark:text-black
+}
+.tc-add-column:hover {
+    @apply dark:!bg-dark-3
+}
+.tc-cell--selected {
+    @apply dark:bg-dark-2
+}
+.tc-popover__item:hover {
+    @apply dark:bg-dark-3
+}
+.tc-add-row:hover {
+    @apply dark:bg-dark-2
+}
+.tc-row--selected {
+    @apply dark:bg-dark-2
+}
+.tc-row--selected:after {
+    @apply dark:bg-dark-2
+}
+
+.text-editor-readonly > div > .codex-editor > .codex-editor__redactor {
+    padding-bottom: 0 !important;
+}
+
+.text-editor-readonly > div > .codex-editor > .codex-editor__redactor > .ce-block > .ce-block__content {
+   max-width: none;
+    /*text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;*/
+}
+.text-editor-readonly > div > .codex-editor > .codex-editor__redactor > .ce-block > .ce-block__content >* {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.ce-block__content,
+.ce-toolbar__content {
+    @apply max-w-[270px] md:max-w-[650px]
+    /* example value, adjust for your own use case */
+}
