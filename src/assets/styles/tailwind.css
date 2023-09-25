@@ -47,7 +47,7 @@
     }
 
     .user-card_btn {
-        @apply h-auto min-w-[74px] rounded-lg text-[12px] text-light-1 !important;
+        @apply h-auto w-full min-w-[74px] rounded-lg text-[12px] text-light-1 !important;
     }
 
     .searchbar {

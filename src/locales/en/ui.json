@@ -25,7 +25,8 @@
     "status": "Status",
     "technical_works": "The site is currently unavailable due to technical work being done to improve its performance and functionality. We\"re doing our best to get the work done as soon as possible.",
     "technical_works_sorry": "We apologize for the temporary inconvenience!",
-    "sign_in_subheader": "Enter your username and password"
+    "sign_in_subheader": "Enter your username and password",
+    "empty_content": "Nothing found"
   },
   "button": {
     "sign_in": "Sign in",
@@ -56,7 +57,10 @@
     "add_question": "Add question",
     "save": "Save",
     "save_draft": "Save as draft",
-    "publish": "Publish"
+    "publish": "Publish",
+    "view": "View",
+    "subscribe": "Subscribe",
+    "unsubscribe": "Unsubscribe"
   },
   "label": {
     "i_read": "I have read the",

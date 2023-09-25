@@ -5,7 +5,7 @@ import { useRootStore } from '@lib/utils/hooks';
 import { useTranslation } from 'react-i18next';
 import { LocaleStorageKeys } from '@lib/constants';
 
-export const Home = observer(() => {
+export const HomePage = observer(() => {
   const { t } = useTranslation();
   const authStore = useRootStore('authStore');
 

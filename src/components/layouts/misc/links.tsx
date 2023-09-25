@@ -22,6 +22,12 @@ export const sidebarLinks: ISidebarLink[] = [
     icon: <FiClock size={24} />,
   },
   {
+    route: RoutePaths[RouteKeys.SUBSCRIPTIONS],
+    label: 'ui:sidebar.subscriptions',
+    icon: <FiList size={24} />,
+    isPrivate: true,
+  },
+  {
     route: RoutePaths[RouteKeys.COMPANY],
     label: 'ui:sidebar.companies',
     icon: <LuBuilding2 size={24} />,
@@ -30,12 +36,6 @@ export const sidebarLinks: ISidebarLink[] = [
     route: RoutePaths[RouteKeys.VACANCY],
     label: 'ui:sidebar.vacancies',
     icon: <FiClipboard size={24} />,
-  },
-  {
-    route: RoutePaths[RouteKeys.SUBSCRIPTIONS],
-    label: 'ui:sidebar.subscriptions',
-    icon: <FiList size={24} />,
-    isPrivate: true,
   },
   {
     route: RoutePaths[RouteKeys.USER],

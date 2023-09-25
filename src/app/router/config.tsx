@@ -3,7 +3,8 @@ import { Role } from '@lib/api/models';
 import { ReactNode } from 'react';
 import { RouteKeys } from '@lib/constants';
 import { WritePage } from '@components/pages/write';
-import { Home } from '@components/pages/home/home';
+import { HomePage } from '@components/pages/home/home-page';
+import { UserPage } from '@components/pages/user';
 
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;
@@ -29,7 +30,7 @@ export const routerConfig: RoutePropsType[] = [
   {
     isPrivate: false,
     path: RoutePaths[RouteKeys.HOME],
-    element: <Home />,
+    element: <HomePage />,
   },
   {
     isPrivate: true,
@@ -62,9 +63,9 @@ export const routerConfig: RoutePropsType[] = [
     element: <div>VACANCY_ID</div>,
   },
   {
-    isPrivate: true,
+    isPrivate: false,
     path: RoutePaths[RouteKeys.USER],
-    element: <div>USER</div>,
+    element: <UserPage />,
   },
   {
     isPrivate: false,
