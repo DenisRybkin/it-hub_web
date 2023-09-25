@@ -1,6 +1,5 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 import { LocaleStorageKeys } from '@/lib/constants';
-import { api } from '@/lib/api/plugins/api';
 
 export const client = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -35,6 +34,6 @@ export const setupResponseInterceptors = (
         } catch (e) {
           onRefreshExpired();
         }
-      }
+      } else throw error;
     }
   );

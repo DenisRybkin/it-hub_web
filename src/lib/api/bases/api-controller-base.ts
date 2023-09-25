@@ -40,8 +40,9 @@ export abstract class ApiControllerBase<
       onSuccess && onSuccess(data);
       return data;
     } catch (error: unknown) {
-      if (onError == null) throw error;
-      onError(error as AxiosError<BaseProcessedError>);
+      if (onError && error instanceof AxiosError)
+        onError(error.response?.data as AxiosError<BaseProcessedError>);
+      throw error;
     }
   }
 
