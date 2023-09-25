@@ -9,6 +9,7 @@ import { ToolConfig } from '@editorjs/editorjs/types/tools/tool-config';
 import { BlockToolData } from '@editorjs/editorjs/types/tools/block-tool-data';
 import { HTMLPasteEvent } from '@editorjs/editorjs/types/tools/paste-events';
 import i18next from 'i18next';
+import { ToolConstructable } from '@editorjs/editorjs/types/tools';
 
 export class CodePlugin {
   api: API;
@@ -16,7 +17,10 @@ export class CodePlugin {
   readOnly: boolean;
   placeholder: string;
   CSS: Record<string, string>;
-  nodes: { holder?: HTMLDivElement; textarea: { textContent: unknown } };
+  nodes: {
+    holder?: HTMLDivElement | null;
+    textarea: { textContent: unknown } | null;
+  };
   _data?: BlockToolData & { code: unknown };
 
   static get isReadOnlySupported() {
@@ -95,7 +99,7 @@ export class CodePlugin {
 
   save(codeWrapper: HTMLDivElement) {
     return {
-      code: codeWrapper.querySelector('textarea').value,
+      code: codeWrapper.querySelector('textarea')?.value,
     };
   }
 

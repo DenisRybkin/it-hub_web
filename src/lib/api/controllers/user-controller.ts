@@ -2,7 +2,6 @@ import { ApiControllerCRUD } from '@lib/api/bases';
 import {
   BaseProcessedError,
   CreateUserDto,
-  LoginResponseType,
   ReadUserFilterDto,
   UpdatePartiallyUserDto,
   UpdateUserDto,

@@ -5,8 +5,8 @@ import { User } from '@lib/api/models';
 
 export class AuthStore {
   root: RootStore;
-  private accessToken: string | null = null;
-  private user: User | null = null;
+  private accessToken?: string | null;
+  private user?: User;
 
   constructor(root: RootStore) {
     makeAutoObservable(this);
@@ -30,7 +30,7 @@ export class AuthStore {
   }
 
   public get getRole() {
-    return this.user.role;
+    return this?.user?.role;
   }
 
   setUser(user?: User) {

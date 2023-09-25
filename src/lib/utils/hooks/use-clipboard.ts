@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface IUseCopyToClipboardProps {
-  onError?: (error: Error) => void;
+  onError?: (error: unknown) => void;
   onSuccess?: (text: string) => void;
   params?: IUseCopyToClipboardPropsParams;
 }
@@ -18,7 +18,7 @@ export const useClipboard = (
   props?: IUseCopyToClipboardProps
 ): [(text: string) => Promise<boolean>, string | null] => {
   //const { t } = useTranslation();
-  const [copiedText, setCopiedText] = useState<string>(null);
+  const [copiedText, setCopiedText] = useState<string | null>(null);
 
   const copy = async (text: string) => {
     if (!navigator?.clipboard) {
@@ -46,8 +46,8 @@ export const useClipboard = (
       setCopiedText(text);
       props?.onSuccess && props.onSuccess(text);
       return true;
-    } catch (error) {
-      props?.onError && props.onError(error);
+    } catch (error: unknown) {
+      props?.onError && props.onError?.(error);
       setCopiedText(null);
       return false;
     }

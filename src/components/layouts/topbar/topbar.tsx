@@ -23,8 +23,8 @@ export const Topbar = observer(() => {
   const { pathname } = useLocation();
 
   const handleLogoutClick = () => {
-    authStore.setUser(null);
-    authStore.setAccessToken(null);
+    authStore.setUser(undefined);
+    authStore.setAccessToken(undefined);
   };
 
   const onClickLogo = () => navigate(RoutePaths[RouteKeys.HOME]);

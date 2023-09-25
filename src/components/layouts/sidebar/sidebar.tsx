@@ -20,8 +20,8 @@ export const Sidebar = observer(() => {
   const handleClickLink = (route: string) => () => navigate(route);
 
   const handleLogoutClick = () => {
-    authStore.setUser(null);
-    authStore.setAccessToken(null);
+    authStore.setUser(undefined);
+    authStore.setAccessToken(undefined);
   };
 
   return (

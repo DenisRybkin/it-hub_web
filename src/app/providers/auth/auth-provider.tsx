@@ -12,7 +12,7 @@ export const AuthProvider = observer((props: IProviderProps) => {
 
   const handleSuccess = (user: User) => authStore.setUser(user);
 
-  const handleError = () => authStore.setAccessToken(null);
+  const handleError = () => authStore.setAccessToken(undefined);
 
   const handleFetchCurrentUser = async () => {
     preloader.setVisible(true);

@@ -18,7 +18,8 @@
     "category": "Category",
     "drag_n_drop": "Drag and drop the file here",
     "come_up_question": "Come up with an question",
-    "come_up_answer": "Come up with an answer"
+    "come_up_answer": "Come up with an answer",
+    "search": "Search..."
   },
   "subheader": {
     "status": "Status",

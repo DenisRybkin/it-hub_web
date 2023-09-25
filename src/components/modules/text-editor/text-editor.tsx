@@ -20,7 +20,7 @@ interface ITextEditorProps {
 }
 
 export interface ITextEditorForwardRef {
-  onGetData: () => Promise<OutputData>;
+  onGetData: () => Promise<OutputData | undefined>;
   isLoading: boolean;
 }
 
@@ -28,11 +28,11 @@ export const TextEditor = forwardRef(
   (props: ITextEditorProps, ref?: ForwardedRef<ITextEditorForwardRef>) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const editorCore = React.useRef<EditorCore>(null);
+    const editorCore = React.useRef<EditorCore | null>(null);
 
     const handleInitialize = React.useCallback(
       (instance: EditorCore) => {
-        editorCore.current = instance;
+        if (editorCore.current) editorCore.current = instance;
         if (props.withHeading)
           instance.render({
             time: new Date().getTime(),
@@ -45,7 +45,7 @@ export const TextEditor = forwardRef(
 
     const handleSave = React.useCallback(async () => {
       setIsLoading(true);
-      const savedData = await editorCore.current.save();
+      const savedData = await editorCore?.current?.save();
       setIsLoading(false);
       return savedData;
     }, []);

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { Ref, useRef, useState } from 'react';
 import { TextEditor } from '@components/modules/text-editor';
 import type { ITextEditorForwardRef } from '@components/modules/text-editor';
 import { Button } from '@components/ui/button';
@@ -14,9 +14,15 @@ export const WritePage = () => {
   const { t } = useTranslation();
 
   const handleSaveAsDraft = async () => {
+    const data = await ref.current?.onGetData();
+    if (!data)
+      toast({
+        variant: 'destructive',
+        title: t('toast:error.default'),
+      });
     localStorage.setItem(
       LocaleStorageKeys.DRAFT,
-      JSON.stringify(await ref.current.onGetData())
+      JSON.stringify(await ref.current?.onGetData())
     );
     toast({
       variant: 'success',
@@ -27,7 +33,8 @@ export const WritePage = () => {
   const handlePublish = async () => {
     setIsLoading(true);
     try {
-      const data = await ref.current.onGetData();
+      const data = await ref.current?.onGetData();
+      if (!data) return;
       if (!checkBlocksLength(data))
         toast({
           variant: 'destructive',
@@ -41,7 +48,11 @@ export const WritePage = () => {
   return (
     <>
       <div className="flex flex-col w-full gap-4">
-        <TextEditor autofocus withHeading ref={ref} />
+        <TextEditor
+          autofocus
+          withHeading
+          ref={ref as Ref<ITextEditorForwardRef>}
+        />
         <div className="flex items-start self-center gap-2">
           <Button
             onClick={handleSaveAsDraft}

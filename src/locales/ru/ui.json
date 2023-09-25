@@ -18,7 +18,8 @@
     "drag_n_drop": "Перетащите сюда файл",
     "username": "Имя пользователя",
     "come_up_question": "Придумайте вопрос",
-    "come_up_answer": "Придумайте ответ"
+    "come_up_answer": "Придумайте ответ",
+    "search": "Поиск..."
   },
   "subheader": {
     "status": "Статус",

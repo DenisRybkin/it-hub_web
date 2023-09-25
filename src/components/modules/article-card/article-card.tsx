@@ -13,7 +13,7 @@ import { useDeviceDetermine } from '@lib/utils/hooks';
 
 export interface IArticleCard {
   title: string;
-  body: string;
+  body?: string | null;
   author: User;
   previewMode?: boolean;
 }
@@ -41,10 +41,12 @@ export const ArticleCard = (props: IArticleCard) => {
                 {props.author.name}
               </h4>
             </div>
-            <TextEditor
-              value={transform2PreviewMode(JSON.parse(props.body))}
-              readonly
-            />
+            {!!props.body && (
+              <TextEditor
+                value={transform2PreviewMode(JSON.parse(props.body))}
+                readonly
+              />
+            )}
             <div className="mt-5 flex flex-col gap-3">
               <div className="flex gap-3.5">
                 <Button variant="ghost" size="icon">
