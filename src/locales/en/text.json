@@ -24,5 +24,10 @@
   "connecting": "Connecting...",
   "pending": "Pending",
   "loading_data": "We're loading data",
-  "please_wait": "Please wait"
+  "please_wait": "Please wait",
+  "first_time_using": "First time using IT hub?",
+  "create_account": "Create an account",
+  "already_have_account": "Already have an account?",
+  "wrong_email_or_password" : "Wrong email or password",
+  "error": "Error"
 }

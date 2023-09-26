@@ -1,5 +1,9 @@
 {
   "error": {
+    "field_required": "This field is required",
+    "wrong_email": "Incorrect the email",
+    "min_char_number": "Minimum number of characters: {{number}}",
+    "confirm_password": "Passwords dont match",
     "enter_name": "Enter a name",
     "enter_description": "Enter a description",
     "no_answers": "There should be at least 2 answers for each question",

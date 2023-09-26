@@ -4,6 +4,7 @@
   "error_full": "ОШИБКА",
   "success": {
     "auth_success": "Авторизация прошла успешно",
+    "registration_success": "Регистрация прошла успешно",
     "copied_clipboard": "Скопировано в буфер обмена: "
   },
   "error": {

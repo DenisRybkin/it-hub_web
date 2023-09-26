@@ -1,5 +1,6 @@
 {
   "placeholder": {
+    "enter": "Enter...",
     "enter_something": "Enter something...",
     "login": "Login",
     "password": "Password",
@@ -65,9 +66,16 @@
   "label": {
     "i_read": "I have read the",
     "coming_soon": "Coming soon",
-    "watch_video": "Watch the video guide on the application"
+    "watch_video": "Watch the video guide on the application",
+    "name": "Name",
+    "nickname": "Nickname",
+    "email": "Email",
+    "password": "Password",
+    "password_confirm": "Password confirm"
   },
   "title": {
+    "sign_in": "Sign in",
+    "sign_up": "Sign up",
     "home": "Home",
     "vacancies": "Vacancies",
     "latest": "Latest",
@@ -85,7 +93,8 @@
     "set_email": "Set Email",
     "email_exists": "This email already exists",
     "coming_soon": "Coming soon!",
-    "was_send_code": "An email with a confirmation code has been sent to your Email"
+    "was_send_code": "An email with a confirmation code has been sent to your Email",
+    "authorization": "Authorization"
   },
   "tab": {},
   "table": {},

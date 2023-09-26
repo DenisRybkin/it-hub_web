@@ -3,6 +3,7 @@
   "error_full": "ERROR",
   "success": {
     "auth_success": "Authorization was successful",
+    "registration_success": "Registration was successful",
     "copied_clipboard": "Copied to clipboard: "
   },
   "error": {

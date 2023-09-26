@@ -1,5 +1,9 @@
 {
   "error": {
+    "field_required": "Это поле обязательное",
+    "wrong_email": "Некоректный e-mail",
+    "min_char_number": "Минимальное количество символов: {{number}}",
+    "confirm_password": "Пароли не совпадают",
     "enter_name": "Введите имя",
     "enter_description": "Введите описание",
     "no_answers" : "Для каждого вопроса должны быть минимум 2 ответа",

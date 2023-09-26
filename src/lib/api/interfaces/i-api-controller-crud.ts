@@ -12,27 +12,27 @@ export interface IApiControllerCrud<
   create(
     model: TCreate,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<T>;
   update(
     id: number,
     model: TUpdate,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<T>;
   updatePartially(
     id: number,
     model: TUpdatePartially,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<T>;
   delete(
     id: number,
     onSuccess?: (result: boolean) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<boolean>;
 }

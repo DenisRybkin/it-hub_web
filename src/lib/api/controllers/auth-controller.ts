@@ -15,7 +15,7 @@ export class AuthController extends ApiControllerBase {
 
   async refresh(
     onSuccess?: (model: LoginResponseType) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void
+    onError?: (error: BaseProcessedError) => void
   ): Promise<LoginResponseType> {
     return await this.process<LoginResponseType>(
       this.post<LoginResponseType>('refresh'),
@@ -28,7 +28,7 @@ export class AuthController extends ApiControllerBase {
   async login(
     dto: LoginDto,
     onSuccess?: (model: LoginResponseType) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void
+    onError?: (error: BaseProcessedError) => void
   ): Promise<LoginResponseType> {
     return await this.process(
       this.post<LoginResponseType>('login', { data: dto }),
@@ -39,8 +39,8 @@ export class AuthController extends ApiControllerBase {
 
   async registration(
     dto: CreateUserDto,
-    onSuccess?: (x: LoginResponseType) => void,
-    onError?: (y: AxiosError) => void
+    onSuccess?: (model: LoginResponseType) => void,
+    onError?: (error: BaseProcessedError) => void
   ): Promise<LoginResponseType> {
     return await this.process(
       this.post('registration', { data: dto }),

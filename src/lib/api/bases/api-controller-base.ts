@@ -29,8 +29,10 @@ export abstract class ApiControllerBase<
   protected async process<T>(
     request: Promise<T>,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive: boolean | null = null
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T> {
     if (this.locker.isLocked()) await this.locker.waitForUnlock();
     try {
@@ -41,8 +43,8 @@ export abstract class ApiControllerBase<
       return data;
     } catch (error: unknown) {
       if (onError && error instanceof AxiosError)
-        onError(error.response?.data as AxiosError<BaseProcessedError>);
-      throw error;
+        onError(error.response?.data as BaseProcessedError);
+      else throw error;
     }
   }
 

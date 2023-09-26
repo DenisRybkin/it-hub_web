@@ -26,7 +26,7 @@ export abstract class ApiControllerCRUD<
   async create(
     model: TCreate,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<T> {
     return await this.process<T>(
@@ -40,7 +40,7 @@ export abstract class ApiControllerCRUD<
   async delete(
     id: number,
     onSuccess?: (result: boolean) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<boolean> {
     return await this.process<boolean>(
@@ -55,7 +55,7 @@ export abstract class ApiControllerCRUD<
     id: number,
     model: TUpdate,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<T> {
     return await this.process(
@@ -70,7 +70,7 @@ export abstract class ApiControllerCRUD<
     id: number,
     model: TUpdatePartially,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<T> {
     return await this.process(

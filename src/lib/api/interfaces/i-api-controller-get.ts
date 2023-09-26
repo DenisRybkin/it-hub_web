@@ -16,19 +16,19 @@ export interface IApiControllerGet<T, TFilter> {
   getAll(
     opts?: getOptions<T, TFilter>,
     onSuccess?: (model: PagingModel<T>) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<PagingModel<T>>;
   getById(
     id: number,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<T>;
   autocomplete(
     opts?: getOptions<T, TFilter>,
     onSuccess?: (models: PagingModel<Autocomplete>) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<PagingModel<Autocomplete>>;
 }

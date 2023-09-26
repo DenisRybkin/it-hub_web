@@ -29,7 +29,7 @@ export abstract class ApiControllerGet<
   public async getById(
     id: number,
     onSuccess?: (model: T) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<T> {
     return await this.process<T>(
@@ -43,7 +43,7 @@ export abstract class ApiControllerGet<
   public async getAll(
     opts?: getOptions<T, TFilter>,
     onSuccess?: (models: PagingModel<T>) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<PagingModel<T>> {
     return await this.process<PagingModel<T>>(
@@ -57,7 +57,7 @@ export abstract class ApiControllerGet<
   async autocomplete(
     opts?: getOptions<T, TFilter>,
     onSuccess?: (models: PagingModel<Autocomplete>) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void,
+    onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<PagingModel<Autocomplete>> {
     return await this.process<PagingModel<Autocomplete>>(

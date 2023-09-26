@@ -6,7 +6,7 @@ import { User } from '@lib/api/models';
 export class AuthStore {
   root: RootStore;
   private accessToken?: string | null;
-  private user?: User;
+  public user?: User;
 
   constructor(root: RootStore) {
     makeAutoObservable(this);

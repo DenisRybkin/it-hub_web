@@ -24,5 +24,10 @@
   "connecting": "Подключение...",
   "pending": "Ожидает",
   "loading_data": "Мы подгружаем данные",
-  "please_wait": "Пожалуйста, подождите"
+  "please_wait": "Пожалуйста, подождите",
+  "first_time_using": "Впервые используете IT hub?",
+  "create_account": "Создайте аккаунт",
+  "already_have_account": "Уже есть аккаунт?",
+  "wrong_email_or_password" : "Неправильный email или пароль",
+  "error": "Ошибка"
 }

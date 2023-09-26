@@ -5,11 +5,7 @@ import { sidebarLinks } from '@components/layouts/misc/links';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@lib/utils/tools/cn';
-import { Button } from '@components/ui/button';
 import { FiLogOut } from 'react-icons/fi';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { getFallback } from '@lib/utils/tools/user';
-import { api } from '@lib/api/plugins';
 
 export const Sidebar = observer(() => {
   const navigate = useNavigate();
@@ -45,15 +41,19 @@ export const Sidebar = observer(() => {
           );
         })}
       </div>
-      <div className="mt-10 px-6">
-        <div
-          onClick={handleLogoutClick}
-          className="flex cursor-pointer gap-4 p-4 rounded-md hover:bg-dark-4"
-        >
-          <FiLogOut size={24} />
-          <p className="text-light-2 max-lg:hidden">{t('ui:button.logout')}</p>
+      {authStore.isAuth && (
+        <div className="mt-10 px-6">
+          <div
+            onClick={handleLogoutClick}
+            className="flex cursor-pointer gap-4 p-4 rounded-md hover:bg-dark-4"
+          >
+            <FiLogOut size={24} />
+            <p className="text-light-2 max-lg:hidden">
+              {t('ui:button.logout')}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 });
