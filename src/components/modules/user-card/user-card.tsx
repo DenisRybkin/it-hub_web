@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { User } from '@lib/api/models';
 import { getAvatar, getFallback } from '@lib/utils/tools';
 import { Button } from '@components/ui/button';
 import { useTranslation } from 'react-i18next';
-import { observer } from 'mobx-react-lite';
-import { useRootStore } from '@lib/utils/hooks';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
+import { AuthContext } from '@app/providers/auth';
 
 interface IUserCardProps {
   user: User;
   onRefresh: () => void;
 }
 
-export const UserCard = observer((props: IUserCardProps) => {
+export const UserCard = (props: IUserCardProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const authStore = useRootStore('authStore');
+  const authContext = useContext(AuthContext);
 
   const [isLoadingAction, setIsLoadingAction] = useState<boolean>(false);
 
@@ -57,7 +56,7 @@ export const UserCard = observer((props: IUserCardProps) => {
       </div>
 
       <div className="flex items-center gap-2">
-        {authStore.isAuth && (
+        {authContext.isAuth && (
           <Button
             className="user-card_btn"
             variant="primary"
@@ -79,4 +78,4 @@ export const UserCard = observer((props: IUserCardProps) => {
       </div>
     </article>
   );
-});
+};

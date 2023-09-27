@@ -1,30 +1,29 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
-import { useRootStore } from '@lib/utils/hooks';
+import React, { useContext } from 'react';
 import { sidebarLinks } from '@components/layouts/misc/links';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@lib/utils/tools/cn';
 import { FiLogOut } from 'react-icons/fi';
+import { AuthContext } from '@app/providers/auth';
 
-export const Sidebar = observer(() => {
+export const Sidebar = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const authStore = useRootStore('authStore');
+  const authContext = useContext(AuthContext);
 
   const handleClickLink = (route: string) => () => navigate(route);
 
   const handleLogoutClick = () => {
-    authStore.setUser(undefined);
-    authStore.setAccessToken(undefined);
+    authContext.setUser(undefined);
+    authContext.setAccessToken(undefined);
   };
 
   return (
     <section className="custom-scrollbar leftsidebar">
       <div className="flex w-full flex-1 flex-1 flex-col gap-6 px-6">
         {sidebarLinks.map(link => {
-          if (link.isPrivate && !authStore.isAuth) return null;
+          if (link.isPrivate && !authContext.isAuth) return null;
           const isActive = pathname == link.route;
           return (
             <div
@@ -41,7 +40,7 @@ export const Sidebar = observer(() => {
           );
         })}
       </div>
-      {authStore.isAuth && (
+      {authContext.isAuth && (
         <div className="mt-10 px-6">
           <div
             onClick={handleLogoutClick}
@@ -56,4 +55,4 @@ export const Sidebar = observer(() => {
       )}
     </section>
   );
-});
+};

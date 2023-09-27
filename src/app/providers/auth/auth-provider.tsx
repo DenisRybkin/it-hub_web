@@ -1,18 +1,33 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { IProviderProps } from '@app/providers/i-provider-props';
-import { observer } from 'mobx-react-lite';
-import { useRootStore } from '@lib/utils/hooks';
 import { api } from '@lib/api/plugins';
 import { User } from '@lib/api/models';
 import { PreloaderContext } from '@app/providers/preloader';
+import { AuthContext } from '@app/providers/auth/auth-context';
+import { LocaleStorageKeys } from '@lib/constants';
 
-export const AuthProvider = observer((props: IProviderProps) => {
-  const authStore = useRootStore('authStore');
+export const AuthProvider = (props: IProviderProps) => {
   const preloader = useContext(PreloaderContext);
 
-  const handleSuccess = (user: User) => authStore.setUser(user);
+  const [user, setUser] = useState<User | undefined>(undefined);
+  const [accessToken, setAccessToken] = useState<string | undefined>(
+    localStorage.getItem(LocaleStorageKeys.JWT) ?? undefined
+  );
 
-  const handleError = () => authStore.setAccessToken(undefined);
+  const isAuth = useMemo(
+    () =>
+      !!(accessToken ?? localStorage.getItem(LocaleStorageKeys.JWT)) && !!user,
+    [accessToken, user]
+  );
+
+  const role = useMemo(() => user?.role, [user]);
+  const handleSetAccessToken = (token?: string) => {
+    setAccessToken(token);
+    if (!token) localStorage.removeItem(LocaleStorageKeys.JWT);
+  };
+
+  const handleSuccess = (user: User) => setUser(user);
+  const handleError = () => handleSetAccessToken(undefined);
 
   const handleFetchCurrentUser = async () => {
     preloader.setVisible(true);
@@ -21,8 +36,22 @@ export const AuthProvider = observer((props: IProviderProps) => {
   };
 
   useEffect(() => {
-    if (!authStore.getUser && authStore.hasAccess) handleFetchCurrentUser();
-  }, [authStore.hasAccess]);
+    console.log(accessToken, user);
+    if (!user && accessToken) handleFetchCurrentUser();
+  }, []);
 
-  return <>{props.children}</>;
-});
+  return (
+    <AuthContext.Provider
+      value={{
+        isAuth,
+        setUser,
+        user,
+        accessToken,
+        role,
+        setAccessToken: handleSetAccessToken,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
+  );
+};

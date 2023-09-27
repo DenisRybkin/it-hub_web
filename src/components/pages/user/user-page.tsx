@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyContent } from '@components/shared/empty-content/empty-content';
 import { User } from '@lib/api/models';
-import { observer } from 'mobx-react-lite';
-import { useRootStore } from '@lib/utils/hooks';
 import { UserCard } from '@components/modules/user-card';
 import { Button } from '@components/ui/button';
 import { FiChevronDown } from 'react-icons/fi';
 import { cn } from '@lib/utils/tools';
 import { Collapsible, CollapsibleContent } from '@radix-ui/react-collapsible';
+import { AuthContext } from '@app/providers/auth';
 
-export const UserPage = observer(() => {
+export const UserPage = () => {
   const { t } = useTranslation();
-  const { getUser, isAuth } = useRootStore('authStore');
+  const authContext = useContext(AuthContext);
 
   const [isOpenSubscriptions, setIsOpenSubscriptions] = useState<boolean>(true);
   const [isOpenNotSubscriptions, setIsOpenNotSubscriptions] =
@@ -24,11 +23,13 @@ export const UserPage = observer(() => {
   const handleCollapsibleNotSubscriptions = () =>
     setIsOpenNotSubscriptions(prev => !prev);
 
-  const result: User[] = getUser ? [getUser, getUser, getUser, getUser] : [];
+  const result: User[] = authContext.user
+    ? [authContext.user, authContext.user, authContext.user, authContext.user]
+    : [];
 
   return (
     <section>
-      {isAuth && (
+      {authContext.isAuth && (
         <Collapsible open={isOpenSubscriptions}>
           <div className="flex items-center justify-between mb-10">
             <h1 className="head-text">{t('ui:title.subscriptions')}</h1>
@@ -92,4 +93,4 @@ export const UserPage = observer(() => {
       </Collapsible>
     </section>
   );
-});
+};

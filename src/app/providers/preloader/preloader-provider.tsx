@@ -7,7 +7,10 @@ export const PreloaderProvider = (props: IProviderProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   return (
     <PreloaderContext.Provider value={{ isVisible, setVisible: setIsVisible }}>
-      {isVisible ? <Preloader /> : props.children}
+      <>
+        {isVisible && <Preloader />}
+        {props.children}
+      </>
     </PreloaderContext.Provider>
   );
 };

@@ -23,7 +23,7 @@ export class UserController extends ApiControllerCRUD<
 
   async getMe(
     onSuccess?: (model: User) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void
+    onError?: (error: BaseProcessedError) => void
   ) {
     return await this.process<User>(this.get('get-me'), onSuccess, onError);
   }

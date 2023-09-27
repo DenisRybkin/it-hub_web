@@ -19,7 +19,7 @@ export class StaticFieldController extends ApiControllerGet<
   async upload(
     data: FormData,
     onSuccess?: (model: StaticField) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void
+    onError?: (error: BaseProcessedError) => void
   ): Promise<StaticField> {
     return await this.process<StaticField>(
       this.post('', { data: { image: data } }),
@@ -31,7 +31,7 @@ export class StaticFieldController extends ApiControllerGet<
   async delete(
     id: number,
     onSuccess?: (result: boolean) => void,
-    onError?: (error: AxiosError<BaseProcessedError>) => void
+    onError?: (error: BaseProcessedError) => void
   ): Promise<boolean> {
     return await this.process(this.remove(id.toString()), onSuccess, onError);
   }

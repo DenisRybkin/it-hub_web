@@ -3,7 +3,7 @@ import { DialogAdapter } from '@components/dialogs/base';
 import { LoginForm, RegistrationForm } from '@components/forms/auth';
 
 import Logo from '../../../assets/icons/favicon.svg';
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { LoginSchema } from '@lib/utils/validations/login-schema';
@@ -15,9 +15,8 @@ import { RegistrationSchema } from '@lib/utils/validations/registration-schema';
 import { toast } from '@components/ui/use-toast';
 import { api } from '@lib/api/plugins';
 import { BaseProcessedError, LoginResponseType } from '@lib/api/models';
-import { observer } from 'mobx-react-lite';
-import { useRootStore } from '@lib/utils/hooks';
 import { LocaleStorageKeys } from '@lib/constants';
+import { AuthContext } from '@app/providers/auth';
 
 type AuthStrategyType = 'login' | 'registration';
 
@@ -25,10 +24,9 @@ interface IAuthDialogProps extends IBaseDialogProps {
   strategy?: AuthStrategyType;
 }
 
-export const AuthDialog = observer((props: IAuthDialogProps) => {
+export const AuthDialog = (props: IAuthDialogProps) => {
   const { t } = useTranslation();
-
-  const authStore = useRootStore('authStore');
+  const authContext = useContext(AuthContext);
 
   const [authStrategy, setAuthStrategy] = useState<AuthStrategyType>(
     props.strategy ?? 'login'
@@ -37,8 +35,8 @@ export const AuthDialog = observer((props: IAuthDialogProps) => {
   const [isWrongCredentials, setIsWrongCredentials] = useState<boolean>(false);
 
   const handleLoginSuccess = (response: LoginResponseType) => {
-    authStore.setUser(response.user);
-    authStore.setAccessToken(response.access);
+    authContext.setUser(response.user);
+    authContext.setAccessToken(response.access);
     localStorage.setItem(LocaleStorageKeys.JWT, response.access);
     toast({
       variant: 'success',
@@ -48,8 +46,8 @@ export const AuthDialog = observer((props: IAuthDialogProps) => {
   };
 
   const handleRegistrationSuccess = (response: LoginResponseType) => {
-    authStore.setUser(response.user);
-    authStore.setAccessToken(response.access);
+    authContext.setUser(response.user);
+    authContext.setAccessToken(response.access);
     localStorage.setItem(LocaleStorageKeys.JWT, response.access);
     toast({
       variant: 'success',
@@ -144,4 +142,4 @@ export const AuthDialog = observer((props: IAuthDialogProps) => {
       )}
     </DialogAdapter>
   );
-});
+};

@@ -1,4 +1,3 @@
-export { useRootStore } from './use-root-store';
 export { useDebounce } from './use-debounce';
 export { useApi } from './use-api';
 export { useClipboard } from './use-clipboard';

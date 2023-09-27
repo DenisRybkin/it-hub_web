@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { observer } from 'mobx-react-lite';
 import LogoDark from '@assets/images/logo-dark-theme.svg';
 import LogoLight from '@assets/images/logo-light-theme.svg';
-import { useDeviceDetermine, useRootStore } from '@lib/utils/hooks';
+import { useDeviceDetermine } from '@lib/utils/hooks';
 import { ThemeContext } from '@app/providers/theme';
 import { FiLogIn, FiLogOut, FiPlus } from 'react-icons/fi';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -12,12 +11,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { getAvatar, getFallback } from '@lib/utils/tools';
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
-import { api } from '@lib/api/plugins';
 import { AuthDialog } from '@components/dialogs/auth';
+import { AuthContext } from '@app/providers/auth';
 
-export const Topbar = observer(() => {
+export const Topbar = () => {
   const { t } = useTranslation();
-  const authStore = useRootStore('authStore');
+  const authContext = useContext(AuthContext);
   const [deviceSize] = useDeviceDetermine();
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
@@ -26,8 +25,8 @@ export const Topbar = observer(() => {
   const [isOpenAuthDialog, setIsOpenAuthDialog] = useState<boolean>(false);
 
   const handleLogoutClick = () => {
-    authStore.setUser(undefined);
-    authStore.setAccessToken(undefined);
+    authContext.setUser(undefined);
+    authContext.setAccessToken(undefined);
   };
 
   const onClickLogo = () => navigate(RoutePaths[RouteKeys.HOME]);
@@ -49,7 +48,7 @@ export const Topbar = observer(() => {
             alt="logo"
           />
         </div>
-        {authStore.isAuth && pathname != RoutePaths[RouteKeys.WRITE] && (
+        {authContext.isAuth && pathname != RoutePaths[RouteKeys.WRITE] && (
           <Button
             onClick={onClickCreate}
             variant="primary"
@@ -59,7 +58,7 @@ export const Topbar = observer(() => {
             {t('ui:button.create')}
           </Button>
         )}
-        {authStore.isAuth ? (
+        {authContext.isAuth ? (
           <div className="flex items-center gap-1">
             <div
               onClick={handleLogoutClick}
@@ -68,8 +67,8 @@ export const Topbar = observer(() => {
               <FiLogOut className="flex" size={deviceSize != 'sm' ? 30 : 20} />
             </div>
             <Avatar>
-              <AvatarImage src={getAvatar(authStore.getUser)} />
-              <AvatarFallback>{getFallback(authStore.getUser)}</AvatarFallback>
+              <AvatarImage src={getAvatar(authContext.user)} />
+              <AvatarFallback>{getFallback(authContext.user)}</AvatarFallback>
             </Avatar>
           </div>
         ) : (
@@ -84,4 +83,4 @@ export const Topbar = observer(() => {
       </nav>
     </>
   );
-});
+};

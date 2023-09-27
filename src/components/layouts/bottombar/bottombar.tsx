@@ -1,14 +1,15 @@
 import { sidebarLinks } from '@components/layouts/misc/links';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useRootStore } from '@lib/utils/hooks';
 import { cn } from '@lib/utils/tools/cn';
+import { useContext } from 'react';
+import { AuthContext } from '@app/providers/auth';
 
 export const Bottombar = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const authStore = useRootStore('authStore');
+  const authContext = useContext(AuthContext);
 
   const handleClickLink = (route: string) => () => navigate(route);
 
@@ -16,7 +17,7 @@ export const Bottombar = () => {
     <section className="bottombar">
       <div className="bottombar_container">
         {sidebarLinks.map(link => {
-          if (link.isPrivate && !authStore.isAuth) return null;
+          if (link.isPrivate && !authContext.isAuth) return null;
           const isActive = pathname == link.route;
           return (
             <div
