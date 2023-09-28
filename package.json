@@ -18,6 +18,7 @@
     "@editorjs/paragraph": "^2.10.0",
     "@editorjs/table": "^2.2.2",
     "@hookform/resolvers": "^3.3.1",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-collapsible": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.5",

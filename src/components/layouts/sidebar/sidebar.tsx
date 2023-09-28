@@ -3,8 +3,8 @@ import { sidebarLinks } from '@components/layouts/misc/links';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@lib/utils/tools/cn';
-import { FiLogOut } from 'react-icons/fi';
 import { AuthContext } from '@app/providers/auth';
+import { LogoutTrigger } from '@components/layouts/misc/logout-trigger';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
@@ -13,11 +13,6 @@ export const Sidebar = () => {
   const authContext = useContext(AuthContext);
 
   const handleClickLink = (route: string) => () => navigate(route);
-
-  const handleLogoutClick = () => {
-    authContext.setUser(undefined);
-    authContext.setAccessToken(undefined);
-  };
 
   return (
     <section className="custom-scrollbar leftsidebar">
@@ -40,19 +35,7 @@ export const Sidebar = () => {
           );
         })}
       </div>
-      {authContext.isAuth && (
-        <div className="mt-10 px-6">
-          <div
-            onClick={handleLogoutClick}
-            className="flex cursor-pointer gap-4 p-4 rounded-md hover:bg-dark-4"
-          >
-            <FiLogOut size={24} />
-            <p className="text-light-2 max-lg:hidden">
-              {t('ui:button.logout')}
-            </p>
-          </div>
-        </div>
-      )}
+      <LogoutTrigger from="sidebar" />
     </section>
   );
 };

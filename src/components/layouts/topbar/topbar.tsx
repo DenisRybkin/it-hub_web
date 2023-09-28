@@ -13,6 +13,7 @@ import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
 import { AuthDialog } from '@components/dialogs/auth';
 import { AuthContext } from '@app/providers/auth';
+import { LogoutTrigger } from '@components/layouts/misc/logout-trigger';
 
 export const Topbar = () => {
   const { t } = useTranslation();
@@ -60,12 +61,7 @@ export const Topbar = () => {
         )}
         {authContext.isAuth ? (
           <div className="flex items-center gap-1">
-            <div
-              onClick={handleLogoutClick}
-              className="block md:hidden cursor-pointer p-2 rounded-md hover:bg-dark-4"
-            >
-              <FiLogOut className="flex" size={deviceSize != 'sm' ? 30 : 20} />
-            </div>
+            <LogoutTrigger from="topbar" />
             <Avatar>
               <AvatarImage src={getAvatar(authContext.user)} />
               <AvatarFallback>{getFallback(authContext.user)}</AvatarFallback>

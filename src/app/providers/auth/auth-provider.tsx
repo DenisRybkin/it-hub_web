@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { IProviderProps } from '@app/providers/i-provider-props';
 import { api } from '@lib/api/plugins';
 import { User } from '@lib/api/models';
@@ -36,9 +36,8 @@ export const AuthProvider = (props: IProviderProps) => {
   };
 
   useEffect(() => {
-    console.log(accessToken, user);
     if (!user && accessToken) handleFetchCurrentUser();
-  }, []);
+  }, [accessToken]);
 
   return (
     <AuthContext.Provider

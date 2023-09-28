@@ -94,7 +94,8 @@
     "email_exists": "This email already exists",
     "coming_soon": "Coming soon!",
     "was_send_code": "An email with a confirmation code has been sent to your Email",
-    "authorization": "Authorization"
+    "authorization": "Authorization",
+    "want_logout": "Do you really want to log out of your account?"
   },
   "tab": {},
   "table": {},
