@@ -39,7 +39,7 @@ export abstract class ApiControllerBase<
       const data: T = exclusive
         ? await this.runExclusive<T>(request)
         : await request;
-      onSuccess && onSuccess(data);
+      if (onSuccess) onSuccess(data);
       return data;
     } catch (error: unknown) {
       if (onError && error instanceof AxiosError)

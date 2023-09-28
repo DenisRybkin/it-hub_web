@@ -12,14 +12,14 @@ export const LoginExtraContent = (props: IExtraContentProps) => {
       {props.isWrongCredentials && (
         <Alert className="mb-4" variant="destructive">
           <FiAlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>{t('text:error')}</AlertTitle>
           <AlertDescription>
-            Your session has expired. Please log in again.
+            {t('text:wrong_email_or_password')}
           </AlertDescription>
         </Alert>
       )}
       <div className="flex flex-row justify-start items-center gap-2 text-neutral-400 text-center font-light">
-        <div>{t('text:first_time_using')}</div>
+        <div className="text-left">{t('text:first_time_using')}</div>
         <div
           onClick={props.onClick}
           className="text-primary-500 cursor-pointer hover:underline"

@@ -5,7 +5,7 @@ const LOGIN_PATH = 'api/auth/login';
 
 export const client = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
-  withCredentials: false,
+  withCredentials: true,
 });
 
 client.interceptors.request.use(config => {
