@@ -58,10 +58,9 @@ export abstract class ApiControllerBase<
   private async runExclusive<T>(request: Promise<T>): Promise<T> {
     const release = await this.locker.acquire();
     try {
-      return await this.locker.runExclusive<T>(async () => await request);
+      return await request;
     } finally {
       if (Array.isArray(release)) release[1]();
-      // eslint-disable-next-line @typescript-eslint/ban-types
       else (release as Function)();
     }
   }

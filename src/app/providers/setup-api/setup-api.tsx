@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
 import { LocaleStorageKeys, RouteKeys } from '@lib/constants';
@@ -9,6 +8,7 @@ export const SetupApi = (): null => {
   const navigate = useNavigate();
   const onRefreshExpired = () => navigate(RoutePaths[RouteKeys.HOME]);
   const onAccessExpired = async () => {
+    localStorage.removeItem(LocaleStorageKeys.JWT);
     const { access } = await api.auth.refresh();
     localStorage.setItem(LocaleStorageKeys.JWT, access);
   };

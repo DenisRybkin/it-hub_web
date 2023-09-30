@@ -30,7 +30,6 @@ export const setupResponseInterceptors = (
         !error.config._isRetry
       ) {
         originalRequest._isRetry = true;
-        localStorage.removeItem(LocaleStorageKeys.JWT);
         try {
           await onAccessExpired();
           return await client.request(originalRequest);

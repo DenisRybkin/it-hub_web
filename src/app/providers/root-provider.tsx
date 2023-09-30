@@ -12,12 +12,12 @@ import { Toaster } from '@components/ui/toaster';
 export const RootProvider = (props: IProviderProps) => {
   return (
     <BrowserRouter>
-      <SetupApi />
       <ThemeProvider>
         <LocaleProvider>
           <LocationHistoryProvider>
             <PreloaderProvider>
               <AuthProvider>
+                <SetupApi />
                 <Toaster />
                 <ErrorBoundaryProvider>{props.children}</ErrorBoundaryProvider>
               </AuthProvider>
