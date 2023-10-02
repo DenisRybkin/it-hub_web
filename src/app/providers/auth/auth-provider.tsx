@@ -4,7 +4,8 @@ import { api } from '@lib/api/plugins';
 import { User } from '@lib/api/models';
 import { PreloaderContext } from '@app/providers/preloader';
 import { AuthContext } from '@app/providers/auth/auth-context';
-import { LocaleStorageKeys } from '@lib/constants';
+import { LocaleStorageKeys, QueryKeys } from '@lib/constants';
+import { useQuery } from '@tanstack/react-query';
 
 export const AuthProvider = (props: IProviderProps) => {
   const preloader = useContext(PreloaderContext);
@@ -13,6 +14,21 @@ export const AuthProvider = (props: IProviderProps) => {
   const [accessToken, setAccessToken] = useState<string | undefined>(
     localStorage.getItem(LocaleStorageKeys.JWT) ?? undefined
   );
+
+  const handleSuccess = (user: User) => setUser(user);
+
+  const handleError = () => {
+    localStorage.removeItem(LocaleStorageKeys.JWT);
+    handleSetAccessToken(undefined);
+  };
+
+  const { isLoading, isFetching } = useQuery({
+    queryKey: [QueryKeys.GET_ME],
+    queryFn: async () => await api.user.getMe(handleSuccess, handleError),
+    enabled: !user && !!accessToken,
+    onSuccess: handleSuccess,
+    onError: handleError,
+  });
 
   const isAuth = useMemo(
     () =>
@@ -26,18 +42,9 @@ export const AuthProvider = (props: IProviderProps) => {
     if (!token) localStorage.removeItem(LocaleStorageKeys.JWT);
   };
 
-  const handleSuccess = (user: User) => setUser(user);
-  const handleError = () => handleSetAccessToken(undefined);
-
-  const handleFetchCurrentUser = async () => {
-    preloader.setVisible(true);
-    await api.user.getMe(handleSuccess, handleError);
-    preloader.setVisible(false);
-  };
-
   useEffect(() => {
-    if (!user && accessToken) handleFetchCurrentUser();
-  }, [accessToken]);
+    preloader.setVisible(isLoading || isFetching);
+  }, [isLoading, isFetching]);
 
   return (
     <AuthContext.Provider

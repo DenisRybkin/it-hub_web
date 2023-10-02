@@ -8,23 +8,28 @@ import { SetupApi } from '@app/providers/setup-api';
 import { AuthProvider } from '@app/providers/auth';
 import { PreloaderProvider } from '@app/providers/preloader';
 import { Toaster } from '@components/ui/toaster';
+import { QueryProvider } from '@app/providers/query/query-provider';
 
 export const RootProvider = (props: IProviderProps) => {
   return (
     <BrowserRouter>
-      <ThemeProvider>
-        <LocaleProvider>
-          <LocationHistoryProvider>
-            <PreloaderProvider>
-              <AuthProvider>
-                <SetupApi />
-                <Toaster />
-                <ErrorBoundaryProvider>{props.children}</ErrorBoundaryProvider>
-              </AuthProvider>
-            </PreloaderProvider>
-          </LocationHistoryProvider>
-        </LocaleProvider>
-      </ThemeProvider>
+      <QueryProvider>
+        <ThemeProvider>
+          <LocaleProvider>
+            <LocationHistoryProvider>
+              <PreloaderProvider>
+                <AuthProvider>
+                  <SetupApi />
+                  <Toaster />
+                  <ErrorBoundaryProvider>
+                    {props.children}
+                  </ErrorBoundaryProvider>
+                </AuthProvider>
+              </PreloaderProvider>
+            </LocationHistoryProvider>
+          </LocaleProvider>
+        </ThemeProvider>
+      </QueryProvider>
     </BrowserRouter>
   );
 };

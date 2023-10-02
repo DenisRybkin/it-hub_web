@@ -35,4 +35,6 @@ export interface IApiControllerCrud<
     onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<boolean>;
+
+  toString(): string;
 }

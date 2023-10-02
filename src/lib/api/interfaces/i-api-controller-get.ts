@@ -31,4 +31,6 @@ export interface IApiControllerGet<T, TFilter> {
     onError?: (error: BaseProcessedError) => void,
     exclusive?: boolean
   ): Promise<PagingModel<Autocomplete>>;
+
+  toString(): string;
 }

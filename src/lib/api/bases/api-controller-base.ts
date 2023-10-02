@@ -107,4 +107,8 @@ export abstract class ApiControllerBase<
       this.client.delete(this.url(url))
     );
   }
+
+  public toString() {
+    return this.controllerName;
+  }
 }

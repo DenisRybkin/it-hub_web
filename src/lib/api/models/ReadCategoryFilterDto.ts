@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ReadFilterDto = {
+export type ReadCategoryFilterDto = {
     id?: number;
     name?: string;
     description?: string;

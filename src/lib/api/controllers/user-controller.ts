@@ -7,7 +7,7 @@ import {
   UpdateUserDto,
   User,
 } from '@lib/api/models';
-import { AxiosError, AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import { LockerModel } from '@lib/api/types';
 
 export class UserController extends ApiControllerCRUD<

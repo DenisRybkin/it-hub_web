@@ -6,6 +6,6 @@
 import type { StaticField } from './StaticField';
 
 export type EditorImageDto = {
-  success: number;
-  file: StaticField;
+    success: number;
+    file: StaticField;
 };

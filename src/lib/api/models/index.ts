@@ -20,7 +20,7 @@ export type { ProcessedError400Type } from './ProcessedError400Type';
 export type { ProcessedError401Type } from './ProcessedError401Type';
 export type { ProcessedError404Type } from './ProcessedError404Type';
 export type { ProcessedError500Type } from './ProcessedError500Type';
-export type { ReadFilterDto } from './ReadFilterDto';
+export type { ReadCategoryFilterDto } from './ReadCategoryFilterDto';
 export { ReadRoleFilterDto } from './ReadRoleFilterDto';
 export type { ReadStaticFieldFilterDto } from './ReadStaticFieldFilterDto';
 export type { ReadUserFilterDto } from './ReadUserFilterDto';
