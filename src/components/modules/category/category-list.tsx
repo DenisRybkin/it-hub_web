@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { usePaging } from '@lib/utils/hooks/use-paging';
 import { api } from '@lib/api/plugins';
 import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area/horizontal-scroll-area';
 import { CategoryItem } from '@components/modules/category/category-item';
 import { Category } from '@lib/api/models';
+import { useSearchParams } from 'react-router-dom';
+import { searchParamToNumArray } from '@lib/utils/tools';
+
+export const CATEGORIES_SEARCH_PARAMS = 'categories';
 
 export interface ICategoriesListProps {
-  selectedIds: number[];
-  onChangeSelects: (value: number[]) => void;
+  selectedIds?: number[];
+  onChangeSelects?: (value: number[]) => void;
+  withSearchParams?: boolean;
 }
 
 export const CategoryList = (props: ICategoriesListProps) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const categoryPaging = usePaging(
     api.category,
     undefined,
@@ -19,15 +26,34 @@ export const CategoryList = (props: ICategoriesListProps) => {
     { pageSize: 20 }
   );
 
-  if (!categoryPaging.isSuccess) return null;
+  const selectedIds = useMemo(
+    () =>
+      props.withSearchParams
+        ? searchParamToNumArray(searchParams.get(CATEGORIES_SEARCH_PARAMS)) ??
+          []
+        : props.selectedIds ?? [],
+    [props.withSearchParams, props.selectedIds, searchParams]
+  );
 
   const handleClick = (category: Category) => {
-    props.selectedIds.includes(category.id)
-      ? props.onChangeSelects(
-          props.selectedIds.filter(item => item != category.id)
-        )
-      : props.onChangeSelects([...props.selectedIds, category.id]);
+    if (!props.onChangeSelects && !props.withSearchParams) return;
+
+    const updatedCategoryIds = selectedIds.includes(category.id)
+      ? selectedIds.filter(item => item != category.id)
+      : [...selectedIds, category.id];
+    if (props.onChangeSelects) props.onChangeSelects(updatedCategoryIds);
+    if (props.withSearchParams) {
+      !updatedCategoryIds.length
+        ? searchParams.delete(CATEGORIES_SEARCH_PARAMS)
+        : searchParams.set(
+            CATEGORIES_SEARCH_PARAMS,
+            updatedCategoryIds.toString()
+          );
+      setSearchParams(searchParams);
+    }
   };
+
+  if (!categoryPaging.isSuccess) return null;
 
   return (
     <HorizontalScrollArea
@@ -37,7 +63,7 @@ export const CategoryList = (props: ICategoriesListProps) => {
       {categoryPaging.items.map(item => (
         <CategoryItem
           key={item.id}
-          isSelected={props.selectedIds.includes(item.id)}
+          isSelected={selectedIds?.includes(item.id)}
           category={item}
           onClick={handleClick}
         />

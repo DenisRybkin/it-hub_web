@@ -24,8 +24,8 @@ export interface ITextEditorForwardRef {
   isLoading: boolean;
 }
 
-export const TextEditor = forwardRef(
-  (props: ITextEditorProps, ref?: ForwardedRef<ITextEditorForwardRef>) => {
+export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
+  (props, ref) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const editorCore = React.useRef<EditorCore | null>(null);

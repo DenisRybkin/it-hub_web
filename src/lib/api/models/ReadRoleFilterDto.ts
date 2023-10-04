@@ -14,6 +14,7 @@ export namespace ReadRoleFilterDto {
     export enum name {
         USER = 'user',
         ADMIN = 'admin',
+        PUBLISHER = 'publisher',
         OWNER = 'owner',
     }
 

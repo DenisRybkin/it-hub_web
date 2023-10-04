@@ -5,6 +5,7 @@ import { RouteKeys } from '@lib/constants';
 import { WritePage } from '@components/pages/write';
 import { HomePage } from '@components/pages/home/home-page';
 import { UserPage } from '@components/pages/user';
+import { LatestPage } from '@components/pages/latest';
 
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;
@@ -40,7 +41,7 @@ export const routerConfig: RoutePropsType[] = [
   {
     isPrivate: false,
     path: RoutePaths[RouteKeys.LATEST],
-    element: <div>LATEST</div>,
+    element: <LatestPage />,
   },
   {
     isPrivate: false,

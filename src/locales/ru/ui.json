@@ -2,6 +2,7 @@
   "placeholder": {
     "enter": "Введите...",
     "enter_something": "Напишите что-нибудь...",
+    "hashtag": "Хэштэг...",
     "login": "Логин",
     "password": "Пароль",
     "confirm_password": "Подтвердите ваш пароль",
@@ -61,7 +62,10 @@
     "publish": "Публиковать",
     "view": "Открыть",
     "subscribe": "Подписаться",
-    "unsubscribe": "Отписаться"
+    "unsubscribe": "Отписаться",
+    "add": "Добавить",
+    "add_hashtag": "Добавить хэштэг",
+    "delete": "Удалить"
   },
   "label": {
     "i_read": "Я ознакомился с",
@@ -77,6 +81,7 @@
     "sign_in": "Войти",
     "sign_up": "Зарегистрироваться",
     "home": "Главная",
+    "creating_article": "Создание статьи",
     "vacancies": "Вакансии",
     "latest": "Свежее",
     "companies": "Компании",

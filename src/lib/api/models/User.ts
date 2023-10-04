@@ -50,7 +50,7 @@ export type User = {
      */
     userAvatar?: UserAvatar;
     /**
-     * category
+     * categories
      */
     userCategory?: Array<UserCategory>;
 };

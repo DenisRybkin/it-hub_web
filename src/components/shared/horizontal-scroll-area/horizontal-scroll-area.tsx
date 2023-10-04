@@ -93,7 +93,7 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
       )}
       <div
         ref={scrollWrapperRef}
-        className={`custom-scrollbar flex justify-start overflow-auto gap-${
+        className={`custom-scrollbar max-w-[340px] md:max-w-none flex justify-start overflow-auto gap-${
           props.gap ?? 2
         }`}
       >

@@ -16,6 +16,7 @@ export namespace UpdateRoleDto {
     export enum name {
         USER = 'user',
         ADMIN = 'admin',
+        PUBLISHER = 'publisher',
         OWNER = 'owner',
     }
 

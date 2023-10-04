@@ -19,6 +19,8 @@
     "email_match": "This email is already used by another user",
     "incorrect_wallet": "The wallet address is invalid. Please provide the correct wallet",
     "file_over_error": "The file size should not exceed 50 MB",
-    "file_over_amount_error": "You can attach a maximum of 5 files"
+    "file_over_amount_error": "You can attach a maximum of 5 files",
+    "no_category_selected": "No category selected",
+    "no_complete_examination": "Complete the examination"
   }
 }

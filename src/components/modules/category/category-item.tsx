@@ -15,13 +15,13 @@ export const CategoryItem = (props: ICategoryItemProps) => {
     <div
       onClick={handleClick}
       className={cn(
-        'cursor-default rounded-lg bg-dark-2 p-6 flex flex-col items-center justify-between gap-2 border-2 border-dark-2 hover:border-primary-500 min-w-[150px]',
+        'cursor-default transition-all rounded-lg bg-dark-2 p-3 md:p-6 flex flex-col items-center justify-between gap-1 md:gap-2 border-2 border-dark-2 hover:border-primary-500 min-w-[150px]',
         props.isSelected && 'border-primary-500'
       )}
     >
       <img
         src={props.category.avatar?.staticField?.url}
-        className="rounded-lg"
+        className="rounded-lg w-20 md:w-36"
         alt="category avatar"
       />
       <h3>{props.category.name}</h3>

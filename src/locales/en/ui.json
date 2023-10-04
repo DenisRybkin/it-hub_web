@@ -2,6 +2,7 @@
   "placeholder": {
     "enter": "Enter...",
     "enter_something": "Enter something...",
+    "hashtag": "Hashtag...",
     "login": "Login",
     "password": "Password",
     "confirm_password": "Confirm your password",
@@ -61,7 +62,10 @@
     "publish": "Publish",
     "view": "View",
     "subscribe": "Subscribe",
-    "unsubscribe": "Unsubscribe"
+    "unsubscribe": "Unsubscribe",
+    "add": "Add",
+    "add_hashtag": "Add hashtag",
+    "delete": "Delete"
   },
   "label": {
     "i_read": "I have read the",
@@ -77,6 +81,7 @@
     "sign_in": "Sign in",
     "sign_up": "Sign up",
     "home": "Home",
+    "creating_article": "Creating an article",
     "vacancies": "Vacancies",
     "latest": "Latest",
     "companies": "Companies",

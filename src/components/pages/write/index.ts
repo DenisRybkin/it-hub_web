@@ -1,1 +1,1 @@
-export { WritePage } from './write';
+export { WritePage } from './write-page';
