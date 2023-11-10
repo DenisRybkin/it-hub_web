@@ -3,8 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UpdateAnswerDto = {
-    name: string;
-    questionId: number;
-    isRight: boolean;
+export type CreateArticleCommentDto = {
+    text: string;
+    articleId: number;
+    createdByUserId: number;
 };

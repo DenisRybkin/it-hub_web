@@ -1,0 +1,29 @@
+/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import type { User } from './User';
+
+export type UserFollower = {
+    /**
+     * id of user-follower
+     */
+    id: number;
+    /**
+     * FK to author
+     */
+    userId: number;
+    /**
+     * author
+     */
+    user?: User;
+    /**
+     * FK to follower
+     */
+    followerUserId: number;
+    /**
+     * follower
+     */
+    follower?: User;
+};

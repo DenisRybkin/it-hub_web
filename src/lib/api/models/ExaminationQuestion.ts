@@ -3,20 +3,20 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Answer } from './Answer';
 import type { Examination } from './Examination';
+import type { ExaminationAnswer } from './ExaminationAnswer';
 
-export type Question = {
+export type ExaminationQuestion = {
     /**
-     * id of quest
+     * id of examination-question
      */
     id: number;
     /**
-     * name of question
+     * name of examination-question
      */
     name: string;
     /**
-     * name of question
+     * name of examination-question
      */
     examinationId: number;
     /**
@@ -24,7 +24,7 @@ export type Question = {
      */
     examination?: Examination;
     /**
-     * answers of question
+     * answers of examination-question
      */
-    answers?: Array<Answer>;
+    answers?: Array<ExaminationAnswer>;
 };

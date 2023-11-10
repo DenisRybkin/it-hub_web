@@ -1,1 +1,1 @@
-export type { RequiredLike } from './required-like';
+export type { PartialLike } from './partial-like';

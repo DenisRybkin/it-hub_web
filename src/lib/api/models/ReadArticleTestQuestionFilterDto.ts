@@ -3,8 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UpdatePartiallyAnswerDto = {
+export type ReadArticleTestQuestionFilterDto = {
+    id?: number;
+    testId?: number;
     name?: string;
-    questionId?: number;
-    isRight?: boolean;
 };

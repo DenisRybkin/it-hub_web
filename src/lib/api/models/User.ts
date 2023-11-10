@@ -5,8 +5,11 @@
 
 import type { Role } from './Role';
 import type { StaticField } from './StaticField';
+import type { UserAchievement } from './UserAchievement';
 import type { UserAvatar } from './UserAvatar';
 import type { UserCategory } from './UserCategory';
+import type { UserFollower } from './UserFollower';
+import type { UserFollowing } from './UserFollowing';
 
 export type User = {
     /**
@@ -44,7 +47,7 @@ export type User = {
     /**
      * default avatar
      */
-    defaultAvatar: StaticField;
+    defaultAvatar?: StaticField;
     /**
      * avatar
      */
@@ -53,4 +56,16 @@ export type User = {
      * categories
      */
     userCategory?: Array<UserCategory>;
+    /**
+     * user achievements
+     */
+    userAchievements?: Array<UserAchievement>;
+    /**
+     * user followings
+     */
+    userFollowings?: Array<UserFollowing>;
+    /**
+     * user followers
+     */
+    userFollowers?: Array<UserFollower>;
 };

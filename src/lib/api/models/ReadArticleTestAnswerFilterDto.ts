@@ -3,10 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ReadStaticFieldFilterDto = {
+export type ReadArticleTestAnswerFilterDto = {
     id?: number;
+    questionId?: number;
     name?: string;
-    originalname?: string;
-    type?: string;
-    url?: string;
+    isRight?: number;
 };

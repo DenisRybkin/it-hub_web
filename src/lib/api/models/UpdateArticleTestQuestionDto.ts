@@ -3,10 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CreateUserDto = {
-    nickname: string;
+export type UpdateArticleTestQuestionDto = {
+    testId: number;
     name: string;
-    email: string;
-    password: string;
-    defaultAvatarId?: number;
 };

@@ -3,10 +3,13 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CreateUserDto = {
-    nickname: string;
+export type Hashtag = {
+    /**
+     * id of hashtag
+     */
+    id: number;
+    /**
+     * text of hashtag
+     */
     name: string;
-    email: string;
-    password: string;
-    defaultAvatarId?: number;
 };

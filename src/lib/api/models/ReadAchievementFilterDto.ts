@@ -3,10 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ReadStaticFieldFilterDto = {
+export type ReadAchievementFilterDto = {
     id?: number;
     name?: string;
-    originalname?: string;
-    type?: string;
-    url?: string;
+    requiredPoints?: number;
+    level?: number;
 };

@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Question } from './Question';
+import type { ExaminationQuestion } from './ExaminationQuestion';
 import type { Role } from './Role';
 
 export type Examination = {
@@ -30,5 +30,5 @@ export type Examination = {
     /**
      * questions of exam
      */
-    questions?: Array<Question>;
+    questions?: Array<ExaminationQuestion>;
 };

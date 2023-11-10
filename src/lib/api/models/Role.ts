@@ -11,9 +11,24 @@ export type Role = {
     /**
      * name of role
      */
-    name: Record<string, any>;
+    name: Role.name;
     /**
      * description of model
      */
     description: Record<string, any>;
 };
+
+export namespace Role {
+
+    /**
+     * name of role
+     */
+    export enum name {
+        USER = 'user',
+        ADMIN = 'admin',
+        PUBLISHER = 'publisher',
+        OWNER = 'owner',
+    }
+
+
+}

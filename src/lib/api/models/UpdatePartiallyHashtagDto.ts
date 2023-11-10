@@ -3,10 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ReadStaticFieldFilterDto = {
-    id?: number;
+export type UpdatePartiallyHashtagDto = {
     name?: string;
-    originalname?: string;
-    type?: string;
-    url?: string;
 };

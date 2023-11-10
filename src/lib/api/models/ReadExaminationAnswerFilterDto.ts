@@ -3,7 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UpdateQuestionDto = {
-    name: string;
-    examinationId: number;
+export type ReadExaminationAnswerFilterDto = {
+    id?: number;
+    name?: string;
+    questionId?: number;
+    isRight?: boolean;
 };

@@ -43,8 +43,9 @@ export const AuthProvider = (props: IProviderProps) => {
   };
 
   useEffect(() => {
-    preloader.setVisible(isLoading || isFetching);
-  }, [isLoading, isFetching]);
+    preloader.setVisible(isFetching);
+    console.log(isFetching || isLoading, isFetching);
+  }, [isFetching]);
 
   return (
     <AuthContext.Provider

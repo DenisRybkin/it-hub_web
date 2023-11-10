@@ -3,10 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CreateUserDto = {
-    nickname: string;
+export type ComplexUpdateArticleTestAnswerDto = {
+    id: number;
     name: string;
-    email: string;
-    password: string;
-    defaultAvatarId?: number;
+    isRight: boolean;
+    questionId: number;
 };

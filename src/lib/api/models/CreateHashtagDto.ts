@@ -3,10 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CreateUserDto = {
-    nickname: string;
+export type CreateHashtagDto = {
     name: string;
-    email: string;
-    password: string;
-    defaultAvatarId?: number;
 };

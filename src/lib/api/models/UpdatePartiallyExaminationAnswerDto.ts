@@ -3,10 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ReadStaticFieldFilterDto = {
-    id?: number;
+export type UpdatePartiallyExaminationAnswerDto = {
     name?: string;
-    originalname?: string;
-    type?: string;
-    url?: string;
+    questionId?: number;
+    isRight?: boolean;
 };

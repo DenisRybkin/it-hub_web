@@ -3,7 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CreateQuestionDto = {
-    name: string;
-    examinationId: number;
+export type UpdateArticleCommentDto = {
+    text: string;
+    articleId: number;
+    createdByUserId: number;
 };

@@ -3,8 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ReadQuestionFilterDto = {
+export type ReadHashtagFilterDto = {
     id?: number;
     name?: string;
-    examinationId?: number;
 };

@@ -3,9 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ReadAnswerFilterDto = {
-    id?: number;
-    name?: string;
-    questionId?: number;
-    isRight?: boolean;
+export type CreateArticleDto = {
+    body: string;
+    createdByUserId: number;
 };

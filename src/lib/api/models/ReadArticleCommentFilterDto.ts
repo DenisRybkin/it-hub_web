@@ -3,10 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ReadStaticFieldFilterDto = {
+export type ReadArticleCommentFilterDto = {
     id?: number;
-    name?: string;
-    originalname?: string;
-    type?: string;
-    url?: string;
+    text?: string;
+    createdByUserId?: number;
 };

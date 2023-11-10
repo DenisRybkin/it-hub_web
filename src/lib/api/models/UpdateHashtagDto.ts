@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UpdatePartiallyQuestionDto = {
-    name?: string;
-    examinationId?: number;
+export type UpdateHashtagDto = {
+    name: string;
 };

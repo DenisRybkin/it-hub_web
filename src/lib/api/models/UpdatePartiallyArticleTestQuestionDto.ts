@@ -3,8 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CreateAnswerDto = {
-    name: string;
-    questionId: number;
-    isRight: boolean;
+export type UpdatePartiallyArticleTestQuestionDto = {
+    testId?: number;
+    name?: string;
 };
