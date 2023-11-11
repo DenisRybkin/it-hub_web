@@ -1,39 +1,39 @@
-import type { Answer, Question } from '@lib/api/models';
-import { ExaminationValidationErrorKeys } from '@components/modules/examination-constructor/constants';
-
-type PartialAnswers = Omit<Answer, 'questionId' | 'id'>;
-type PartialQuestions = Omit<Question, 'examinationId' | 'id' | 'answers'> & {
-  answers: PartialAnswers[];
-};
+import { ExaminationValidationErrorKeys } from '@components/modules/test-constructor/constants';
+import {
+  AnswerDto,
+  QuestionDto,
+  QuestionWithoutIdDto,
+  AnswerWithoutIdDto,
+} from '@components/modules/test-constructor/types';
 
 export const changeQuestionName = (
-  prevQuestions: Question[],
+  prevQuestions: QuestionDto[],
   newName: string,
   id: number
-): Question[] =>
+): QuestionDto[] =>
   prevQuestions.map(item =>
     item.id == id ? { ...item, name: newName } : item
   );
 
 export const deleteQuestion = (
-  prevQuestions: Question[],
+  prevQuestions: QuestionDto[],
   questionId: number
-): Question[] => prevQuestions.filter(item => item.id != questionId);
+): QuestionDto[] => prevQuestions.filter(item => item.id != questionId);
 
 export const changeAnswersIsRight = (
-  prevAnswers: Answer[],
+  prevAnswers: AnswerDto[],
   isRight: boolean,
   id: number
-): Answer[] =>
+): AnswerDto[] =>
   prevAnswers.map(item =>
     item.id == id ? { ...item, isRight: isRight } : item
   );
 
 export const changeAnswerName = (
-  prevAnswers: Answer[],
+  prevAnswers: AnswerDto[],
   newName: string,
   id: number
-): Answer[] => {
+): AnswerDto[] => {
   return prevAnswers.map(item =>
     item.id == id ? { ...item, name: newName } : item
   );
@@ -41,9 +41,9 @@ export const changeAnswerName = (
 
 export const deleteAnswersByQuestionId = (
   questionId: number,
-  questions: Question[],
+  questions: QuestionDto[],
   deleteAnswerId: number
-): Question[] =>
+): QuestionDto[] =>
   questions.map(question =>
     question.id == questionId
       ? {
@@ -57,33 +57,29 @@ export const deleteAnswersByQuestionId = (
 
 export const setAnswersByQuestionId = (
   questionId: number,
-  questions: Question[],
-  newAnswers: Answer[]
-): Question[] =>
+  questions: QuestionDto[],
+  newAnswers: AnswerDto[]
+): QuestionDto[] =>
   questions.map(question =>
     question.id == questionId ? { ...question, answers: newAnswers } : question
   );
 
 export const getAnswersByQuestionId = (
   questionId: number,
-  questions: Question[]
-): Answer[] =>
+  questions: QuestionDto[]
+): AnswerDto[] =>
   questions.find(question => question.id == questionId)?.answers ?? [];
 
-export const resetIds = (
-  questions: Question[]
-): (Omit<Question, 'examinationId' | 'id' | 'answers'> & {
-  answers: Omit<Answer, 'questionId' | 'id'>[];
-})[] =>
+export const resetIds = (questions: QuestionDto[]): QuestionWithoutIdDto[] =>
   questions.map(item => ({
     name: item.name,
     answers: removeAnswerIds(item.answers ?? []),
   }));
 
-const removeAnswerIds = (answers: Answer[]): PartialAnswers[] =>
+const removeAnswerIds = (answers: AnswerDto[]): AnswerWithoutIdDto[] =>
   answers.map(({ questionId, isRight, name }) => ({ name, isRight }));
 
-export const validateExam = (questions?: Question[]) => {
+export const validateExam = (questions?: QuestionDto[]) => {
   if (!questions || questions.length == 0)
     throw new Error(ExaminationValidationErrorKeys.NO_COMPLETE_EXAMINATION);
   questions.forEach(question => {

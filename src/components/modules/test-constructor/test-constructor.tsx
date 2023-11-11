@@ -1,14 +1,20 @@
 import React, { forwardRef, Ref, useImperativeHandle, useRef } from 'react';
-import { QuestionDto } from '@components/modules/examination-constructor/mock/question-dto';
 import { useTranslation } from 'react-i18next';
-import { ExaminationValidationErrorKeys } from '@components/modules/examination-constructor/constants';
+import { ExaminationValidationErrorKeys } from '@components/modules/test-constructor/constants';
 import { toast } from '@components/ui/use-toast';
-import { validateExam } from '@components/modules/examination-constructor/utils';
-import type { IQuestionGeneratorForwardRef } from '@components/modules/examination-constructor/components/question-generator';
-import { QuestionGenerator } from '@components/modules/examination-constructor/components/question-generator';
+import {
+  resetIds,
+  validateExam,
+} from '@components/modules/test-constructor/utils';
+import type { IQuestionGeneratorForwardRef } from '@components/modules/test-constructor/components/question-generator';
+import { QuestionGenerator } from '@components/modules/test-constructor/components/question-generator';
+import {
+  QuestionDto,
+  QuestionWithoutIdDto,
+} from '@components/modules/test-constructor/types';
 
 export interface IExaminationConstructorForwardRef {
-  getAndValidateData: () => QuestionDto[] | undefined;
+  getAndValidateData: () => QuestionWithoutIdDto[] | undefined;
 }
 
 interface IExaminationConstructorProps {
@@ -18,7 +24,7 @@ interface IExaminationConstructorProps {
   onChangeHasChanges?: (value: boolean) => void;
 }
 
-export const ExaminationConstructor = forwardRef<
+export const TestConstructor = forwardRef<
   IExaminationConstructorForwardRef,
   IExaminationConstructorProps
 >((props, ref) => {
@@ -64,7 +70,7 @@ export const ExaminationConstructor = forwardRef<
   const handleGetAndValidateData = () => {
     try {
       validateExam(questionGeneratorRef.current?.questions);
-      return questionGeneratorRef.current?.questions;
+      return resetIds(questionGeneratorRef.current?.questions ?? []);
     } catch (e) {
       errorHandler((e as Error).message);
       return undefined;

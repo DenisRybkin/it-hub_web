@@ -1,10 +1,10 @@
 import React from 'react';
-import { ExaminationConstructor } from '@components/modules/examination-constructor';
+import { TestConstructor } from '@components/modules/test-constructor';
 
 export const ExaminationFrom = () => {
   return (
     <div>
-      <ExaminationConstructor />
+      <TestConstructor />
     </div>
   );
 };

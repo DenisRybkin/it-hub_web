@@ -15,13 +15,16 @@ import {
   deleteQuestion,
   getAnswersByQuestionId,
   setAnswersByQuestionId,
-} from '@components/modules/examination-constructor/utils';
+} from '@components/modules/test-constructor/utils';
 import { Button } from '@components/ui/button';
-import { Question as QuestionComponent } from '@components/modules/examination-constructor/components/question';
-import { Answer, Question } from '@lib/api/models';
+import { Question } from '@components/modules/test-constructor/components/question';
+import {
+  AnswerDto,
+  QuestionDto,
+} from '@components/modules/test-constructor/types';
 
 export interface IQuestionGeneratorForwardRef {
-  questions: Question[];
+  questions: QuestionDto[];
   hasChanges: boolean;
 }
 
@@ -29,7 +32,7 @@ interface IQuestionGeneratorProps {
   isEditMode?: boolean;
   noImmediatelyCreateQuestion?: boolean;
   onChangeHasChanges?: (value: boolean) => void;
-  defaultValue?: Question[];
+  defaultValue?: QuestionDto[];
 }
 
 const questionIdQuestionGenerator = new IdGenerator(1);
@@ -40,7 +43,7 @@ export const QuestionGenerator = forwardRef<
   IQuestionGeneratorProps
 >((props, ref) => {
   const { t } = useTranslation();
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [questions, setQuestions] = useState<QuestionDto[]>([]);
   const [hasChanges, setHasChanges] = useState<boolean>(false);
 
   const isDisabledAddQuestionButton = useMemo(
@@ -59,10 +62,9 @@ export const QuestionGenerator = forwardRef<
   };
 
   const handleCreateQuestion = () => {
-    const emptyQuestion: Question = {
+    const emptyQuestion: QuestionDto = {
       id: questionIdQuestionGenerator.getId,
       name: '',
-      examinationId: 1,
       answers: [],
     };
     setQuestions(prev => [...prev, emptyQuestion]);
@@ -74,7 +76,7 @@ export const QuestionGenerator = forwardRef<
     handleMarkChanges();
   };
 
-  const handleAppendAnswer = (questionId: number, newAnswer: Answer) => {
+  const handleAppendAnswer = (questionId: number, newAnswer: AnswerDto) => {
     setQuestions(prev =>
       setAnswersByQuestionId(questionId, prev, [
         ...getAnswersByQuestionId(questionId, prev),
@@ -120,7 +122,7 @@ export const QuestionGenerator = forwardRef<
   };
 
   const handleAddEmptyAnswer = (questionId: number) => {
-    const emptyAnswer: Answer = {
+    const emptyAnswer: AnswerDto = {
       id: answerIdAnswerGenerator.getId,
       name: '',
       questionId: questionId,
@@ -150,7 +152,7 @@ export const QuestionGenerator = forwardRef<
     <div className="h-full w-full">
       <div className="flex flex-col gap-2 items-start">
         {questions.map(item => (
-          <QuestionComponent
+          <Question
             key={item.id}
             name={item.name}
             questionId={item.id}

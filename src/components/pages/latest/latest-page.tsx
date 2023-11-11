@@ -1,6 +1,6 @@
 import { Ref, useRef } from 'react';
-import { ExaminationConstructor } from '@components/modules/examination-constructor';
-import { IExaminationConstructorForwardRef } from '@components/modules/examination-constructor/examination-constructor';
+import { TestConstructor } from '@components/modules/test-constructor';
+import { IExaminationConstructorForwardRef } from '@components/modules/test-constructor/test-constructor';
 
 export const LatestPage = () => {
   const ref = useRef<IExaminationConstructorForwardRef>();
@@ -8,8 +8,6 @@ export const LatestPage = () => {
   console.log(ref.current?.getAndValidateData);
 
   return (
-    <ExaminationConstructor
-      ref={ref as Ref<IExaminationConstructorForwardRef>}
-    />
+    <TestConstructor ref={ref as Ref<IExaminationConstructorForwardRef>} />
   );
 };

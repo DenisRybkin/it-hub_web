@@ -3,13 +3,13 @@ import { ChangeEvent, useState } from 'react';
 import { Input } from '@components/ui/input';
 import { Button } from '@components/ui/button';
 import { FiX } from 'react-icons/fi';
-import { AnswerGenerator } from '@components/modules/examination-constructor/components/answer-generator';
-import { Answer } from '@lib/api/models';
+import { AnswerGenerator } from '@components/modules/test-constructor/components/answer-generator';
+import { AnswerDto } from '../types';
 
 interface IQuestionProps {
   questionId: number;
   name: string;
-  answers: Answer[];
+  answers: AnswerDto[];
   onChangeQuestionName: (newValue: string, id: number) => void;
   onDeleteQuestion: (id: number) => void;
   onAddEmptyAnswer: (questionId: number) => void;

@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { Button } from '@components/ui/button';
-import { Answer as AnswerComponent } from '@components/modules/examination-constructor/components/answer';
+import { Answer } from '@components/modules/test-constructor/components/answer';
 import { FiPlus } from 'react-icons/fi';
-import { Answer } from '@lib/api/models';
+import { AnswerDto } from '@components/modules/test-constructor/types';
 
 interface IAnswerGeneratorProps {
   questionId: number;
   disabled?: boolean;
-  answers: Answer[];
+  answers: AnswerDto[];
   onAddEmptyAnswer: (questionId: number) => void;
   onChangeAnswerIsRight: (
     newValue: boolean,
@@ -43,7 +43,7 @@ export const AnswerGenerator = (props: IAnswerGeneratorProps) => {
   return (
     <div className="w-full flex flex-col gap-1 justify-start items-start">
       {props.answers.map(item => (
-        <AnswerComponent
+        <Answer
           key={item.id}
           answerId={item.id}
           isRight={item.isRight}
