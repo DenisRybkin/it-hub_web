@@ -29,7 +29,6 @@ export const setupResponseInterceptors = (
         error.config.url != LOGIN_PATH &&
         !error.config._isRetry
       ) {
-        console.log(555);
         originalRequest._isRetry = true;
         try {
           await onAccessExpired();
