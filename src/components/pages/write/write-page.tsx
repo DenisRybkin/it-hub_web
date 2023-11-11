@@ -13,11 +13,16 @@ import {
   HashtagsConstructor,
   IHashtagsConstructorForwardRef,
 } from '@components/modules/hashtags-constructor';
+import {
+  ITestConstructorForwardRef,
+  TestConstructor,
+} from '@components/modules/test-constructor/test-constructor';
 
 export const WritePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
   const editorRef = useRef<ITextEditorForwardRef>();
+  const testConstructorRef = useRef<ITestConstructorForwardRef>();
   const hashtagsConstructorRef = useRef<IHashtagsConstructorForwardRef>();
   const { t } = useTranslation();
 
@@ -81,6 +86,9 @@ export const WritePage = () => {
           autofocus
           withHeading
           ref={editorRef as Ref<ITextEditorForwardRef>}
+        />
+        <TestConstructor
+          ref={testConstructorRef as Ref<ITestConstructorForwardRef>}
         />
         <HashtagsConstructor
           className="mt-2"

@@ -21,6 +21,6 @@
     "file_over_error": "Размер файла не должен превышать 50 МБ",
     "file_over_amount_error": "Вы можете прикрепить максимум 5 файлов",
     "no_category_selected": "Не выбранна категория",
-    "no_complete_examination": "Заполните экзамен"
+    "no_complete_test": "Заполните тест"
   }
 }

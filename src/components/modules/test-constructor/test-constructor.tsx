@@ -1,10 +1,10 @@
 import React, { forwardRef, Ref, useImperativeHandle, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ExaminationValidationErrorKeys } from '@components/modules/test-constructor/constants';
+import { TestValidationErrorKeys } from '@components/modules/test-constructor/constants';
 import { toast } from '@components/ui/use-toast';
 import {
   resetIds,
-  validateExam,
+  validateTest,
 } from '@components/modules/test-constructor/utils';
 import type { IQuestionGeneratorForwardRef } from '@components/modules/test-constructor/components/question-generator';
 import { QuestionGenerator } from '@components/modules/test-constructor/components/question-generator';
@@ -13,11 +13,11 @@ import {
   QuestionWithoutIdDto,
 } from '@components/modules/test-constructor/types';
 
-export interface IExaminationConstructorForwardRef {
+export interface ITestConstructorForwardRef {
   getAndValidateData: () => QuestionWithoutIdDto[] | undefined;
 }
 
-interface IExaminationConstructorProps {
+interface ITestConstructorProps {
   isEditMode?: boolean;
   noImmediatelyCreateQuestion?: boolean;
   defaultValue?: QuestionDto[];
@@ -25,8 +25,8 @@ interface IExaminationConstructorProps {
 }
 
 export const TestConstructor = forwardRef<
-  IExaminationConstructorForwardRef,
-  IExaminationConstructorProps
+  ITestConstructorForwardRef,
+  ITestConstructorProps
 >((props, ref) => {
   const { t } = useTranslation();
 
@@ -34,31 +34,31 @@ export const TestConstructor = forwardRef<
 
   const errorHandler = (error: string) => {
     switch (error) {
-      case ExaminationValidationErrorKeys.NO_COMPLETE_EXAMINATION:
+      case TestValidationErrorKeys.NO_COMPLETE_TEST:
         toast({
-          title: t('validation:error.no_complete_examination'),
+          title: t('validation:error.no_complete_test'),
           variant: 'destructive',
         });
         break;
-      case ExaminationValidationErrorKeys.NO_ANSWERS:
+      case TestValidationErrorKeys.NO_ANSWERS:
         toast({
           title: t('validation:error.no_answers'),
           variant: 'destructive',
         });
         break;
-      case ExaminationValidationErrorKeys.NO_RIGHTS_ANSWER:
+      case TestValidationErrorKeys.NO_RIGHTS_ANSWER:
         toast({
           title: t('validation:error.no_rights_answer'),
           variant: 'destructive',
         });
         break;
-      case ExaminationValidationErrorKeys.NO_NAME_ANSWER:
+      case TestValidationErrorKeys.NO_NAME_ANSWER:
         toast({
           title: t('validation:error.no_name_answer'),
           variant: 'destructive',
         });
         break;
-      case ExaminationValidationErrorKeys.NO_NAME_QUESTION:
+      case TestValidationErrorKeys.NO_NAME_QUESTION:
         toast({
           title: t('validation:error.no_name_question'),
           variant: 'destructive',
@@ -69,7 +69,7 @@ export const TestConstructor = forwardRef<
 
   const handleGetAndValidateData = () => {
     try {
-      validateExam(questionGeneratorRef.current?.questions);
+      validateTest(questionGeneratorRef.current?.questions);
       return resetIds(questionGeneratorRef.current?.questions ?? []);
     } catch (e) {
       errorHandler((e as Error).message);
@@ -77,12 +77,12 @@ export const TestConstructor = forwardRef<
     }
   };
 
-  useImperativeHandle<
-    IExaminationConstructorForwardRef,
-    IExaminationConstructorForwardRef
-  >(ref, () => ({
-    getAndValidateData: handleGetAndValidateData,
-  }));
+  useImperativeHandle<ITestConstructorForwardRef, ITestConstructorForwardRef>(
+    ref,
+    () => ({
+      getAndValidateData: handleGetAndValidateData,
+    })
+  );
 
   return (
     <>

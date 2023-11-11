@@ -1,4 +1,4 @@
-import { ExaminationValidationErrorKeys } from '@components/modules/test-constructor/constants';
+import { TestValidationErrorKeys } from '@components/modules/test-constructor/constants';
 import {
   AnswerDto,
   QuestionDto,
@@ -79,23 +79,23 @@ export const resetIds = (questions: QuestionDto[]): QuestionWithoutIdDto[] =>
 const removeAnswerIds = (answers: AnswerDto[]): AnswerWithoutIdDto[] =>
   answers.map(({ questionId, isRight, name }) => ({ name, isRight }));
 
-export const validateExam = (questions?: QuestionDto[]) => {
+export const validateTest = (questions?: QuestionDto[]) => {
   if (!questions || questions.length == 0)
-    throw new Error(ExaminationValidationErrorKeys.NO_COMPLETE_EXAMINATION);
+    throw new Error(TestValidationErrorKeys.NO_COMPLETE_TEST);
   questions.forEach(question => {
     if (!question.name || question.name.trim().length == 0)
-      throw Error(ExaminationValidationErrorKeys.NO_NAME_QUESTION);
+      throw Error(TestValidationErrorKeys.NO_NAME_QUESTION);
 
     if (!question.answers || question.answers.length < 2)
-      throw Error(ExaminationValidationErrorKeys.NO_ANSWERS);
+      throw Error(TestValidationErrorKeys.NO_ANSWERS);
 
     let countRightsAnswers = 0;
     question.answers.forEach(answer => {
       if (answer.isRight) countRightsAnswers += 1;
       if (!answer.name || answer.name.trim().length === 0)
-        throw Error(ExaminationValidationErrorKeys.NO_NAME_ANSWER);
+        throw Error(TestValidationErrorKeys.NO_NAME_ANSWER);
     });
     if (countRightsAnswers == 0)
-      throw Error(ExaminationValidationErrorKeys.NO_RIGHTS_ANSWER);
+      throw Error(TestValidationErrorKeys.NO_RIGHTS_ANSWER);
   });
 };

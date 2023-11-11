@@ -1,1 +1,1 @@
-export { ExaminationValidationErrorKeys } from './validation-error-keys';
+export { TestValidationErrorKeys } from './validation-error-keys';
