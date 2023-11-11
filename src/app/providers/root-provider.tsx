@@ -13,13 +13,13 @@ import { QueryProvider } from '@app/providers/query/query-provider';
 export const RootProvider = (props: IProviderProps) => {
   return (
     <BrowserRouter>
+      <SetupApi />
       <QueryProvider>
         <ThemeProvider>
           <LocaleProvider>
             <LocationHistoryProvider>
               <PreloaderProvider>
                 <AuthProvider>
-                  <SetupApi />
                   <Toaster />
                   <ErrorBoundaryProvider>
                     {props.children}

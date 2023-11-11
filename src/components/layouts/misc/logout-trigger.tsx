@@ -4,6 +4,7 @@ import { useDeviceDetermine } from '@lib/utils/hooks';
 import { AuthContext } from '@app/providers/auth';
 import { useTranslation } from 'react-i18next';
 import { ConfirmDialog } from '@components/dialogs/base';
+import { api } from '@lib/api/plugins';
 
 type LogoutFromType = 'sidebar' | 'topbar';
 
@@ -16,9 +17,10 @@ export const LogoutTrigger = (props: ILogoutProps) => {
   const [deviceSize] = useDeviceDetermine();
   const authContext = useContext(AuthContext);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     authContext.setUser(undefined);
     authContext.setAccessToken(undefined);
+    await api.auth.logout();
   };
 
   if (!authContext.isAuth) return null;

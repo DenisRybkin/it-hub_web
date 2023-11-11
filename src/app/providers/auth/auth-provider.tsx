@@ -44,7 +44,6 @@ export const AuthProvider = (props: IProviderProps) => {
 
   useEffect(() => {
     preloader.setVisible(isFetching);
-    console.log(isFetching || isLoading, isFetching);
   }, [isFetching]);
 
   return (

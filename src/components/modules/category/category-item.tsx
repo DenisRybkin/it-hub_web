@@ -25,7 +25,7 @@ export const CategoryItem = (props: ICategoryItemProps) => {
         alt="category avatar"
       />
       <h3>{props.category.name}</h3>
-      <p className="text-small-regular text-gray-1">
+      <p className="text-small-regular text-gray-1 truncate w-28">
         {props.category.description}
       </p>
     </div>

@@ -1,5 +1,5 @@
 import { ApiControllerBase } from '@/lib/api/bases';
-import { AxiosError, AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import { LockerModel } from '@/lib/api/types';
 import {
   BaseProcessedError,
@@ -35,6 +35,13 @@ export class AuthController extends ApiControllerBase {
       onSuccess,
       onError
     );
+  }
+
+  async logout(
+    onSuccess?: (model: boolean) => void,
+    onError?: (error: BaseProcessedError) => void
+  ) {
+    return await this.process<boolean>(this.post('logout'), onSuccess, onError);
   }
 
   async registration(

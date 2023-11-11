@@ -3,10 +3,9 @@ import {
   BaseProcessedError,
   ReadStaticFieldFilterDto,
   StaticField,
-  User,
 } from '@lib/api/models';
-import { AxiosError, AxiosInstance } from 'axios';
-import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
+import { LockerModel, PagingModel } from '@lib/api/types';
 
 export class StaticFieldController extends ApiControllerGet<
   StaticField,
@@ -34,5 +33,12 @@ export class StaticFieldController extends ApiControllerGet<
     onError?: (error: BaseProcessedError) => void
   ): Promise<boolean> {
     return await this.process(this.remove(id.toString()), onSuccess, onError);
+  }
+
+  async getDefaultAvatars(
+    onSuccess?: (model: PagingModel<StaticField>) => void,
+    onError?: (error: BaseProcessedError) => void
+  ) {
+    return await this.process(this.get('default-avatars'));
   }
 }

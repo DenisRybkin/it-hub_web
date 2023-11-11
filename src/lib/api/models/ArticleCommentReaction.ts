@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type {  } from './';
 import type { ArticleComment } from './ArticleComment';
 import type { User } from './User';
 
@@ -31,5 +30,5 @@ export type ArticleCommentReaction = {
     /**
      * symbol like emoji
      */
-    value: ;
+    value: string;
 };
