@@ -22,10 +22,13 @@ export const HashtagsEditor = () => {
   );
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
   const debouncedSearch = useDebounce<string>(search);
-  const { items, isFetching, info, loadNext } = useScrollPaging<
-    Hashtag,
-    ReadHashtagFilterDto
-  >(
+  const {
+    items,
+    isFetching,
+    info,
+    loadNext,
+    isLoading: tt,
+  } = useScrollPaging<Hashtag, ReadHashtagFilterDto>(
     api.hashtag,
     undefined,
     handleError,
@@ -100,7 +103,10 @@ export const HashtagsEditor = () => {
         </ComboboxItem>
       ))}
       <VisibleTrigger
-        onVisible={loadNext}
+        onVisible={() => {
+          console.log('@@@@@', isFetching, tt);
+          loadNext();
+        }}
         disabled={isFetching || !items.length || search != debouncedSearch}
         hidden={info.isDone}
       />

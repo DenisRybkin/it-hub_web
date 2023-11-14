@@ -143,23 +143,17 @@ export const Combobox = <TValue,>({
     if (!value || !Array.isArray(value)) return <p>{placeholder}</p>;
     if (Array.isArray(value))
       return (
-        <div className="flex overflow-hidden rounded-md">
-          <HorizontalScrollArea
-            itemsLength={value.length}
-            hiddenButtons
-            listClassName="gap-2"
-          >
-            {value.map(item => (
-              <RemovingBadge
-                variant="secondary"
-                textClassName="truncate max-w-[100px]"
-                key={item as unknown as number | string}
-                onRemove={() => handleSelect(item)}
-              >
-                {getDisplayNameByValue(item)}
-              </RemovingBadge>
-            ))}
-          </HorizontalScrollArea>
+        <div className="flex flex-wrap overflow-hidden rounded-md gap-1">
+          {value.map(item => (
+            <RemovingBadge
+              variant="secondary"
+              textClassName="truncate max-w-[200px]"
+              key={item as unknown as number | string}
+              onRemove={() => handleSelect(item)}
+            >
+              {getDisplayNameByValue(item)}
+            </RemovingBadge>
+          ))}
         </div>
       );
   };
@@ -168,7 +162,10 @@ export const Combobox = <TValue,>({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          className="w-full justify-between text-left font-normal"
+          className={cn(
+            'w-full justify-between text-left font-normal',
+            multiple && 'h-auto'
+          )}
           variant="outline"
           data={{
             rightIcon: (

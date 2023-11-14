@@ -6,6 +6,7 @@ import { Category } from '@lib/api/models';
 import { useSearchParams } from 'react-router-dom';
 import { searchParamToNumArray } from '@lib/utils/tools';
 import { useScrollPaging } from '@lib/utils/hooks';
+import { CategoryItemSkeleton } from '@components/shared/category/category-item-skeleton';
 
 export const CATEGORIES_SEARCH_PARAMS = 'categories';
 
@@ -53,11 +54,7 @@ export const CategoryList = (props: ICategoriesListProps) => {
     }
   };
 
-  useEffect(() => {
-    // ADD Skeletons
-  }, [isFetching]);
-
-  if (!isSuccess) return null;
+  if (!isFetching && !isSuccess) return null;
 
   return (
     <HorizontalScrollArea
@@ -65,14 +62,18 @@ export const CategoryList = (props: ICategoriesListProps) => {
       listClassName="gap-2"
       itemsLength={items.length}
     >
-      {items.map(item => (
-        <CategoryItem
-          key={item.id}
-          isSelected={selectedIds?.includes(item.id)}
-          category={item}
-          onClick={handleClick}
-        />
-      ))}
+      {isFetching
+        ? Array(10)
+            .fill(null)
+            .map(item => <CategoryItemSkeleton />)
+        : items.map(item => (
+            <CategoryItem
+              key={item.id}
+              isSelected={selectedIds?.includes(item.id)}
+              category={item}
+              onClick={handleClick}
+            />
+          ))}
     </HorizontalScrollArea>
   );
 };
