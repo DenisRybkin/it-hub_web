@@ -7,7 +7,7 @@ import { FiSave, FiShare } from 'react-icons/fi';
 import { LocaleStorageKeys } from '@lib/constants';
 import { checkBlocksLength } from '@lib/utils/validations/text-editor';
 import { toast } from '@components/ui/use-toast';
-import { CategoryList } from '@components/modules/category';
+import { CategoryList } from '@components/shared/category';
 import { OutputData } from '@editorjs/editorjs';
 import {
   HashtagsConstructor,

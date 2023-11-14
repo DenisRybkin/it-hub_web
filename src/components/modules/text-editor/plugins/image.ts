@@ -23,7 +23,6 @@ export const imagePlugin: ToolConstructable | ToolSettings = {
     },
     // uploader: {
     //   async uploadByFile(file: FormData) {
-    //     console.log(1111, file);
     //     const response = await api.staticField.upload(file, null, error => {
     //       toast({
     //         variant: 'destructive',

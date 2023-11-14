@@ -1,4 +1,4 @@
-import type { getOptions, IApiControllerGet } from '@lib/api/interfaces';
+import type { IApiControllerGet } from '@lib/api/interfaces';
 import { BaseProcessedError } from '@lib/api/models';
 import { FilterOption, PagingModel, PagingOptions } from '@lib/api/types';
 import { useQuery } from '@tanstack/react-query';
@@ -6,31 +6,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from '@components/ui/use-toast';
 import { filters2QueryKey } from '@lib/utils/tools';
-
-type PagingInfo = {
-  isDone: boolean;
-  totalItems?: number;
-};
-
-interface IUsePaging<T> {
-  info: PagingInfo;
-  isLoading: boolean;
-  isFetching: boolean;
-  isError: boolean;
-  isSuccess: boolean;
-  items: T[];
-  loadNext: () => void;
-  loadPage: (page: number) => void;
-  remove: () => void;
-  refetch: () => void;
-}
-
-const fetchItems = async <T, TFilter>(
-  controller: IApiControllerGet<T, TFilter>,
-  onSuccess?: (pagingModel: PagingModel<T>) => void,
-  onError?: (error: BaseProcessedError) => void,
-  params?: getOptions<T, TFilter>
-) => await controller.getAll(params, onSuccess, onError);
+import type { IUsePaging, PagingInfo } from '@lib/utils/hooks/paging/common';
+import { fetchItems } from '@lib/utils/hooks/paging/common';
 
 export const usePaging = <T, TFilter>(
   controller: IApiControllerGet<T, TFilter>,
@@ -62,11 +39,13 @@ export const usePaging = <T, TFilter>(
       enabled,
     });
 
-  const handleError = () =>
+  const handleError = (error: BaseProcessedError) => {
     toast({
       variant: 'destructive',
       title: t('toast:error.default'),
     });
+    onError?.(error);
+  };
 
   const handleSuccess = (pagingModel: PagingModel<T>) =>
     setInfo({

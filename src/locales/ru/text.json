@@ -29,5 +29,6 @@
   "create_account": "Создайте аккаунт",
   "already_have_account": "Уже есть аккаунт?",
   "wrong_email_or_password" : "Неправильный email или пароль",
-  "error": "Ошибка"
+  "error": "Ошибка",
+  "nothing_found_hashtags": "Ничего не найдено, хотите добавить хэштег '{{hashtag}}' ?"
 }

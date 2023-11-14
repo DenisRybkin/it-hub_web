@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
-import { usePaging } from '@lib/utils/hooks/use-paging';
+import { useEffect, useMemo } from 'react';
 import { api } from '@lib/api/plugins';
 import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area/horizontal-scroll-area';
-import { CategoryItem } from '@components/modules/category/category-item';
+import { CategoryItem } from '@components/shared/category/category-item';
 import { Category } from '@lib/api/models';
 import { useSearchParams } from 'react-router-dom';
 import { searchParamToNumArray } from '@lib/utils/tools';
+import { useScrollPaging } from '@lib/utils/hooks';
 
 export const CATEGORIES_SEARCH_PARAMS = 'categories';
 
@@ -18,12 +18,12 @@ export interface ICategoriesListProps {
 export const CategoryList = (props: ICategoriesListProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const categoryPaging = usePaging(
+  const { items, isFetching, isSuccess } = useScrollPaging(
     api.category,
     undefined,
     undefined,
     undefined,
-    { pageSize: 20 }
+    { pageSize: -1 }
   );
 
   const selectedIds = useMemo(
@@ -53,21 +53,25 @@ export const CategoryList = (props: ICategoriesListProps) => {
     }
   };
 
-  if (!categoryPaging.isSuccess) return null;
+  useEffect(() => {
+    // ADD Skeletons
+  }, [isFetching]);
+
+  if (!isSuccess) return null;
 
   return (
     <HorizontalScrollArea
-      className="mt-4"
-      itemsLength={categoryPaging.items.length}
+      containerClassName="mt-4"
+      listClassName="gap-2"
+      itemsLength={items.length}
     >
-      {categoryPaging.items.map(item => (
+      {items.map(item => (
         <CategoryItem
           key={item.id}
           isSelected={selectedIds?.includes(item.id)}
           category={item}
           onClick={handleClick}
         />
-        // <div key={item.id} className="h-12 min-w-[40px] bg-red" />
       ))}
     </HorizontalScrollArea>
   );

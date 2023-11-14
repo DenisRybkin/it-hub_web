@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 import { BaseProcessedError } from '@lib/api/models';
 
 export type getOptions<T, TFilter> = {
-  paging?: PagingOptions<T>;
+  paging?: Partial<PagingOptions<T>>;
   filter?: FilterOption<TFilter>[];
 };
 

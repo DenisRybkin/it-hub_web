@@ -3,9 +3,9 @@ import { ArticleCard } from '@components/modules/article-card';
 import { useTranslation } from 'react-i18next';
 import { LocaleStorageKeys } from '@lib/constants';
 import { AuthContext } from '@app/providers/auth';
-import { CategoryList } from '@components/modules/category';
+import { CategoryList } from '@components/shared/category';
 import { useSearchParams } from 'react-router-dom';
-import { CATEGORIES_SEARCH_PARAMS } from '@components/modules/category/category-list';
+import { CATEGORIES_SEARCH_PARAMS } from '@components/shared/category/category-list';
 import { searchParamToNumArray } from '@lib/utils/tools';
 
 export const HomePage = () => {

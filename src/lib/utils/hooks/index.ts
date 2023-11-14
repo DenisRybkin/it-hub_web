@@ -6,3 +6,6 @@ export { useDeviceDetermine } from './use-device-determine';
 export { useParam } from './use-param';
 export { useTimer } from './use-timer';
 export { useViewportObserver } from './use-viewport-observer';
+export { useControllableState } from './use-controllable-state';
+export { usePaging } from './paging/use-paging';
+export { useScrollPaging } from './paging/use-scroll-paging';

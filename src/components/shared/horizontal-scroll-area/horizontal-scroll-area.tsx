@@ -7,7 +7,9 @@ interface IHorizontalScrollAreaProps {
   children: React.ReactNode;
   gap?: number;
   itemsLength?: number;
-  className?: string;
+  containerClassName?: string;
+  listClassName?: string;
+  hiddenButtons?: boolean;
 }
 
 export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
@@ -70,32 +72,37 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
   }, [props.itemsLength]);
 
   return (
-    <div className={cn('w-full relative', props.className)}>
-      {!leftScrollIsDisabled && (
-        <Button
-          className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2"
-          variant="ghost"
-          size="icon"
-          onClick={scrollToLeft}
-        >
-          <FiChevronLeft size={24} />
-        </Button>
-      )}
-      {!rightScrollIsDisabled && (
-        <Button
-          className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2"
-          variant="ghost"
-          size="icon"
-          onClick={scrollToRight}
-        >
-          <FiChevronRight size={24} />
-        </Button>
+    <div className={cn('w-full relative', props.containerClassName)}>
+      {!props.hiddenButtons && (
+        <>
+          {!leftScrollIsDisabled && (
+            <Button
+              className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2"
+              variant="ghost"
+              size="icon"
+              onClick={scrollToLeft}
+            >
+              <FiChevronLeft size={24} />
+            </Button>
+          )}
+          {!rightScrollIsDisabled && (
+            <Button
+              className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2"
+              variant="ghost"
+              size="icon"
+              onClick={scrollToRight}
+            >
+              <FiChevronRight size={24} />
+            </Button>
+          )}
+        </>
       )}
       <div
         ref={scrollWrapperRef}
-        className={`custom-scrollbar max-w-[340px] md:max-w-none flex justify-start overflow-auto gap-${
-          props.gap ?? 2
-        }`}
+        className={cn(
+          'custom-scrollbar md:max-w-none flex justify-start overflow-auto',
+          props.listClassName
+        )}
       >
         {props.children}
       </div>
