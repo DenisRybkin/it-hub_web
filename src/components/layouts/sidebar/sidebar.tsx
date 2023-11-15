@@ -15,7 +15,7 @@ export const Sidebar = () => {
   const handleClickLink = (route: string) => () => navigate(route);
 
   return (
-    <section className="custom-scrollbar leftsidebar">
+    <section id="sidebar" className="leftsidebar">
       <div className="flex w-full flex-1 flex-1 flex-col gap-6 px-6">
         {sidebarLinks.map(link => {
           if (link.isPrivate && !authContext.isAuth) return null;

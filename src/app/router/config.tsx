@@ -1,6 +1,5 @@
 import { RouteProps } from 'react-router-dom';
 import { Role } from '@lib/api/models';
-import { ReactNode } from 'react';
 import { RouteKeys } from '@lib/constants';
 import { WritePage } from '@components/pages/write';
 import { HomePage } from '@components/pages/home/home-page';
@@ -10,7 +9,6 @@ import { LatestPage } from '@components/pages/latest';
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;
   requiredRole?: Role;
-  Layout?: ReactNode;
 };
 
 export const RoutePaths = {

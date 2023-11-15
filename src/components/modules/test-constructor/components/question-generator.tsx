@@ -149,7 +149,7 @@ export const QuestionGenerator = forwardRef<
   }, [hasChanges]);
 
   return (
-    <div className="h-full w-full">
+    <div className="w-full">
       <div className="flex flex-col gap-2 items-start">
         {questions.map(item => (
           <Question

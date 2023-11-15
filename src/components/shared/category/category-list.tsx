@@ -65,7 +65,7 @@ export const CategoryList = (props: ICategoriesListProps) => {
       {isFetching
         ? Array(10)
             .fill(null)
-            .map(item => <CategoryItemSkeleton />)
+            .map((_, index) => <CategoryItemSkeleton key={index} />)
         : items.map(item => (
             <CategoryItem
               key={item.id}

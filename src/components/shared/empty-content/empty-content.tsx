@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface IEmptyContent {
+interface IEmptyContentProps {
   text?: string;
 }
 
-export const EmptyContent = (props: IEmptyContent) => {
+export const EmptyContent = (props: IEmptyContentProps) => {
   const { t } = useTranslation();
 
   return (

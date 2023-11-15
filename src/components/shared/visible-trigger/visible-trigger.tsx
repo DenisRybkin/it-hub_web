@@ -3,7 +3,7 @@ import { useViewportObserver } from '@lib/utils/hooks';
 import { cn } from '@lib/utils/tools';
 import { LinearLoader } from '@components/ui/loader';
 
-export interface IVisibleTriggerProps {
+interface IVisibleTriggerProps {
   options?: IntersectionObserverInit;
   disabled?: boolean;
   hidden?: boolean;
