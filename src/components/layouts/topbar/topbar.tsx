@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { getAvatar, getFallback } from '@lib/utils/tools';
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
-import { AuthDialog } from '@components/dialogs/auth';
+import { AuthDialog } from '@components/entities/auth/dialogs';
 import { AuthContext } from '@app/providers/auth';
 import { LogoutTrigger } from '@components/layouts/misc/logout-trigger';
 

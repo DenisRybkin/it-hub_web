@@ -66,7 +66,8 @@
     "unsubscribe": "Unsubscribe",
     "add": "Add",
     "add_hashtag": "Add hashtag",
-    "delete": "Delete"
+    "delete": "Delete",
+    "change_cover": "Change cover"
   },
   "label": {
     "i_read": "I have read the",

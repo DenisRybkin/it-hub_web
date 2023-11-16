@@ -3,7 +3,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { useDeviceDetermine } from '@lib/utils/hooks';
 import { AuthContext } from '@app/providers/auth';
 import { useTranslation } from 'react-i18next';
-import { ConfirmDialog } from '@components/dialogs/base';
+import { ConfirmDialog } from '@components/shared/dialog';
 import { api } from '@lib/api/plugins';
 
 type LogoutFromType = 'sidebar' | 'topbar';

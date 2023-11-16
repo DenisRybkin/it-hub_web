@@ -1,6 +1,6 @@
 import React, { Ref, useRef, useState } from 'react';
-import { TextEditor } from '@components/modules/text-editor';
-import type { ITextEditorForwardRef } from '@components/modules/text-editor';
+import { TextEditor } from '@components/entities/article/misc/text-editor';
+import type { ITextEditorForwardRef } from '@components/entities/article/misc/text-editor';
 import { Button } from '@components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { FiSave, FiShare } from 'react-icons/fi';
@@ -12,11 +12,12 @@ import { OutputData } from '@editorjs/editorjs';
 import {
   HashtagsConstructor,
   IHashtagsConstructorForwardRef,
-} from '@components/modules/hashtags-constructor';
+} from '@components/entities/article/misc/hashtags-constructor';
 import {
   ITestConstructorForwardRef,
   TestConstructor,
-} from '@components/modules/test-constructor/test-constructor';
+} from '@components/entities/article/misc/test-constructor/test-constructor';
+import { CoverImage } from '@components/shared/cover-image';
 
 export const WritePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -82,6 +83,8 @@ export const WritePage = () => {
           selectedIds={selectedCategoryIds}
           onChangeSelects={setSelectedCategoryIds}
         />
+        <div className="h-5" />
+        <CoverImage />
         <TextEditor
           autofocus
           withHeading

@@ -9,4 +9,5 @@ export type ReadStaticFieldFilterDto = {
     originalname?: string;
     type?: string;
     url?: string;
+    folder?: string;
 };

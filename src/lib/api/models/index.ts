@@ -75,7 +75,7 @@ export type { ReadUserFilterDto } from './ReadUserFilterDto';
 export type { ReadUserFollowerFilterDto } from './ReadUserFollowerFilterDto';
 export type { ReadUserFollowingFilterDto } from './ReadUserFollowingFilterDto';
 export { Role } from './Role';
-export type { StaticField } from './StaticField';
+export { StaticField } from './StaticField';
 export type { UpdateArticleCommentDto } from './UpdateArticleCommentDto';
 export type { UpdateArticleDto } from './UpdateArticleDto';
 export type { UpdateArticleTestAnswerDto } from './UpdateArticleTestAnswerDto';

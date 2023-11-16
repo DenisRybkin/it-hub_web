@@ -24,4 +24,24 @@ export type StaticField = {
      * url of static field
      */
     url: string;
+    /**
+     * folder of s3
+     */
+    folder: StaticField.folder;
 };
+
+export namespace StaticField {
+
+    /**
+     * folder of s3
+     */
+    export enum folder {
+        UPLOADS_ = 'uploads/',
+        DEFAULT_AVATARS_ = 'default-avatars/',
+        TOPICS_ = 'topics/',
+        EDITOR_JS_ = 'editor-js/',
+        PREVIEWS_ = 'previews/',
+    }
+
+
+}

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyContent } from '@components/shared/empty-content/empty-content';
 import { User } from '@lib/api/models';
-import { UserCard } from '@components/modules/user-card';
+import { UserCard } from '@components/entities/user/misc/user-card';
 import { Button } from '@components/ui/button';
 import { FiChevronDown } from 'react-icons/fi';
 import { cn } from '@lib/utils/tools';

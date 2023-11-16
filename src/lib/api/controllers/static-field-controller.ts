@@ -39,6 +39,13 @@ export class StaticFieldController extends ApiControllerGet<
     onSuccess?: (model: PagingModel<StaticField>) => void,
     onError?: (error: BaseProcessedError) => void
   ) {
-    return await this.process(this.get('default-avatars'));
+    return await this.process(this.get('default-avatars'), onSuccess, onError);
+  }
+
+  async getPreviews(
+    onSuccess?: (model: PagingModel<StaticField>) => void,
+    onError?: (error: BaseProcessedError) => void
+  ) {
+    return await this.process(this.get('previews'), onSuccess, onError);
   }
 }

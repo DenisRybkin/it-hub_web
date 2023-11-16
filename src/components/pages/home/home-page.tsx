@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ArticleCard } from '@components/modules/article-card';
+import { ArticleCard } from '@components/entities/article/misc/article-card';
 import { useTranslation } from 'react-i18next';
 import { LocaleStorageKeys } from '@lib/constants';
 import { AuthContext } from '@app/providers/auth';

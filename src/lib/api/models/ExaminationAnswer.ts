@@ -6,24 +6,24 @@
 import type { ExaminationQuestion } from './ExaminationQuestion';
 
 export type ExaminationAnswer = {
-    /**
-     * id of examination-answer
-     */
-    id: number;
-    /**
-     * examination-answer of examination-question
-     */
-    name: string;
-    /**
-     * FK of examination-question
-     */
-    questionId: number;
-    /**
-     * question
-     */
-    question?: ExaminationQuestion;
-    /**
-     * field of right of examination-answer
-     */
-    isRight: boolean;
+  /**
+   * id of create-examination-answer
+   */
+  id: number;
+  /**
+   * create-examination-answer of create-examination-question
+   */
+  name: string;
+  /**
+   * FK of create-examination-question
+   */
+  questionId: number;
+  /**
+   * question
+   */
+  question?: ExaminationQuestion;
+  /**
+   * field of right of create-examination-answer
+   */
+  isRight: boolean;
 };
