@@ -3,7 +3,7 @@ import { TextEditor } from '@components/entities/article/misc/text-editor';
 import type { ITextEditorForwardRef } from '@components/entities/article/misc/text-editor';
 import { Button } from '@components/ui/button';
 import { useTranslation } from 'react-i18next';
-import { FiSave, FiShare } from 'react-icons/fi';
+import { FiImage, FiSave, FiShare, FiX } from 'react-icons/fi';
 import { LocaleStorageKeys } from '@lib/constants';
 import { checkBlocksLength } from '@lib/utils/validations/text-editor';
 import { toast } from '@components/ui/use-toast';
@@ -18,14 +18,24 @@ import {
   TestConstructor,
 } from '@components/entities/article/misc/test-constructor/test-constructor';
 import { CoverImage } from '@components/shared/cover-image';
+import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
+import { StaticField } from '@lib/api/models';
 
 export const WritePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
+  const [isOpenSelectPreviewDialog, setIsOpenSelectPreviewDialog] =
+    useState<boolean>(false);
+  const [preview, setPreview] = useState<StaticField | undefined>(undefined);
   const editorRef = useRef<ITextEditorForwardRef>();
   const testConstructorRef = useRef<ITestConstructorForwardRef>();
   const hashtagsConstructorRef = useRef<IHashtagsConstructorForwardRef>();
   const { t } = useTranslation();
+
+  const handleOpenSelectPreviewDialog = () =>
+    setIsOpenSelectPreviewDialog(true);
+
+  const resetPreview = () => setPreview(undefined);
 
   const validationForPublish = (data?: OutputData) => {
     if (!data) throw new Error();
@@ -75,16 +85,53 @@ export const WritePage = () => {
 
   return (
     <>
+      <SelectPreviewDialog
+        onChangePreview={setPreview}
+        preview={preview}
+        isOpen={isOpenSelectPreviewDialog}
+        onOpenChange={setIsOpenSelectPreviewDialog}
+      />
       <div className="flex flex-col w-full gap-4">
-        <h1 className="head-text text-left">
-          {t('ui:title.creating_article')}
-        </h1>
+        <CoverImage
+          image={preview}
+          bottomPanel={
+            <div className="flex items-center gap-x-2">
+              <Button
+                onClick={handleOpenSelectPreviewDialog}
+                variant="ghost"
+                data={{ leftIcon: <FiImage /> }}
+              >
+                {t('ui:button.change_cover')}
+              </Button>
+              <Button
+                onClick={resetPreview}
+                variant="ghost"
+                data={{ leftIcon: <FiX /> }}
+              >
+                {t('ui:button.remove')}
+              </Button>
+            </div>
+          }
+        />
+        <div className="flex justify-between items-center">
+          <h1 className="head-text text-left">
+            {t('ui:title.creating_article')}
+          </h1>
+          {!preview && (
+            <Button
+              onClick={handleOpenSelectPreviewDialog}
+              variant="primary"
+              data={{ leftIcon: <FiImage /> }}
+            >
+              {t('ui:button.add_cover')}
+            </Button>
+          )}
+        </div>
         <CategoryList
           selectedIds={selectedCategoryIds}
           onChangeSelects={setSelectedCategoryIds}
         />
         <div className="h-5" />
-        <CoverImage />
         <TextEditor
           autofocus
           withHeading

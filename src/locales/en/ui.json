@@ -67,7 +67,9 @@
     "add": "Add",
     "add_hashtag": "Add hashtag",
     "delete": "Delete",
-    "change_cover": "Change cover"
+    "change_cover": "Change cover",
+    "add_cover": "Add cover",
+    "remove": "Remove"
   },
   "label": {
     "i_read": "I have read the",
@@ -102,7 +104,8 @@
     "coming_soon": "Coming soon!",
     "was_send_code": "An email with a confirmation code has been sent to your Email",
     "authorization": "Authorization",
-    "want_logout": "Do you really want to log out of your account?"
+    "want_logout": "Do you really want to log out of your account?",
+    "select_cover": "Select cover"
   },
   "tab": {},
   "table": {},

@@ -9,7 +9,7 @@ const loaderVariant = cva(
       size: {
         md: 'h-10 w-10',
         sm: 'h-8 w-8',
-        lg: 'h-11 rounded-md px-8',
+        lg: 'h-12 w-12',
       },
     },
     defaultVariants: {

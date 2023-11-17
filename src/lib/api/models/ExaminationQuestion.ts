@@ -7,24 +7,24 @@ import type { Examination } from './Examination';
 import type { ExaminationAnswer } from './ExaminationAnswer';
 
 export type ExaminationQuestion = {
-  /**
-   * id of create-examination-question
-   */
-  id: number;
-  /**
-   * name of create-examination-question
-   */
-  name: string;
-  /**
-   * name of create-examination-question
-   */
-  examinationId: number;
-  /**
-   * create-examination
-   */
-  examination?: Examination;
-  /**
-   * answers of create-examination-question
-   */
-  answers?: Array<ExaminationAnswer>;
+    /**
+     * id of examination-question
+     */
+    id: number;
+    /**
+     * name of examination-question
+     */
+    name: string;
+    /**
+     * name of examination-question
+     */
+    examinationId: number;
+    /**
+     * examination
+     */
+    examination?: Examination;
+    /**
+     * answers of examination-question
+     */
+    answers?: Array<ExaminationAnswer>;
 };

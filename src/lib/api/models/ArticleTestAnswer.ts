@@ -6,24 +6,24 @@
 import type { ArticleTestQuestion } from './ArticleTestQuestion';
 
 export type ArticleTestAnswer = {
-  /**
-   * id of test create-examination-answer
-   */
-  id: number;
-  /**
-   * create-examination-answer of create-examination-question
-   */
-  name: string;
-  /**
-   * FK of create-examination-question
-   */
-  questionId: number;
-  /**
-   * question
-   */
-  question?: ArticleTestQuestion;
-  /**
-   * field of right of create-examination-answer
-   */
-  isRight: boolean;
+    /**
+     * id of test examination-answer
+     */
+    id: number;
+    /**
+     * examination-answer of examination-question
+     */
+    name: string;
+    /**
+     * FK of examination-question
+     */
+    questionId: number;
+    /**
+     * question
+     */
+    question?: ArticleTestQuestion;
+    /**
+     * field of right of examination-answer
+     */
+    isRight: boolean;
 };

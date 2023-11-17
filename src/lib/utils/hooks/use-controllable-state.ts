@@ -9,7 +9,7 @@ interface IUseControllableState<T> {
 export const useControllableState = <T>(
   params: IUseControllableState<T>
 ): [T, Dispatch<SetStateAction<T>>] => {
-  const isValueControlled = params.value !== undefined;
+  const isValueControlled = params.value !== undefined && !!params.onChange;
   const [state, setState] = useState<T>(params.defaultValue);
 
   const currentState = isValueControlled ? (params.value as T) : state;

@@ -1,7 +1,8 @@
-import { Ref, useRef } from 'react';
+import React, { Ref, useRef } from 'react';
 import { TestConstructor } from '@components/entities/article/misc/test-constructor';
 import { ITestConstructorForwardRef } from '@components/entities/article/misc/test-constructor/test-constructor';
 import { HashtagsEditor } from '@components/entities/article/misc/hashtags-editor/hashtags-editor';
+import { LinearLoader } from '@components/ui/loader';
 
 export const LatestPage = () => {
   const ref = useRef<ITestConstructorForwardRef>();

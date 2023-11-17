@@ -79,7 +79,7 @@ export abstract class ApiControllerBase<
     config?: AxiosRequestConfig<D | undefined>
   ): Promise<T> {
     return await ApiControllerBase.internalRequest(
-      this.client.post(this.url(uri), config?.data)
+      this.client.post(this.url(uri), config?.data, config)
     );
   }
 

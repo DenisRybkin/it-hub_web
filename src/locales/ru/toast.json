@@ -11,6 +11,7 @@
   "error": {
     "default": "Что-то пошло не так...",
     "small_article": "Слишком маленькая статья",
+    "max_file_size": "Размер файла {{name}} превышает {{size}} МБ",
     "api": {
       "validation_error": "Ошибка валидации",
       "internal_server_error": "Внутреняя ошибка сервера",

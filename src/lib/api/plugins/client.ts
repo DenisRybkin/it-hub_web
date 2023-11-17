@@ -9,7 +9,8 @@ export const client = axios.create({
 });
 
 client.interceptors.request.use(config => {
-  config.headers['Content-Type'] = 'application/json';
+  if (!config.headers['Content-Type'])
+    config.headers['Content-Type'] = 'application/json';
   const authToken = localStorage.getItem(LocaleStorageKeys.JWT);
   if (authToken) config.headers.Authorization = 'Bearer ' + authToken;
   return config;

@@ -21,7 +21,10 @@ export class StaticFieldController extends ApiControllerGet<
     onError?: (error: BaseProcessedError) => void
   ): Promise<StaticField> {
     return await this.process<StaticField>(
-      this.post('', { data: { image: data } }),
+      this.post('', {
+        data,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }),
       onSuccess,
       onError
     );

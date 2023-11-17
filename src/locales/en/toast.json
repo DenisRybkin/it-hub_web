@@ -10,6 +10,7 @@
   "error": {
     "default": "Something went wrong...",
     "small_article": "The article is too small",
+    "max_file_size": "The size of the {{name}} file exceeds {{size}} MB",
     "api": {
       "validation_error": "Validation error",
       "internal_server_error": "Internal server error",
