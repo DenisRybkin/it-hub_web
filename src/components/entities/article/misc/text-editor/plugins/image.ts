@@ -5,9 +5,6 @@ import {
   ToolConstructable,
   ToolSettings,
 } from '@editorjs/editorjs/types/tools';
-import { toast } from '@components/ui/use-toast';
-import { api } from '@lib/api/plugins';
-import i18next from 'i18next';
 import { LocaleStorageKeys } from '@lib/constants';
 
 export const imagePlugin: ToolConstructable | ToolSettings = {

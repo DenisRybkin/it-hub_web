@@ -15,7 +15,7 @@ export const CategoryItem = (props: ICategoryItemProps) => {
     <div
       onClick={handleClick}
       className={cn(
-        'cursor-default transition-all rounded-lg bg-dark-2 p-3 md:p-6 flex flex-col items-center justify-between gap-1 md:gap-2 border-2 border-dark-2 hover:border-primary-500 min-w-[150px]',
+        'cursor-pointer transition-all rounded-lg bg-dark-2 p-3 md:p-6 flex flex-col items-center justify-between gap-1 md:gap-2 border-2 border-dark-2 hover:border-primary-500 min-w-[150px]',
         props.isSelected && 'border-primary-500'
       )}
     >

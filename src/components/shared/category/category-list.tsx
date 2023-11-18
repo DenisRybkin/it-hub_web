@@ -5,7 +5,7 @@ import { CategoryItem } from '@components/shared/category/category-item';
 import { Category } from '@lib/api/models';
 import { useSearchParams } from 'react-router-dom';
 import { searchParamToNumArray } from '@lib/utils/tools';
-import { useScrollPaging } from '@lib/utils/hooks';
+import { useInfinityPaging } from '@lib/utils/hooks';
 import { CategoryItemSkeleton } from '@components/shared/category/category-item-skeleton';
 
 export const CATEGORIES_SEARCH_PARAMS = 'categories';
@@ -19,7 +19,7 @@ export interface ICategoriesListProps {
 export const CategoryList = (props: ICategoriesListProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { items, isFetching, isSuccess } = useScrollPaging(
+  const { items, isFetching, isSuccess } = useInfinityPaging(
     api.category,
     undefined,
     undefined,

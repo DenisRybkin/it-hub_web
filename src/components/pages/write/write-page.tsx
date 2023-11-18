@@ -1,27 +1,32 @@
 import React, { Ref, useRef, useState } from 'react';
-import { TextEditor } from '@components/entities/article/misc/text-editor';
 import type { ITextEditorForwardRef } from '@components/entities/article/misc/text-editor';
+import { TextEditor } from '@components/entities/article/misc/text-editor';
 import { Button } from '@components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { FiImage, FiSave, FiShare, FiX } from 'react-icons/fi';
-import { LocaleStorageKeys } from '@lib/constants';
+import { LocaleStorageKeys, RouteKeys } from '@lib/constants';
 import { checkBlocksLength } from '@lib/utils/validations/text-editor';
 import { toast } from '@components/ui/use-toast';
 import { CategoryList } from '@components/shared/category';
 import { OutputData } from '@editorjs/editorjs';
-import {
-  HashtagsConstructor,
-  IHashtagsConstructorForwardRef,
-} from '@components/entities/article/misc/hashtags-constructor';
 import {
   ITestConstructorForwardRef,
   TestConstructor,
 } from '@components/entities/article/misc/test-constructor/test-constructor';
 import { CoverImage } from '@components/shared/cover-image';
 import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
-import { StaticField } from '@lib/api/models';
+import { Article, CreateComplexArticleDto, StaticField } from '@lib/api/models';
+import {
+  HashtagsEditor,
+  IHashtagsEditorForwardRef,
+} from '@components/entities/article/misc/hashtags-editor';
+import { api } from '@lib/api/plugins';
+import { useNavigate } from 'react-router-dom';
+import { RoutePaths } from '@app/router';
 
 export const WritePage = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
   const [isOpenSelectPreviewDialog, setIsOpenSelectPreviewDialog] =
@@ -29,58 +34,82 @@ export const WritePage = () => {
   const [preview, setPreview] = useState<StaticField | undefined>(undefined);
   const editorRef = useRef<ITextEditorForwardRef>();
   const testConstructorRef = useRef<ITestConstructorForwardRef>();
-  const hashtagsConstructorRef = useRef<IHashtagsConstructorForwardRef>();
-  const { t } = useTranslation();
+  const hashtagsEditorRef = useRef<IHashtagsEditorForwardRef>();
 
   const handleOpenSelectPreviewDialog = () =>
     setIsOpenSelectPreviewDialog(true);
 
   const resetPreview = () => setPreview(undefined);
 
-  const validationForPublish = (data?: OutputData) => {
-    if (!data) throw new Error();
-    if (!checkBlocksLength(data))
-      throw new Error(t('toast:error.small_article'));
-    if (!selectedCategoryIds.length)
-      throw new Error('validation:error.no_category_selected');
+  const handleError = () =>
+    toast({
+      title: t('toast:error.default'),
+      variant: 'destructive',
+    });
+
+  const handleSuccess = (model: Article) => {
+    toast({
+      title: t('toast:success.article_created'),
+      variant: 'success',
+    });
+    navigate(RoutePaths[RouteKeys.ARTICLE] + `/${model.id}`);
   };
 
-  const handleSaveAsDraft = async () => {
+  const validation = (body?: OutputData, selectedCategoryIds?: number[]) => {
+    if (!body || !checkBlocksLength(body))
+      throw new Error(t('toast:error.small_article'));
+    if (!selectedCategoryIds?.length)
+      throw new Error(t('validation:error.no_category_selected'));
+  };
+
+  const getAndValidateDto = async (): Promise<
+    CreateComplexArticleDto | undefined
+  > => {
     try {
-      const data = await editorRef.current?.onGetData();
-      validationForPublish(data);
-      localStorage.setItem(
-        LocaleStorageKeys.DRAFT,
-        JSON.stringify({
-          categories: hashtagsConstructorRef.current?.getData(),
-          body: await editorRef.current?.onGetData(),
-        })
-      );
-      toast({
-        variant: 'success',
-        title: t('toast:info.draft_saved'),
-      });
+      const body = await editorRef.current?.onGetData();
+      const previewId = preview?.id;
+      const categoryIds = selectedCategoryIds;
+      const hashtags = hashtagsEditorRef.current?.data;
+      console.log(hashtags);
+      validation(body, selectedCategoryIds);
+      return {
+        body: JSON.stringify(body),
+        categoryIds,
+        previewId,
+        hashtagIds: hashtags?.map(item => item.id),
+      };
     } catch (e) {
-      return toast({
+      toast({
         variant: 'destructive',
         title: (e as Error).message,
       });
+      return undefined;
     }
+  };
+
+  const handleSaveAsDraft = async () => {
+    const dto = await getAndValidateDto();
+    if (!dto) return;
+    localStorage.setItem(
+      LocaleStorageKeys.DRAFT,
+      JSON.stringify({
+        //categories: hashtagsConstructorRef.current?.getData(),
+        body: await editorRef.current?.onGetData(),
+      })
+    );
+    toast({
+      variant: 'success',
+      title: t('toast:info.draft_saved'),
+    });
   };
 
   const handlePublish = async () => {
     setIsLoading(true);
-    try {
-      const data = await editorRef.current?.onGetData();
-      validationForPublish(data);
-    } catch (e) {
-      return toast({
-        variant: 'destructive',
-        title: (e as Error).message,
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    const dto = await getAndValidateDto();
+    if (!dto) return setIsLoading(false);
+
+    await api.article.createComplex(dto, handleSuccess, handleError);
+    setIsLoading(false);
   };
 
   return (
@@ -131,7 +160,6 @@ export const WritePage = () => {
           selectedIds={selectedCategoryIds}
           onChangeSelects={setSelectedCategoryIds}
         />
-        <div className="h-5" />
         <TextEditor
           autofocus
           withHeading
@@ -140,9 +168,9 @@ export const WritePage = () => {
         <TestConstructor
           ref={testConstructorRef as Ref<ITestConstructorForwardRef>}
         />
-        <HashtagsConstructor
+        <HashtagsEditor
           className="mt-2"
-          ref={hashtagsConstructorRef as Ref<IHashtagsConstructorForwardRef>}
+          ref={hashtagsEditorRef as Ref<IHashtagsEditorForwardRef>}
         />
         <div className="flex mt-2 items-start self-center gap-2">
           <Button

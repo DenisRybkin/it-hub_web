@@ -10,7 +10,7 @@ import { QueryFunctionContext } from '@tanstack/query-core/src/types';
 import type { IUsePaging, PagingInfo } from '@lib/utils/hooks/paging/common';
 import { fetchItems } from '@lib/utils/hooks/paging/common';
 
-export const useScrollPaging = <T, TFilter>(
+export const useInfinityPaging = <T, TFilter>(
   controller: IApiControllerGet<T, TFilter>,
   onSuccess?: (model: PagingModel<T>) => void,
   onError?: (error: BaseProcessedError) => void,
@@ -20,10 +20,6 @@ export const useScrollPaging = <T, TFilter>(
 ): IUsePaging<T> => {
   const { t } = useTranslation();
   const [page, setPage] = useState(1);
-  const [info, setInfo] = useState<PagingInfo>({
-    totalItems: 0,
-    isDone: false,
-  });
 
   if (!pagingOptions) pagingOptions = { pageSize: 10 };
   const queryFilterKey = filters2QueryKey(filterOptions);
@@ -33,7 +29,7 @@ export const useScrollPaging = <T, TFilter>(
     return isDone ? undefined : lastPage.pagingOptions.page + 1;
   };
   const queryFn = (params: QueryFunctionContext<string[], number>) =>
-    fetchItems(controller, handleSuccess, handleError, {
+    fetchItems(controller, undefined, handleError, {
       paging: { ...pagingOptions, page: params.pageParam ?? 1 },
       filter: filterOptions,
     });
@@ -42,6 +38,7 @@ export const useScrollPaging = <T, TFilter>(
     isError,
     isFetching,
     isLoading,
+    isFetchingNextPage,
     isSuccess,
     data,
     remove,
@@ -64,19 +61,22 @@ export const useScrollPaging = <T, TFilter>(
     onError?.(error);
   };
 
-  const handleSuccess = (pagingModel: PagingModel<T>) =>
-    setInfo({
-      totalItems: pagingModel.totalItems,
-      isDone: pagingModel.items.length < (pagingOptions?.pageSize ?? 10),
-    });
-
   const loadNext = () => fetchNextPage();
   const loadPage = (page: number) => setPage(page);
 
+  const getInfo = (): Required<PagingInfo> => {
+    const lastLoadedData = data?.pages.at(-1);
+    return {
+      isDone: (lastLoadedData?.items.length ?? 0) < pagingOptions!.pageSize!,
+      totalPages: lastLoadedData?.totalPages ?? 0,
+      totalItems: lastLoadedData?.totalItems ?? 0,
+    };
+  };
+
   return {
-    info,
+    info: getInfo(),
     isLoading,
-    isFetching,
+    isFetching: isFetching || isFetchingNextPage,
     isError,
     isSuccess,
     items: (data?.pages ?? []).flatMap(item => item.items),

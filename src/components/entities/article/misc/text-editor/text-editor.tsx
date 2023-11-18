@@ -1,9 +1,4 @@
-import React, {
-  ForwardedRef,
-  forwardRef,
-  useImperativeHandle,
-  useState,
-} from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { EditorInstance } from '@components/entities/article/misc/text-editor/instance';
 import { plugins } from '@components/entities/article/misc/text-editor/plugins';
 import { useTranslation } from 'react-i18next';
@@ -28,29 +23,26 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
   (props, ref) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const editorCore = React.useRef<EditorCore | null>(null);
+    const editorCore = useRef<EditorCore | null>(null);
 
-    const handleInitialize = React.useCallback(
-      (instance: EditorCore) => {
-        if (editorCore.current) editorCore.current = instance;
-        if (props.withHeading)
-          instance.render({
-            time: new Date().getTime(),
-            version: '1.0',
-            blocks: [withHeadingTemplate],
-          });
-      },
-      [props.withHeading]
-    );
+    const handleInitialize = (instance: EditorCore) => {
+      editorCore.current = instance;
+      if (props.withHeading)
+        instance.render({
+          time: new Date().getTime(),
+          version: '1.0',
+          blocks: [withHeadingTemplate],
+        });
+    };
 
-    const handleSave = React.useCallback(async () => {
+    const handleSave = async () => {
       setIsLoading(true);
       const savedData = await editorCore?.current?.save();
       setIsLoading(false);
       return savedData;
-    }, []);
+    };
 
-    const getDefaultValue = React.useCallback(() => {
+    const getDefaultValue = () => {
       if (props.withHeading)
         return {
           time: new Date().getTime(),
@@ -58,7 +50,7 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
           blocks: [withHeadingTemplate],
         };
       return props.value;
-    }, [props.withHeading]);
+    };
 
     useImperativeHandle<ITextEditorForwardRef, ITextEditorForwardRef>(
       ref,

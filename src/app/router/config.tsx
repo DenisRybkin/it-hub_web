@@ -21,6 +21,7 @@ export const RoutePaths = {
   [RouteKeys.VACANCY_ID]: '/vacancy/:id',
   [RouteKeys.USER]: '/user',
   [RouteKeys.USER_ID]: '/user/:id',
+  [RouteKeys.ARTICLE]: '/article',
   [RouteKeys.ARTICLE_ID]: '/article/:id',
   [RouteKeys.WRITE]: '/write',
 };

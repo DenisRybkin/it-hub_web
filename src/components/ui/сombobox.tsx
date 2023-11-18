@@ -15,6 +15,7 @@ import { PiCaretUpDown } from 'react-icons/pi';
 import { cn } from '@lib/utils/tools';
 import { Check } from 'lucide-react';
 import {
+  ComponentProps,
   createContext,
   Dispatch,
   ReactNode,
@@ -23,12 +24,11 @@ import {
 } from 'react';
 import { CircularLoader } from '@components/ui/loader';
 import { RemovingBadge } from '@components/ui/badge';
-import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area/horizontal-scroll-area';
 import { useControllableState } from '@lib/utils/hooks';
 
-interface ComboboxContextValue {
-  isSelected: (value: unknown) => boolean;
-  onSelect: (value: unknown) => void;
+interface ComboboxContextValue<TValue = unknown> {
+  isSelected: (value: TValue) => boolean;
+  onSelect: (value: TValue) => void;
 }
 
 export const ComboboxContext = createContext<ComboboxContextValue>({
@@ -39,6 +39,7 @@ export const ComboboxContext = createContext<ComboboxContextValue>({
 interface ComboboxCommonProps<TValue> {
   children: React.ReactNode;
   placeholder?: string;
+  className?: string;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: Dispatch<SetStateAction<boolean>>;
@@ -48,6 +49,7 @@ interface ComboboxCommonProps<TValue> {
   emptyState?: string | ((input: string) => JSX.Element);
   isLoading?: boolean;
   getDisplayNameByValue: (value: TValue) => string;
+  getComparableValue?: (value: TValue) => unknown;
 }
 
 type ComboboxFilterProps =
@@ -63,15 +65,15 @@ type ComboboxFilterProps =
 type ComboboxValueProps<TValue> =
   | {
       multiple?: false;
-      value?: TValue | null;
-      defaultValue?: TValue | null;
-      onValueChange?: Dispatch<SetStateAction<TValue | null>>;
+      value?: TValue;
+      defaultValue?: TValue;
+      onValueChange?: Dispatch<SetStateAction<TValue | undefined>>;
     }
   | {
       multiple: true;
-      value?: TValue[] | null;
-      defaultValue?: TValue[] | null;
-      onValueChange?: Dispatch<SetStateAction<TValue[] | null>>;
+      value?: TValue[];
+      defaultValue?: TValue[];
+      onValueChange?: Dispatch<SetStateAction<TValue[] | undefined>>;
     };
 
 export type ComboboxProps<TValue> = ComboboxCommonProps<TValue> &
@@ -95,6 +97,7 @@ export const Combobox = <TValue,>({
   emptyState = 'Nothing found.',
   isLoading,
   getDisplayNameByValue,
+  getComparableValue,
 }: ComboboxProps<TValue>) => {
   const [search, setSearch] = useControllableState<string>({
     defaultValue: '',
@@ -110,30 +113,51 @@ export const Combobox = <TValue,>({
     },
   });
 
-  const [value, setValue] = useControllableState<(TValue | TValue[]) | null>({
-    defaultValue: defaultValue ?? null,
+  const [value, setValue] = useControllableState<
+    (TValue | TValue[]) | undefined
+  >({
+    defaultValue: defaultValue,
     value: valueProp,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     onChange: onValueChange,
   });
 
-  const isSelected = (selectedValue: unknown) => {
-    if (Array.isArray(value)) return value.includes(selectedValue as TValue);
-    return value == selectedValue;
+  const isSelected = (selectedValue: TValue) => {
+    if (!value) return false;
+    if (!getComparableValue && !Array.isArray(value))
+      return value == selectedValue;
+    return !Array.isArray(value)
+      ? getComparableValue!(selectedValue) == getComparableValue!(value)
+      : value.some(
+          item =>
+            getComparableValue!(selectedValue) == getComparableValue!(item)
+        );
   };
 
-  const handleSelect = (selectedValue: unknown) => {
-    let newValue: TValue | TValue[] | null = selectedValue as TValue;
-
+  const handleSelect = (selectedValue: TValue | TValue[]) => {
+    let newValue: TValue | TValue[] | undefined = selectedValue as TValue;
     if (multiple)
       if (Array.isArray(value))
-        if (value.includes(newValue)) {
-          const newArr = value.filter(val => val != selectedValue);
-          newValue = newArr.length ? newArr : null;
+        if (
+          getComparableValue
+            ? value.some(
+                item =>
+                  getComparableValue(item as TValue) ==
+                  getComparableValue(selectedValue as TValue)
+              )
+            : value.includes(newValue)
+        ) {
+          const newArr = value.filter(val =>
+            getComparableValue
+              ? getComparableValue(val) !=
+                getComparableValue(selectedValue as TValue)
+              : val != selectedValue
+          );
+          newValue = newArr.length ? newArr : undefined;
         } else newValue = [...value, newValue];
       else newValue = [newValue];
-    else if (value == selectedValue) newValue = null;
+    else if (value == selectedValue) newValue = undefined;
 
     setValue(newValue);
     if (!multiple) setOpen(false);
@@ -156,6 +180,7 @@ export const Combobox = <TValue,>({
           ))}
         </div>
       );
+    return getDisplayNameByValue ? getDisplayNameByValue(value) : value;
   };
 
   return (
@@ -201,7 +226,10 @@ export const Combobox = <TValue,>({
                 )}
               </CommandEmpty>
               <ComboboxContext.Provider
-                value={{ isSelected, onSelect: handleSelect }}
+                value={{
+                  isSelected: isSelected as (value: unknown) => boolean,
+                  onSelect: handleSelect as (value: unknown) => void,
+                }}
               >
                 {children}
               </ComboboxContext.Provider>
@@ -220,7 +248,7 @@ interface ComboboxItemOptions<TValue> {
 export interface ComboboxItemProps<TValue>
   extends ComboboxItemOptions<TValue>,
     Omit<
-      React.ComponentProps<typeof CommandItem>,
+      ComponentProps<typeof CommandItem>,
       keyof ComboboxItemOptions<TValue> | 'onSelect' | 'role'
     > {
   onSelect?(value: TValue): void;

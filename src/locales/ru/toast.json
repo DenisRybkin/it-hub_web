@@ -6,7 +6,8 @@
     "auth_success": "Авторизация прошла успешно",
     "registration_success": "Регистрация прошла успешно",
     "copied_clipboard": "Скопировано в буфер обмена: {{value}}",
-    "hashtag_created": "Хэштэг был успешно создан"
+    "hashtag_created": "Хэштэг был успешно создан",
+    "article_created": "Статья была успешно создана"
   },
   "error": {
     "default": "Что-то пошло не так...",
@@ -28,7 +29,9 @@
         "must_be_enum": "должно быть enum",
         "must_be_date": "должно быть датой",
         "must_be_boolean": "должно быть логическим",
-        "must_be_array": "должно быть массивом"
+        "must_be_array": "должно быть массивом",
+        "must_be_int_array": "должно быть массивом целочисленных значений",
+        "must_be_string_array": "должно быть массивом строк"
       }
     }
   },

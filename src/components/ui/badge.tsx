@@ -43,7 +43,9 @@ function RemovingBadge(props: RemovingBadgeProps) {
   const handleRemove = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    console.log(1);
     event.stopPropagation();
+    console.log(2);
     props.onRemove?.();
   };
 

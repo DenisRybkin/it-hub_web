@@ -4,6 +4,7 @@ export enum RouteKeys {
   LATEST,
   COMPANY,
   COMPANY_ID,
+  ARTICLE,
   ARTICLE_ID,
   VACANCY,
   VACANCY_ID,

@@ -5,7 +5,8 @@
     "auth_success": "Authorization was successful",
     "registration_success": "Registration was successful",
     "copied_clipboard": "Copied to clipboard: {{value}}",
-    "hashtag_created": "The hashtag was successfully created"
+    "hashtag_created": "The hashtag was successfully created",
+    "article_created": "The article was successfully created"
   },
   "error": {
     "default": "Something went wrong...",
@@ -27,7 +28,9 @@
         "must_be_enum": "must be enum",
         "must_be_date": "must be date",
         "must_be_boolean": "must be boolean",
-        "must_be_array": "must be array"
+        "must_be_array": "must be array",
+        "must_be_int_array": "must be an array of integers",
+        "must_be_string_array": "must be an array of integers"
       }
     }
   },

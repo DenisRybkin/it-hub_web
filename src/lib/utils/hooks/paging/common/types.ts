@@ -1,6 +1,7 @@
 export type PagingInfo = {
   isDone: boolean;
   totalItems?: number;
+  totalPages?: number;
 };
 
 export interface IUsePaging<T> {

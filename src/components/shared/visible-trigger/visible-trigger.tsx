@@ -17,7 +17,6 @@ export const VisibleTrigger = (props: IVisibleTriggerProps) => {
   const { isVisible } = useViewportObserver(triggerRef, props.options);
 
   useEffect(() => {
-    console.log(props.disabled);
     isVisible && !props.disabled && props.onVisible();
   }, [isVisible]);
 

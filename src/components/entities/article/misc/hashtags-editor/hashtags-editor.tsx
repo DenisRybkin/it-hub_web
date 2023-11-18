@@ -1,15 +1,47 @@
-import { useState } from 'react';
+import {
+  Dispatch,
+  forwardRef,
+  SetStateAction,
+  useImperativeHandle,
+  useState,
+} from 'react';
 import { Button } from '@components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { Combobox, ComboboxItem } from '@components/ui/сombobox';
 import { api } from '@lib/api/plugins';
 import { Hashtag, ReadHashtagFilterDto } from '@lib/api/models';
-import { useDebounce, useScrollPaging } from '@lib/utils/hooks';
+import {
+  useControllableState,
+  useDebounce,
+  useInfinityPaging,
+} from '@lib/utils/hooks';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from '@components/ui/use-toast';
 import { VisibleTrigger } from '@components/shared/visible-trigger/visible-trigger';
 
-export const HashtagsEditor = () => {
+export interface IHashtagsEditorForwardRef {
+  data?: Hashtag[];
+}
+
+type BaseHashtagsEditorProps = { className?: string };
+
+type HashtagsEditorProps = BaseHashtagsEditorProps &
+  (
+    | {
+        readonly: true;
+        value: Hashtag[];
+        onChange: undefined;
+      }
+    | {
+        value?: Hashtag[];
+        onChange?: Dispatch<SetStateAction<Hashtag[] | undefined>>;
+      }
+  );
+
+export const HashtagsEditor = forwardRef<
+  IHashtagsEditorForwardRef,
+  HashtagsEditorProps
+>((props, ref) => {
   const { t } = useTranslation();
 
   const handleError = () => t('toast:error.default');
@@ -17,12 +49,16 @@ export const HashtagsEditor = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('');
-  const [selectedHashtagIds, setSelectedHashtagIds] = useState<number[] | null>(
-    null
-  );
+  const [selectedHashtags, setSelectedHashtags] = useControllableState<
+    Hashtag[] | undefined
+  >({
+    defaultValue: undefined,
+    value: props.value,
+    onChange: props.onChange,
+  });
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
   const debouncedSearch = useDebounce<string>(search);
-  const { items, isFetching, info, loadNext } = useScrollPaging<
+  const { items, isFetching, info, loadNext } = useInfinityPaging<
     Hashtag,
     ReadHashtagFilterDto
   >(
@@ -30,14 +66,6 @@ export const HashtagsEditor = () => {
     undefined,
     handleError,
     [{ key: 'name', type: 'like', value: debouncedSearch }],
-    undefined,
-    isOpenPopup
-  );
-  const { items: staticItems } = useScrollPaging<Hashtag, ReadHashtagFilterDto>(
-    api.hashtag,
-    undefined,
-    handleError,
-    [{ key: 'name', type: 'like', value: '' }],
     undefined,
     isOpenPopup
   );
@@ -49,9 +77,7 @@ export const HashtagsEditor = () => {
     });
     setIsLoading(true);
     await queryClient.invalidateQueries([api.hashtag.toString()]);
-    setSelectedHashtagIds(prev =>
-      prev ? [...prev, hashtag.id] : [hashtag.id]
-    );
+    setSelectedHashtags(prev => (prev ? [...prev, hashtag] : [hashtag]));
     setSearch('');
     setIsLoading(false);
   };
@@ -77,25 +103,30 @@ export const HashtagsEditor = () => {
     </div>
   );
 
+  useImperativeHandle<IHashtagsEditorForwardRef, IHashtagsEditorForwardRef>(
+    ref,
+    () => ({ data: selectedHashtags }),
+    [selectedHashtags]
+  );
+
   return (
-    <Combobox<number>
+    <Combobox<Hashtag>
       placeholder={t('ui:placeholder.select_hashtag')}
       emptyState={EmptyState}
       open={isOpenPopup}
       onOpenChange={setIsOpenPopup}
-      value={selectedHashtagIds}
-      onValueChange={setSelectedHashtagIds}
+      value={selectedHashtags}
+      onValueChange={setSelectedHashtags}
       search={search}
       onSearchChange={setSearch}
       isLoading={isFetching || isLoading || search != debouncedSearch}
-      getDisplayNameByValue={id =>
-        staticItems.find(item => item.id == id)?.name ?? ''
-      }
+      getDisplayNameByValue={hashtag => hashtag.name}
       shouldFilter={false}
+      getComparableValue={hashtag => hashtag.id}
       multiple
     >
       {items.map(hashtag => (
-        <ComboboxItem key={hashtag.id} value={hashtag.id}>
+        <ComboboxItem<Hashtag> key={hashtag.id} value={hashtag}>
           {hashtag.name}
         </ComboboxItem>
       ))}
@@ -106,4 +137,4 @@ export const HashtagsEditor = () => {
       />
     </Combobox>
   );
-};
+});
