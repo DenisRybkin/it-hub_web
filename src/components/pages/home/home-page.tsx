@@ -24,7 +24,7 @@ export const HomePage = () => {
   const { items, isFetching, info, loadNext } = useInfinityPaging<
     Article,
     ReadArticleFilterDto
-  >(api.article, handleError, undefined, undefined);
+  >(api.articleShort, handleError, undefined, undefined);
 
   useEffect(() => {
     setSelectedCategoryIds(

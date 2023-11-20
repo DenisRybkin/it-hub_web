@@ -1,14 +1,13 @@
 import { ApiControllerBase } from '@/lib/api/bases/api-controller-base';
 import {
   getOptions,
-  IApiControllerGet,
-} from '@lib/api/interfaces/i-api-controller-get';
+  IApiControllerRead,
+} from '@lib/api/interfaces/i-api-controller-read';
 import { AxiosInstance } from 'axios';
 import { Autocomplete, LockerModel, PagingModel } from '@/lib/api/types';
-import { AxiosError } from 'axios';
 import { BaseProcessedError } from '@lib/api/models';
 
-export abstract class ApiControllerGet<
+export abstract class ApiControllerRead<
     T,
     TFilter,
     TCreate = null,
@@ -16,7 +15,7 @@ export abstract class ApiControllerGet<
     TUpdatePartially = null
   >
   extends ApiControllerBase<TCreate, TUpdate, TUpdatePartially>
-  implements IApiControllerGet<T, TFilter>
+  implements IApiControllerRead<T, TFilter>
 {
   protected constructor(
     client: AxiosInstance,

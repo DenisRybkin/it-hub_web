@@ -1,4 +1,4 @@
-import { ApiControllerGet } from '@/lib/api/bases/api-controller-get';
+import { ApiControllerRead } from '@lib/api/bases/api-controller-read';
 import { IApiControllerCrud } from '@/lib/api/interfaces';
 import { AxiosInstance } from 'axios';
 import { LockerModel } from '@/lib/api/types';
@@ -12,7 +12,7 @@ export abstract class ApiControllerCRUD<
     TUpdate extends Object,
     TUpdatePartially extends Object
   >
-  extends ApiControllerGet<T, TFilter, TCreate, TUpdate, TUpdatePartially>
+  extends ApiControllerRead<T, TFilter, TCreate, TUpdate, TUpdatePartially>
   implements IApiControllerCrud<T, TFilter, TCreate, TUpdate, TUpdatePartially>
 {
   protected constructor(

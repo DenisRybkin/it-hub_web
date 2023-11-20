@@ -18,30 +18,35 @@ import {
   ArticleCommentController,
   ArticleController,
   AchievementController,
+  ArticleShortController,
+  UserShortController,
 } from '@/lib/api/controllers';
 import { client } from '@/lib/api/plugins/client';
 
 class Api {
-  auth: AuthController;
-  user: UserController;
-  staticField: StaticFieldController;
-  category: CategoryController;
-  examination: ExaminationController;
-  examinationQuestion: ExaminationQuestionController;
-  examinationAnswer: ExaminationAnswerController;
-  role: RoleController;
-  openAI: OpenAiController;
-  hashtag: HashtagController;
-  articleTest: ArticleTestController;
-  articleTestQuestion: ArticleTestQuestionController;
-  articleTestAnswer: ArticleTestAnswerController;
-  articleComment: ArticleCommentController;
-  article: ArticleController;
-  achievement: AchievementController;
+  readonly auth: AuthController;
+  readonly user: UserController;
+  readonly userShort: UserShortController;
+  readonly staticField: StaticFieldController;
+  readonly category: CategoryController;
+  readonly examination: ExaminationController;
+  readonly examinationQuestion: ExaminationQuestionController;
+  readonly examinationAnswer: ExaminationAnswerController;
+  readonly role: RoleController;
+  readonly openAI: OpenAiController;
+  readonly hashtag: HashtagController;
+  readonly articleTest: ArticleTestController;
+  readonly articleTestQuestion: ArticleTestQuestionController;
+  readonly articleTestAnswer: ArticleTestAnswerController;
+  readonly articleComment: ArticleCommentController;
+  readonly article: ArticleController;
+  readonly articleShort: ArticleShortController;
+  readonly achievement: AchievementController;
 
   constructor(client: AxiosInstance, locker: LockerModel) {
     this.auth = new AuthController(client, locker);
     this.user = new UserController(client, locker);
+    this.userShort = new UserShortController(client, locker);
     this.staticField = new StaticFieldController(client, locker);
     this.category = new CategoryController(client, locker);
     this.examination = new ExaminationController(client, locker);
@@ -61,6 +66,7 @@ class Api {
     this.articleTestAnswer = new ArticleTestAnswerController(client, locker);
     this.articleComment = new ArticleCommentController(client, locker);
     this.article = new ArticleController(client, locker);
+    this.articleShort = new ArticleShortController(client, locker);
     this.achievement = new AchievementController(client, locker);
   }
 }

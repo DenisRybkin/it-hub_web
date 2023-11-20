@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { BaseProcessedError } from '@lib/api/models';
-import { IApiControllerGet } from '@lib/api/interfaces/i-api-controller-get';
+import { IApiControllerRead } from '@lib/api/interfaces/i-api-controller-read';
 
 export interface IApiControllerCrud<
   T,
@@ -8,7 +8,7 @@ export interface IApiControllerCrud<
   TCreate,
   TUpdate,
   TUpdatePartially
-> extends IApiControllerGet<T, TFilter> {
+> extends IApiControllerRead<T, TFilter> {
   create(
     model: TCreate,
     onSuccess?: (model: T) => void,

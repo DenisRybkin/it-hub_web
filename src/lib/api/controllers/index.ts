@@ -14,3 +14,5 @@ export { ArticleTestAnswerController } from './article-test-answer-controller';
 export { ArticleCommentController } from './article-comment-controller';
 export { ArticleController } from './article-controller';
 export { AchievementController } from './achievement-controller';
+export { ArticleShortController } from './article-short-controller';
+export { UserShortController } from './user-short-controller';

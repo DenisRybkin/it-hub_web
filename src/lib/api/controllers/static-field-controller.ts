@@ -1,4 +1,4 @@
-import { ApiControllerGet } from '@lib/api/bases';
+import { ApiControllerRead } from '@lib/api/bases';
 import {
   BaseProcessedError,
   ReadStaticFieldFilterDto,
@@ -7,7 +7,7 @@ import {
 import { AxiosInstance } from 'axios';
 import { LockerModel, PagingModel } from '@lib/api/types';
 
-export class StaticFieldController extends ApiControllerGet<
+export class StaticFieldController extends ApiControllerRead<
   StaticField,
   ReadStaticFieldFilterDto
 > {

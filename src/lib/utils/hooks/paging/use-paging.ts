@@ -1,4 +1,4 @@
-import type { IApiControllerGet } from '@lib/api/interfaces';
+import type { IApiControllerRead } from '@lib/api/interfaces';
 import { BaseProcessedError } from '@lib/api/models';
 import { FilterOption, PagingModel, PagingOptions } from '@lib/api/types';
 import { useQuery } from '@tanstack/react-query';
@@ -10,7 +10,7 @@ import type { IUsePaging, PagingInfo } from '@lib/utils/hooks/paging/common';
 import { fetchItems } from '@lib/utils/hooks/paging/common';
 
 export const usePaging = <T, TFilter>(
-  controller: IApiControllerGet<T, TFilter>,
+  controller: IApiControllerRead<T, TFilter>,
   onSuccess?: (model: PagingModel<T>) => void,
   onError?: (error: BaseProcessedError) => void,
   filterOptions?: FilterOption<TFilter>[],

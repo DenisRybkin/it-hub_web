@@ -1,3 +1,3 @@
 export { ApiControllerBase } from './api-controller-base';
-export { ApiControllerGet } from './api-controller-get';
+export { ApiControllerRead } from './api-controller-read';
 export { ApiControllerCRUD } from './api-controller-CRUD';

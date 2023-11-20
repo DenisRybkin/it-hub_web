@@ -12,7 +12,7 @@ export type getOptions<T, TFilter> = {
   filter?: FilterOption<TFilter>[];
 };
 
-export interface IApiControllerGet<T, TFilter> {
+export interface IApiControllerRead<T, TFilter> {
   getAll(
     opts?: getOptions<T, TFilter>,
     onSuccess?: (model: PagingModel<T>) => void,
