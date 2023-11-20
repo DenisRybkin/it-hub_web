@@ -9,6 +9,7 @@ import { withHeadingTemplate } from '@components/entities/article/misc/text-edit
 
 interface ITextEditorProps {
   readonly?: boolean;
+  defaultValue?: OutputData;
   value?: OutputData;
   withHeading?: boolean;
   autofocus?: boolean;
@@ -49,7 +50,7 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
           version: '1.0',
           blocks: [withHeadingTemplate],
         };
-      return props.value;
+      return props.defaultValue;
     };
 
     useImperativeHandle<ITextEditorForwardRef, ITextEditorForwardRef>(
@@ -66,6 +67,7 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
           onInitialize={handleInitialize}
           readOnly={props.readonly}
           autofocus={props.autofocus}
+          value={props.value}
           defaultValue={getDefaultValue()}
           placeholder={t('ui:placeholder.enter_something')}
           tools={plugins}

@@ -63,7 +63,6 @@ export const HashtagsEditor = forwardRef<
     ReadHashtagFilterDto
   >(
     api.hashtag,
-    undefined,
     handleError,
     [{ key: 'name', type: 'like', value: debouncedSearch }],
     undefined,
@@ -125,7 +124,7 @@ export const HashtagsEditor = forwardRef<
       getComparableValue={hashtag => hashtag.id}
       multiple
     >
-      {items.map(hashtag => (
+      {items?.map(hashtag => (
         <ComboboxItem<Hashtag> key={hashtag.id} value={hashtag}>
           {hashtag.name}
         </ComboboxItem>

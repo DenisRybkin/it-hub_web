@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ArticleCard } from '@components/entities/article/misc/article-card';
 import { useTranslation } from 'react-i18next';
-import { LocaleStorageKeys } from '@lib/constants';
 import { AuthContext } from '@app/providers/auth';
-import { CategoryList } from '@components/shared/category';
+import { CategoryList } from '@components/entities/category/category-list';
 import { useSearchParams } from 'react-router-dom';
-import { CATEGORIES_SEARCH_PARAMS } from '@components/shared/category/category-list';
+import { CATEGORIES_SEARCH_PARAMS } from '@components/entities/category/category-list/category-list';
 import { searchParamToNumArray } from '@lib/utils/tools';
+import { ArticleList } from '@components/entities/article/misc/article-list';
+import { useInfinityPaging } from '@lib/utils/hooks';
+import { Article, ReadArticleFilterDto } from '@lib/api/models';
+import { api } from '@lib/api/plugins';
+import { toast } from '@components/ui/use-toast';
 
 export const HomePage = () => {
   const { t } = useTranslation();
@@ -14,6 +17,14 @@ export const HomePage = () => {
 
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
   const [searchParams] = useSearchParams();
+
+  const handleError = () =>
+    toast({ title: t('toast:error.default'), variant: 'destructive' });
+
+  const { items, isFetching, info, loadNext } = useInfinityPaging<
+    Article,
+    ReadArticleFilterDto
+  >(api.article, handleError, undefined, undefined);
 
   useEffect(() => {
     setSelectedCategoryIds(
@@ -25,42 +36,12 @@ export const HomePage = () => {
     <>
       <h1 className="head-text text-left">{t('ui:title.home')}</h1>
       <CategoryList withSearchParams />
-      <section className="mt-9 flex flex-col gap-5 md:gap-10">
-        {authContext.user && (
-          <>
-            <ArticleCard
-              author={authContext.user}
-              title="Заголовок"
-              body={localStorage.getItem(LocaleStorageKeys.DRAFT)}
-            />
-            <ArticleCard
-              author={authContext.user}
-              title="Заголовок"
-              body={localStorage.getItem(LocaleStorageKeys.DRAFT + '2')}
-            />
-            <ArticleCard
-              author={authContext.user}
-              title="Заголовок"
-              body={localStorage.getItem(LocaleStorageKeys.DRAFT)}
-            />
-            <ArticleCard
-              author={authContext.user}
-              title="Заголовок"
-              body={localStorage.getItem(LocaleStorageKeys.DRAFT)}
-            />
-            <ArticleCard
-              author={authContext.user}
-              title="Заголовок"
-              body={localStorage.getItem(LocaleStorageKeys.DRAFT + '2')}
-            />
-            <ArticleCard
-              author={authContext.user}
-              title="Заголовок"
-              body={localStorage.getItem(LocaleStorageKeys.DRAFT)}
-            />
-          </>
-        )}
-      </section>
+      <ArticleList
+        items={items}
+        loadNext={loadNext}
+        isDone={info.isDone}
+        isLoading={isFetching}
+      />
     </>
   );
 };

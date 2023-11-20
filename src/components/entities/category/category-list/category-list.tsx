@@ -1,12 +1,12 @@
 import { useEffect, useMemo } from 'react';
 import { api } from '@lib/api/plugins';
 import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area/horizontal-scroll-area';
-import { CategoryItem } from '@components/shared/category/category-item';
+import { CategoryItem } from '@components/entities/category/category-list/category-item';
 import { Category } from '@lib/api/models';
 import { useSearchParams } from 'react-router-dom';
 import { searchParamToNumArray } from '@lib/utils/tools';
 import { useInfinityPaging } from '@lib/utils/hooks';
-import { CategoryItemSkeleton } from '@components/shared/category/category-item-skeleton';
+import { CategoryItemSkeleton } from '@components/entities/category/category-list/category-item-skeleton';
 
 export const CATEGORIES_SEARCH_PARAMS = 'categories';
 
@@ -21,7 +21,6 @@ export const CategoryList = (props: ICategoriesListProps) => {
 
   const { items, isFetching, isSuccess } = useInfinityPaging(
     api.category,
-    undefined,
     undefined,
     undefined,
     { pageSize: -1 }

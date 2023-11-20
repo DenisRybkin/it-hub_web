@@ -74,7 +74,7 @@ export const SelectPreviewDialog = (props: ISelectPreviewDialogProps) => {
       ) : (
         <div className="flex flex-col gap-y-3 items-center">
           <Preview preview={preview} onUploadPreview={handleUploadPreview} />
-          <div className="flex flex-wrap justify-between gap-2">
+          <div className="flex flex-wrap justify-between gap-1 md:gap-2">
             {[...(previews ?? []), ...uploadedPreviews].map(item => (
               <PreviewCard
                 key={item.id}

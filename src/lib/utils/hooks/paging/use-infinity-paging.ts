@@ -10,9 +10,8 @@ import { QueryFunctionContext } from '@tanstack/query-core/src/types';
 import type { IUsePaging, PagingInfo } from '@lib/utils/hooks/paging/common';
 import { fetchItems } from '@lib/utils/hooks/paging/common';
 
-export const useInfinityPaging = <T, TFilter>(
+export const useInfinityPaging = <T extends { id: number }, TFilter>(
   controller: IApiControllerGet<T, TFilter>,
-  onSuccess?: (model: PagingModel<T>) => void,
   onError?: (error: BaseProcessedError) => void,
   filterOptions?: FilterOption<TFilter>[],
   pagingOptions?: Partial<PagingOptions<T>>,
@@ -39,6 +38,7 @@ export const useInfinityPaging = <T, TFilter>(
     isFetching,
     isLoading,
     isFetchingNextPage,
+    isRefetching,
     isSuccess,
     data,
     remove,
@@ -62,7 +62,11 @@ export const useInfinityPaging = <T, TFilter>(
   };
 
   const loadNext = () => fetchNextPage();
-  const loadPage = (page: number) => setPage(page);
+  const loadPage = (updatedItemId: number) =>
+    refetch<PagingModel<T>>({
+      refetchPage: (page, index) =>
+        page.items.some(item => item.id == updatedItemId),
+    });
 
   const getInfo = (): Required<PagingInfo> => {
     const lastLoadedData = data?.pages.at(-1);
@@ -76,7 +80,7 @@ export const useInfinityPaging = <T, TFilter>(
   return {
     info: getInfo(),
     isLoading,
-    isFetching: isFetching || isFetchingNextPage,
+    isFetching: isFetching || isFetchingNextPage || isRefetching,
     isError,
     isSuccess,
     items: (data?.pages ?? []).flatMap(item => item.items),

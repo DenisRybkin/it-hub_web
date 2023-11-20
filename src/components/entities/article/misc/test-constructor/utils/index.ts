@@ -80,9 +80,9 @@ const removeAnswerIds = (answers: AnswerDto[]): AnswerWithoutIdDto[] =>
   answers.map(({ questionId, isRight, name }) => ({ name, isRight }));
 
 export const validateTest = (questions?: QuestionDto[]) => {
-  if (!questions || questions.length == 0)
+  if (questions && questions.length > 0 && questions.length < 3)
     throw new Error(TestValidationErrorKeys.NO_COMPLETE_TEST);
-  questions.forEach(question => {
+  questions?.forEach(question => {
     if (!question.name || question.name.trim().length == 0)
       throw Error(TestValidationErrorKeys.NO_NAME_QUESTION);
 

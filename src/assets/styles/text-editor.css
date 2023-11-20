@@ -119,7 +119,7 @@
 }
 .text-editor-readonly > div > .codex-editor > .codex-editor__redactor > .ce-block > .ce-block__content >* {
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
 }
 .ce-block__content,

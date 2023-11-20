@@ -40,6 +40,7 @@ export const UserPage = () => {
               size="icon"
             >
               <FiChevronDown
+                size={22}
                 className={cn(
                   'transition-all',
                   isOpenSubscriptions && 'rotate-180'
@@ -62,7 +63,7 @@ export const UserPage = () => {
           </CollapsibleContent>
         </Collapsible>
       )}
-      <Separator className="my-4 h-[3px]" />
+      {authContext.isAuth && <Separator className="my-4 h-[3px]" />}
       <Collapsible open={isOpenNotSubscriptions}>
         <div className="flex items-center justify-between mb-10">
           <h1 className="head-text">{t('ui:title.users')}</h1>
@@ -72,6 +73,7 @@ export const UserPage = () => {
             size="icon"
           >
             <FiChevronDown
+              size={22}
               className={cn(
                 'transition-all',
                 isOpenNotSubscriptions && 'rotate-180'

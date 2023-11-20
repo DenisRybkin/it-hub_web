@@ -7,7 +7,7 @@ import { FiImage, FiSave, FiShare, FiX } from 'react-icons/fi';
 import { LocaleStorageKeys, RouteKeys } from '@lib/constants';
 import { checkBlocksLength } from '@lib/utils/validations/text-editor';
 import { toast } from '@components/ui/use-toast';
-import { CategoryList } from '@components/shared/category';
+import { CategoryList } from '@components/entities/category/category-list';
 import { OutputData } from '@editorjs/editorjs';
 import {
   ITestConstructorForwardRef,
@@ -67,16 +67,17 @@ export const WritePage = () => {
   > => {
     try {
       const body = await editorRef.current?.onGetData();
+      const questions = testConstructorRef.current?.getAndValidateData();
       const previewId = preview?.id;
       const categoryIds = selectedCategoryIds;
       const hashtags = hashtagsEditorRef.current?.data;
-      console.log(hashtags);
       validation(body, selectedCategoryIds);
       return {
         body: JSON.stringify(body),
         categoryIds,
         previewId,
         hashtagIds: hashtags?.map(item => item.id),
+        questions,
       };
     } catch (e) {
       toast({

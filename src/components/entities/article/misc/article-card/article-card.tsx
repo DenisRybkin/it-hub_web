@@ -1,4 +1,4 @@
-import { User } from '@lib/api/models';
+import { Hashtag, User } from '@lib/api/models';
 import {
   cn,
   getAvatar,
@@ -7,70 +7,73 @@ import {
 } from '@lib/utils/tools';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { Button } from '@components/ui/button';
-import { FiCornerUpLeft, FiHeart, FiMessageSquare } from 'react-icons/fi';
+import {
+  FiChevronDown,
+  FiChevronUp,
+  FiCornerUpLeft,
+  FiHeart,
+  FiMessageSquare,
+} from 'react-icons/fi';
 import { TextEditor } from '@components/entities/article/misc/text-editor';
 import { useDeviceDetermine } from '@lib/utils/hooks';
+import { ArticleCardHead } from '@components/entities/article/misc/article-card/article-card-head';
+import { ArticleCardFooter } from '@components/entities/article/misc/article-card/article-card-footer';
+import { useMemo, useState } from 'react';
+import { OutputData } from '@editorjs/editorjs';
 
 export interface IArticleCard {
-  title: string;
-  body?: string | null;
+  body: string;
   author: User;
-  previewMode?: boolean;
+  hashtags?: Hashtag[];
 }
 
 export const ArticleCard = (props: IArticleCard) => {
   const [deviceSize] = useDeviceDetermine();
+  const minPreviewModeScale = deviceSize == 'sm' ? 2 : 3;
+  const originalBody: OutputData = JSON.parse(props.body);
+  const [previewModeScale, setPreviewModeScale] = useState(minPreviewModeScale);
+  const previewModeIsMax = previewModeScale >= originalBody?.blocks?.length;
 
-  const isLiked = true;
+  const body: OutputData | null = useMemo(
+    () => transform2PreviewMode(originalBody, previewModeScale),
+    [previewModeScale, props.body]
+  );
 
+  const handleMore = () =>
+    setPreviewModeScale(prev => (previewModeIsMax ? prev : prev + 1));
+
+  const handleLess = () =>
+    setPreviewModeScale(prev =>
+      prev <= minPreviewModeScale ? prev : minPreviewModeScale
+    );
+
+  console.log(previewModeScale, originalBody?.blocks?.length);
   return (
     <article
       className={cn('flex w-full flex-col rounded-xl bg-dark-2 p-3 md:p-7')}
     >
-      <div className="flex items-start justify-between">
-        <div className="flex w-full flex-1 flex-row gap-4">
-          <div className="flex flex-col items-center">
-            <Avatar>
-              <AvatarImage src={getAvatar(props.author)} />
-              <AvatarFallback>{getFallback(props.author)}</AvatarFallback>
-            </Avatar>
-          </div>
-          <div className="flex w-full flex-col overflow-hidden">
-            <div className="w-fit">
-              <h4 className="cursor-pointer text-base-semibold text-light-1">
-                {props.author.name}
-              </h4>
-            </div>
-            {!!props.body && (
-              <TextEditor
-                value={transform2PreviewMode(JSON.parse(props.body))}
-                readonly
-              />
+      <div className="flex flex-col items-start justify-between">
+        <ArticleCardHead author={props.author} hashtags={props.hashtags} />
+        <div className="flex w-full flex-1 flex-row gap-4 relative lg:[&>button]:hover:inline-flex">
+          {body && <TextEditor defaultValue={body} value={body} readonly />}
+          <Button
+            className="hidden absolute -bottom-6 m-auto left-0 right-0 z-10"
+            variant="ghost"
+            size="icon-sm"
+            onClick={previewModeIsMax ? handleLess : handleMore}
+          >
+            {previewModeIsMax ? (
+              <FiChevronUp size={deviceSize == 'sm' ? 20 : 22} />
+            ) : (
+              <FiChevronDown size={deviceSize == 'sm' ? 20 : 22} />
             )}
-            <div className="mt-5 flex flex-col gap-3">
-              <div className="flex gap-3.5">
-                <Button variant="ghost" size="icon">
-                  <FiHeart
-                    className={cn(isLiked && 'stroke-red fill-red')}
-                    size={deviceSize == 'sm' ? 20 : 22}
-                  />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <FiMessageSquare
-                    stroke="#5C5C7B"
-                    size={deviceSize == 'sm' ? 20 : 22}
-                  />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <FiCornerUpLeft
-                    stroke="#5C5C7B"
-                    size={deviceSize == 'sm' ? 20 : 22}
-                  />
-                </Button>
-              </div>
-            </div>
-          </div>
+          </Button>
         </div>
+        <ArticleCardFooter
+          previewModeIsMax={previewModeIsMax}
+          onDecreasePreviewMode={handleLess}
+          onIncreasePreviewMode={handleMore}
+        />
       </div>
     </article>
   );

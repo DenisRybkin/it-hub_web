@@ -5,7 +5,7 @@ import { SymbolIcon } from '@radix-ui/react-icons';
 import { cn } from '@lib/utils/tools/cn';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300',
+  'inline-flex items-center justify-center rounded-md !text-small-medium md:!text-base-medium font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300',
   {
     variants: {
       variant: {
@@ -20,7 +20,7 @@ const buttonVariants = cva(
         secondary:
           'bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80',
         ghost:
-          'hover:bg-dark-2 hover:text-primary-500  dark:hover:bg-primary-500/30 dark:hover:text-slate-50 [&>svg]:text-primary-500 hover:[&>svg]:text-white',
+          'hover:bg-dark-2 hover:text-primary-500  dark:hover:bg-primary-500/30 dark:hover:text-slate-50 [&>svg]:text-primary-500 ',
         link: 'text-slate-900 underline-offset-4 hover:underline dark:text-slate-50',
       },
       size: {
