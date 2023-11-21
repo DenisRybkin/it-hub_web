@@ -109,6 +109,7 @@
 
 .text-editor-readonly > div > .codex-editor > .codex-editor__redactor {
     padding-bottom: 0 !important;
+    margin-right: 0;
 }
 
 .text-editor-readonly > div > .codex-editor > .codex-editor__redactor > .ce-block > .ce-block__content {
@@ -121,6 +122,7 @@
     text-overflow: ellipsis;
     white-space: normal;
     overflow: hidden;
+    text-align: justify;
 }
 .ce-block__content,
 .ce-toolbar__content {

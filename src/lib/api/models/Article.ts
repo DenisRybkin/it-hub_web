@@ -5,6 +5,7 @@
 
 import type { ArticleComment } from './ArticleComment';
 import type { ArticleHashtag } from './ArticleHashtag';
+import type { ArticleLike } from './ArticleLike';
 import type { ArticleRepost } from './ArticleRepost';
 import type { ArticleStaticField } from './ArticleStaticField';
 import type { ArticleTest } from './ArticleTest';
@@ -38,7 +39,7 @@ export type Article = {
     /**
      * likes of this article
      */
-    likes?: Array<ArticleComment>;
+    likes?: Array<ArticleLike>;
     /**
      * reposts of this article
      */

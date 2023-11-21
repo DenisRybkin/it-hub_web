@@ -7,3 +7,4 @@ export { searchParamToNumArray } from './search-params';
 export { IdGenerator } from './id-generator';
 export { bytes2mb } from './file';
 export { sliceIfLong } from './string';
+export { number2short } from './number';

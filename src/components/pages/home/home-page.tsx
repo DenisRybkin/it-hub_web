@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '@app/providers/auth';
-import { CategoryList } from '@components/entities/category/category-list';
+import { CategoryList } from '@components/entities/category/misc/category-list';
 import { useSearchParams } from 'react-router-dom';
-import { CATEGORIES_SEARCH_PARAMS } from '@components/entities/category/category-list/category-list';
+import { CATEGORIES_SEARCH_PARAMS } from '@components/entities/category/misc/category-list/category-list';
 import { searchParamToNumArray } from '@lib/utils/tools';
 import { ArticleList } from '@components/entities/article/misc/article-list';
 import { useInfinityPaging } from '@lib/utils/hooks';
-import { Article, ReadArticleFilterDto } from '@lib/api/models';
+import { ArticleShortDto, ReadArticleFilterDto } from '@lib/api/models';
 import { api } from '@lib/api/plugins';
 import { toast } from '@components/ui/use-toast';
 
@@ -21,8 +21,8 @@ export const HomePage = () => {
   const handleError = () =>
     toast({ title: t('toast:error.default'), variant: 'destructive' });
 
-  const { items, isFetching, info, loadNext } = useInfinityPaging<
-    Article,
+  const { items, isFetching, info, loadNext, loadPage } = useInfinityPaging<
+    ArticleShortDto,
     ReadArticleFilterDto
   >(api.articleShort, handleError, undefined, undefined);
 
@@ -41,6 +41,7 @@ export const HomePage = () => {
         loadNext={loadNext}
         isDone={info.isDone}
         isLoading={isFetching}
+        refetchPage={loadPage}
       />
     </>
   );

@@ -1,19 +1,7 @@
-import { Hashtag, User } from '@lib/api/models';
-import {
-  cn,
-  getAvatar,
-  getFallback,
-  transform2PreviewMode,
-} from '@lib/utils/tools';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
+import { ArticleLike, ArticleRepost, Hashtag, User } from '@lib/api/models';
+import { cn, transform2PreviewMode } from '@lib/utils/tools';
 import { Button } from '@components/ui/button';
-import {
-  FiChevronDown,
-  FiChevronUp,
-  FiCornerUpLeft,
-  FiHeart,
-  FiMessageSquare,
-} from 'react-icons/fi';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { TextEditor } from '@components/entities/article/misc/text-editor';
 import { useDeviceDetermine } from '@lib/utils/hooks';
 import { ArticleCardHead } from '@components/entities/article/misc/article-card/article-card-head';
@@ -22,9 +10,17 @@ import { useMemo, useState } from 'react';
 import { OutputData } from '@editorjs/editorjs';
 
 export interface IArticleCard {
+  id: number;
   body: string;
   author: User;
   hashtags?: Hashtag[];
+  likesCount: number;
+  repostsCount: number;
+  commentsCount: number;
+  isLiked: boolean;
+  isCommented: boolean;
+  isReposted: boolean;
+  onActionSuccess?: (articleId: number) => void;
 }
 
 export const ArticleCard = (props: IArticleCard) => {
@@ -47,7 +43,6 @@ export const ArticleCard = (props: IArticleCard) => {
       prev <= minPreviewModeScale ? prev : minPreviewModeScale
     );
 
-  console.log(previewModeScale, originalBody?.blocks?.length);
   return (
     <article
       className={cn('flex w-full flex-col rounded-xl bg-dark-2 p-3 md:p-7')}
@@ -70,9 +65,17 @@ export const ArticleCard = (props: IArticleCard) => {
           </Button>
         </div>
         <ArticleCardFooter
+          articleId={props.id}
+          likesCount={props.likesCount}
+          repostsCount={props.repostsCount}
+          commentsCount={props.commentsCount}
+          isLiked={props.isLiked}
+          isCommented={props.isCommented}
+          isReposted={props.isReposted}
           previewModeIsMax={previewModeIsMax}
           onDecreasePreviewMode={handleLess}
           onIncreasePreviewMode={handleMore}
+          onActionSuccess={props.onActionSuccess}
         />
       </div>
     </article>

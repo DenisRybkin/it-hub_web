@@ -7,7 +7,7 @@ import { FiImage, FiSave, FiShare, FiX } from 'react-icons/fi';
 import { LocaleStorageKeys, RouteKeys } from '@lib/constants';
 import { checkBlocksLength } from '@lib/utils/validations/text-editor';
 import { toast } from '@components/ui/use-toast';
-import { CategoryList } from '@components/entities/category/category-list';
+import { CategoryList } from '@components/entities/category/misc/category-list';
 import { OutputData } from '@editorjs/editorjs';
 import {
   ITestConstructorForwardRef,
@@ -19,7 +19,7 @@ import { Article, CreateComplexArticleDto, StaticField } from '@lib/api/models';
 import {
   HashtagsEditor,
   IHashtagsEditorForwardRef,
-} from '@components/entities/article/misc/hashtags-editor';
+} from '@components/entities/hashtag/misc/hashtags-editor';
 import { api } from '@lib/api/plugins';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';

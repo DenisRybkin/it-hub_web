@@ -38,9 +38,11 @@ export const Question = (props: IQuestionProps) => {
     <>
       <div className="flex items-center w-full">
         <Input
+          variant="ghost"
           value={props.name}
           onChange={handleChangeName}
           placeholder={t('ui:placeholder.come_up_question')}
+          type="text"
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
         />

@@ -13,6 +13,7 @@ export type { ArticleCommentStaticField } from './ArticleCommentStaticField';
 export type { ArticleHashtag } from './ArticleHashtag';
 export type { ArticleLike } from './ArticleLike';
 export type { ArticleRepost } from './ArticleRepost';
+export type { ArticleShortDto } from './ArticleShortDto';
 export type { ArticleStaticField } from './ArticleStaticField';
 export type { ArticleTest } from './ArticleTest';
 export type { ArticleTestAnswer } from './ArticleTestAnswer';
