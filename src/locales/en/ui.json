@@ -69,7 +69,8 @@
     "delete": "Delete",
     "change_cover": "Change cover",
     "add_cover": "Add cover",
-    "remove": "Remove"
+    "remove": "Remove",
+    "profile": "Profile"
   },
   "label": {
     "i_read": "I have read the",

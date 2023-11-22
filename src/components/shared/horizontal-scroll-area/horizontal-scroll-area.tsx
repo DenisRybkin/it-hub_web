@@ -58,10 +58,11 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
   };
 
   useEffect(() => {
-    scrollWrapperRef?.current &&
-      scrollWrapperRef?.current.addEventListener('scroll', scrollHandler);
+    scrollWrapperRef.current &&
+      scrollWrapperRef.current.addEventListener('scroll', scrollHandler);
     return () => {
-      scrollWrapperRef?.current?.removeEventListener('scroll', scrollHandler);
+      scrollWrapperRef.current &&
+        scrollWrapperRef.current?.removeEventListener('scroll', scrollHandler);
     };
   }, [scrollWrapperRef?.current]);
 

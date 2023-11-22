@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from '@components/ui/use-toast';
 import { filters2QueryKey } from '@lib/utils/tools';
-import { QueryFunctionContext } from '@tanstack/query-core/src/types';
+import { QueryFunctionContext } from '@tanstack/query-core';
 import type { IUsePaging, PagingInfo } from '@lib/utils/hooks/paging/common';
 import { fetchItems } from '@lib/utils/hooks/paging/common';
 

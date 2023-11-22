@@ -14,6 +14,9 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@lib/api/plugins';
 import { toast } from '@components/ui/use-toast';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { RoutePaths } from '@app/router';
+import { RouteKeys } from '@lib/constants';
 
 interface IArticleCardFooterProps {
   articleId: number;
@@ -31,11 +34,17 @@ interface IArticleCardFooterProps {
 
 export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   const [deviceSize] = useDeviceDetermine();
 
   const handleError = () =>
     toast({ title: t('toast:error.default'), variant: 'destructive' });
+
+  const handleOpenArticleComments = () =>
+    navigate(
+      RoutePaths[RouteKeys.ARTICLE] + `/${props.articleId}` + `#comments`
+    );
 
   const toggleLikeMutation = useMutation({
     mutationKey: [api.article.toString(), 'like', props.articleId],
@@ -57,7 +66,11 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
     <div className="flex gap-3 mt-2 w-full justify-around md:justify-start">
       <Button
         variant="ghost"
-        onClick={toggleLikeMutation.mutate}
+        onClick={
+          authContext.isAuth
+            ? toggleLikeMutation.mutate
+            : authContext.openAuthDialog
+        }
         className={cn('rounded-full', !props.likesCount && '[&>div]:m-0')}
         data={{
           isLoading: toggleLikeMutation.isLoading,
@@ -74,7 +87,7 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
       </Button>
       <Button
         variant="ghost"
-        //onClick={toggleLikeMutation.mutate}
+        onClick={handleOpenArticleComments}
         className={cn('rounded-full', !props.commentsCount && '[&>div]:m-0')}
         data={{
           //isLoading: toggleLikeMutation.isLoading,
@@ -91,7 +104,11 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
       </Button>
       <Button
         variant="ghost"
-        onClick={toggleRepostMutation.mutate}
+        onClick={
+          authContext.isAuth
+            ? toggleRepostMutation.mutate
+            : authContext.openAuthDialog
+        }
         className={cn('rounded-full', !props.repostsCount && '[&>div]:m-0')}
         data={{
           isLoading: toggleRepostMutation.isLoading,

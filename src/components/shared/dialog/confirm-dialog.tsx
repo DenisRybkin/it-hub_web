@@ -1,6 +1,5 @@
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
@@ -8,9 +7,11 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogTrigger,
 } from '@components/ui/alert-dialog';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { cn } from '@lib/utils/tools';
 
 export interface IConfirmDialogProps {
   trigger: React.ReactNode;
@@ -27,9 +28,14 @@ export const ConfirmDialog = (props: IConfirmDialogProps) => {
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
+  const handleConfirm = () => void setIsOpen(false) || props.onConfirm?.();
+
   return (
     <AlertDialog onOpenChange={setIsOpen} open={isOpen}>
-      <AlertDialogTrigger onClick={handleOpen}>
+      <AlertDialogTrigger
+        className={cn(!isOpen && 'hidden')}
+        onClick={handleOpen}
+      >
         {props.trigger}
       </AlertDialogTrigger>
       <AlertDialogContent>
@@ -43,7 +49,7 @@ export const ConfirmDialog = (props: IConfirmDialogProps) => {
           <AlertDialogCancel onClick={handleClose}>
             {t('ui:button.cancel')}
           </AlertDialogCancel>
-          <AlertDialogAction onClick={props.onConfirm}>
+          <AlertDialogAction onClick={handleConfirm}>
             {t('ui:button.confirm')}
           </AlertDialogAction>
         </AlertDialogFooter>

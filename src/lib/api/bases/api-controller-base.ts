@@ -93,7 +93,7 @@ export abstract class ApiControllerBase<
     );
   }
 
-  protected async put<T = Template, R = AxiosResponse<T>, D = any>(
+  protected async put<T = Template, R = AxiosResponse<T>, D = unknown>(
     uri: string,
     config?: AxiosRequestConfig<D>
   ): Promise<T> {

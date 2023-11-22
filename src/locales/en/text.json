@@ -30,5 +30,6 @@
   "already_have_account": "Already have an account?",
   "wrong_email_or_password" : "Wrong email or password",
   "error": "Error",
-  "nothing_found_hashtags": "Nothing found, want to add a hashtag '{{hashtag}}' ?"
+  "nothing_found_hashtags": "Nothing found, want to add a hashtag '{{hashtag}}' ?",
+  "my_account": "My account"
 }

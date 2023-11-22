@@ -9,6 +9,7 @@ interface IAuthContext {
   role?: Role;
   user?: User;
   setUser: (user?: User) => void;
+  openAuthDialog: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({
@@ -16,4 +17,5 @@ export const AuthContext = createContext<IAuthContext>({
   accessToken: localStorage.getItem(LocaleStorageKeys.JWT) ?? undefined,
   setAccessToken: () => {},
   setUser: () => {},
+  openAuthDialog: () => {},
 });

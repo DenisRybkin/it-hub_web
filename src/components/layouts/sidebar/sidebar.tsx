@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@lib/utils/tools/cn';
 import { AuthContext } from '@app/providers/auth';
-import { LogoutTrigger } from '@components/layouts/misc/logout-trigger';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
@@ -35,7 +34,6 @@ export const Sidebar = () => {
           );
         })}
       </div>
-      <LogoutTrigger from="sidebar" />
     </section>
   );
 };
