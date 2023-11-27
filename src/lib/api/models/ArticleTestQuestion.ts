@@ -27,4 +27,12 @@ export type ArticleTestQuestion = {
      * answers of examination-question
      */
     answers?: Array<ArticleTestAnswer>;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

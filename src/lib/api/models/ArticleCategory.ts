@@ -27,4 +27,12 @@ export type ArticleCategory = {
      * category
      */
     category?: Category;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

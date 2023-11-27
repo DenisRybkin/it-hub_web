@@ -53,9 +53,7 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
   };
 
   const scrollToLeft = () => handleScrollTo('left');
-  const scrollToRight = () => {
-    handleScrollTo('right');
-  };
+  const scrollToRight = () => handleScrollTo('right');
 
   useEffect(() => {
     scrollWrapperRef.current &&
@@ -64,7 +62,7 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
       scrollWrapperRef.current &&
         scrollWrapperRef.current?.removeEventListener('scroll', scrollHandler);
     };
-  }, [scrollWrapperRef?.current]);
+  }, [scrollWrapperRef?.current, props.itemsLength]);
 
   useEffect(() => {
     setLeftScrollIsDisabled(handleCheckOffsetLeft());

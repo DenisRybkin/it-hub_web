@@ -2,13 +2,13 @@ import React from 'react';
 import { Category } from '@lib/api/models';
 import { cn } from '@lib/utils/tools';
 
-interface ICategoryItemProps {
+interface ICategoryCardProps {
   category: Category;
   onClick?: (category: Category) => void;
   isSelected?: boolean;
 }
 
-export const CategoryItem = (props: ICategoryItemProps) => {
+export const CategoryCard = (props: ICategoryCardProps) => {
   const handleClick = () => props.onClick?.(props.category);
 
   return (

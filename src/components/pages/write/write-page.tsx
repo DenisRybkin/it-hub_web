@@ -7,12 +7,12 @@ import { FiImage, FiSave, FiShare, FiX } from 'react-icons/fi';
 import { LocaleStorageKeys, RouteKeys } from '@lib/constants';
 import { checkBlocksLength } from '@lib/utils/validations/text-editor';
 import { toast } from '@components/ui/use-toast';
-import { CategoryList } from '@components/entities/category/misc/category-list';
+import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
 import { OutputData } from '@editorjs/editorjs';
 import {
   ITestConstructorForwardRef,
   TestConstructor,
-} from '@components/entities/article/misc/test-constructor/test-constructor';
+} from '@components/entities/test/misc/test-constructor/test-constructor';
 import { CoverImage } from '@components/shared/cover-image';
 import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
 import { Article, CreateComplexArticleDto, StaticField } from '@lib/api/models';
@@ -157,7 +157,7 @@ export const WritePage = () => {
             </Button>
           )}
         </div>
-        <CategoryList
+        <CategoryCardList
           selectedIds={selectedCategoryIds}
           onChangeSelects={setSelectedCategoryIds}
         />

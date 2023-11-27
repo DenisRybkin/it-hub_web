@@ -5,6 +5,7 @@ import { WritePage } from '@components/pages/write';
 import { HomePage } from '@components/pages/home/home-page';
 import { UserPage } from '@components/pages/user';
 import { LatestPage } from '@components/pages/latest';
+import { ArticlePage } from '@components/pages/article/article-page';
 
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;
@@ -75,7 +76,7 @@ export const routerConfig: RoutePropsType[] = [
   {
     isPrivate: false,
     path: RoutePaths[RouteKeys.ARTICLE_ID],
-    element: <div>PUBLICATION_ID</div>,
+    element: <ArticlePage />,
   },
   {
     isPrivate: true,

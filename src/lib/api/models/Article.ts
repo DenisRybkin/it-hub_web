@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ArticleCategory } from './ArticleCategory';
 import type { ArticleComment } from './ArticleComment';
 import type { ArticleHashtag } from './ArticleHashtag';
 import type { ArticleLike } from './ArticleLike';
@@ -47,7 +48,7 @@ export type Article = {
     /**
      * categories of this article
      */
-    categories?: Array<ArticleRepost>;
+    categories?: Array<ArticleCategory>;
     /**
      * preview of this article
      */
@@ -56,4 +57,12 @@ export type Article = {
      * hashtags
      */
     hashtags?: Array<ArticleHashtag>;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

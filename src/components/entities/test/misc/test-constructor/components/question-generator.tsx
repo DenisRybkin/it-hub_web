@@ -15,13 +15,13 @@ import {
   deleteQuestion,
   getAnswersByQuestionId,
   setAnswersByQuestionId,
-} from '@components/entities/article/misc/test-constructor/utils';
+} from '@components/entities/test/misc/common/utils';
 import { Button } from '@components/ui/button';
-import { Question } from '@components/entities/article/misc/test-constructor/components/question';
+import { Question } from '@components/entities/test/misc/test-constructor/components/question';
 import {
   AnswerDto,
   QuestionDto,
-} from '@components/entities/article/misc/test-constructor/types';
+} from '@components/entities/test/misc/common/types';
 
 export interface IQuestionGeneratorForwardRef {
   questions: QuestionDto[];

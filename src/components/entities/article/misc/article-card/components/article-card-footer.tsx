@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { MouseEvent, useContext } from 'react';
 import { Button } from '@components/ui/button';
 import {
   FiChevronDown,
@@ -21,8 +21,8 @@ import { RouteKeys } from '@lib/constants';
 interface IArticleCardFooterProps {
   articleId: number;
   previewModeIsMax?: boolean;
-  onIncreasePreviewMode?: () => void;
-  onDecreasePreviewMode?: () => void;
+  onIncreasePreviewMode?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onDecreasePreviewMode?: (event: MouseEvent<HTMLButtonElement>) => void;
   likesCount: number;
   repostsCount: number;
   commentsCount: number;
@@ -41,14 +41,9 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
   const handleError = () =>
     toast({ title: t('toast:error.default'), variant: 'destructive' });
 
-  const handleOpenArticleComments = () =>
-    navigate(
-      RoutePaths[RouteKeys.ARTICLE] + `/${props.articleId}` + `#comments`
-    );
-
   const toggleLikeMutation = useMutation({
     mutationKey: [api.article.toString(), 'like', props.articleId],
-    mutationFn: async (variables: unknown) =>
+    mutationFn: async () =>
       await api.article.toggleLike(props.articleId, undefined, handleError),
     onError: handleError,
     onSuccess: () => props.onActionSuccess?.(props.articleId),
@@ -56,19 +51,29 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
 
   const toggleRepostMutation = useMutation({
     mutationKey: [api.article.toString(), 'repost', props.articleId],
-    mutationFn: async (variables: unknown) =>
+    mutationFn: async () =>
       await api.article.toggleRepost(props.articleId, undefined, handleError),
     onError: handleError,
     onSuccess: () => props.onActionSuccess?.(props.articleId),
   });
 
+  const handleOpenArticleComments = () =>
+    navigate(
+      RoutePaths[RouteKeys.ARTICLE] + `/${props.articleId}` + `#comments`
+    );
+
+  const handleToggleLike = (event: MouseEvent<HTMLButtonElement>) =>
+    void event.stopPropagation() || toggleLikeMutation.mutate();
+  const handleToggleRepost = (event: MouseEvent<HTMLButtonElement>) =>
+    void event.stopPropagation() || toggleRepostMutation.mutate();
+
   return (
     <div className="flex gap-3 mt-2 w-full justify-around md:justify-start">
       <Button
         variant="ghost"
-        onClick={
+        onClick={event =>
           authContext.isAuth
-            ? toggleLikeMutation.mutate
+            ? handleToggleLike(event)
             : authContext.openAuthDialog
         }
         className={cn('rounded-full', !props.likesCount && '[&>div]:m-0')}
@@ -104,9 +109,9 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
       </Button>
       <Button
         variant="ghost"
-        onClick={
+        onClick={event =>
           authContext.isAuth
-            ? toggleRepostMutation.mutate
+            ? handleToggleRepost(event)
             : authContext.openAuthDialog
         }
         className={cn('rounded-full', !props.repostsCount && '[&>div]:m-0')}

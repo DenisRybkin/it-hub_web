@@ -15,4 +15,6 @@ export type UserShortDto = {
     role: Role;
     defaultAvatar: StaticField;
     userAvatar?: UserAvatar;
+    createdAt: string;
+    updatedAt: string;
 };

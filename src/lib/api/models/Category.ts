@@ -22,4 +22,12 @@ export type Category = {
      * avatar
      */
     avatar?: CategoryAvatar;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

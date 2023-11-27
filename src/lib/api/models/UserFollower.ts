@@ -26,4 +26,12 @@ export type UserFollower = {
      * follower
      */
     follower?: User;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

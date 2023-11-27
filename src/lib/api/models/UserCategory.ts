@@ -27,4 +27,12 @@ export type UserCategory = {
      * user
      */
     user?: User;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

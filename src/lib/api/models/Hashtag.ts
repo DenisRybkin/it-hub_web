@@ -12,4 +12,12 @@ export type Hashtag = {
      * text of hashtag
      */
     name: string;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

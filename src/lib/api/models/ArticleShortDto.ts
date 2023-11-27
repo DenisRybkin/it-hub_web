@@ -18,4 +18,6 @@ export type ArticleShortDto = {
     isLiked: boolean;
     isCommented: boolean;
     isReposted: boolean;
+    createdAt: string;
+    updatedAt: string;
 };

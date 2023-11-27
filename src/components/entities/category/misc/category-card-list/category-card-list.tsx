@@ -1,22 +1,23 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { api } from '@lib/api/plugins';
-import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area/horizontal-scroll-area';
-import { CategoryItem } from '@components/entities/category/misc/category-list/category-item';
+import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
+import { CategoryCard } from '@components/entities/category/misc/category-card';
 import { Category } from '@lib/api/models';
 import { useSearchParams } from 'react-router-dom';
 import { searchParamToNumArray } from '@lib/utils/tools';
 import { useInfinityPaging } from '@lib/utils/hooks';
-import { CategoryItemSkeleton } from '@components/entities/category/misc/category-list/category-item-skeleton';
+import { CategoryCardSkeleton } from '@components/entities/category/misc/category-card';
 
 export const CATEGORIES_SEARCH_PARAMS = 'categories';
 
 export interface ICategoriesListProps {
+  readonly?: boolean;
   selectedIds?: number[];
   onChangeSelects?: (value: number[]) => void;
   withSearchParams?: boolean;
 }
 
-export const CategoryList = (props: ICategoriesListProps) => {
+export const CategoryCardList = (props: ICategoriesListProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { items, isFetching, isSuccess } = useInfinityPaging(
@@ -59,14 +60,22 @@ export const CategoryList = (props: ICategoriesListProps) => {
     <HorizontalScrollArea
       containerClassName="mt-4"
       listClassName="gap-2"
-      itemsLength={items.length}
+      itemsLength={
+        (props.readonly
+          ? items.filter(item => selectedIds.includes(item.id))
+          : items
+        ).length
+      }
     >
       {isFetching
         ? Array(10)
             .fill(null)
-            .map((_, index) => <CategoryItemSkeleton key={index} />)
-        : items.map(item => (
-            <CategoryItem
+            .map((_, index) => <CategoryCardSkeleton key={index} />)
+        : (props.readonly
+            ? items.filter(item => selectedIds.includes(item.id))
+            : items
+          ).map(item => (
+            <CategoryCard
               key={item.id}
               isSelected={selectedIds?.includes(item.id)}
               category={item}

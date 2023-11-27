@@ -28,6 +28,14 @@ export type StaticField = {
      * folder of s3
      */
     folder: StaticField.folder;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };
 
 export namespace StaticField {

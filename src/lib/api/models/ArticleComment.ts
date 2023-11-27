@@ -37,4 +37,12 @@ export type ArticleComment = {
      * reactions
      */
     reactions?: Array<ArticleCommentReaction>;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

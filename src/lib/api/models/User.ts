@@ -68,4 +68,12 @@ export type User = {
      * user followers
      */
     userFollowers?: Array<UserFollower>;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

@@ -1,10 +1,23 @@
-import { TestValidationErrorKeys } from '@components/entities/article/misc/test-constructor/constants';
+import { TestValidationErrorKeys } from '@components/entities/test/misc/test-constructor/constants';
 import {
   AnswerDto,
   QuestionDto,
   QuestionWithoutIdDto,
   AnswerWithoutIdDto,
-} from '@components/entities/article/misc/test-constructor/types';
+} from '@components/entities/test/misc/common/types';
+
+export const identifyQuestionType = (
+  question: QuestionDto
+): 'single_answer' | 'multiple_answers' =>
+  question.answers.filter(item => item.isRight).length > 1
+    ? 'multiple_answers'
+    : 'single_answer';
+
+export const resetIsRightQuestion = (questions: QuestionDto[]): QuestionDto[] =>
+  questions.map(item => ({
+    ...item,
+    answers: item.answers.map(item => ({ ...item, isRight: false })),
+  }));
 
 export const changeQuestionName = (
   prevQuestions: QuestionDto[],
@@ -27,6 +40,14 @@ export const changeAnswersIsRight = (
 ): AnswerDto[] =>
   prevAnswers.map(item =>
     item.id == id ? { ...item, isRight: isRight } : item
+  );
+
+export const swapAnswersIsRight = (
+  prevAnswers: AnswerDto[],
+  id: number
+): AnswerDto[] =>
+  prevAnswers.map(item =>
+    item.id == id ? { ...item, isRight: true } : { ...item, isRight: false }
   );
 
 export const changeAnswerName = (

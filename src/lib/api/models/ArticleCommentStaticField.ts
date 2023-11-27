@@ -27,4 +27,12 @@ export type ArticleCommentStaticField = {
      * static field
      */
     staticField?: StaticField;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

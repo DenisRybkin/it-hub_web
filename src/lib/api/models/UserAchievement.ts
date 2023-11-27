@@ -35,4 +35,12 @@ export type UserAchievement = {
      * current points of user
      */
     userPoints: number;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

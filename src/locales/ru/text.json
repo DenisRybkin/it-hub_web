@@ -31,5 +31,7 @@
   "wrong_email_or_password" : "Неправильный email или пароль",
   "error": "Ошибка",
   "nothing_found_hashtags": "Ничего не найдено, хотите добавить хэштег '{{hashtag}}' ?",
-  "my_account": "Мой аккаунт"
+  "my_account": "Мой аккаунт",
+  "out_of": "out of",
+  "question_number": "Вопрос №{{number}}"
 }

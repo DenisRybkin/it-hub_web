@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '@app/providers/auth';
-import { CategoryList } from '@components/entities/category/misc/category-list';
+import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
 import { useSearchParams } from 'react-router-dom';
-import { CATEGORIES_SEARCH_PARAMS } from '@components/entities/category/misc/category-list/category-list';
+import { CATEGORIES_SEARCH_PARAMS } from '@components/entities/category/misc/category-card-list/category-card-list';
 import { searchParamToNumArray } from '@lib/utils/tools';
-import { ArticleList } from '@components/entities/article/misc/article-list';
+import { ArticleCardList } from '@components/entities/article/misc/article-card-list';
 import { useInfinityPaging } from '@lib/utils/hooks';
 import { ArticleShortDto, ReadArticleFilterDto } from '@lib/api/models';
 import { api } from '@lib/api/plugins';
@@ -35,8 +35,8 @@ export const HomePage = () => {
   return (
     <>
       <h1 className="head-text text-left">{t('ui:title.home')}</h1>
-      <CategoryList withSearchParams />
-      <ArticleList
+      <CategoryCardList withSearchParams />
+      <ArticleCardList
         items={items}
         loadNext={loadNext}
         isDone={info.isDone}

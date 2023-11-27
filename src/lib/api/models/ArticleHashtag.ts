@@ -27,4 +27,12 @@ export type ArticleHashtag = {
      * article
      */
     article?: Article;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

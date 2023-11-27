@@ -16,6 +16,14 @@ export type Role = {
      * description of model
      */
     description: Record<string, any>;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };
 
 export namespace Role {

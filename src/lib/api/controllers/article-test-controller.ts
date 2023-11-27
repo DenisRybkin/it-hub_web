@@ -20,7 +20,7 @@ export class ArticleTestController extends ApiControllerCRUD<
   UpdatePartiallyArticleTestDto
 > {
   constructor(client: AxiosInstance, locker: LockerModel) {
-    super(client, locker, 'article-test');
+    super(client, locker, 'test');
   }
 
   async createComplex(

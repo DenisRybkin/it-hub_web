@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Button } from '@components/ui/button';
-import { Answer } from '@components/entities/article/misc/test-constructor/components/answer';
+import { Answer } from '@components/entities/test/misc/test-constructor/components/answer';
 import { FiPlus } from 'react-icons/fi';
-import { AnswerDto } from '@components/entities/article/misc/test-constructor/types';
+import { AnswerDto } from '@components/entities/test/misc/common/types';
 
 interface IAnswerGeneratorProps {
   questionId: number;

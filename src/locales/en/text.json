@@ -31,5 +31,7 @@
   "wrong_email_or_password" : "Wrong email or password",
   "error": "Error",
   "nothing_found_hashtags": "Nothing found, want to add a hashtag '{{hashtag}}' ?",
-  "my_account": "My account"
+  "my_account": "My account",
+  "out_of": "out of",
+  "question_number": "Question №{{number}}"
 }

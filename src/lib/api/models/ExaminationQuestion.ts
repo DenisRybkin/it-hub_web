@@ -27,4 +27,12 @@ export type ExaminationQuestion = {
      * answers of examination-question
      */
     answers?: Array<ExaminationAnswer>;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

@@ -6,6 +6,6 @@
 export type UpdateComplexArticleDto = {
     body: string;
     previewId?: number;
-    categoryIds: Array<number>;
+    categoryIds?: Array<number>;
     hashtagIds?: Array<number>;
 };

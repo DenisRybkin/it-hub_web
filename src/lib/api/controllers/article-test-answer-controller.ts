@@ -17,6 +17,6 @@ export class ArticleTestAnswerController extends ApiControllerCRUD<
   UpdatePartiallyArticleTestAnswerDto
 > {
   constructor(client: AxiosInstance, locker: LockerModel) {
-    super(client, locker, 'article-test-answer');
+    super(client, locker, 'test-answer');
   }
 }

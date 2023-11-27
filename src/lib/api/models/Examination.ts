@@ -31,4 +31,12 @@ export type Examination = {
      * questions of exam
      */
     questions?: Array<ExaminationQuestion>;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

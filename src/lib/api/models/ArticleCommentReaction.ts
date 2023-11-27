@@ -31,4 +31,12 @@ export type ArticleCommentReaction = {
      * symbol like emoji
      */
     value: string;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

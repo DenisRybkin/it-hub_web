@@ -6,7 +6,7 @@ import {
 } from '@components/entities/article/misc/article-card';
 import { VisibleTrigger } from '@components/shared/visible-trigger';
 
-interface IArticleListProps {
+interface IArticleCardListProps {
   isLoading?: boolean;
   items?: ArticleShortDto[];
   loadNext: () => void;
@@ -14,7 +14,7 @@ interface IArticleListProps {
   refetchPage: (articleId: number) => void;
 }
 
-export const ArticleList = (props: IArticleListProps) => {
+export const ArticleCardList = (props: IArticleCardListProps) => {
   return (
     <section className="mt-9 flex flex-col gap-5 md:gap-10">
       {props.items == null
@@ -35,6 +35,7 @@ export const ArticleList = (props: IArticleListProps) => {
               isLiked={item.isLiked}
               hashtags={item.hashtags?.map(item => item.hashtag!)}
               onActionSuccess={props.refetchPage}
+              createdAt={item.createdAt}
             />
           ))}
       <VisibleTrigger

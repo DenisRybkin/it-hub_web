@@ -20,4 +20,12 @@ export type Achievement = {
      * level of achievement
      */
     level: number;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

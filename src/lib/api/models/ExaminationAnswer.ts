@@ -26,4 +26,12 @@ export type ExaminationAnswer = {
      * field of right of examination-answer
      */
     isRight: boolean;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

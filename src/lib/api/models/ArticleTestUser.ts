@@ -26,4 +26,12 @@ export type ArticleTestUser = {
      * user, who passed test
      */
     user?: ArticleTest;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };

@@ -3,8 +3,8 @@ import { ChangeEvent, useState } from 'react';
 import { Input } from '@components/ui/input';
 import { Button } from '@components/ui/button';
 import { FiX } from 'react-icons/fi';
-import { AnswerGenerator } from '@components/entities/article/misc/test-constructor/components/answer-generator';
-import { AnswerDto } from '../types';
+import { AnswerGenerator } from '@components/entities/test/misc/test-constructor/components/answer-generator';
+import { AnswerDto } from '../../common/types';
 
 interface IQuestionProps {
   questionId: number;

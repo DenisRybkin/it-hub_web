@@ -4,6 +4,7 @@
 /* eslint-disable */
 
 import type { Article } from './Article';
+import type { ArticleTestQuestion } from './ArticleTestQuestion';
 import type { ArticleTestUser } from './ArticleTestUser';
 
 export type ArticleTest = {
@@ -19,4 +20,16 @@ export type ArticleTest = {
      * user, who passed test
      */
     usersWhoPassed?: ArticleTestUser;
+    /**
+     * questions
+     */
+    questions?: Array<ArticleTestQuestion>;
+    /**
+     * date of model created
+     */
+    createdAt: string;
+    /**
+     * date of model updated
+     */
+    updatedAt: string;
 };
