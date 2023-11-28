@@ -83,7 +83,7 @@ export class ArticleController extends ApiControllerCRUD<
     onError?: (error: BaseProcessedError) => void
   ) {
     return await this.process<ArticleTest>(
-      this.post(`/pass-test/${articleId}`),
+      this.post(`pass-test/${articleId}`),
       onSuccess,
       onError
     );

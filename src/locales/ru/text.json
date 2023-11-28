@@ -33,5 +33,7 @@
   "nothing_found_hashtags": "Ничего не найдено, хотите добавить хэштег '{{hashtag}}' ?",
   "my_account": "Мой аккаунт",
   "out_of": "out of",
-  "question_number": "Вопрос №{{number}}"
+  "question_number": "Вопрос №{{number}}",
+  "you_passed_test": "Ты прошел тест! красавчик!",
+  "you_not_passed_test": "Бро, были ошибки, повтори попытку!"
 }

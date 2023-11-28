@@ -19,6 +19,33 @@ export const resetIsRightQuestion = (questions: QuestionDto[]): QuestionDto[] =>
     answers: item.answers.map(item => ({ ...item, isRight: false })),
   }));
 
+const getRightAnswers = (question: QuestionDto): AnswerDto[] =>
+  question.answers.filter(item => item.isRight);
+
+export const comparisonAnswers = (
+  originQuestions: QuestionDto[],
+  stateQuestions: QuestionDto[]
+): boolean => {
+  for (const originalQuestion of originQuestions) {
+    const stateQuestion = stateQuestions.find(
+      item => item.id == originalQuestion.id
+    );
+    if (!stateQuestion) return false;
+    const originalRightAnswersId = getRightAnswers(originalQuestion).map(
+      item => item.id
+    );
+    const stateRightAnswersId = getRightAnswers(stateQuestion).map(
+      item => item.id
+    );
+    if (
+      originalRightAnswersId.sort().toString() !=
+      stateRightAnswersId.sort().toString()
+    )
+      return false;
+  }
+  return true;
+};
+
 export const changeQuestionName = (
   prevQuestions: QuestionDto[],
   newName: string,

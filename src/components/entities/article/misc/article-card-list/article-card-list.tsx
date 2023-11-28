@@ -17,7 +17,7 @@ interface IArticleCardListProps {
 export const ArticleCardList = (props: IArticleCardListProps) => {
   return (
     <section className="mt-9 flex flex-col gap-5 md:gap-10">
-      {props.items == null
+      {props.items == null || props.isLoading
         ? Array(10)
             .fill(null)
             .map((_, index) => <ArticleCardSkeleton key={index} />)

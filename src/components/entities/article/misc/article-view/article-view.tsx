@@ -1,12 +1,15 @@
-import { Article } from '@lib/api/models';
+import { Article, ArticleShortDto } from '@lib/api/models';
 import { ArticleViewHead } from '@components/entities/article/misc/article-view/components/article-view-head';
 import { TextEditor } from '@components/entities/article/misc/text-editor';
 import { useMemo } from 'react';
 import { OutputData } from '@editorjs/editorjs';
+import { ArticleViewFooter } from '@components/entities/article/misc/article-view/components/article-view-footer';
 
 interface ArticleView {
   readonly: boolean;
   article: Article;
+  articleShort: ArticleShortDto;
+  refetch: () => void;
 }
 
 export const ArticleView = (props: ArticleView) => {
@@ -26,6 +29,14 @@ export const ArticleView = (props: ArticleView) => {
         />
       </div>
       <TextEditor defaultValue={body} value={body} readonly />
+      <ArticleViewFooter
+        articleId={props.article.id}
+        isLiked={props.articleShort.isLiked}
+        isReposted={props.articleShort.isReposted}
+        likesCount={props.articleShort.likesCount}
+        repostsCount={props.articleShort.repostsCount}
+        onActionSuccess={props.refetch}
+      />
     </article>
   );
 };

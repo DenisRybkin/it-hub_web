@@ -6,13 +6,21 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@components/ui/button';
 import {
   changeAnswersIsRight,
+  comparisonAnswers,
   getAnswersByQuestionId,
   resetIsRightQuestion,
   setAnswersByQuestionId,
   swapAnswersIsRight,
 } from '@components/entities/test/misc/common/utils';
+import { toast } from '@components/ui/use-toast';
+import { api } from '@lib/api/plugins';
+import { SuccessState } from '@components/entities/test/misc/test-runner/components/success-state';
+import { FailedState } from '@components/entities/test/misc/test-runner/components/failed-state';
+import { useMutation } from '@tanstack/react-query';
 
 interface ITestRunnerProps {
+  articleId: number;
+  inPassed?: boolean;
   questions: QuestionDto[];
 }
 
@@ -22,11 +30,40 @@ export const TestRunner = (props: ITestRunnerProps) => {
   const [questionsState, setQuestionsState] = useState<QuestionDto[]>(
     resetIsRightQuestion(props.questions)
   );
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isFailed, setIsFailed] = useState<boolean>(false);
+
+  const passTestMutation = useMutation({
+    mutationKey: [api.article.toString(), props.articleId],
+    mutationFn: async () =>
+      await api.article.passTest(props.articleId, handleSuccess, handleError),
+  });
 
   const handleRun = () => setIsRun(true);
   const handleStop = () => setIsRun(false);
 
-  const handleFinish = () => {};
+  const handleSuccess = () => setIsSuccess(true);
+
+  const handleError = () =>
+    toast({
+      title: t('toast:error.default'),
+      variant: 'destructive',
+    });
+
+  const handleRetry = () => {
+    setQuestionsState(resetIsRightQuestion(props.questions));
+    setIsSuccess(false);
+    setIsFailed(false);
+    setIsRun(true);
+  };
+
+  const handleFinish = async () => {
+    const passResult = comparisonAnswers(props.questions, questionsState);
+    if (passResult) {
+      await passTestMutation.mutate();
+    } else setIsFailed(true);
+    handleStop();
+  };
 
   const handleChangeMultipleAnswer = (
     isRight: boolean,
@@ -49,6 +86,11 @@ export const TestRunner = (props: ITestRunnerProps) => {
       const updatedAnswers = swapAnswersIsRight(currentAnswers, answerId);
       return setAnswersByQuestionId(questionId, prev, updatedAnswers);
     });
+
+  if (isSuccess) return <SuccessState />;
+  if (isFailed) return <FailedState onRetry={handleRetry} />;
+
+  if (props.inPassed) return null;
 
   const questionRenders = questionsState.map((item, index) => (
     <QuestionCard

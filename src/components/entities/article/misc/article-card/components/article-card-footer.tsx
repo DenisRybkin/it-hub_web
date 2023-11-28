@@ -74,7 +74,7 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
         onClick={event =>
           authContext.isAuth
             ? handleToggleLike(event)
-            : authContext.openAuthDialog
+            : authContext.openAuthDialog()
         }
         className={cn('rounded-full', !props.likesCount && '[&>div]:m-0')}
         data={{
@@ -112,7 +112,7 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
         onClick={event =>
           authContext.isAuth
             ? handleToggleRepost(event)
-            : authContext.openAuthDialog
+            : authContext.openAuthDialog()
         }
         className={cn('rounded-full', !props.repostsCount && '[&>div]:m-0')}
         data={{

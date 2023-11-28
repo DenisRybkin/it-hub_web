@@ -19,7 +19,7 @@ export type ArticleTest = {
     /**
      * user, who passed test
      */
-    usersWhoPassed?: ArticleTestUser;
+    usersWhoPassed?: Array<ArticleTestUser>;
     /**
      * questions
      */

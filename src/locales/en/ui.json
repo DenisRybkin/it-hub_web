@@ -74,7 +74,8 @@
     "finish": "Finish",
     "next": "Next",
     "prev": "Prev",
-    "start": "Start"
+    "start": "Start",
+    "retry": "Retry"
   },
   "label": {
     "i_read": "I have read the",
