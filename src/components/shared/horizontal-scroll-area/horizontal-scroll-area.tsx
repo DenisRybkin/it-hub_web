@@ -5,11 +5,10 @@ import { cn } from '@lib/utils/tools';
 
 interface IHorizontalScrollAreaProps {
   children: React.ReactNode;
-  gap?: number;
   itemsLength?: number;
   containerClassName?: string;
   listClassName?: string;
-  hiddenButtons?: boolean;
+  hiddeNavigate?: boolean;
 }
 
 export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
@@ -72,7 +71,7 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
 
   return (
     <div className={cn('w-full relative', props.containerClassName)}>
-      {!props.hiddenButtons && (
+      {!props.hiddeNavigate && (
         <>
           {!leftScrollIsDisabled && (
             <Button

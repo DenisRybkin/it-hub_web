@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
+import { commentsAnchor } from '@components/entities/comment/misc/comment-submit';
 
 interface IArticleCardFooterProps {
   articleId: number;
@@ -57,9 +58,10 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
     onSuccess: () => props.onActionSuccess?.(props.articleId),
   });
 
-  const handleOpenArticleComments = () =>
+  const handleOpenArticleComments = (event: MouseEvent<HTMLButtonElement>) =>
+    void event.stopPropagation() ||
     navigate(
-      RoutePaths[RouteKeys.ARTICLE] + `/${props.articleId}` + `#comments`
+      RoutePaths[RouteKeys.ARTICLE] + `/${props.articleId}` + commentsAnchor
     );
 
   const handleToggleLike = (event: MouseEvent<HTMLButtonElement>) =>

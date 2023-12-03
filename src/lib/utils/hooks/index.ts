@@ -9,3 +9,4 @@ export { useViewportObserver } from './use-viewport-observer';
 export { useControllableState } from './use-controllable-state';
 export { usePaging } from './paging/use-paging';
 export { useInfinityPaging } from './paging/use-infinity-paging';
+export { useDeclension } from './use-declension';

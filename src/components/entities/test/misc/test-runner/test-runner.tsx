@@ -20,7 +20,7 @@ import { useMutation } from '@tanstack/react-query';
 
 interface ITestRunnerProps {
   articleId: number;
-  inPassed?: boolean;
+  isPassed?: boolean;
   questions: QuestionDto[];
 }
 
@@ -30,7 +30,7 @@ export const TestRunner = (props: ITestRunnerProps) => {
   const [questionsState, setQuestionsState] = useState<QuestionDto[]>(
     resetIsRightQuestion(props.questions)
   );
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(props.isPassed ?? false);
   const [isFailed, setIsFailed] = useState<boolean>(false);
 
   const passTestMutation = useMutation({
@@ -90,7 +90,7 @@ export const TestRunner = (props: ITestRunnerProps) => {
   if (isSuccess) return <SuccessState />;
   if (isFailed) return <FailedState onRetry={handleRetry} />;
 
-  if (props.inPassed) return null;
+  //if (props.inPassed) return null;
 
   const questionRenders = questionsState.map((item, index) => (
     <QuestionCard

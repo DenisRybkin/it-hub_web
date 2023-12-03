@@ -23,7 +23,7 @@ interface IFileUploaderButtonProps {
   setIsUploading?: Dispatch<SetStateAction<boolean>>;
 }
 
-export const FileUploaderButton = (props: IFileUploaderButtonProps) => {
+export const FileUploader = (props: IFileUploaderButtonProps) => {
   const [isUploading, setIsUploading] = useControllableState({
     defaultValue: false,
     value: props.isUploading,

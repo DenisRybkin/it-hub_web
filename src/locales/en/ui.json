@@ -22,7 +22,8 @@
     "come_up_question": "Come up with an question",
     "come_up_answer": "Come up with an answer",
     "search": "Search...",
-    "select_hashtag": "Select hashtags"
+    "select_hashtag": "Select hashtags",
+    "comment": "Comment..."
   },
   "subheader": {
     "status": "Status",
@@ -112,7 +113,12 @@
     "authorization": "Authorization",
     "want_logout": "Do you really want to log out of your account?",
     "select_cover": "Select cover",
-    "take_test": "Take the test to earn points"
+    "take_test": "Take the test to earn points",
+    "article": "Article #{{id}}",
+    "testing": "Testing",
+    "comment": "comment",
+    "comment_0d": "comments",
+    "comment_1d": "comments"
   },
   "tab": {},
   "table": {},

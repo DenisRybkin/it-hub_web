@@ -30,7 +30,7 @@ export class ArticleCommentController extends ApiControllerCRUD<
     onSuccess?: (model: CreateComplexArticleCommentDto) => void,
     onError?: (error: BaseProcessedError) => void
   ) {
-    return await this.process(
+    return await this.process<CreateComplexArticleCommentDto>(
       this.post('complex', { data: dto }),
       onSuccess,
       onError

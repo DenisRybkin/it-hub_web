@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@lib/api/plugins';
 import { QueryKeys } from '@lib/constants';
 import { CircularLoader } from '@components/ui/loader';
-import { PreviewCard } from '@components/entities/static-field/dialogs/select-preview/components/preview-card';
+import { ImageCard } from '@components/entities/static-field/misc/image-card';
 import { Button } from '@components/ui/button';
 import { StaticField } from '@lib/api/models';
 import { Preview } from '@components/entities/static-field/dialogs/select-preview/components/preview';
@@ -76,7 +76,7 @@ export const SelectPreviewDialog = (props: ISelectPreviewDialogProps) => {
           <Preview preview={preview} onUploadPreview={handleUploadPreview} />
           <div className="flex flex-wrap justify-between gap-1 md:gap-2">
             {[...(previews ?? []), ...uploadedPreviews].map(item => (
-              <PreviewCard
+              <ImageCard
                 key={item.id}
                 staticField={item}
                 onClick={handleSelect}

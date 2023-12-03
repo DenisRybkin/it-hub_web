@@ -1,7 +1,7 @@
 import { StaticField } from '@lib/api/models';
 import { Scan } from 'lucide-react';
 import { Button } from '@components/ui/button';
-import { FileUploaderButton } from '@components/entities/static-field/misc/file-uploader-button';
+import { FileUploader } from '@components/entities/static-field/misc/file-uploader';
 import { useState } from 'react';
 import { CircularLoader } from '@components/ui/loader';
 
@@ -22,7 +22,7 @@ export const Preview = (props: IPreviewProps) => {
           alt="selected preview"
         />
       ) : (
-        <FileUploaderButton
+        <FileUploader
           accept="image/*"
           maxSizeMb={4}
           formDataName="image"
@@ -36,7 +36,7 @@ export const Preview = (props: IPreviewProps) => {
               <Scan size={50} />
             </Button>
           )}
-        </FileUploaderButton>
+        </FileUploader>
       )}
     </div>
   );

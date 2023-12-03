@@ -6,5 +6,6 @@
 export type ReadArticleCommentFilterDto = {
     id?: number;
     text?: string;
+    articleId?: number;
     createdByUserId?: number;
 };

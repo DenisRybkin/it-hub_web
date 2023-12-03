@@ -6,5 +6,5 @@
 export type CreateComplexArticleCommentDto = {
     text: string;
     articleId: number;
-    staticFieldIds?: Array<string>;
+    staticFieldIds?: Array<number>;
 };
