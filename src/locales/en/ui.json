@@ -76,7 +76,8 @@
     "next": "Next",
     "prev": "Prev",
     "start": "Start",
-    "retry": "Retry"
+    "retry": "Retry",
+    "edit": "Edit"
   },
   "label": {
     "i_read": "I have read the",
@@ -118,7 +119,8 @@
     "testing": "Testing",
     "comment": "comment",
     "comment_0d": "comments",
-    "comment_1d": "comments"
+    "comment_1d": "comments",
+    "want_delete_comment": "Do you really want to delete comment?"
   },
   "tab": {},
   "table": {},

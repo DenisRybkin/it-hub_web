@@ -102,7 +102,7 @@ export const ArticlePage = () => {
       )}
       <div className="flex flex-col gap-2 md:gap-5">
         <h1 className="head-text text-left">
-          {commentsPaging.items.length}&nbsp;
+          {commentsPaging.info.totalItems}&nbsp;
           {useDeclension(commentsPaging.items.length, [
             t('ui:title.comment'),
             t('ui:title.comment_0d'),

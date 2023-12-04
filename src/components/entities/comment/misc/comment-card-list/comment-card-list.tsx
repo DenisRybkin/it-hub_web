@@ -24,9 +24,6 @@ export const CommentCardList = <
 >(
   props: ICommentCardListProps<T, R>
 ) => {
-  const handleReactionSuccess = (reaction: R | number, commentId: number) =>
-    props.refetchPage(commentId);
-
   const getReactionStrategy = (commentId: number): BaseReactionsStrategy<R> => {
     switch (props.strategy) {
       case 'article-comment':
@@ -55,7 +52,7 @@ export const CommentCardList = <
               text={item.text}
               reactionStrategy={getReactionStrategy(item.id)}
               reactions={(item.reactions ?? []) as R[]}
-              onReactionSuccess={handleReactionSuccess}
+              refetchByCommentId={props.refetchPage}
               attachments={item.attachments?.map(item => item.staticField!)}
             />
           ))}

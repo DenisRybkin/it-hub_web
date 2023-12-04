@@ -4,10 +4,13 @@ import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
 import { useNavigate } from 'react-router-dom';
-import { ReactionPicker } from '@components/entities/comment/misc/comment-card/components/reaction-picker/reaction-picker';
+import { ReactionPicker } from '@components/entities/comment/misc/comment-card/components/reaction-picker';
 import { BaseReactionsStrategy } from '@components/entities/comment/misc/comment-card/components/reaction-picker/strategies/base-reaction-strategy';
 import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
 import { ImageCard } from '@components/entities/static-field/misc/image-card';
+import { FiMoreHorizontal } from 'react-icons/fi';
+import { Button } from '@components/ui/button';
+import { ControlMenu } from '@components/entities/comment/misc/comment-card/components/control-menu';
 
 interface ICommentCardProps<R> {
   id: number;
@@ -17,7 +20,7 @@ interface ICommentCardProps<R> {
   reactions: R[];
   attachments?: StaticField[];
   reactionStrategy: BaseReactionsStrategy<R>;
-  onReactionSuccess?: (result: R | number, commentId: number) => void;
+  refetchByCommentId?: (commentId: number) => void;
 }
 
 export const CommentCard = <R,>(props: ICommentCardProps<R>) => {
@@ -25,6 +28,9 @@ export const CommentCard = <R,>(props: ICommentCardProps<R>) => {
 
   const handleRedirectToAuthorPage = () =>
     navigate(RoutePaths[RouteKeys.USER] + `/${props.author.id}`);
+
+  const handleReactionSuccess = (reaction: R | number, commentId: number) =>
+    props.refetchByCommentId?.(props.id);
 
   return (
     <div className="flex flex-col gap-2 w-full rounded-xl bg-dark-2 p-3 md:p-5">
@@ -54,12 +60,19 @@ export const CommentCard = <R,>(props: ICommentCardProps<R>) => {
             </time>
           </div>
         </div>
-        <ReactionPicker<R>
-          commentId={props.id}
-          onSuccess={props.onReactionSuccess}
-          reactions={props.reactions}
-          strategy={props.reactionStrategy}
-        />
+        <div className="flex flex-wrap items-center">
+          <ReactionPicker<R>
+            commentId={props.id}
+            onSuccess={handleReactionSuccess}
+            reactions={props.reactions}
+            strategy={props.reactionStrategy}
+          />
+          <ControlMenu
+            commentId={props.id}
+            onSuccess={props.refetchByCommentId}
+            author={props.author}
+          />
+        </div>
       </div>
 
       {/*BODY*/}

@@ -18,6 +18,7 @@ export interface IConfirmDialogProps {
   title: string;
   description?: string;
   onConfirm?: () => void;
+  confirmIsLoading?: boolean;
 }
 
 export const ConfirmDialog = (props: IConfirmDialogProps) => {
@@ -49,7 +50,10 @@ export const ConfirmDialog = (props: IConfirmDialogProps) => {
           <AlertDialogCancel onClick={handleClose}>
             {t('ui:button.cancel')}
           </AlertDialogCancel>
-          <AlertDialogAction onClick={handleConfirm}>
+          <AlertDialogAction
+            data={{ isLoading: props.confirmIsLoading }}
+            onClick={handleConfirm}
+          >
             {t('ui:button.confirm')}
           </AlertDialogAction>
         </AlertDialogFooter>
