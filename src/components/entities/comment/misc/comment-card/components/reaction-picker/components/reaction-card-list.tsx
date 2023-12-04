@@ -1,4 +1,4 @@
-import { GeneralEmoji } from './general-emoji';
+import { ReactionCard } from './reaction-card';
 import { IReactionChip } from '../types';
 
 interface IGeneralEmojiListProps {
@@ -7,11 +7,11 @@ interface IGeneralEmojiListProps {
   items: IReactionChip[];
 }
 
-export const GeneralEmojiList = (props: IGeneralEmojiListProps) => {
+export const ReactionCardList = (props: IGeneralEmojiListProps) => {
   return (
     <div className="flex flex-wrap items-center justify-end gap-1">
       {props.items.map(item => (
-        <GeneralEmoji
+        <ReactionCard
           key={item.emoji}
           item={item}
           onReact={props.onReact}

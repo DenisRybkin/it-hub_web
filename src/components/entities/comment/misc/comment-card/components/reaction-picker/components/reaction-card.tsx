@@ -2,13 +2,13 @@ import { Button } from '@components/ui/button';
 import { IReactionChip } from '../types';
 import { cn, number2short } from '@lib/utils/tools';
 
-interface IGeneralEmojiProps {
+interface IReactionCardProps {
   isLoading: boolean;
   item: IReactionChip;
   onReact: (reaction: string) => void;
 }
 
-export const GeneralEmoji = (props: IGeneralEmojiProps) => {
+export const ReactionCard = (props: IReactionCardProps) => {
   const handleClick = () => props.onReact(props.item.emoji);
 
   return (

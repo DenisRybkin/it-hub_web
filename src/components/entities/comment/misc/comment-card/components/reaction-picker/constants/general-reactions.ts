@@ -7,7 +7,7 @@ export enum GeneralEmojisKeys {
   thumbUp = '👍',
 }
 
-export const generalEmojis: Reaction[] = [
+export const generalReactions: Reaction[] = [
   {
     value: GeneralEmojisKeys.laughter,
   },

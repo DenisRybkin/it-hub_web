@@ -56,6 +56,7 @@ export const CommentCardList = <
               reactionStrategy={getReactionStrategy(item.id)}
               reactions={(item.reactions ?? []) as R[]}
               onReactionSuccess={handleReactionSuccess}
+              attachments={item.attachments?.map(item => item.staticField!)}
             />
           ))}
       <VisibleTrigger

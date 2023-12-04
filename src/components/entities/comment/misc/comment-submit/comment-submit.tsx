@@ -114,7 +114,7 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
       />
       {!!staticFields.length && (
         <HorizontalScrollArea
-          containerClassName="mb-14 mt-4 px-2"
+          containerClassName="mb-2 mt-4 px-2"
           itemsLength={staticFields.length}
           listClassName="gap-2 w-full"
         >
@@ -129,7 +129,7 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
           ))}
         </HorizontalScrollArea>
       )}
-      <div className="absolute bottom-1 w-full flex flex-col px-2 pb-2 gap-2">
+      <div className="w-full mt-2 flex flex-col px-2 pb-2 gap-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">
             <FileUploader

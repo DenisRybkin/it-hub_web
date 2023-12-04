@@ -7,7 +7,7 @@ import { Button } from '@components/ui/button';
 import { FiSmile } from 'react-icons/fi';
 import { PopoverContent } from '@components/ui/popover';
 import { EmojiPicker } from '@components/shared/emoji-picker';
-import { GeneralEmojiList } from './components/general-emoji-list';
+import { ReactionCardList } from './components/reaction-card-list';
 import { IReactionChip } from '@components/entities/comment/misc/comment-card/components/reaction-picker/types';
 import { AuthContext } from '@app/providers/auth';
 
@@ -43,15 +43,15 @@ export const ReactionPicker = <T,>(props: IReactionPicker<T>) => {
 
   return (
     <div className="flex items-center gap-2">
-      <GeneralEmojiList
+      <ReactionCardList
         isLoading={isLoading}
         items={reactionChips}
         onReact={handleToggleReaction}
       />
       <Popover open={isOpenEmojiPicker} onOpenChange={setIsOpenEmojiPicker}>
         <PopoverTrigger>
-          <Button disabled={isLoading} variant="ghost" size="icon-sm">
-            <FiSmile />
+          <Button disabled={isLoading} variant="ghost" size="icon">
+            <FiSmile size={18} />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-fit p-0">
