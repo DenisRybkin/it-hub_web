@@ -1,2 +1,2 @@
-export { CommentSubmit, commentsAnchor } from './comment-submit';
+export { CommentSubmit } from './comment-submit';
 export type { SubmitCommentDto } from './comment-submit';

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { LocaleStorageKeys } from '@lib/constants';
+import { LocalStorageKeys } from '@lib/constants';
 import { Role, User } from '@lib/api/models';
 
 interface IAuthContext {
@@ -14,7 +14,7 @@ interface IAuthContext {
 
 export const AuthContext = createContext<IAuthContext>({
   isAuth: false,
-  accessToken: localStorage.getItem(LocaleStorageKeys.JWT) ?? undefined,
+  accessToken: localStorage.getItem(LocalStorageKeys.JWT) ?? undefined,
   setAccessToken: () => {},
   setUser: () => {},
   openAuthDialog: () => {},

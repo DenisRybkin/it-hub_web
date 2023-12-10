@@ -1,9 +1,9 @@
-import { LocaleKeys, LocaleStorageKeys } from '@lib/constants';
+import { LocaleKeys, LocalStorageKeys } from '@lib/constants';
 
 type DateUnit = { time: number; type: Intl.RelativeTimeFormatUnit };
 
 const getLocale = () =>
-  localStorage.getItem(LocaleStorageKeys.LOCALE) || LocaleKeys.EN;
+  localStorage.getItem(LocalStorageKeys.LOCALE) || LocaleKeys.EN;
 
 const units: Array<DateUnit> = [
   { type: 'year', time: 24 * 60 * 60 * 1000 * 365 },

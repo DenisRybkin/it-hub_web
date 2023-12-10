@@ -164,7 +164,12 @@ export const Combobox = <TValue,>({
   };
 
   const renderValue = (): string | ReactNode => {
-    if (!value || !Array.isArray(value)) return <p>{placeholder}</p>;
+    if (
+      !value ||
+      !Array.isArray(value) ||
+      (Array.isArray(value) && !value.length)
+    )
+      return <p>{placeholder}</p>;
     if (Array.isArray(value))
       return (
         <div className="flex flex-wrap overflow-hidden rounded-md gap-1">
@@ -172,7 +177,11 @@ export const Combobox = <TValue,>({
             <RemovingBadge
               variant="secondary"
               textClassName="truncate max-w-[200px]"
-              key={item as unknown as number | string}
+              key={
+                getComparableValue?.(item as TValue) as unknown as
+                  | number
+                  | string
+              }
               onRemove={() => handleSelect(item)}
             >
               {getDisplayNameByValue(item)}

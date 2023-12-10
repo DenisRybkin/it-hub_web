@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, forwardRef, Ref, SetStateAction } from 'react';
 import { Category, Hashtag, User } from '@lib/api/models';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
@@ -7,15 +7,27 @@ import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
 import { Badge } from '@components/ui/badge';
 import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
+import {
+  HashtagsEditor,
+  IHashtagsEditorForwardRef,
+} from '@components/entities/hashtag/misc/hashtags-editor';
+import type { UpdateDto } from '@components/pages/article';
 
 interface IArticleViewHeadProps {
+  readonly: boolean;
   createdAt: string;
   author: User;
   hashtags?: Hashtag[];
   categories?: Category[];
+  onChangeHashtags: (value?: Hashtag[]) => void;
+  onChangeSelectedCategories: (value: Category[]) => void;
+  updateDto?: UpdateDto;
 }
 
-export const ArticleViewHead = (props: IArticleViewHeadProps) => {
+export const ArticleViewHead = forwardRef<
+  IHashtagsEditorForwardRef,
+  IArticleViewHeadProps
+>((props, ref) => {
   const navigate = useNavigate();
 
   const handleRedirectToAuthorPage = () =>
@@ -48,22 +60,39 @@ export const ArticleViewHead = (props: IArticleViewHeadProps) => {
             </time>
           </div>
         </div>
-        <div className="flex flex-wrap justify-end gap-2">
-          {props.hashtags?.map(hashtag => (
-            <Badge
-              variant="secondary"
-              className="inline-block truncate max-w-[200px] py-0 md:py-0.5"
-              key={hashtag.id}
-            >
-              {hashtag.name}
-            </Badge>
-          ))}
-        </div>
+        {props.readonly && (
+          <div className="flex flex-wrap justify-end gap-2">
+            {props.hashtags?.map(hashtag => (
+              <Badge
+                variant="secondary"
+                className="inline-block truncate max-w-[200px] py-0 md:py-0.5"
+                key={hashtag.id}
+              >
+                {hashtag.name}
+              </Badge>
+            ))}
+          </div>
+        )}
       </div>
+      {!props.readonly && (
+        <HashtagsEditor
+          className="mt-2"
+          value={props.updateDto?.hashtags ?? []}
+          onChange={
+            props.onChangeHashtags as Dispatch<
+              SetStateAction<Hashtag[] | undefined>
+            >
+          }
+          ref={ref as Ref<IHashtagsEditorForwardRef>}
+        />
+      )}
       <CategoryCardList
-        selectedIds={props.categories?.map(item => item.id)}
-        readonly
+        selectedCategories={
+          props.readonly ? props.categories : props.updateDto?.categories
+        }
+        onChangeSelectedCategories={props.onChangeSelectedCategories}
+        readonly={props.readonly}
       />
     </>
   );
-};
+});

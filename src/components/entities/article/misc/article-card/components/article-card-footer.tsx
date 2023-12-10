@@ -16,8 +16,7 @@ import { toast } from '@components/ui/use-toast';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
-import { RouteKeys } from '@lib/constants';
-import { commentsAnchor } from '@components/entities/comment/misc/comment-submit';
+import { AnchorKeys, RouteKeys } from '@lib/constants';
 
 interface IArticleCardFooterProps {
   articleId: number;
@@ -61,7 +60,9 @@ export const ArticleCardFooter = (props: IArticleCardFooterProps) => {
   const handleOpenArticleComments = (event: MouseEvent<HTMLButtonElement>) =>
     void event.stopPropagation() ||
     navigate(
-      RoutePaths[RouteKeys.ARTICLE] + `/${props.articleId}` + commentsAnchor
+      RoutePaths[RouteKeys.ARTICLE] +
+        `/${props.articleId}` +
+        AnchorKeys.comments
     );
 
   const handleToggleLike = (event: MouseEvent<HTMLButtonElement>) =>

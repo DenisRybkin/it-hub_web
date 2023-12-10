@@ -12,8 +12,8 @@ export const CATEGORIES_SEARCH_PARAMS = 'categories';
 
 export interface ICategoriesListProps {
   readonly?: boolean;
-  selectedIds?: number[];
-  onChangeSelects?: (value: number[]) => void;
+  selectedCategories?: Category[];
+  onChangeSelectedCategories?: (value: Category[]) => void;
   withSearchParams?: boolean;
 }
 
@@ -27,28 +27,32 @@ export const CategoryCardList = (props: ICategoriesListProps) => {
     { pageSize: -1 }
   );
 
-  const selectedIds = useMemo(
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const selected: Category[] = useMemo(
     () =>
       props.withSearchParams
-        ? searchParamToNumArray(searchParams.get(CATEGORIES_SEARCH_PARAMS)) ??
-          []
-        : props.selectedIds ?? [],
-    [props.withSearchParams, props.selectedIds, searchParams]
+        ? searchParamToNumArray(searchParams.get(CATEGORIES_SEARCH_PARAMS))
+            ?.map(selectedId => items.find(item => item.id == selectedId))
+            .filter(Boolean) ?? []
+        : props.selectedCategories ?? [],
+    [props.withSearchParams, props.selectedCategories, searchParams]
   );
 
   const handleClick = (category: Category) => {
-    if (!props.onChangeSelects && !props.withSearchParams) return;
+    if (!props.onChangeSelectedCategories && !props.withSearchParams) return;
+    const updatedCategories = selected.some(item => item.id == category.id)
+      ? selected.filter(item => item.id != category.id)
+      : [...selected, category];
 
-    const updatedCategoryIds = selectedIds.includes(category.id)
-      ? selectedIds.filter(item => item != category.id)
-      : [...selectedIds, category.id];
-    if (props.onChangeSelects) props.onChangeSelects(updatedCategoryIds);
+    if (props.onChangeSelectedCategories)
+      props.onChangeSelectedCategories(updatedCategories);
     if (props.withSearchParams) {
-      !updatedCategoryIds.length
+      !updatedCategories.length
         ? searchParams.delete(CATEGORIES_SEARCH_PARAMS)
         : searchParams.set(
             CATEGORIES_SEARCH_PARAMS,
-            updatedCategoryIds.toString()
+            updatedCategories.map(item => item.id).toString()
           );
       setSearchParams(searchParams);
     }
@@ -60,24 +64,16 @@ export const CategoryCardList = (props: ICategoriesListProps) => {
     <HorizontalScrollArea
       containerClassName="mt-4"
       listClassName="gap-2"
-      itemsLength={
-        (props.readonly
-          ? items.filter(item => selectedIds.includes(item.id))
-          : items
-        ).length
-      }
+      itemsLength={(props.readonly ? selected : items).length}
     >
       {isFetching
         ? Array(10)
             .fill(null)
             .map((_, index) => <CategoryCardSkeleton key={index} />)
-        : (props.readonly
-            ? items.filter(item => selectedIds.includes(item.id))
-            : items
-          ).map(item => (
+        : (props.readonly ? selected : items).map(item => (
             <CategoryCard
               key={item.id}
-              isSelected={selectedIds?.includes(item.id)}
+              isSelected={selected.some(selected => selected.id == item.id)}
               category={item}
               onClick={handleClick}
             />

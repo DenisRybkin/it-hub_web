@@ -39,22 +39,24 @@ export interface RemovingBadgeProps extends BadgeProps {
   textClassName?: string;
 }
 
-function RemovingBadge(props: RemovingBadgeProps) {
+function RemovingBadge({
+  textClassName,
+  onRemove,
+  ...props
+}: RemovingBadgeProps) {
   const handleRemove = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    console.log(1);
     event.stopPropagation();
-    console.log(2);
-    props.onRemove?.();
+    onRemove?.();
   };
 
   return (
     <Badge {...props}>
-      <p className={props.textClassName}>{props.children}</p>
+      <p className={textClassName}>{props.children}</p>
       <button
         className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-        onKeyDown={e => e.key == 'Enter' && props.onRemove?.()}
+        onKeyDown={e => e.key == 'Enter' && onRemove?.()}
         onMouseDown={e => {
           e.preventDefault();
           e.stopPropagation();

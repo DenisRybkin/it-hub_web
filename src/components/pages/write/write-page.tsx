@@ -4,8 +4,8 @@ import { TextEditor } from '@components/entities/article/misc/text-editor';
 import { Button } from '@components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { FiImage, FiSave, FiShare, FiX } from 'react-icons/fi';
-import { LocaleStorageKeys, RouteKeys } from '@lib/constants';
-import { checkBlocksLength } from '@lib/utils/validations/text-editor';
+import { LocalStorageKeys, RouteKeys } from '@lib/constants';
+import { checkBlocksLength } from '@lib/utils/validations';
 import { toast } from '@components/ui/use-toast';
 import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
 import { OutputData } from '@editorjs/editorjs';
@@ -15,7 +15,12 @@ import {
 } from '@components/entities/test/misc/test-constructor/test-constructor';
 import { CoverImage } from '@components/shared/cover-image';
 import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
-import { Article, CreateComplexArticleDto, StaticField } from '@lib/api/models';
+import {
+  Article,
+  Category,
+  CreateComplexArticleDto,
+  StaticField,
+} from '@lib/api/models';
 import {
   HashtagsEditor,
   IHashtagsEditorForwardRef,
@@ -28,7 +33,7 @@ export const WritePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
   const [isOpenSelectPreviewDialog, setIsOpenSelectPreviewDialog] =
     useState<boolean>(false);
   const [preview, setPreview] = useState<StaticField | undefined>(undefined);
@@ -66,12 +71,12 @@ export const WritePage = () => {
     CreateComplexArticleDto | undefined
   > => {
     try {
-      const body = await editorRef.current?.onGetData();
+      const body = await editorRef.current?.getData();
       const questions = testConstructorRef.current?.getAndValidateData();
       const previewId = preview?.id;
-      const categoryIds = selectedCategoryIds;
+      const categoryIds = selectedCategories.map(item => item.id);
       const hashtags = hashtagsEditorRef.current?.data;
-      validation(body, selectedCategoryIds);
+      validation(body, categoryIds);
       return {
         body: JSON.stringify(body),
         categoryIds,
@@ -92,10 +97,10 @@ export const WritePage = () => {
     const dto = await getAndValidateDto();
     if (!dto) return;
     localStorage.setItem(
-      LocaleStorageKeys.DRAFT,
+      LocalStorageKeys.DRAFT,
       JSON.stringify({
         //categories: hashtagsConstructorRef.current?.getData(),
-        body: await editorRef.current?.onGetData(),
+        body: await editorRef.current?.getData(),
       })
     );
     toast({
@@ -158,8 +163,8 @@ export const WritePage = () => {
           )}
         </div>
         <CategoryCardList
-          selectedIds={selectedCategoryIds}
-          onChangeSelects={setSelectedCategoryIds}
+          selectedCategories={selectedCategories}
+          onChangeSelectedCategories={setSelectedCategories}
         />
         <TextEditor
           autofocus

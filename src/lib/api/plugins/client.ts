@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LocaleStorageKeys } from '@/lib/constants';
+import { LocalStorageKeys } from '@/lib/constants';
 
 const LOGIN_PATH = 'api/auth/login';
 
@@ -11,7 +11,7 @@ export const client = axios.create({
 client.interceptors.request.use(config => {
   if (!config.headers['Content-Type'])
     config.headers['Content-Type'] = 'application/json';
-  const authToken = localStorage.getItem(LocaleStorageKeys.JWT);
+  const authToken = localStorage.getItem(LocalStorageKeys.JWT);
   if (authToken) config.headers.Authorization = 'Bearer ' + authToken;
   return config;
 });

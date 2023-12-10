@@ -31,6 +31,7 @@ export const ReactionPicker = <T,>(props: IReactionPicker<T>) => {
     toast({ title: t('toast:error.default'), variant: 'destructive' });
 
   const handleToggleReaction = async (reaction: string) => {
+    if (!authContext.isAuth) return authContext.openAuthDialog();
     setIsLoading(true);
     await props.strategy.toggleReaction(reaction, handleSuccess, handleError);
     setIsLoading(false);

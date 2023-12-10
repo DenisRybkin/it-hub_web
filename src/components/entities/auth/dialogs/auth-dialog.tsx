@@ -6,16 +6,16 @@ import Logo from '@assets/icons/favicon.svg';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
-import { LoginSchema } from '@lib/utils/validations/login-schema';
+import { LoginSchema } from '@lib/utils/validations';
 import {
   LoginExtraContent,
   RegistrationExtraContent,
 } from '@components/entities/auth/dialogs/misc';
-import { RegistrationSchema } from '@lib/utils/validations/registration-schema';
+import { RegistrationSchema } from '@lib/utils/validations';
 import { toast } from '@components/ui/use-toast';
 import { api } from '@lib/api/plugins';
 import { BaseProcessedError, LoginResponseType } from '@lib/api/models';
-import { LocaleStorageKeys } from '@lib/constants';
+import { LocalStorageKeys } from '@lib/constants';
 import { AuthContext } from '@app/providers/auth';
 
 type AuthStrategyType = 'login' | 'registration';
@@ -37,7 +37,7 @@ export const AuthDialog = (props: IAuthDialogProps) => {
   const handleLoginSuccess = (response: LoginResponseType) => {
     authContext.setUser(response.user);
     authContext.setAccessToken(response.access);
-    localStorage.setItem(LocaleStorageKeys.JWT, response.access);
+    localStorage.setItem(LocalStorageKeys.JWT, response.access);
     toast({
       variant: 'success',
       title: t('toast:success.auth_success'),
@@ -48,7 +48,7 @@ export const AuthDialog = (props: IAuthDialogProps) => {
   const handleRegistrationSuccess = (response: LoginResponseType) => {
     authContext.setUser(response.user);
     authContext.setAccessToken(response.access);
-    localStorage.setItem(LocaleStorageKeys.JWT, response.access);
+    localStorage.setItem(LocalStorageKeys.JWT, response.access);
     toast({
       variant: 'success',
       title: t('toast:success.registration_success'),

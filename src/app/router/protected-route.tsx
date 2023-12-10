@@ -1,7 +1,7 @@
 import { RoutePaths } from '@app/router/config';
 import type { RoutePropsType } from '@app/router';
 import { Navigate } from 'react-router-dom';
-import { LocaleStorageKeys, RouteKeys } from '@lib/constants';
+import { LocalStorageKeys, RouteKeys } from '@lib/constants';
 import { ReactNode, useContext } from 'react';
 import { AuthContext } from '@app/providers/auth';
 import { PreloaderContext } from '@app/providers/preloader';

@@ -49,7 +49,7 @@ export const AccountBar = () => {
       {authContext.isAuth ? (
         <DropdownMenu open={isOpenMenu} onOpenChange={setIsOpenMenu}>
           <DropdownMenuTrigger asChild>
-            <Avatar>
+            <Avatar className="cursor-pointer">
               <AvatarImage src={getAvatar(authContext.user)} />
               <AvatarFallback>{getFallback(authContext.user)}</AvatarFallback>
             </Avatar>

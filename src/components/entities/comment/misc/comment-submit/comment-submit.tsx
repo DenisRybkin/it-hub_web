@@ -1,6 +1,7 @@
 import {
   ClipboardEventHandler,
   KeyboardEventHandler,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -16,6 +17,8 @@ import { EmojiPicker } from '@components/shared/emoji-picker';
 import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
 import { ImageCard } from '@components/entities/static-field/misc/image-card';
 import { useLocation } from 'react-router-dom';
+import { AuthContext } from '@app/providers/auth';
+import { AnchorKeys } from '@lib/constants';
 
 export type SubmitCommentDto = {
   text: string;
@@ -27,13 +30,12 @@ interface ICommentSubmitProps<T> {
   onSubmit: (dto: SubmitCommentDto) => void;
 }
 
-export const commentsAnchor = '#comments';
-
 export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
   const { t } = useTranslation();
   const { hash } = useLocation();
+  const authContext = useContext(AuthContext);
   const messageInputRef = useRef<HTMLDivElement | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [text, setText] = useState<string>('');
   const [staticFields, setStaticFields] = useState<StaticField[]>([]);
   const [isOpenEmojiPicker, setIsOpenEmojiPicker] = useState<boolean>(false);
@@ -47,6 +49,7 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
   };
 
   const handleSubmit = async () => {
+    if (!authContext.isAuth) return authContext.openAuthDialog();
     await props.onSubmit({
       text,
       staticFieldIds: staticFields.map(item => item.id),
@@ -75,7 +78,7 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
       text.trim().length
     ) {
       event.preventDefault();
-      if (!isLoading) handleSubmit();
+      if (!isUploading) handleSubmit();
     }
   };
 
@@ -93,7 +96,7 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
     messageInputRef.current?.scrollIntoView({ behavior: 'smooth' });
 
   useEffect(() => {
-    if (hash == commentsAnchor) setTimeout(scrollTo);
+    if (hash == AnchorKeys.comments) setTimeout(scrollTo);
   }, [hash]);
 
   return (
@@ -136,14 +139,14 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
               accept="image/*"
               maxSizeMb={4}
               formDataName="image"
-              setIsUploading={setIsLoading}
-              isUploading={isLoading}
+              setIsUploading={setIsUploading}
+              isUploading={isUploading}
               onSuccess={staticField =>
                 setStaticFields(prev => [...prev, staticField])
               }
             >
               <Button
-                disabled={isLoading || props.isLoading}
+                disabled={isUploading || props.isLoading}
                 variant="ghost"
                 size="icon-sm"
               >
@@ -156,7 +159,7 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
             >
               <PopoverTrigger>
                 <Button
-                  disabled={isLoading || props.isLoading}
+                  disabled={isUploading || props.isLoading}
                   variant="ghost"
                   size="icon-sm"
                 >
@@ -176,7 +179,7 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
             onClick={handleSubmit}
             variant="primary"
             size="sm"
-            data={{ isLoading: isLoading || props.isLoading }}
+            data={{ isLoading: isUploading || props.isLoading }}
           >
             {t('ui:button.send')}
           </Button>

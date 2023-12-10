@@ -32,7 +32,8 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
     const element = scrollWrapperRef?.current;
     if (!element) return false;
     return (
-      element.scrollWidth! - (element.clientWidth! + element.scrollLeft) <= 15
+      element.scrollWidth! - (element.clientWidth! + element.scrollLeft) <=
+        15 || !checkElementHasScroll()
     );
   };
 
@@ -55,6 +56,7 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
   const scrollToRight = () => handleScrollTo('right');
 
   useEffect(() => {
+    scrollHandler();
     scrollWrapperRef.current &&
       scrollWrapperRef.current.addEventListener('scroll', scrollHandler);
     return () => {
@@ -62,12 +64,6 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
         scrollWrapperRef.current?.removeEventListener('scroll', scrollHandler);
     };
   }, [scrollWrapperRef?.current, props.itemsLength]);
-
-  useEffect(() => {
-    setLeftScrollIsDisabled(handleCheckOffsetLeft());
-    const hasScroll = checkElementHasScroll();
-    setRightScrollIsDisabled(!hasScroll);
-  }, [props.itemsLength]);
 
   return (
     <div className={cn('w-full relative', props.containerClassName)}>
@@ -85,7 +81,10 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
           )}
           {!rightScrollIsDisabled && (
             <Button
-              className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2"
+              className={cn(
+                'absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2',
+                rightScrollIsDisabled && 'hidden'
+              )}
               variant="ghost"
               size="icon"
               onClick={scrollToRight}

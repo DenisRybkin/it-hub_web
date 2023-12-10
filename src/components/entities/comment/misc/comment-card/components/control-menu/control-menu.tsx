@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { AuthContext } from '@app/providers/auth';
 import { Button } from '@components/ui/button';
 import { FiMoreHorizontal } from 'react-icons/fi';

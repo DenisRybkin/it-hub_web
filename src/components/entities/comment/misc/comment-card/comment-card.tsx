@@ -8,8 +8,7 @@ import { ReactionPicker } from '@components/entities/comment/misc/comment-card/c
 import { BaseReactionsStrategy } from '@components/entities/comment/misc/comment-card/components/reaction-picker/strategies/base-reaction-strategy';
 import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
 import { ImageCard } from '@components/entities/static-field/misc/image-card';
-import { FiMoreHorizontal } from 'react-icons/fi';
-import { Button } from '@components/ui/button';
+import Linkify from 'linkify-react';
 import { ControlMenu } from '@components/entities/comment/misc/comment-card/components/control-menu';
 
 interface ICommentCardProps<R> {
@@ -76,7 +75,9 @@ export const CommentCard = <R,>(props: ICommentCardProps<R>) => {
       </div>
 
       {/*BODY*/}
-      <p>{props.text}</p>
+      <div className="[&>p]:break-words whitespace-pre-wrap">
+        <Linkify as="p">{props.text}</Linkify>
+      </div>
       {!!props.attachments?.length && (
         <HorizontalScrollArea
           containerClassName="mt-2"

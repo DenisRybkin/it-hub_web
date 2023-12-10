@@ -1,6 +1,8 @@
 import { Button } from '@components/ui/button';
 import { IReactionChip } from '../types';
 import { cn, number2short } from '@lib/utils/tools';
+import { useContext } from 'react';
+import { AuthContext } from '@app/providers/auth';
 
 interface IReactionCardProps {
   isLoading: boolean;
@@ -9,7 +11,11 @@ interface IReactionCardProps {
 }
 
 export const ReactionCard = (props: IReactionCardProps) => {
-  const handleClick = () => props.onReact(props.item.emoji);
+  const authContext = useContext(AuthContext);
+  const handleClick = () =>
+    authContext.isAuth
+      ? props.onReact(props.item.emoji)
+      : authContext.openAuthDialog();
 
   return (
     <Button

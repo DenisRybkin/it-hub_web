@@ -16,7 +16,7 @@ interface ITextEditorProps {
 }
 
 export interface ITextEditorForwardRef {
-  onGetData: () => Promise<OutputData | undefined>;
+  getData: () => Promise<OutputData | undefined>;
   isLoading: boolean;
 }
 
@@ -36,7 +36,7 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
         });
     };
 
-    const handleSave = async () => {
+    const getData = async () => {
       setIsLoading(true);
       const savedData = await editorCore?.current?.save();
       setIsLoading(false);
@@ -56,7 +56,7 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
     useImperativeHandle<ITextEditorForwardRef, ITextEditorForwardRef>(
       ref,
       () => ({
-        onGetData: handleSave,
+        getData,
         isLoading,
       })
     );
@@ -64,6 +64,7 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
     return (
       <div className={cn(props.readonly && 'text-editor-readonly')}>
         <EditorInstance
+          key={String(props.readonly)}
           onInitialize={handleInitialize}
           readOnly={props.readonly}
           autofocus={props.autofocus}

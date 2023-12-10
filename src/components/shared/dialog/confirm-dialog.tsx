@@ -33,10 +33,7 @@ export const ConfirmDialog = (props: IConfirmDialogProps) => {
 
   return (
     <AlertDialog onOpenChange={setIsOpen} open={isOpen}>
-      <AlertDialogTrigger
-        className={cn(!isOpen && 'hidden')}
-        onClick={handleOpen}
-      >
+      <AlertDialogTrigger asChild={!!props.trigger} onClick={handleOpen}>
         {props.trigger}
       </AlertDialogTrigger>
       <AlertDialogContent>

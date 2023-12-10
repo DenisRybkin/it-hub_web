@@ -1,17 +1,9 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  useImperativeHandle,
-  useState,
-} from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { LoginSchema } from '@lib/utils/validations/login-schema';
+import { LoginSchema } from '@lib/utils/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  ForwardRefAuthForm,
-  IAuthFormProps,
-} from '@components/entities/auth/forms/common/auth-interface';
+import { IAuthFormProps } from '@components/entities/auth/forms/common/auth-interface';
 import {
   Form,
   FormControl,

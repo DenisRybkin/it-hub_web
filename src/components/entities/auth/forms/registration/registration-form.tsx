@@ -1,7 +1,7 @@
 import React from 'react';
 import { IAuthFormProps } from '@components/entities/auth/forms/common/auth-interface';
 import { z } from 'zod';
-import { RegistrationSchema } from '@lib/utils/validations/registration-schema';
+import { RegistrationSchema } from '@lib/utils/validations';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

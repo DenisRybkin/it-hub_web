@@ -4,7 +4,7 @@ import { api } from '@lib/api/plugins';
 import { User } from '@lib/api/models';
 import { PreloaderContext } from '@app/providers/preloader';
 import { AuthContext } from '@app/providers/auth/auth-context';
-import { LocaleStorageKeys, QueryKeys } from '@lib/constants';
+import { LocalStorageKeys, QueryKeys } from '@lib/constants';
 import { useQuery } from '@tanstack/react-query';
 import { AuthDialog } from '@components/entities/auth/dialogs';
 
@@ -13,14 +13,14 @@ export const AuthProvider = (props: IProviderProps) => {
 
   const [user, setUser] = useState<User | undefined>(undefined);
   const [accessToken, setAccessToken] = useState<string | undefined>(
-    localStorage.getItem(LocaleStorageKeys.JWT) ?? undefined
+    localStorage.getItem(LocalStorageKeys.JWT) ?? undefined
   );
   const [isOpenAuthDialog, setIsOpenAuthDialog] = useState<boolean>(false);
 
   const handleSuccess = (user: User) => setUser(user);
 
   const handleError = () => {
-    localStorage.removeItem(LocaleStorageKeys.JWT);
+    localStorage.removeItem(LocalStorageKeys.JWT);
     handleSetAccessToken(undefined);
   };
 
@@ -34,14 +34,14 @@ export const AuthProvider = (props: IProviderProps) => {
 
   const isAuth = useMemo(
     () =>
-      !!(accessToken ?? localStorage.getItem(LocaleStorageKeys.JWT)) && !!user,
+      !!(accessToken ?? localStorage.getItem(LocalStorageKeys.JWT)) && !!user,
     [accessToken, user]
   );
 
   const role = useMemo(() => user?.role, [user]);
   const handleSetAccessToken = (token?: string) => {
     setAccessToken(token);
-    if (!token) localStorage.removeItem(LocaleStorageKeys.JWT);
+    if (!token) localStorage.removeItem(LocalStorageKeys.JWT);
   };
 
   const handleOpenAuthDialog = () => setIsOpenAuthDialog(true);

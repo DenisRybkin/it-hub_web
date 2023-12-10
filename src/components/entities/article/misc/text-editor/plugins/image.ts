@@ -5,7 +5,7 @@ import {
   ToolConstructable,
   ToolSettings,
 } from '@editorjs/editorjs/types/tools';
-import { LocaleStorageKeys } from '@lib/constants';
+import { LocalStorageKeys } from '@lib/constants';
 
 export const imagePlugin: ToolConstructable | ToolSettings = {
   class: ImageTool,
@@ -16,7 +16,7 @@ export const imagePlugin: ToolConstructable | ToolSettings = {
     field: 'image',
     types: 'image/*',
     additionalRequestHeaders: {
-      authorization: `Bearer ${localStorage.getItem(LocaleStorageKeys.JWT)}`,
+      authorization: `Bearer ${localStorage.getItem(LocalStorageKeys.JWT)}`,
     },
     // uploader: {
     //   async uploadByFile(file: FormData) {

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LocaleStorageKeys } from '@lib/constants';
+import { LocalStorageKeys } from '@lib/constants';
 
 const currentYear = new Date().getFullYear();
 type FormatDateOptions = Intl.DateTimeFormatOptions & {
@@ -12,7 +12,7 @@ export function useDateHelpers() {
   const { t } = useTranslation();
 
   const locale = useMemo(
-    () => localStorage.getItem(LocaleStorageKeys.LOCALE) ?? 'en',
+    () => localStorage.getItem(LocalStorageKeys.LOCALE) ?? 'en',
     [t]
   );
 

@@ -1,10 +1,6 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 type DeviceType = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-
-const handler = (event: UIEvent) => {
-  console.log(2222);
-};
 
 export const useDeviceDetermine = (): [DeviceType, number] => {
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
