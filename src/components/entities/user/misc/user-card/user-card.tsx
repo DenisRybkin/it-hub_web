@@ -11,7 +11,6 @@ import { AuthContext } from '@app/providers/auth';
 
 interface IUserCardProps {
   user: User;
-  onRefresh: () => void;
 }
 
 export const UserCard = (props: IUserCardProps) => {

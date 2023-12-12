@@ -55,7 +55,7 @@ export const UserPage = () => {
               ) : (
                 <>
                   {result.map(user => (
-                    <UserCard key={user.id} user={user} onRefresh={() => {}} />
+                    <UserCard key={user.id} user={user} />
                   ))}
                 </>
               )}
@@ -88,7 +88,7 @@ export const UserPage = () => {
             ) : (
               <>
                 {result.map(user => (
-                  <UserCard key={user.id} user={user} onRefresh={() => {}} />
+                  <UserCard key={user.id} user={user} />
                 ))}
               </>
             )}

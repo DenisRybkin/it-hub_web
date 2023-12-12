@@ -27,9 +27,11 @@ import {
   Article,
   ArticleComment,
   ArticleCommentReaction,
+  ArticleTestUser,
   Category,
   Hashtag,
   ReadArticleCommentFilterDto,
+  ReadArticleTestUserFilterDto,
   StaticField,
 } from '@lib/api/models';
 import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
@@ -213,9 +215,15 @@ export const ArticlePage = () => {
         {data?.test?.questions && (
           <>
             <h1 className="head-text text-left">{t('ui:title.testing')}</h1>
-            <TestRunner
+            <TestRunner<ArticleTestUser, ReadArticleTestUserFilterDto>
               articleId={data.id}
               questions={data.test?.questions as QuestionDto[]}
+              usersWhoPassed={data.test.usersWhoPassed?.map(item => item.user!)}
+              controllerFilter={[
+                { key: 'testId', type: 'eq', value: data.test.id },
+              ]}
+              model2user={testUser => testUser.user!}
+              usersWhoPassedController={api.articleTestUser}
               isPassed={
                 !authContext.isAuth ||
                 data.test.usersWhoPassed?.some(

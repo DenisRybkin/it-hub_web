@@ -4,6 +4,7 @@
 /* eslint-disable */
 
 import type { ArticleTest } from './ArticleTest';
+import type { User } from './User';
 
 export type ArticleTestUser = {
     /**
@@ -25,7 +26,7 @@ export type ArticleTestUser = {
     /**
      * user, who passed test
      */
-    user?: ArticleTest;
+    user?: User;
     /**
      * date of model created
      */

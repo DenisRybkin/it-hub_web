@@ -65,6 +65,7 @@ export type { ReadArticleFilterDto } from './ReadArticleFilterDto';
 export type { ReadArticleTestAnswerFilterDto } from './ReadArticleTestAnswerFilterDto';
 export type { ReadArticleTestFilterDto } from './ReadArticleTestFilterDto';
 export type { ReadArticleTestQuestionFilterDto } from './ReadArticleTestQuestionFilterDto';
+export type { ReadArticleTestUserFilterDto } from './ReadArticleTestUserFilterDto';
 export type { ReadCategoryFilterDto } from './ReadCategoryFilterDto';
 export type { ReadExaminationAnswerFilterDto } from './ReadExaminationAnswerFilterDto';
 export type { ReadExaminationFilterDto } from './ReadExaminationFilterDto';

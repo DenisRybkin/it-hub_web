@@ -121,7 +121,8 @@
     "comment_0d": "comments",
     "comment_1d": "comments",
     "want_delete_comment": "Do you really want to delete comment?",
-    "want_delete_article": "Do you really want to delete article?"
+    "want_delete_article": "Do you really want to delete article?",
+    "users_who_passed_test": "Users who have passed the test"
   },
   "tab": {},
   "table": {},

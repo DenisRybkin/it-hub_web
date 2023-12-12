@@ -4,7 +4,6 @@ import {
   FilterOption,
   Autocomplete,
 } from '@/lib/api/types';
-import { AxiosError } from 'axios';
 import { BaseProcessedError } from '@lib/api/models';
 
 export type getOptions<T, TFilter> = {

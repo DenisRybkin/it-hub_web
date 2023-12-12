@@ -1,6 +1,11 @@
 import type { IApiControllerRead } from '@lib/api/interfaces';
 import { BaseProcessedError } from '@lib/api/models';
-import { FilterOption, PagingModel, PagingOptions } from '@lib/api/types';
+import type {
+  FilterOption,
+  ModelWithId,
+  PagingModel,
+  PagingOptions,
+} from '@lib/api/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +15,7 @@ import { QueryFunctionContext } from '@tanstack/query-core';
 import type { IUsePaging, PagingInfo } from '@lib/utils/hooks/paging/common';
 import { fetchItems } from '@lib/utils/hooks/paging/common';
 
-export const useInfinityPaging = <T extends { id: number }, TFilter>(
+export const useInfinityPaging = <T extends ModelWithId, TFilter>(
   controller: IApiControllerRead<T, TFilter>,
   onError?: (error: BaseProcessedError) => void,
   filterOptions?: FilterOption<TFilter>[],

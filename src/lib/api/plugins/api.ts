@@ -20,6 +20,7 @@ import {
   AchievementController,
   ArticleShortController,
   UserShortController,
+  ArticleTestUserController,
 } from '@/lib/api/controllers';
 import { client } from '@/lib/api/plugins/client';
 
@@ -42,6 +43,7 @@ class Api {
   readonly article: ArticleController;
   readonly articleShort: ArticleShortController;
   readonly achievement: AchievementController;
+  readonly articleTestUser: ArticleTestUserController;
 
   constructor(client: AxiosInstance, locker: LockerModel) {
     this.auth = new AuthController(client, locker);
@@ -63,6 +65,7 @@ class Api {
       client,
       locker
     );
+    this.articleTestUser = new ArticleTestUserController(client, locker);
     this.articleTestAnswer = new ArticleTestAnswerController(client, locker);
     this.articleComment = new ArticleCommentController(client, locker);
     this.article = new ArticleController(client, locker);

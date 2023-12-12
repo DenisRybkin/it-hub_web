@@ -17,14 +17,24 @@ import { api } from '@lib/api/plugins';
 import { SuccessState } from '@components/entities/test/misc/test-runner/components/success-state';
 import { FailedState } from '@components/entities/test/misc/test-runner/components/failed-state';
 import { useMutation } from '@tanstack/react-query';
+import { User } from '@lib/api/models';
+import { IApiControllerRead } from '@lib/api/interfaces';
+import type { ModelWithId } from '@lib/api/types';
+import { FilterOption } from '@lib/api/types';
 
-interface ITestRunnerProps {
+interface ITestRunnerProps<U extends ModelWithId, UFilter> {
   articleId: number;
   isPassed?: boolean;
   questions: QuestionDto[];
+  usersWhoPassed?: User[];
+  usersWhoPassedController?: IApiControllerRead<U, UFilter>;
+  controllerFilter?: FilterOption<UFilter>[];
+  model2user?: (model: U) => User;
 }
 
-export const TestRunner = (props: ITestRunnerProps) => {
+export const TestRunner = <U extends ModelWithId, UFilter>(
+  props: ITestRunnerProps<U, UFilter>
+) => {
   const { t } = useTranslation();
   const [isRun, setIsRun] = useState<boolean>(false);
   const [questionsState, setQuestionsState] = useState<QuestionDto[]>(
@@ -59,9 +69,8 @@ export const TestRunner = (props: ITestRunnerProps) => {
 
   const handleFinish = async () => {
     const passResult = comparisonAnswers(props.questions, questionsState);
-    if (passResult) {
-      await passTestMutation.mutate();
-    } else setIsFailed(true);
+    if (passResult) await passTestMutation.mutate();
+    else setIsFailed(true);
     handleStop();
   };
 
@@ -87,7 +96,15 @@ export const TestRunner = (props: ITestRunnerProps) => {
       return setAnswersByQuestionId(questionId, prev, updatedAnswers);
     });
 
-  if (isSuccess) return <SuccessState />;
+  if (isSuccess)
+    return (
+      <SuccessState<U, UFilter>
+        usersWhoPassed={props.usersWhoPassed}
+        controllerFilter={props.controllerFilter}
+        model2user={props.model2user}
+        usersWhoPassedController={props.usersWhoPassedController}
+      />
+    );
   if (isFailed) return <FailedState onRetry={handleRetry} />;
 
   //if (props.inPassed) return null;

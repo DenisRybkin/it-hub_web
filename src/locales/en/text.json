@@ -34,6 +34,7 @@
   "my_account": "My account",
   "out_of": "out of",
   "question_number": "Question №{{number}}",
-  "you_passed_test": "You passed the test! pretty boy!",
+  "you_passed_test": "You passed the test! Pretty boy!",
+  "more_pretty_boys": "More pretty boys:",
   "you_not_passed_test": "Bro, there were mistakes, try again!"
 }
