@@ -77,7 +77,8 @@
     "prev": "Prev",
     "start": "Start",
     "retry": "Retry",
-    "edit": "Edit"
+    "edit": "Edit",
+    "exam": "Exam"
   },
   "label": {
     "i_read": "I have read the",
@@ -122,7 +123,9 @@
     "comment_1d": "comments",
     "want_delete_comment": "Do you really want to delete comment?",
     "want_delete_article": "Do you really want to delete article?",
-    "users_who_passed_test": "Users who have passed the test"
+    "users_who_passed_test": "Users who have passed the test",
+    "pass_examination": "Passing the examination",
+    "take_examination": "Take the exam to get the role of a publisher"
   },
   "tab": {},
   "table": {},

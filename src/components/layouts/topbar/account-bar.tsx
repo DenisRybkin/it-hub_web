@@ -18,7 +18,7 @@ import { FiLogIn } from 'react-icons/fi';
 import { Button } from '@components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
-import { RouteKeys } from '@lib/constants';
+import { LocalStorageKeys, RouteKeys } from '@lib/constants';
 
 export const AccountBar = () => {
   const { t } = useTranslation();
@@ -31,9 +31,10 @@ export const AccountBar = () => {
     void setIsOpenMenu(false) || confirmDialogTriggerRef.current?.click();
 
   const handleLogout = async () => {
+    await api.auth.logout();
+    localStorage.removeItem(LocalStorageKeys.JWT);
     authContext.setUser(undefined);
     authContext.setAccessToken(undefined);
-    await api.auth.logout();
   };
 
   const handleOpenProfile = () =>

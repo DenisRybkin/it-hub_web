@@ -6,7 +6,8 @@
     "registration_success": "Registration was successful",
     "copied_clipboard": "Copied to clipboard: {{value}}",
     "hashtag_created": "The hashtag was successfully created",
-    "article_created": "The article was successfully created"
+    "article_created": "The article was successfully created",
+    "publisher_received": "Congratulations, you can now create articles!"
   },
   "error": {
     "default": "Something went wrong...",

@@ -1,5 +1,5 @@
 import { QuestionDto } from '@components/entities/test/misc/common/types';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { QuestionCard } from '@components/entities/test/misc/test-runner/components/question-card';
 import { SwitchableRender } from '@components/shared/switchable-render';
 import { useTranslation } from 'react-i18next';
@@ -13,29 +13,29 @@ import {
   swapAnswersIsRight,
 } from '@components/entities/test/misc/common/utils';
 import { toast } from '@components/ui/use-toast';
-import { api } from '@lib/api/plugins';
 import { SuccessState } from '@components/entities/test/misc/test-runner/components/success-state';
 import { FailedState } from '@components/entities/test/misc/test-runner/components/failed-state';
-import { useMutation } from '@tanstack/react-query';
 import { User } from '@lib/api/models';
 import { IApiControllerRead } from '@lib/api/interfaces';
 import type { ModelWithId } from '@lib/api/types';
 import { FilterOption } from '@lib/api/types';
+import { AuthContext } from '@app/providers/auth';
 
 interface ITestRunnerProps<U extends ModelWithId, UFilter> {
-  articleId: number;
   isPassed?: boolean;
   questions: QuestionDto[];
-  usersWhoPassed?: User[];
   usersWhoPassedController?: IApiControllerRead<U, UFilter>;
   controllerFilter?: FilterOption<UFilter>[];
   model2user?: (model: U) => User;
+  onPassTest: () => unknown;
+  title?: string;
 }
 
 export const TestRunner = <U extends ModelWithId, UFilter>(
   props: ITestRunnerProps<U, UFilter>
 ) => {
   const { t } = useTranslation();
+  const authContext = useContext(AuthContext);
   const [isRun, setIsRun] = useState<boolean>(false);
   const [questionsState, setQuestionsState] = useState<QuestionDto[]>(
     resetIsRightQuestion(props.questions)
@@ -43,13 +43,8 @@ export const TestRunner = <U extends ModelWithId, UFilter>(
   const [isSuccess, setIsSuccess] = useState<boolean>(props.isPassed ?? false);
   const [isFailed, setIsFailed] = useState<boolean>(false);
 
-  const passTestMutation = useMutation({
-    mutationKey: [api.article.toString(), props.articleId],
-    mutationFn: async () =>
-      await api.article.passTest(props.articleId, handleSuccess, handleError),
-  });
-
-  const handleRun = () => setIsRun(true);
+  const handleRun = () =>
+    authContext.isAuth ? setIsRun(true) : authContext.openAuthDialog();
   const handleStop = () => setIsRun(false);
 
   const handleSuccess = () => setIsSuccess(true);
@@ -69,7 +64,7 @@ export const TestRunner = <U extends ModelWithId, UFilter>(
 
   const handleFinish = async () => {
     const passResult = comparisonAnswers(props.questions, questionsState);
-    if (passResult) await passTestMutation.mutate();
+    if (passResult) await props.onPassTest();
     else setIsFailed(true);
     handleStop();
   };
@@ -96,10 +91,18 @@ export const TestRunner = <U extends ModelWithId, UFilter>(
       return setAnswersByQuestionId(questionId, prev, updatedAnswers);
     });
 
-  if (isSuccess)
+  useEffect(() => {
+    if (props.isPassed != isSuccess) setIsSuccess(props.isPassed ?? false);
+  }, [props.isPassed]);
+
+  if (
+    isSuccess &&
+    props.controllerFilter &&
+    props.model2user &&
+    props.usersWhoPassedController
+  )
     return (
       <SuccessState<U, UFilter>
-        usersWhoPassed={props.usersWhoPassed}
         controllerFilter={props.controllerFilter}
         model2user={props.model2user}
         usersWhoPassedController={props.usersWhoPassedController}
@@ -128,7 +131,9 @@ export const TestRunner = <U extends ModelWithId, UFilter>(
         <SwitchableRender renders={questionRenders} onFinish={handleFinish} />
       ) : (
         <div className="flex flex-col items-center justify-between gap-2">
-          <h1 className="text-body-bold">{t('ui:title.take_test')}</h1>
+          <h1 className="text-body-bold text-center">
+            {props.title ?? t('ui:title.take_test')}
+          </h1>
           <Button onClick={handleRun} variant="primary">
             {t('ui:button.start')}
           </Button>

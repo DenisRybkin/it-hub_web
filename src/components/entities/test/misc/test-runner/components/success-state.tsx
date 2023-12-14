@@ -9,12 +9,13 @@ import { FilterOption } from '@lib/api/types';
 import { UsersWhoPassedTestDialog } from '@components/entities/user/dialogs/users-who-passed-test/users-who-passed-test-dialog';
 import { useContext, useState } from 'react';
 import { AuthContext } from '@app/providers/auth';
+import { useInfinityPaging } from '@lib/utils/hooks';
+import { toast } from '@components/ui/use-toast';
 
 interface ISuccessStateProps<U extends ModelWithId, UFilter> {
-  usersWhoPassed?: User[];
-  usersWhoPassedController?: IApiControllerRead<U, UFilter>;
-  controllerFilter?: FilterOption<UFilter>[];
-  model2user?: (model: U) => User;
+  usersWhoPassedController: IApiControllerRead<U, UFilter>;
+  controllerFilter: FilterOption<UFilter>[];
+  model2user: (model: U) => User;
 }
 
 export const SuccessState = <U extends ModelWithId, UFilter>(
@@ -26,8 +27,18 @@ export const SuccessState = <U extends ModelWithId, UFilter>(
 
   const handleOpenDialog = () => setIsOpenDialog(true);
 
-  const avatarGroups = (props.usersWhoPassed ?? [])
+  const handleError = () =>
+    toast({ title: t('toast:error.default'), variant: 'destructive' });
+
+  const { items: usersWhoPassed } = useInfinityPaging<U, UFilter>(
+    props.usersWhoPassedController,
+    handleError,
+    props.controllerFilter
+  );
+
+  const avatarGroups = (usersWhoPassed ?? [])
     .filter(item => item.id != authContext.user?.id)
+    .map(props.model2user)
     .map(item => ({
       src: getAvatar(item),
       fallback: getFallback(item),

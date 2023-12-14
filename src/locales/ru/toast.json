@@ -7,7 +7,8 @@
     "registration_success": "Регистрация прошла успешно",
     "copied_clipboard": "Скопировано в буфер обмена: {{value}}",
     "hashtag_created": "Хэштэг был успешно создан",
-    "article_created": "Статья была успешно создана"
+    "article_created": "Статья была успешно создана",
+    "publisher_received": "Поздравляю, вы теперь можете создавать публикации!"
   },
   "error": {
     "default": "Что-то пошло не так...",

@@ -168,6 +168,12 @@ export const ArticlePage = () => {
       ),
   });
 
+  const passTestMutation = useMutation({
+    mutationKey: [api.article.toString(), Number(id)],
+    mutationFn: async () =>
+      await api.article.passTest(Number(id), undefined, errorHandler(false)),
+  });
+
   return (
     <>
       {isEditMode && (
@@ -216,16 +222,16 @@ export const ArticlePage = () => {
           <>
             <h1 className="head-text text-left">{t('ui:title.testing')}</h1>
             <TestRunner<ArticleTestUser, ReadArticleTestUserFilterDto>
-              articleId={data.id}
+              title={t('ui:title.take_test')}
+              onPassTest={passTestMutation.mutate}
               questions={data.test?.questions as QuestionDto[]}
-              usersWhoPassed={data.test.usersWhoPassed?.map(item => item.user!)}
               controllerFilter={[
                 { key: 'testId', type: 'eq', value: data.test.id },
               ]}
               model2user={testUser => testUser.user!}
               usersWhoPassedController={api.articleTestUser}
               isPassed={
-                !authContext.isAuth ||
+                authContext.isAuth &&
                 data.test.usersWhoPassed?.some(
                   item => item.userId == authContext.user?.id
                 )

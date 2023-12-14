@@ -64,7 +64,7 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
     return (
       <div className={cn(props.readonly && 'text-editor-readonly')}>
         <EditorInstance
-          key={String(props.readonly)}
+          key={String(props.readonly) + props.value?.time}
           onInitialize={handleInitialize}
           readOnly={props.readonly}
           autofocus={props.autofocus}
