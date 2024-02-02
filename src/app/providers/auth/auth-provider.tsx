@@ -7,9 +7,11 @@ import { AuthContext } from '@app/providers/auth/auth-context';
 import { LocalStorageKeys, QueryKeys } from '@lib/constants';
 import { useQuery } from '@tanstack/react-query';
 import { AuthDialog } from '@components/entities/auth/dialogs';
+import { HealthContext } from '@app/providers/health';
 
 export const AuthProvider = (props: IProviderProps) => {
   const preloader = useContext(PreloaderContext);
+  const health = useContext(HealthContext);
 
   const [user, setUser] = useState<User | undefined>(undefined);
   const [accessToken, setAccessToken] = useState<string | undefined>(
@@ -24,7 +26,7 @@ export const AuthProvider = (props: IProviderProps) => {
     handleSetAccessToken(undefined);
   };
 
-  const { isLoading, isFetching } = useQuery({
+  const { isFetching, isSuccess } = useQuery({
     queryKey: [QueryKeys.GET_ME],
     queryFn: async () => await api.user.getMe(handleSuccess, handleError),
     enabled: !user && !!accessToken,
@@ -47,8 +49,10 @@ export const AuthProvider = (props: IProviderProps) => {
   const handleOpenAuthDialog = () => setIsOpenAuthDialog(true);
 
   useEffect(() => {
-    preloader.setVisible(isFetching);
-  }, [isFetching]);
+    !health.isCheckingHealth &&
+      !health.isTechnicalWork &&
+      preloader.setVisible(isFetching);
+  }, [isFetching, health.isTechnicalWork, health.isCheckingHealth]);
 
   return (
     <>

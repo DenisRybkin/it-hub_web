@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "gen-models-local": "openapi --input http://localhost:8080/spec.json --output src/lib/api --exportServices false --exportCore false"
+    "gen-models-local": "openapi --input http://localhost:8080/spec.json --output src/lib/api/models --exportServices false --exportCore false"
   },
   "dependencies": {
     "@codexteam/icons": "^0.3.0",

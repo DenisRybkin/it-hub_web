@@ -1,16 +1,15 @@
-import { ErrorInfo } from 'react';
 import type {
   ErrorBoundaryError,
   ErrorBoundaryReset,
-} from '@app/providers/error-boundary/error-boundary';
-import { RootLayout } from '@components/layouts';
-import { Button } from '@components/ui/button';
-import { useNavigate } from 'react-router-dom';
-import { RoutePaths } from '@app/router';
-import { RouteKeys } from '@lib/constants';
-import { useTranslation } from 'react-i18next';
+} from '@app/providers/error-boundary/error-boundary'
+import { RoutePaths } from '@app/router'
+import { RootLayout } from '@components/layouts'
+import { Button } from '@components/ui/button'
+import { RouteKeys } from '@lib/constants'
+import { ErrorInfo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
-// TODO: переверстать
 
 export const ErrorFallback = (
   reset: ErrorBoundaryReset,

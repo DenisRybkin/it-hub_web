@@ -4,7 +4,7 @@ import { PreloaderContext } from '@app/providers/preloader/preloader-context';
 import { Preloader } from '@app/providers/preloader/preloader';
 
 export const PreloaderProvider = (props: IProviderProps) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
   return (
     <PreloaderContext.Provider value={{ isVisible, setVisible: setIsVisible }}>
       <>

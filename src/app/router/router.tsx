@@ -2,10 +2,13 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { RootLayout } from '@components/layouts';
 import { routerConfig } from '@app/router/config';
 import { ProtectedRoute } from '@app/router/protected-route';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { HealthContext } from '@app/providers/health';
+import { TechnicalWorkPage } from '@components/pages/technical-work';
 
 export const Router = () => {
   const location = useLocation();
+  const health = useContext(HealthContext);
 
   const resetScroll = () => window.scrollTo(0, 0);
 
@@ -13,7 +16,9 @@ export const Router = () => {
     resetScroll();
   }, [location.pathname]);
 
-  return (
+  return health.isTechnicalWork ? (
+    <TechnicalWorkPage />
+  ) : (
     <Routes>
       <Route element={<RootLayout />}>
         {routerConfig.map(route => (

@@ -17,3 +17,4 @@ export { AchievementController } from './achievement-controller';
 export { ArticleShortController } from './article-short-controller';
 export { UserShortController } from './user-short-controller';
 export { ArticleTestUserController } from './article-test-user-controller';
+export { AppController } from './app-controller';

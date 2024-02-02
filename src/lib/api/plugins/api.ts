@@ -21,10 +21,12 @@ import {
   ArticleShortController,
   UserShortController,
   ArticleTestUserController,
+  AppController,
 } from '@/lib/api/controllers';
 import { client } from '@/lib/api/plugins/client';
 
 class Api {
+  readonly app: AppController;
   readonly auth: AuthController;
   readonly user: UserController;
   readonly userShort: UserShortController;
@@ -46,6 +48,7 @@ class Api {
   readonly articleTestUser: ArticleTestUserController;
 
   constructor(client: AxiosInstance, locker: LockerModel) {
+    this.app = new AppController(client, locker);
     this.auth = new AuthController(client, locker);
     this.user = new UserController(client, locker);
     this.userShort = new UserShortController(client, locker);

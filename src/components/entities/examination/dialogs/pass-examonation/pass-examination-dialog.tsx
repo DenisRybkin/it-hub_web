@@ -8,6 +8,8 @@ import { TestRunner } from '@components/entities/test/misc/test-runner';
 import { QuestionDto } from '@components/entities/test/misc/common/types';
 import { QueryKeys } from '@lib/constants';
 
+const EXAMINATION_ID = 1;
+
 interface IPassExaminationDialogProps extends IBaseDialogProps {}
 
 export const PassExaminationDialog = (props: IPassExaminationDialogProps) => {
@@ -22,15 +24,20 @@ export const PassExaminationDialog = (props: IPassExaminationDialogProps) => {
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: [api.examination, 1],
+    queryKey: [api.examination.toString(), 1],
+    enabled: props.isOpen,
     queryFn: async () =>
-      await api.examination.getById(1, undefined, handleError),
+      await api.examination.getById(EXAMINATION_ID, undefined, handleError),
   });
 
   const { mutate } = useMutation({
     mutationKey: [QueryKeys.GET_ME],
     mutationFn: () =>
-      api.examination.passExamination(1, handleSuccess, handleError),
+      api.examination.passExamination(
+        EXAMINATION_ID,
+        handleSuccess,
+        handleError
+      ),
   });
 
   return (

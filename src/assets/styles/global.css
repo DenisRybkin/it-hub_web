@@ -12,3 +12,13 @@
 a {
     @apply transition-all underline hover:text-primary-500
 }
+
+body {
+
+    background-image: var(--background-image);
+    background-color: black;
+    background-size: var(--background-size, (100% 22em, 100%)), 100% 100%;
+
+    background-position: top;
+    background-repeat: no-repeat;
+}

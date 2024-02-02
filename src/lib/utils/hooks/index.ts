@@ -10,3 +10,4 @@ export { useControllableState } from './use-controllable-state';
 export { usePaging } from './paging/use-paging';
 export { useInfinityPaging } from './paging/use-infinity-paging';
 export { useDeclension } from './use-declension';
+export { useBackground } from './use-background';
