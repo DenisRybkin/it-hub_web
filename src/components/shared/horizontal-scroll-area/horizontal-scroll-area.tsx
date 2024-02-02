@@ -1,7 +1,7 @@
 import { Button } from '@components/ui/button';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { useEffect, useRef, useState } from 'react';
 import { cn } from '@lib/utils/tools';
+import { useEffect, useRef, useState } from 'react';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 interface IHorizontalScrollAreaProps {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import { ApiControllerRead } from '@lib/api/bases';
 import { ReadUserFilterDto, UserShortDto } from '@lib/api/models';
-import { AxiosInstance } from 'axios';
 import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class UserShortController extends ApiControllerRead<
   UserShortDto,

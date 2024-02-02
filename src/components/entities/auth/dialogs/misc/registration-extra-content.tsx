@@ -1,6 +1,6 @@
+import { IExtraContentProps } from '@components/entities/auth/dialogs/misc/index';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IExtraContentProps } from '@components/entities/auth/dialogs/misc/index';
 
 export const RegistrationExtraContent = (props: IExtraContentProps) => {
   const { t } = useTranslation();

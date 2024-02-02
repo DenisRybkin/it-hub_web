@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { EmptyContent } from '@components/shared/empty-content/empty-content';
-import { User } from '@lib/api/models';
+import { AuthContext } from '@app/providers/auth';
 import { UserCard } from '@components/entities/user/misc/user-card';
+import { EmptyContent } from '@components/shared/empty-content/empty-content';
 import { Button } from '@components/ui/button';
-import { FiChevronDown } from 'react-icons/fi';
+import { Separator } from '@components/ui/separator';
+import { User } from '@lib/api/models';
 import { cn } from '@lib/utils/tools';
 import { Collapsible, CollapsibleContent } from '@radix-ui/react-collapsible';
-import { AuthContext } from '@app/providers/auth';
-import { Separator } from '@components/ui/separator';
+import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FiChevronDown } from 'react-icons/fi';
 
 export const UserPage = () => {
   const { t } = useTranslation();

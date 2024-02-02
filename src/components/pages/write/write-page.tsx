@@ -1,33 +1,33 @@
-import React, { Ref, useRef, useState } from 'react';
+import { RoutePaths } from '@app/router';
 import type { ITextEditorForwardRef } from '@components/entities/article/misc/text-editor';
 import { TextEditor } from '@components/entities/article/misc/text-editor';
-import { Button } from '@components/ui/button';
-import { useTranslation } from 'react-i18next';
-import { FiImage, FiSave, FiShare, FiX } from 'react-icons/fi';
-import { LocalStorageKeys, RouteKeys } from '@lib/constants';
-import { checkBlocksLength } from '@lib/utils/validations';
-import { toast } from '@components/ui/use-toast';
 import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
-import { OutputData } from '@editorjs/editorjs';
+import {
+  HashtagsEditor,
+  IHashtagsEditorForwardRef,
+} from '@components/entities/hashtag/misc/hashtags-editor';
+import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
 import {
   ITestConstructorForwardRef,
   TestConstructor,
 } from '@components/entities/test/misc/test-constructor/test-constructor';
 import { CoverImage } from '@components/shared/cover-image';
-import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
+import { Button } from '@components/ui/button';
+import { toast } from '@components/ui/use-toast';
+import { OutputData } from '@editorjs/editorjs';
 import {
   Article,
   Category,
   CreateComplexArticleDto,
   StaticField,
 } from '@lib/api/models';
-import {
-  HashtagsEditor,
-  IHashtagsEditorForwardRef,
-} from '@components/entities/hashtag/misc/hashtags-editor';
 import { api } from '@lib/api/plugins';
+import { LocalStorageKeys, RouteKeys } from '@lib/constants';
+import { checkBlocksLength } from '@lib/utils/validations';
+import React, { Ref, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FiImage, FiSave, FiShare, FiX } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-import { RoutePaths } from '@app/router';
 
 export const WritePage = () => {
   const { t } = useTranslation();

@@ -1,8 +1,8 @@
+import { Input } from '@components/ui/input';
+import { useDebounce } from '@lib/utils/hooks';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FiSearch } from 'react-icons/fi';
-import { Input } from '@components/ui/input';
-import { ChangeEvent, useEffect, useState } from 'react';
-import { useDebounce } from '@lib/utils/hooks';
 
 interface ISearchbarProps {
   onChange?: (value: string) => void;

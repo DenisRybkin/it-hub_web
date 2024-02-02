@@ -1,13 +1,13 @@
-import { Article, ArticleShortDto, Category, Hashtag } from '@lib/api/models';
+import { ArticleViewFooter } from '@components/entities/article/misc/article-view/components/article-view-footer';
 import { ArticleViewHead } from '@components/entities/article/misc/article-view/components/article-view-head';
 import {
   ITextEditorForwardRef,
   TextEditor,
 } from '@components/entities/article/misc/text-editor';
-import { forwardRef, Ref, useImperativeHandle, useMemo, useRef } from 'react';
-import { OutputData } from '@editorjs/editorjs';
-import { ArticleViewFooter } from '@components/entities/article/misc/article-view/components/article-view-footer';
 import type { UpdateDto } from '@components/pages/article';
+import { OutputData } from '@editorjs/editorjs';
+import { Article, ArticleShortDto, Category, Hashtag } from '@lib/api/models';
+import { forwardRef, Ref, useImperativeHandle, useMemo, useRef } from 'react';
 
 interface IArticleViewProps {
   readonly: boolean;

@@ -1,28 +1,19 @@
-import {
-  Dispatch,
-  Ref,
-  SetStateAction,
-  useContext,
-  useRef,
-  useState,
-} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { AuthContext } from '@app/providers/auth';
+import { RoutePaths } from '@app/router';
+import { ArticleControlBar } from '@components/entities/article/misc/article-control-bar';
 import type { IArticleViewForwardRef } from '@components/entities/article/misc/article-view';
 import {
   ArticleView,
   ArticleViewSkeleton,
 } from '@components/entities/article/misc/article-view';
-import { api } from '@lib/api/plugins';
-import { toast } from '@components/ui/use-toast';
-import { useTranslation } from 'react-i18next';
-import { TestRunner } from '@components/entities/test/misc/test-runner/test-runner';
-import { QuestionDto } from '@components/entities/test/misc/common/types';
-import { AuthContext } from '@app/providers/auth';
+import { CommentCardList } from '@components/entities/comment/misc/comment-card-list';
 import type { SubmitCommentDto } from '@components/entities/comment/misc/comment-submit';
 import { CommentSubmit } from '@components/entities/comment/misc/comment-submit';
-import { CommentCardList } from '@components/entities/comment/misc/comment-card-list';
-import { useDeclension, useInfinityPaging } from '@lib/utils/hooks';
+import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
+import { QuestionDto } from '@components/entities/test/misc/common/types';
+import { ITestConstructorForwardRef } from '@components/entities/test/misc/test-constructor/test-constructor';
+import { TestRunner } from '@components/entities/test/misc/test-runner/test-runner';
+import { toast } from '@components/ui/use-toast';
 import {
   Article,
   ArticleComment,
@@ -34,11 +25,20 @@ import {
   ReadArticleTestUserFilterDto,
   StaticField,
 } from '@lib/api/models';
-import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
-import { ITestConstructorForwardRef } from '@components/entities/test/misc/test-constructor/test-constructor';
-import { ArticleControlBar } from '@components/entities/article/misc/article-control-bar';
-import { RoutePaths } from '@app/router';
+import { api } from '@lib/api/plugins';
 import { RouteKeys } from '@lib/constants';
+import { useDeclension, useInfinityPaging } from '@lib/utils/hooks';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  Dispatch,
+  Ref,
+  SetStateAction,
+  useContext,
+  useRef,
+  useState,
+} from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export type UpdateDto = {
   body: string;

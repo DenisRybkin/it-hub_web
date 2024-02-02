@@ -1,9 +1,9 @@
+import { IconH1, IconH2, IconH3 } from '@codexteam/icons';
 import {
   ToolConstructable,
   ToolSettings,
 } from '@editorjs/editorjs/types/tools';
 import Header from '@editorjs/header';
-import { IconH1, IconH2, IconH3 } from '@codexteam/icons';
 
 export const headerPlugin: ToolConstructable | ToolSettings = {
   class: Header as unknown as ToolConstructable,

@@ -2,13 +2,15 @@
  * Build styles
  */
 import './index.css';
-import { getLineStartPosition } from './utils/string';
+
 import { IconBrackets } from '@codexteam/icons';
 import { API } from '@editorjs/editorjs';
-import { ToolConfig } from '@editorjs/editorjs/types/tools/tool-config';
 import { BlockToolData } from '@editorjs/editorjs/types/tools/block-tool-data';
 import { HTMLPasteEvent } from '@editorjs/editorjs/types/tools/paste-events';
+import { ToolConfig } from '@editorjs/editorjs/types/tools/tool-config';
 import i18next from 'i18next';
+
+import { getLineStartPosition } from './utils/string';
 
 export class CodePlugin {
   api: API;

@@ -1,6 +1,6 @@
 import { getOptions, IApiControllerRead } from '@lib/api/interfaces';
-import { PagingModel } from '@lib/api/types';
 import { BaseProcessedError } from '@lib/api/models';
+import { PagingModel } from '@lib/api/types';
 
 export const fetchItems = async <T, TFilter>(
   controller: IApiControllerRead<T, TFilter>,

@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { AuthContext } from '@app/providers/auth';
-import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
-import { useSearchParams } from 'react-router-dom';
-import { CATEGORIES_SEARCH_PARAMS } from '@components/entities/category/misc/category-card-list/category-card-list';
-import { searchParamToNumArray } from '@lib/utils/tools';
 import { ArticleCardList } from '@components/entities/article/misc/article-card-list';
-import { useInfinityPaging } from '@lib/utils/hooks';
+import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
+import { CATEGORIES_SEARCH_PARAMS } from '@components/entities/category/misc/category-card-list/category-card-list';
+import { toast } from '@components/ui/use-toast';
 import { ArticleShortDto, ReadArticleFilterDto } from '@lib/api/models';
 import { api } from '@lib/api/plugins';
-import { toast } from '@components/ui/use-toast';
+import { useInfinityPaging } from '@lib/utils/hooks';
+import { searchParamToNumArray } from '@lib/utils/tools';
+import React, { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 
 export const HomePage = () => {
   const { t } = useTranslation();

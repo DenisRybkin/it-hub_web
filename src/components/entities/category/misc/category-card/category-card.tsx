@@ -1,6 +1,6 @@
-import React from 'react';
 import { Category } from '@lib/api/models';
 import { cn } from '@lib/utils/tools';
+import React from 'react';
 
 interface ICategoryCardProps {
   category: Category;

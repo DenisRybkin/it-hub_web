@@ -1,11 +1,11 @@
-import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { EditorInstance } from '@components/entities/article/misc/text-editor/instance';
 import { plugins } from '@components/entities/article/misc/text-editor/plugins';
-import { useTranslation } from 'react-i18next';
-import { OutputData } from '@editorjs/editorjs';
-import { EditorCore } from '@react-editor-js/core/src/editor-core';
-import { cn } from '@lib/utils/tools';
 import { withHeadingTemplate } from '@components/entities/article/misc/text-editor/templates';
+import { OutputData } from '@editorjs/editorjs';
+import { cn } from '@lib/utils/tools';
+import { EditorCore } from '@react-editor-js/core/src/editor-core';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ITextEditorProps {
   readonly?: boolean;

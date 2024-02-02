@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { Trigger, List, Root, Content } from '@radix-ui/react-tabs';
-
 import { cn } from '@lib/utils/tools/cn';
+import { Content,List, Root, Trigger } from '@radix-ui/react-tabs';
+import * as React from 'react';
 
 const Tabs = Root;
 
@@ -50,4 +49,4 @@ const TabsContent = React.forwardRef<
 ));
 TabsContent.displayName = Content.displayName;
 
-export { Tabs, TabsList, TabsTrigger, TabsContent };
+export { Tabs, TabsContent,TabsList, TabsTrigger };

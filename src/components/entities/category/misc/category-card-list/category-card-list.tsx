@@ -1,12 +1,12 @@
-import { useMemo } from 'react';
-import { api } from '@lib/api/plugins';
-import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
 import { CategoryCard } from '@components/entities/category/misc/category-card';
-import { Category } from '@lib/api/models';
-import { useSearchParams } from 'react-router-dom';
-import { searchParamToNumArray } from '@lib/utils/tools';
-import { useInfinityPaging } from '@lib/utils/hooks';
 import { CategoryCardSkeleton } from '@components/entities/category/misc/category-card';
+import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
+import { Category } from '@lib/api/models';
+import { api } from '@lib/api/plugins';
+import { useInfinityPaging } from '@lib/utils/hooks';
+import { searchParamToNumArray } from '@lib/utils/tools';
+import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 export const CATEGORIES_SEARCH_PARAMS = 'categories';
 

@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
 import { StaticField } from '@lib/api/models';
+import { ReactNode } from 'react';
 
 interface ICoverImageProps {
   image?: StaticField;

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
 import { IProviderProps } from '@app/providers/i-provider-props';
-import { HealthContext } from './health-context';
-import { useQuery } from '@tanstack/react-query';
 import { QueryKeys } from '@lib/constants';
+import { useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
+
+import { HealthContext } from './health-context';
 
 const isTechnicalWorkDefault = import.meta.env.VITE_TECHNICAL_WORK == 'true';
 

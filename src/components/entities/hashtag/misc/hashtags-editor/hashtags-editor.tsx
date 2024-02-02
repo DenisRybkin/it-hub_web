@@ -1,3 +1,15 @@
+import { VisibleTrigger } from '@components/shared/visible-trigger/visible-trigger';
+import { Button } from '@components/ui/button';
+import { toast } from '@components/ui/use-toast';
+import { Combobox, ComboboxItem } from '@components/ui/сombobox';
+import { Hashtag, ReadHashtagFilterDto } from '@lib/api/models';
+import { api } from '@lib/api/plugins';
+import {
+  useControllableState,
+  useDebounce,
+  useInfinityPaging,
+} from '@lib/utils/hooks';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   Dispatch,
   forwardRef,
@@ -5,19 +17,7 @@ import {
   useImperativeHandle,
   useState,
 } from 'react';
-import { Button } from '@components/ui/button';
 import { useTranslation } from 'react-i18next';
-import { Combobox, ComboboxItem } from '@components/ui/сombobox';
-import { api } from '@lib/api/plugins';
-import { Hashtag, ReadHashtagFilterDto } from '@lib/api/models';
-import {
-  useControllableState,
-  useDebounce,
-  useInfinityPaging,
-} from '@lib/utils/hooks';
-import { useQueryClient } from '@tanstack/react-query';
-import { toast } from '@components/ui/use-toast';
-import { VisibleTrigger } from '@components/shared/visible-trigger/visible-trigger';
 
 export interface IHashtagsEditorForwardRef {
   data?: Hashtag[];

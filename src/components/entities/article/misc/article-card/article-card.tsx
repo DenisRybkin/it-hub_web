@@ -1,17 +1,17 @@
-import { MouseEvent } from 'react';
-import { Hashtag, User } from '@lib/api/models';
-import { transform2PreviewMode } from '@lib/utils/tools';
-import { Button } from '@components/ui/button';
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import { TextEditor } from '@components/entities/article/misc/text-editor';
-import { useDeviceDetermine } from '@lib/utils/hooks';
-import { ArticleCardHead } from '@components/entities/article/misc/article-card/components/article-card-head';
-import { ArticleCardFooter } from '@components/entities/article/misc/article-card/components/article-card-footer';
-import { useMemo, useState } from 'react';
-import { OutputData } from '@editorjs/editorjs';
-import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
+import { ArticleCardFooter } from '@components/entities/article/misc/article-card/components/article-card-footer';
+import { ArticleCardHead } from '@components/entities/article/misc/article-card/components/article-card-head';
+import { TextEditor } from '@components/entities/article/misc/text-editor';
+import { Button } from '@components/ui/button';
+import { OutputData } from '@editorjs/editorjs';
+import { Hashtag, User } from '@lib/api/models';
 import { RouteKeys } from '@lib/constants';
+import { useDeviceDetermine } from '@lib/utils/hooks';
+import { transform2PreviewMode } from '@lib/utils/tools';
+import { MouseEvent } from 'react';
+import { useMemo, useState } from 'react';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 export interface IArticleCard {
   id: number;

@@ -1,11 +1,11 @@
-import { RouteProps } from 'react-router-dom';
+import { ArticlePage } from '@components/pages/article';
+import { HomePage } from '@components/pages/home/';
+import { LatestPage } from '@components/pages/latest';
+import { UserPage } from '@components/pages/user';
+import { WritePage } from '@components/pages/write';
 import { Role } from '@lib/api/models';
 import { RouteKeys } from '@lib/constants';
-import { WritePage } from '@components/pages/write';
-import { HomePage } from '@components/pages/home/';
-import { UserPage } from '@components/pages/user';
-import { LatestPage } from '@components/pages/latest';
-import { ArticlePage } from '@components/pages/article';
+import { RouteProps } from 'react-router-dom';
 
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;

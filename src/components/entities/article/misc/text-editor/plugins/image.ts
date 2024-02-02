@@ -1,10 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import ImageTool from '@editorjs/image';
 import {
   ToolConstructable,
   ToolSettings,
 } from '@editorjs/editorjs/types/tools';
+import ImageTool from '@editorjs/image';
 import { LocalStorageKeys } from '@lib/constants';
 
 export const imagePlugin: ToolConstructable | ToolSettings = {

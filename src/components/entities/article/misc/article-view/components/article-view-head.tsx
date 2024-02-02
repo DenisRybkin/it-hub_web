@@ -1,17 +1,17 @@
-import React, { Dispatch, forwardRef, Ref, SetStateAction } from 'react';
-import { Category, Hashtag, User } from '@lib/api/models';
-import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
-import { RouteKeys } from '@lib/constants';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
-import { Badge } from '@components/ui/badge';
 import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
 import {
   HashtagsEditor,
   IHashtagsEditorForwardRef,
 } from '@components/entities/hashtag/misc/hashtags-editor';
 import type { UpdateDto } from '@components/pages/article';
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
+import { Badge } from '@components/ui/badge';
+import { Category, Hashtag, User } from '@lib/api/models';
+import { RouteKeys } from '@lib/constants';
+import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
+import React, { Dispatch, forwardRef, Ref, SetStateAction } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface IArticleViewHeadProps {
   readonly: boolean;

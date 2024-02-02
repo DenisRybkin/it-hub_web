@@ -1,7 +1,7 @@
-import React, { LegacyRef, useEffect, useRef } from 'react';
+import { LinearLoader } from '@components/ui/loader';
 import { useViewportObserver } from '@lib/utils/hooks';
 import { cn } from '@lib/utils/tools';
-import { LinearLoader } from '@components/ui/loader';
+import React, { LegacyRef, useEffect, useRef } from 'react';
 
 interface IVisibleTriggerProps {
   options?: IntersectionObserverInit;

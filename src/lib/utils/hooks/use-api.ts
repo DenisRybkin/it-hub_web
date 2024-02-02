@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
 import { BaseProcessedError } from '@lib/api/models';
 import { AxiosError } from 'axios';
+import { useEffect, useRef, useState } from 'react';
 
 export interface IUseApiReturn<T> {
   value: T | undefined | null;

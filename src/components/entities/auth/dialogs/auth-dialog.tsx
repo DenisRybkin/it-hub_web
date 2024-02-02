@@ -1,22 +1,21 @@
-import type { IBaseDialogProps } from '@components/shared/dialog';
-import { DialogAdapter } from '@components/shared/dialog';
-import { LoginForm, RegistrationForm } from '@components/entities/auth/forms';
-
+import { AuthContext } from '@app/providers/auth';
 import Logo from '@assets/icons/favicon.svg';
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
-import { LoginSchema } from '@lib/utils/validations';
 import {
   LoginExtraContent,
   RegistrationExtraContent,
 } from '@components/entities/auth/dialogs/misc';
-import { RegistrationSchema } from '@lib/utils/validations';
+import { LoginForm, RegistrationForm } from '@components/entities/auth/forms';
+import type { IBaseDialogProps } from '@components/shared/dialog';
+import { DialogAdapter } from '@components/shared/dialog';
 import { toast } from '@components/ui/use-toast';
-import { api } from '@lib/api/plugins';
 import { BaseProcessedError, LoginResponseType } from '@lib/api/models';
+import { api } from '@lib/api/plugins';
 import { LocalStorageKeys } from '@lib/constants';
-import { AuthContext } from '@app/providers/auth';
+import { LoginSchema } from '@lib/utils/validations';
+import { RegistrationSchema } from '@lib/utils/validations';
+import { useContext, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 
 type AuthStrategyType = 'login' | 'registration';
 

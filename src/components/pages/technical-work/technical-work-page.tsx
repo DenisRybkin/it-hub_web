@@ -1,7 +1,6 @@
-import React from 'react';
+import Logo from '@assets/images/logo-dark-theme.svg';
 import { useBackground } from '@lib/utils/hooks';
 import { useTranslation } from 'react-i18next';
-import Logo from '@assets/images/logo-dark-theme.svg';
 
 export const TechnicalWorkPage = () => {
   useBackground('/technical-work.png', 'cover');

@@ -1,8 +1,9 @@
+import { AuthContext } from '@app/providers/auth';
 import { Button } from '@components/ui/button';
-import { IReactionChip } from '../types';
 import { cn, number2short } from '@lib/utils/tools';
 import { useContext } from 'react';
-import { AuthContext } from '@app/providers/auth';
+
+import { IReactionChip } from '../types';
 
 interface IReactionCardProps {
   isLoading: boolean;

@@ -4,8 +4,8 @@ import {
   ReadStaticFieldFilterDto,
   StaticField,
 } from '@lib/api/models';
-import { AxiosInstance } from 'axios';
 import { LockerModel, PagingModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class StaticFieldController extends ApiControllerRead<
   StaticField,

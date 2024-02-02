@@ -1,7 +1,7 @@
 import { ApiControllerBase } from '@lib/api/bases';
-import { AxiosInstance } from 'axios';
-import { LockerModel } from '@lib/api/types';
 import { BaseProcessedError } from '@lib/api/models';
+import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class AppController extends ApiControllerBase {
   constructor(client: AxiosInstance, locker: LockerModel) {

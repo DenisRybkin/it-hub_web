@@ -1,8 +1,7 @@
-import * as React from 'react';
+import { cn } from '@lib/utils/tools/cn';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
-
-import { cn } from '@lib/utils/tools/cn';
+import * as React from 'react';
 
 const Dialog = DialogPrimitive.Root;
 
@@ -109,10 +108,10 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
   Dialog,
-  DialogTrigger,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 };

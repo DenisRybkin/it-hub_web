@@ -1,9 +1,5 @@
+import { AuthContext } from '@app/providers/auth';
 import { QuestionDto } from '@components/entities/test/misc/common/types';
-import { useContext, useEffect, useState } from 'react';
-import { QuestionCard } from '@components/entities/test/misc/test-runner/components/question-card';
-import { SwitchableRender } from '@components/shared/switchable-render';
-import { useTranslation } from 'react-i18next';
-import { Button } from '@components/ui/button';
 import {
   changeAnswersIsRight,
   comparisonAnswers,
@@ -12,14 +8,18 @@ import {
   setAnswersByQuestionId,
   swapAnswersIsRight,
 } from '@components/entities/test/misc/common/utils';
-import { toast } from '@components/ui/use-toast';
-import { SuccessState } from '@components/entities/test/misc/test-runner/components/success-state';
 import { FailedState } from '@components/entities/test/misc/test-runner/components/failed-state';
-import { User } from '@lib/api/models';
+import { QuestionCard } from '@components/entities/test/misc/test-runner/components/question-card';
+import { SuccessState } from '@components/entities/test/misc/test-runner/components/success-state';
+import { SwitchableRender } from '@components/shared/switchable-render';
+import { Button } from '@components/ui/button';
+import { toast } from '@components/ui/use-toast';
 import { IApiControllerRead } from '@lib/api/interfaces';
+import { User } from '@lib/api/models';
 import type { ModelWithId } from '@lib/api/types';
 import { FilterOption } from '@lib/api/types';
-import { AuthContext } from '@app/providers/auth';
+import { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ITestRunnerProps<U extends ModelWithId, UFilter> {
   isPassed?: boolean;

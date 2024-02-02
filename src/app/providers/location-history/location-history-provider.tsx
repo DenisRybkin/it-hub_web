@@ -1,7 +1,7 @@
 import { IProviderProps } from '@app/providers/i-provider-props';
+import { LocationHistoryContext } from '@app/providers/location-history/location-history-context';
 import { useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { LocationHistoryContext } from '@app/providers/location-history/location-history-context';
 
 export const LocationHistoryProvider = (props: IProviderProps) => {
   const { pathname } = useLocation();

@@ -1,15 +1,15 @@
-import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from '@app/providers/auth';
+import { ErrorBoundaryProvider } from '@app/providers/error-boundary';
+import { HealthProvider } from '@app/providers/health';
 import { IProviderProps } from '@app/providers/i-provider-props';
 import { LocaleProvider } from '@app/providers/locale';
 import { LocationHistoryProvider } from '@app/providers/location-history';
-import { ErrorBoundaryProvider } from '@app/providers/error-boundary';
-import { ThemeProvider } from '@app/providers/theme';
-import { SetupApi } from '@app/providers/setup-api';
-import { AuthProvider } from '@app/providers/auth';
 import { PreloaderProvider } from '@app/providers/preloader';
-import { Toaster } from '@components/ui/toaster';
 import { QueryProvider } from '@app/providers/query/query-provider';
-import { HealthProvider } from '@app/providers/health';
+import { SetupApi } from '@app/providers/setup-api';
+import { ThemeProvider } from '@app/providers/theme';
+import { Toaster } from '@components/ui/toaster';
+import { BrowserRouter } from 'react-router-dom';
 
 export const RootProvider = (props: IProviderProps) => {
   return (

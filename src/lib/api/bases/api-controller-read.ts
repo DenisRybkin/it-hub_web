@@ -1,11 +1,12 @@
-import { ApiControllerBase } from '@/lib/api/bases/api-controller-base';
 import {
   getOptions,
   IApiControllerRead,
 } from '@lib/api/interfaces/i-api-controller-read';
-import { AxiosInstance } from 'axios';
-import { Autocomplete, LockerModel, PagingModel } from '@/lib/api/types';
 import { BaseProcessedError } from '@lib/api/models';
+import { AxiosInstance } from 'axios';
+
+import { ApiControllerBase } from '@/lib/api/bases/api-controller-base';
+import { Autocomplete, LockerModel, PagingModel } from '@/lib/api/types';
 
 export abstract class ApiControllerRead<
     T,

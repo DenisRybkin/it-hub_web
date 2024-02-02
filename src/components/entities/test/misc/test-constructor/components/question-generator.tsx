@@ -1,3 +1,19 @@
+import {
+  AnswerDto,
+  QuestionDto,
+} from '@components/entities/test/misc/common/types';
+import {
+  changeAnswerName,
+  changeAnswersIsRight,
+  changeQuestionName,
+  deleteAnswersByQuestionId,
+  deleteQuestion,
+  getAnswersByQuestionId,
+  setAnswersByQuestionId,
+} from '@components/entities/test/misc/common/utils';
+import { Question } from '@components/entities/test/misc/test-constructor/components/question';
+import { Button } from '@components/ui/button';
+import { IdGenerator } from '@lib/utils/tools';
 import React, {
   forwardRef,
   useEffect,
@@ -6,22 +22,6 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IdGenerator } from '@lib/utils/tools';
-import {
-  changeAnswersIsRight,
-  changeAnswerName,
-  changeQuestionName,
-  deleteAnswersByQuestionId,
-  deleteQuestion,
-  getAnswersByQuestionId,
-  setAnswersByQuestionId,
-} from '@components/entities/test/misc/common/utils';
-import { Button } from '@components/ui/button';
-import { Question } from '@components/entities/test/misc/test-constructor/components/question';
-import {
-  AnswerDto,
-  QuestionDto,
-} from '@components/entities/test/misc/common/types';
 
 export interface IQuestionGeneratorForwardRef {
   questions: QuestionDto[];

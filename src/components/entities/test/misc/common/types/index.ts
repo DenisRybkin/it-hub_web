@@ -1,2 +1,2 @@
-export { AnswerWithoutIdDto, AnswerDto } from './answer-dto';
-export { QuestionWithoutIdDto, QuestionDto } from './question-dto';
+export { AnswerDto,AnswerWithoutIdDto } from './answer-dto';
+export { QuestionDto,QuestionWithoutIdDto } from './question-dto';

@@ -1,15 +1,15 @@
-import { StaticField, User } from '@lib/api/models';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
 import { RoutePaths } from '@app/router';
-import { RouteKeys } from '@lib/constants';
-import { useNavigate } from 'react-router-dom';
+import { ControlMenu } from '@components/entities/comment/misc/comment-card/components/control-menu';
 import { ReactionPicker } from '@components/entities/comment/misc/comment-card/components/reaction-picker';
 import { BaseReactionsStrategy } from '@components/entities/comment/misc/comment-card/components/reaction-picker/strategies/base-reaction-strategy';
-import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
 import { ImageCard } from '@components/entities/static-field/misc/image-card';
+import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
+import { StaticField, User } from '@lib/api/models';
+import { RouteKeys } from '@lib/constants';
+import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
 import Linkify from 'linkify-react';
-import { ControlMenu } from '@components/entities/comment/misc/comment-card/components/control-menu';
+import { useNavigate } from 'react-router-dom';
 
 interface ICommentCardProps<R> {
   id: number;

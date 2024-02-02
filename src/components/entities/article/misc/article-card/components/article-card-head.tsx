@@ -1,11 +1,11 @@
-import { MouseEvent } from 'react';
-import { Hashtag, User } from '@lib/api/models';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
-import { Badge } from '@components/ui/badge';
-import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
+import { Badge } from '@components/ui/badge';
+import { Hashtag, User } from '@lib/api/models';
 import { RouteKeys } from '@lib/constants';
+import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
+import { MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface IArticleCardHeadProps {
   author: User;

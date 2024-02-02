@@ -1,29 +1,30 @@
 import { AxiosInstance } from 'axios';
-import { LockerModel } from '@/lib/api/types';
-import { mutexLocker } from '@/lib/api/plugins/locker';
+
 import {
-  AuthController,
-  CategoryController,
-  UserController,
-  ExaminationController,
-  StaticFieldController,
-  ExaminationQuestionController,
-  ExaminationAnswerController,
-  OpenAiController,
-  HashtagController,
-  RoleController,
-  ArticleTestController,
-  ArticleTestQuestionController,
-  ArticleTestAnswerController,
+  AchievementController,
+  AppController,
   ArticleCommentController,
   ArticleController,
-  AchievementController,
   ArticleShortController,
-  UserShortController,
+  ArticleTestAnswerController,
+  ArticleTestController,
+  ArticleTestQuestionController,
   ArticleTestUserController,
-  AppController,
+  AuthController,
+  CategoryController,
+  ExaminationAnswerController,
+  ExaminationController,
+  ExaminationQuestionController,
+  HashtagController,
+  OpenAiController,
+  RoleController,
+  StaticFieldController,
+  UserController,
+  UserShortController,
 } from '@/lib/api/controllers';
 import { client } from '@/lib/api/plugins/client';
+import { mutexLocker } from '@/lib/api/plugins/locker';
+import { LockerModel } from '@/lib/api/types';
 
 class Api {
   readonly app: AppController;

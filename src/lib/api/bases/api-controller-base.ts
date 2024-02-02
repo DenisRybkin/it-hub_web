@@ -1,11 +1,12 @@
+import type { BaseProcessedError } from '@lib/api/models';
 import {
   AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
+
 import { LockerModel } from '@/lib/api/types';
-import type { BaseProcessedError } from '@lib/api/models';
 
 export abstract class ApiControllerBase<
   Template = Object,

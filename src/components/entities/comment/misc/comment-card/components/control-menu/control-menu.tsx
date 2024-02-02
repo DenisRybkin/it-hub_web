@@ -1,21 +1,21 @@
-import { useContext, useRef, useState } from 'react';
 import { AuthContext } from '@app/providers/auth';
-import { Button } from '@components/ui/button';
-import { FiMoreHorizontal } from 'react-icons/fi';
-import { useTranslation } from 'react-i18next';
 import { ConfirmDialog } from '@components/shared/dialog';
-import {
-  DropdownMenu,
-  DropdownMenuGroup,
-  DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu';
+import { Button } from '@components/ui/button';
 import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@components/ui/dropdown-menu';
 import { toast } from '@components/ui/use-toast';
-import { api } from '@lib/api/plugins';
 import { User } from '@lib/api/models';
+import { api } from '@lib/api/plugins';
+import {
+  DropdownMenu,
+  DropdownMenuGroup,
+  DropdownMenuTrigger,
+} from '@radix-ui/react-dropdown-menu';
+import { useContext, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FiMoreHorizontal } from 'react-icons/fi';
 
 interface IControlMenuProps {
   commentId: number;

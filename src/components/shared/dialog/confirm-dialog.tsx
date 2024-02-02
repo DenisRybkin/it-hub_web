@@ -9,9 +9,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@components/ui/alert-dialog';
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
 import { cn } from '@lib/utils/tools';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface IConfirmDialogProps {
   trigger: React.ReactNode;

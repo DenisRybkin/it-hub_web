@@ -11,8 +11,8 @@ import {
   UserAvatar,
   UserAvatarDto,
 } from '@lib/api/models';
-import { AxiosInstance } from 'axios';
 import { LockerModel, PagingModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class UserController extends ApiControllerCRUD<
   User,

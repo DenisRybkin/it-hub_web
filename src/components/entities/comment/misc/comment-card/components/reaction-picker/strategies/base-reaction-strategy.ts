@@ -1,6 +1,7 @@
-import { ReactionController, IReactionChip } from '../types';
 import { BaseProcessedError } from '@lib/api/models';
+
 import { GeneralEmojisKeys } from '../constants/general-reactions';
+import { IReactionChip,ReactionController } from '../types';
 
 const initialReactionChips: IReactionChip[] = [
   {

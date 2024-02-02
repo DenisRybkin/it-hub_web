@@ -1,10 +1,10 @@
-import React, { useEffect, useLayoutEffect } from 'react';
 import { IProviderProps } from '@app/providers/i-provider-props';
+import { LocaleKeys, LocalStorageKeys } from '@lib/constants';
 import { EnResources } from '@locales/en';
 import { RuResources } from '@locales/ru';
-import { LocaleKeys, LocalStorageKeys } from '@lib/constants';
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { initReactI18next } from 'react-i18next';
 
 export const LocaleProvider = (props: IProviderProps) => {

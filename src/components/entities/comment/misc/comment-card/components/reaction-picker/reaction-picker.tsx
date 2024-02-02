@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { BaseReactionsStrategy } from './strategies/base-reaction-strategy';
-import { useTranslation } from 'react-i18next';
+import { AuthContext } from '@app/providers/auth';
+import { IReactionChip } from '@components/entities/comment/misc/comment-card/components/reaction-picker/types';
+import { EmojiPicker } from '@components/shared/emoji-picker';
+import { Button } from '@components/ui/button';
+import { PopoverContent } from '@components/ui/popover';
 import { toast } from '@components/ui/use-toast';
 import { Popover, PopoverTrigger } from '@radix-ui/react-popover';
-import { Button } from '@components/ui/button';
+import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiSmile } from 'react-icons/fi';
-import { PopoverContent } from '@components/ui/popover';
-import { EmojiPicker } from '@components/shared/emoji-picker';
+
 import { ReactionCardList } from './components/reaction-card-list';
-import { IReactionChip } from '@components/entities/comment/misc/comment-card/components/reaction-picker/types';
-import { AuthContext } from '@app/providers/auth';
+import { BaseReactionsStrategy } from './strategies/base-reaction-strategy';
 
 interface IReactionPicker<T> {
   commentId: number;

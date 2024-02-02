@@ -1,8 +1,8 @@
-import { FiHome, FiClock, FiClipboard, FiList, FiUsers } from 'react-icons/fi';
-import { ReactNode } from 'react';
-import { LuBuilding2 } from 'react-icons/lu';
-import { RouteKeys } from '@lib/constants';
 import { RoutePaths } from '@app/router';
+import { RouteKeys } from '@lib/constants';
+import { ReactNode } from 'react';
+import { FiClipboard, FiClock, FiHome, FiList, FiUsers } from 'react-icons/fi';
+import { LuBuilding2 } from 'react-icons/lu';
 
 interface ISidebarLink {
   route: string;

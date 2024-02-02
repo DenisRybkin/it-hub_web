@@ -1,3 +1,8 @@
+import { toast } from '@components/ui/use-toast';
+import { BaseProcessedError, StaticField } from '@lib/api/models';
+import { api } from '@lib/api/plugins';
+import { useControllableState } from '@lib/utils/hooks';
+import { bytes2mb, sliceIfLong } from '@lib/utils/tools';
 import {
   ChangeEvent,
   Dispatch,
@@ -5,12 +10,7 @@ import {
   SetStateAction,
   useRef,
 } from 'react';
-import { bytes2mb, sliceIfLong } from '@lib/utils/tools';
-import { toast } from '@components/ui/use-toast';
 import { useTranslation } from 'react-i18next';
-import { api } from '@lib/api/plugins';
-import { BaseProcessedError, StaticField } from '@lib/api/models';
-import { useControllableState } from '@lib/utils/hooks';
 
 interface IFileUploaderButtonProps {
   children: ReactNode;

@@ -1,10 +1,6 @@
-import React from 'react';
 import { IAuthFormProps } from '@components/entities/auth/forms/common/auth-interface';
-import { z } from 'zod';
-import { RegistrationSchema } from '@lib/utils/validations';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from '@components/ui/button';
+import { DialogFooter } from '@components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -14,8 +10,12 @@ import {
   FormMessage,
 } from '@components/ui/form';
 import { Input } from '@components/ui/input';
-import { DialogFooter } from '@components/ui/dialog';
-import { Button } from '@components/ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { RegistrationSchema } from '@lib/utils/validations';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 
 interface IRegistrationFormProps
   extends IAuthFormProps<z.infer<typeof RegistrationSchema>> {}

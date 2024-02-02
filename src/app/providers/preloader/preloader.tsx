@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
 import { ThemeContext } from '@app/providers/theme';
 import Logo from '@assets/icons/favicon.svg';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const Preloader = () => {

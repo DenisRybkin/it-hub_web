@@ -1,10 +1,11 @@
-import React from 'react';
-import { ArticleComment, ArticleCommentReaction } from '@lib/api/models';
-import { CommentCard, CommentCardSkeleton } from '../comment-card';
-import { VisibleTrigger } from '@components/shared/visible-trigger';
-import { BaseReactionsStrategy } from '../comment-card/components/reaction-picker/strategies/base-reaction-strategy';
-import { api } from '@lib/api/plugins';
 import { ReactionController } from '@components/entities/comment/misc/comment-card/components/reaction-picker/types';
+import { VisibleTrigger } from '@components/shared/visible-trigger';
+import { ArticleComment, ArticleCommentReaction } from '@lib/api/models';
+import { api } from '@lib/api/plugins';
+import React from 'react';
+
+import { CommentCard, CommentCardSkeleton } from '../comment-card';
+import { BaseReactionsStrategy } from '../comment-card/components/reaction-picker/strategies/base-reaction-strategy';
 
 type Strategy = 'article-comment';
 

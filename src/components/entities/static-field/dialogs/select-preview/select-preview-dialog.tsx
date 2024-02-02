@@ -1,16 +1,16 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Preview } from '@components/entities/static-field/dialogs/select-preview/components/preview';
+import { ImageCard } from '@components/entities/static-field/misc/image-card';
 import { DialogAdapter, IBaseDialogProps } from '@components/shared/dialog';
-import { useTranslation } from 'react-i18next';
-import { useControllableState } from '@lib/utils/hooks';
+import { Button } from '@components/ui/button';
+import { CircularLoader } from '@components/ui/loader';
 import { toast } from '@components/ui/use-toast';
-import { useQuery } from '@tanstack/react-query';
+import { StaticField } from '@lib/api/models';
 import { api } from '@lib/api/plugins';
 import { QueryKeys } from '@lib/constants';
-import { CircularLoader } from '@components/ui/loader';
-import { ImageCard } from '@components/entities/static-field/misc/image-card';
-import { Button } from '@components/ui/button';
-import { StaticField } from '@lib/api/models';
-import { Preview } from '@components/entities/static-field/dialogs/select-preview/components/preview';
+import { useControllableState } from '@lib/utils/hooks';
+import { useQuery } from '@tanstack/react-query';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ISelectPreviewDialogProps extends IBaseDialogProps {
   preview?: StaticField;

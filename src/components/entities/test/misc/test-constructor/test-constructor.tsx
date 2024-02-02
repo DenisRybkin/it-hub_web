@@ -1,17 +1,17 @@
-import React, { forwardRef, Ref, useImperativeHandle, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { TestValidationErrorKeys } from '@components/entities/test/misc/test-constructor/constants';
-import { toast } from '@components/ui/use-toast';
+import {
+  QuestionDto,
+  QuestionWithoutIdDto,
+} from '@components/entities/test/misc/common/types';
 import {
   resetIds,
   validateTest,
 } from '@components/entities/test/misc/common/utils';
 import type { IQuestionGeneratorForwardRef } from '@components/entities/test/misc/test-constructor/components/question-generator';
 import { QuestionGenerator } from '@components/entities/test/misc/test-constructor/components/question-generator';
-import {
-  QuestionDto,
-  QuestionWithoutIdDto,
-} from '@components/entities/test/misc/common/types';
+import { TestValidationErrorKeys } from '@components/entities/test/misc/test-constructor/constants';
+import { toast } from '@components/ui/use-toast';
+import React, { forwardRef, Ref, useImperativeHandle, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface ITestConstructorForwardRef {
   getAndValidateData: () => QuestionWithoutIdDto[] | undefined;

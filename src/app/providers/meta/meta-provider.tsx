@@ -1,11 +1,10 @@
+import { IProviderProps } from '@app/providers/i-provider-props';
+import { MetaContext } from '@app/providers/meta/meta-context';
+import { RoutePaths } from '@app/router';
+import { RouteKeys } from '@lib/constants';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { IProviderProps } from '@app/providers/i-provider-props';
-
-import { MetaContext } from '@app/providers/meta/meta-context';
 import { useLocation } from 'react-router-dom';
-import { RouteKeys } from '@lib/constants';
-import { RoutePaths } from '@app/router';
 
 const routsWithDefaultTitle = [
   RoutePaths[RouteKeys.HOME],

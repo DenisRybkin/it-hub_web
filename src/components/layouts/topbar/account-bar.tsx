@@ -1,6 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import React, { useContext, useRef, useState } from 'react';
 import { AuthContext } from '@app/providers/auth';
+import { RoutePaths } from '@app/router';
+import { ConfirmDialog } from '@components/shared/dialog';
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
+import { Button } from '@components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,16 +11,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
+import { api } from '@lib/api/plugins';
+import { LocalStorageKeys, RouteKeys } from '@lib/constants';
 import { getAvatar, getFallback } from '@lib/utils/tools';
 import { DropdownMenuGroup } from '@radix-ui/react-dropdown-menu';
-import { ConfirmDialog } from '@components/shared/dialog';
-import { api } from '@lib/api/plugins';
+import React, { useContext, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiLogIn } from 'react-icons/fi';
-import { Button } from '@components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { RoutePaths } from '@app/router';
-import { LocalStorageKeys, RouteKeys } from '@lib/constants';
 
 export const AccountBar = () => {
   const { t } = useTranslation();

@@ -1,3 +1,13 @@
+import { AuthContext } from '@app/providers/auth';
+import { FileUploader } from '@components/entities/static-field/misc/file-uploader';
+import { ImageCard } from '@components/entities/static-field/misc/image-card';
+import { EmojiPicker } from '@components/shared/emoji-picker';
+import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
+import { Button } from '@components/ui/button';
+import { PopoverContent } from '@components/ui/popover';
+import { StaticField } from '@lib/api/models';
+import { AnchorKeys } from '@lib/constants';
+import { Popover, PopoverTrigger } from '@radix-ui/react-popover';
 import {
   ClipboardEventHandler,
   KeyboardEventHandler,
@@ -6,19 +16,9 @@ import {
   useRef,
   useState,
 } from 'react';
-import { StaticField } from '@lib/api/models';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@components/ui/button';
 import { FiImage, FiSmile } from 'react-icons/fi';
-import { FileUploader } from '@components/entities/static-field/misc/file-uploader';
-import { Popover, PopoverTrigger } from '@radix-ui/react-popover';
-import { PopoverContent } from '@components/ui/popover';
-import { EmojiPicker } from '@components/shared/emoji-picker';
-import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
-import { ImageCard } from '@components/entities/static-field/misc/image-card';
 import { useLocation } from 'react-router-dom';
-import { AuthContext } from '@app/providers/auth';
-import { AnchorKeys } from '@lib/constants';
 
 export type SubmitCommentDto = {
   text: string;

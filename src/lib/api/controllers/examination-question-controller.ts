@@ -3,11 +3,11 @@ import {
   CreateExaminationQuestionDto,
   ExaminationQuestion,
   ReadExaminationQuestionFilterDto,
-  UpdatePartiallyExaminationQuestionDto,
   UpdateExaminationQuestionDto,
+  UpdatePartiallyExaminationQuestionDto,
 } from '@lib/api/models';
-import { AxiosInstance } from 'axios';
 import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class ExaminationQuestionController extends ApiControllerCRUD<
   ExaminationQuestion,

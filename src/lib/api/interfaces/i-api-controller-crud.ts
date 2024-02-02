@@ -1,6 +1,6 @@
-import { AxiosError } from 'axios';
-import { BaseProcessedError } from '@lib/api/models';
 import { IApiControllerRead } from '@lib/api/interfaces/i-api-controller-read';
+import { BaseProcessedError } from '@lib/api/models';
+import { AxiosError } from 'axios';
 
 export interface IApiControllerCrud<
   T,

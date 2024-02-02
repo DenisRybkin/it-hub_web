@@ -1,8 +1,8 @@
 import { QuestionDto } from '@components/entities/test/misc/common/types';
 import { identifyQuestionType } from '@components/entities/test/misc/common/utils';
-import { RadioGroup, RadioGroupItem } from '@components/ui/radio-group';
-import { Label } from '@components/ui/label';
 import { Checkbox } from '@components/ui/checkbox';
+import { Label } from '@components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@components/ui/radio-group';
 import { cn } from '@lib/utils/tools';
 
 interface IQuestionCardProps {

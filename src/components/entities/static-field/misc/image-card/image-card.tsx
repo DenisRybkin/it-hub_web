@@ -1,7 +1,7 @@
-import React from 'react';
+import { Button } from '@components/ui/button';
 import { StaticField } from '@lib/api/models';
 import { cn } from '@lib/utils/tools';
-import { Button } from '@components/ui/button';
+import React from 'react';
 import { FiX } from 'react-icons/fi';
 
 type PreviewCardPropsBase = {

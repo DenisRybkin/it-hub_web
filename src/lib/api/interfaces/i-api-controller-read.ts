@@ -1,10 +1,11 @@
+import { BaseProcessedError } from '@lib/api/models';
+
 import {
+  Autocomplete,
+  FilterOption,
   PagingModel,
   PagingOptions,
-  FilterOption,
-  Autocomplete,
 } from '@/lib/api/types';
-import { BaseProcessedError } from '@lib/api/models';
 
 export type getOptions<T, TFilter> = {
   paging?: Partial<PagingOptions<T>>;

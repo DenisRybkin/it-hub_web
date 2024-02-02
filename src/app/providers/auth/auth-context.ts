@@ -1,6 +1,6 @@
-import { createContext } from 'react';
-import { LocalStorageKeys } from '@lib/constants';
 import { Role, User } from '@lib/api/models';
+import { LocalStorageKeys } from '@lib/constants';
+import { createContext } from 'react';
 
 interface IAuthContext {
   isAuth?: boolean;

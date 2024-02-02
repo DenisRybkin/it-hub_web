@@ -1,8 +1,8 @@
+import { Bottombar } from '@components/layouts/bottombar';
+import { Sidebar } from '@components/layouts/sidebar';
+import { Topbar } from '@components/layouts/topbar';
 import { ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Topbar } from '@components/layouts/topbar';
-import { Sidebar } from '@components/layouts/sidebar';
-import { Bottombar } from '@components/layouts/bottombar';
 
 interface IRootLayoutProps {
   children?: ReactNode;

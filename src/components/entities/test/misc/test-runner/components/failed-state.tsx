@@ -1,6 +1,6 @@
 import SmileMind from '@assets/images/smiles/mind.png';
-import { useTranslation } from 'react-i18next';
 import { Button } from '@components/ui/button';
+import { useTranslation } from 'react-i18next';
 
 interface IFailedStateProps {
   onRetry: () => void;

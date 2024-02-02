@@ -1,10 +1,10 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { RootLayout } from '@components/layouts';
+import { HealthContext } from '@app/providers/health';
 import { routerConfig } from '@app/router/config';
 import { ProtectedRoute } from '@app/router/protected-route';
-import { useContext, useEffect } from 'react';
-import { HealthContext } from '@app/providers/health';
+import { RootLayout } from '@components/layouts';
 import { TechnicalWorkPage } from '@components/pages/technical-work';
+import { useContext, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 export const Router = () => {
   const location = useLocation();

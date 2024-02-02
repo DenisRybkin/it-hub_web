@@ -1,13 +1,13 @@
+import { UserCard } from '@components/entities/user/misc/user-card';
+import { DialogAdapter, IBaseDialogProps } from '@components/shared/dialog';
+import { VisibleTrigger } from '@components/shared/visible-trigger';
+import { CircularLoader } from '@components/ui/loader';
+import { toast } from '@components/ui/use-toast';
 import { IApiControllerRead } from '@lib/api/interfaces';
+import { User } from '@lib/api/models';
+import { FilterOption, ModelWithId } from '@lib/api/types';
 import { useInfinityPaging } from '@lib/utils/hooks';
 import { useTranslation } from 'react-i18next';
-import { toast } from '@components/ui/use-toast';
-import { FilterOption, ModelWithId } from '@lib/api/types';
-import { User } from '@lib/api/models';
-import { CircularLoader } from '@components/ui/loader';
-import { DialogAdapter, IBaseDialogProps } from '@components/shared/dialog';
-import { UserCard } from '@components/entities/user/misc/user-card';
-import { VisibleTrigger } from '@components/shared/visible-trigger';
 
 interface IUsersWhoPassedTestDialogProps<U extends ModelWithId, UFilter>
   extends IBaseDialogProps {

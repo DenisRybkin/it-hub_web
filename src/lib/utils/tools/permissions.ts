@@ -1,5 +1,5 @@
-import { PermissionsKeys } from '@lib/constants';
 import { Role, User } from '@lib/api/models';
+import { PermissionsKeys } from '@lib/constants';
 
 export const checkPermission = (key: PermissionsKeys, user?: User): boolean => {
   switch (key) {

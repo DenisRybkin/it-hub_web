@@ -1,6 +1,6 @@
+import { IThemeContext } from '@app/providers/theme/theme-context';
 import { ThemeType } from '@lib/types';
 import { useEffect, useState } from 'react';
-import { IThemeContext } from '@app/providers/theme/theme-context';
 
 export const useTheme = (): IThemeContext => {
   const matchMediaLightScheme = matchMedia('(prefers-color-scheme: dark)');

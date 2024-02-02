@@ -6,6 +6,9 @@ import {
   ArticleTest,
   BaseProcessedError,
 } from '@lib/api/models';
+import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
+
 import {
   CreateArticleDto,
   CreateComplexArticleDto,
@@ -14,8 +17,6 @@ import {
   UpdateComplexArticleDto,
   UpdatePartiallyArticleDto,
 } from '../models';
-import { AxiosInstance } from 'axios';
-import { LockerModel } from '@lib/api/types';
 
 export class ArticleController extends ApiControllerCRUD<
   Article,

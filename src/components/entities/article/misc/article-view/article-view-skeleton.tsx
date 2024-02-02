@@ -1,5 +1,5 @@
-import { Skeleton } from '@components/ui/skeleton';
 import { CategoryCardSkeleton } from '@components/entities/category/misc/category-card';
+import { Skeleton } from '@components/ui/skeleton';
 
 export const ArticleViewSkeleton = () => {
   return (

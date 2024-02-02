@@ -1,12 +1,12 @@
-import { DialogAdapter, IBaseDialogProps } from '@components/shared/dialog';
-import { useTranslation } from 'react-i18next';
-import { toast } from '@components/ui/use-toast';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { api } from '@lib/api/plugins';
-import { CircularLoader } from '@components/ui/loader';
-import { TestRunner } from '@components/entities/test/misc/test-runner';
 import { QuestionDto } from '@components/entities/test/misc/common/types';
+import { TestRunner } from '@components/entities/test/misc/test-runner';
+import { DialogAdapter, IBaseDialogProps } from '@components/shared/dialog';
+import { CircularLoader } from '@components/ui/loader';
+import { toast } from '@components/ui/use-toast';
+import { api } from '@lib/api/plugins';
 import { QueryKeys } from '@lib/constants';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 const EXAMINATION_ID = 1;
 

@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-import { Dialog } from '@radix-ui/react-dialog';
 import {
   DialogContent,
   DialogDescription,
@@ -7,6 +5,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@components/ui/dialog';
+import { Dialog } from '@radix-ui/react-dialog';
+import { ReactNode } from 'react';
 
 export interface IDialogAdapterProps {
   isOpen: boolean;

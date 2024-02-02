@@ -1,13 +1,13 @@
 import { ApiControllerCRUD } from '@lib/api/bases';
 import {
-  ExaminationAnswer,
   CreateExaminationAnswerDto,
+  ExaminationAnswer,
   ReadExaminationAnswerFilterDto,
   UpdateExaminationAnswerDto,
   UpdatePartiallyExaminationAnswerDto,
 } from '@lib/api/models';
-import { AxiosInstance } from 'axios';
 import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class ExaminationAnswerController extends ApiControllerCRUD<
   ExaminationAnswer,

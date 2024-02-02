@@ -1,5 +1,5 @@
-import { ReactionCard } from './reaction-card';
 import { IReactionChip } from '../types';
+import { ReactionCard } from './reaction-card';
 
 interface IGeneralEmojiListProps {
   isLoading: boolean;

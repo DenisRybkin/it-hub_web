@@ -1,10 +1,10 @@
-import { RoutePaths } from '@app/router/config';
-import type { RoutePropsType } from '@app/router';
-import { Navigate } from 'react-router-dom';
-import { LocalStorageKeys, RouteKeys } from '@lib/constants';
-import { ReactNode, useContext } from 'react';
 import { AuthContext } from '@app/providers/auth';
 import { PreloaderContext } from '@app/providers/preloader';
+import type { RoutePropsType } from '@app/router';
+import { RoutePaths } from '@app/router/config';
+import { LocalStorageKeys, RouteKeys } from '@lib/constants';
+import { ReactNode, useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 
 export const ProtectedRoute = (
   props: RoutePropsType & { children: ReactNode }

@@ -6,8 +6,8 @@ import {
   UpdateArticleTestAnswerDto,
   UpdatePartiallyArticleTestAnswerDto,
 } from '@lib/api/models';
-import { AxiosInstance } from 'axios';
 import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class ArticleTestAnswerController extends ApiControllerCRUD<
   ArticleTestAnswer,

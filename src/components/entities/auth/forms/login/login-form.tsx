@@ -1,9 +1,6 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { LoginSchema } from '@lib/utils/validations';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { IAuthFormProps } from '@components/entities/auth/forms/common/auth-interface';
+import { Button } from '@components/ui/button';
+import { DialogFooter } from '@components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -12,10 +9,13 @@ import {
   FormLabel,
   FormMessage,
 } from '@components/ui/form';
-import { useTranslation } from 'react-i18next';
 import { Input } from '@components/ui/input';
-import { DialogFooter } from '@components/ui/dialog';
-import { Button } from '@components/ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { LoginSchema } from '@lib/utils/validations';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 
 interface ILoginFormProps extends IAuthFormProps<z.infer<typeof LoginSchema>> {}
 

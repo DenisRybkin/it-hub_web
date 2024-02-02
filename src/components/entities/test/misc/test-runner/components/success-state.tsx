@@ -1,16 +1,16 @@
+import { AuthContext } from '@app/providers/auth';
 import SmileWink from '@assets/images/smiles/wink.png';
-import { useTranslation } from 'react-i18next';
-import { User } from '@lib/api/models';
+import { UsersWhoPassedTestDialog } from '@components/entities/user/dialogs/users-who-passed-test/users-who-passed-test-dialog';
 import { AvatarGroup } from '@components/ui/avatar';
-import { getAvatar, getFallback } from '@lib/utils/tools';
+import { toast } from '@components/ui/use-toast';
 import { IApiControllerRead } from '@lib/api/interfaces';
+import { User } from '@lib/api/models';
 import type { ModelWithId } from '@lib/api/types';
 import { FilterOption } from '@lib/api/types';
-import { UsersWhoPassedTestDialog } from '@components/entities/user/dialogs/users-who-passed-test/users-who-passed-test-dialog';
-import { useContext, useState } from 'react';
-import { AuthContext } from '@app/providers/auth';
 import { useInfinityPaging } from '@lib/utils/hooks';
-import { toast } from '@components/ui/use-toast';
+import { getAvatar, getFallback } from '@lib/utils/tools';
+import { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ISuccessStateProps<U extends ModelWithId, UFilter> {
   usersWhoPassedController: IApiControllerRead<U, UFilter>;

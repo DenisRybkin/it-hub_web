@@ -11,8 +11,8 @@ import {
   UpdateComplexArticleCommentDto,
   UpdatePartiallyArticleCommentDto,
 } from '@lib/api/models';
-import { AxiosInstance } from 'axios';
 import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class ArticleCommentController extends ApiControllerCRUD<
   ArticleComment,

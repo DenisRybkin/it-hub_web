@@ -1,18 +1,18 @@
-import { useContext, useState } from 'react';
+import { AuthContext } from '@app/providers/auth';
+import { ThemeContext } from '@app/providers/theme';
+import { RoutePaths } from '@app/router';
 import LogoDark from '@assets/images/logo-dark-theme.svg';
 import LogoLight from '@assets/images/logo-light-theme.svg';
+import { PassExaminationDialog } from '@components/entities/examination/dialogs/pass-examonation/pass-examination-dialog';
+import { AccountBar } from '@components/layouts/topbar/account-bar';
+import { Button } from '@components/ui/button';
+import { PermissionsKeys, RouteKeys } from '@lib/constants';
 import { useDeviceDetermine } from '@lib/utils/hooks';
-import { ThemeContext } from '@app/providers/theme';
+import { checkPermission } from '@lib/utils/tools';
+import { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiKey, FiPlus } from 'react-icons/fi';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button } from '@components/ui/button';
-import { useTranslation } from 'react-i18next';
-import { RoutePaths } from '@app/router';
-import { PermissionsKeys, RouteKeys } from '@lib/constants';
-import { AuthContext } from '@app/providers/auth';
-import { AccountBar } from '@components/layouts/topbar/account-bar';
-import { checkPermission } from '@lib/utils/tools';
-import { PassExaminationDialog } from '@components/entities/examination/dialogs/pass-examonation/pass-examination-dialog';
 
 export const Topbar = () => {
   const { t } = useTranslation();

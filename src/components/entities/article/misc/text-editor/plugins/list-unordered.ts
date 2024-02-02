@@ -1,12 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import List from '@editorjs/list';
+import { IconListBulleted } from '@codexteam/icons';
 import {
   ToolConstructable,
   ToolSettings,
 } from '@editorjs/editorjs/types/tools';
+import List from '@editorjs/list';
 import { ListOrdered } from 'lucide-react';
-import { IconListBulleted } from '@codexteam/icons';
 
 export const listUnorderedPlugin: ToolConstructable | ToolSettings = {
   class: List,

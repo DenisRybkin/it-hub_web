@@ -1,13 +1,13 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { IProviderProps } from '@app/providers/i-provider-props';
-import { api } from '@lib/api/plugins';
-import { User } from '@lib/api/models';
-import { PreloaderContext } from '@app/providers/preloader';
 import { AuthContext } from '@app/providers/auth/auth-context';
+import { HealthContext } from '@app/providers/health';
+import { IProviderProps } from '@app/providers/i-provider-props';
+import { PreloaderContext } from '@app/providers/preloader';
+import { AuthDialog } from '@components/entities/auth/dialogs';
+import { User } from '@lib/api/models';
+import { api } from '@lib/api/plugins';
 import { LocalStorageKeys, QueryKeys } from '@lib/constants';
 import { useQuery } from '@tanstack/react-query';
-import { AuthDialog } from '@components/entities/auth/dialogs';
-import { HealthContext } from '@app/providers/health';
+import { useContext, useEffect, useMemo, useState } from 'react';
 
 export const AuthProvider = (props: IProviderProps) => {
   const preloader = useContext(PreloaderContext);

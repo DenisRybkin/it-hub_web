@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react';
+import { AuthContext } from '@app/providers/auth';
+import { RoutePaths } from '@app/router';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { User } from '@lib/api/models';
-import { getAvatar, getFallback } from '@lib/utils/tools';
 import { Button } from '@components/ui/button';
+import { User } from '@lib/api/models';
+import { RouteKeys } from '@lib/constants';
+import { getAvatar, getFallback } from '@lib/utils/tools';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { RoutePaths } from '@app/router';
-import { RouteKeys } from '@lib/constants';
-import { AuthContext } from '@app/providers/auth';
 
 interface IUserCardProps {
   user: User;

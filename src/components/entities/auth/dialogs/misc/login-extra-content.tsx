@@ -1,7 +1,7 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { IExtraContentProps } from '@components/entities/auth/dialogs/misc/index';
 import { Alert, AlertDescription, AlertTitle } from '@components/ui/alert';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiAlertCircle } from 'react-icons/fi';
 
 export const LoginExtraContent = (props: IExtraContentProps) => {

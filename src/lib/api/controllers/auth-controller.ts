@@ -1,12 +1,13 @@
-import { ApiControllerBase } from '@/lib/api/bases';
-import { AxiosInstance } from 'axios';
-import { LockerModel } from '@/lib/api/types';
 import {
   BaseProcessedError,
   CreateUserDto,
   LoginDto,
   LoginResponseType,
 } from '@lib/api/models';
+import { AxiosInstance } from 'axios';
+
+import { ApiControllerBase } from '@/lib/api/bases';
+import { LockerModel } from '@/lib/api/types';
 
 export class AuthController extends ApiControllerBase {
   constructor(client: AxiosInstance, locker: LockerModel) {

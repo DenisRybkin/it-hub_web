@@ -1,9 +1,9 @@
+import { FileUploader } from '@components/entities/static-field/misc/file-uploader';
+import { Button } from '@components/ui/button';
+import { CircularLoader } from '@components/ui/loader';
 import { StaticField } from '@lib/api/models';
 import { Scan } from 'lucide-react';
-import { Button } from '@components/ui/button';
-import { FileUploader } from '@components/entities/static-field/misc/file-uploader';
 import { useState } from 'react';
-import { CircularLoader } from '@components/ui/loader';
 
 interface IPreviewProps {
   preview?: StaticField;

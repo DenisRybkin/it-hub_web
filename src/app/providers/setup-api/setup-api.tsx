@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from '@app/router';
-import { LocalStorageKeys, RouteKeys } from '@lib/constants';
-import { setupResponseInterceptors } from '@lib/api/plugins/client';
 import { api } from '@lib/api/plugins';
+import { setupResponseInterceptors } from '@lib/api/plugins/client';
+import { LocalStorageKeys, RouteKeys } from '@lib/constants';
+import { useNavigate } from 'react-router-dom';
 
 export const SetupApi = (): null => {
   const navigate = useNavigate();

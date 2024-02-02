@@ -1,10 +1,10 @@
-import React from 'react';
-import { ArticleShortDto } from '@lib/api/models';
 import {
   ArticleCard,
   ArticleCardSkeleton,
 } from '@components/entities/article/misc/article-card';
 import { VisibleTrigger } from '@components/shared/visible-trigger';
+import { ArticleShortDto } from '@lib/api/models';
+import React from 'react';
 
 interface IArticleCardListProps {
   isLoading?: boolean;

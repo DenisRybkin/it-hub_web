@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { LocalStorageKeys } from '@/lib/constants';
 
 const LOGIN_PATH = 'api/auth/login';

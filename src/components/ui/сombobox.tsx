@@ -1,3 +1,5 @@
+import { RemovingBadge } from '@components/ui/badge';
+import { Button } from '@components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -5,13 +7,13 @@ import {
   CommandItem,
   CommandList,
 } from '@components/ui/command';
+import { CircularLoader } from '@components/ui/loader';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@components/ui/popover';
-import { Button } from '@components/ui/button';
-import { PiCaretUpDown } from 'react-icons/pi';
+import { useControllableState } from '@lib/utils/hooks';
 import { cn } from '@lib/utils/tools';
 import { Check } from 'lucide-react';
 import {
@@ -22,9 +24,7 @@ import {
   SetStateAction,
   useContext,
 } from 'react';
-import { CircularLoader } from '@components/ui/loader';
-import { RemovingBadge } from '@components/ui/badge';
-import { useControllableState } from '@lib/utils/hooks';
+import { PiCaretUpDown } from 'react-icons/pi';
 
 interface ComboboxContextValue<TValue = unknown> {
   isSelected: (value: TValue) => boolean;

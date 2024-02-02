@@ -1,7 +1,7 @@
 import { ApiControllerRead } from '@lib/api/bases';
 import { ArticleShortDto, ReadArticleFilterDto } from '@lib/api/models';
-import { AxiosInstance } from 'axios';
 import { LockerModel } from '@lib/api/types';
+import { AxiosInstance } from 'axios';
 
 export class ArticleShortController extends ApiControllerRead<
   ArticleShortDto,

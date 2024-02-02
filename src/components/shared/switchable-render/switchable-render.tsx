@@ -1,7 +1,7 @@
-import { ReactNode, useState } from 'react';
-import { Progress } from '@components/ui/progress';
-import { useTranslation } from 'react-i18next';
 import { Button } from '@components/ui/button';
+import { Progress } from '@components/ui/progress';
+import { ReactNode, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ISwitchableRenderProps {
   renders: ReactNode[];

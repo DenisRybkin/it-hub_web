@@ -1,10 +1,10 @@
-import { TestValidationErrorKeys } from '@components/entities/test/misc/test-constructor/constants';
 import {
   AnswerDto,
+  AnswerWithoutIdDto,
   QuestionDto,
   QuestionWithoutIdDto,
-  AnswerWithoutIdDto,
 } from '@components/entities/test/misc/common/types';
+import { TestValidationErrorKeys } from '@components/entities/test/misc/test-constructor/constants';
 
 export const identifyQuestionType = (
   question: QuestionDto
