@@ -27,6 +27,7 @@ export const RoutePaths = {
   [RouteKeys.WRITE]: '/write',
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const routerConfig: RoutePropsType[] = [
   {
     isPrivate: false,

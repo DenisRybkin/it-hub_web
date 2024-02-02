@@ -23,14 +23,17 @@
     "come_up_answer": "Come up with an answer",
     "search": "Search...",
     "select_hashtag": "Select hashtags",
-    "comment": "Comment..."
+    "comment": "Comment...",
+    "language": "Language...",
+    "select": "Select..."
   },
   "subheader": {
     "status": "Status",
     "technical_works": "The site is currently unavailable due to technical work being done to improve its performance and functionality. We\"re doing our best to get the work done as soon as possible.",
     "technical_works_sorry": "We apologize for the temporary inconvenience!",
     "sign_in_subheader": "Enter your username and password",
-    "empty_content": "Nothing found"
+    "empty_content": "Nothing found",
+    "languages": "Languages"
   },
   "button": {
     "sign_in": "Sign in",
@@ -150,6 +153,12 @@
   },
   "category_support": {},
   "tooltip" : {},
+  "select": {
+    "language": {
+      "russian": "Russian",
+      "english": "English"
+    }
+  },
   "text_editor": {
     "text": "Text",
     "heading_1": "Heading 1",

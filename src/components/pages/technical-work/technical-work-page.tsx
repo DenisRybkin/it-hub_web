@@ -1,4 +1,5 @@
 import Logo from '@assets/images/logo-dark-theme.svg';
+import { LocaleSwitcher } from '@components/shared/locale-switcher';
 import { useBackground } from '@lib/utils/hooks';
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +14,7 @@ export const TechnicalWorkPage = () => {
         <h1 className="text-heading2-bold">{t('ui:title.technical_works')}</h1>
         <p>{t('ui:subheader.technical_works')}</p>
         <b>{t('ui:subheader.technical_works_sorry')}</b>
+        <LocaleSwitcher />
       </div>
     </div>
   );
