@@ -13,7 +13,6 @@ import { useSearchParams } from 'react-router-dom';
 
 export const HomePage = () => {
   const { t } = useTranslation();
-  const authContext = useContext(AuthContext);
 
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
   const [searchParams] = useSearchParams();

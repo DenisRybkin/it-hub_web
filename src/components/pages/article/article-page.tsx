@@ -11,7 +11,6 @@ import type { SubmitCommentDto } from '@components/entities/comment/misc/comment
 import { CommentSubmit } from '@components/entities/comment/misc/comment-submit';
 import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
 import { QuestionDto } from '@components/entities/test/misc/common/types';
-import { ITestConstructorForwardRef } from '@components/entities/test/misc/test-constructor/test-constructor';
 import { TestRunner } from '@components/entities/test/misc/test-runner/test-runner';
 import { toast } from '@components/ui/use-toast';
 import {
@@ -63,7 +62,6 @@ export const ArticlePage = () => {
   const isValidId = !Number.isNaN(Number(id));
 
   const articleViewRef = useRef<IArticleViewForwardRef>();
-  const testConstructorRef = useRef<ITestConstructorForwardRef>();
 
   const [updateDto, setUpdateDto] = useState<UpdateDto | undefined>(undefined);
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
@@ -250,6 +248,7 @@ export const ArticlePage = () => {
           </h1>
           <CommentSubmit
             isLoading={isCommentLoading}
+            isReadyToScroll={!!data}
             onSubmit={
               (async dto => await mutateComment(dto)) as (
                 dto: SubmitCommentDto

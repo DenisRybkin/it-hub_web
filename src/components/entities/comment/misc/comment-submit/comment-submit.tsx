@@ -28,6 +28,7 @@ export type SubmitCommentDto = {
 interface ICommentSubmitProps<T> {
   isLoading?: boolean;
   onSubmit: (dto: SubmitCommentDto) => void;
+  isReadyToScroll?: boolean;
 }
 
 export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
@@ -96,8 +97,9 @@ export const CommentSubmit = <T,>(props: ICommentSubmitProps<T>) => {
     messageInputRef.current?.scrollIntoView({ behavior: 'smooth' });
 
   useEffect(() => {
-    if (hash == AnchorKeys.comments) setTimeout(scrollTo);
-  }, [hash]);
+    if (hash == AnchorKeys.comments && (props.isReadyToScroll ?? true))
+      setTimeout(scrollTo, 100);
+  }, [hash, props.isReadyToScroll]);
 
   return (
     <div className="relative w-full flex flex-col item-center bg-dark-2 rounded-lg">
