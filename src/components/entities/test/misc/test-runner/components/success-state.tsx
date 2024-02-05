@@ -42,6 +42,7 @@ export const SuccessState = <U extends ModelWithId, UFilter>(
     .map(item => ({
       src: getAvatar(item),
       fallback: getFallback(item),
+      tooltip: <p>@{item.nickname}</p>,
     }));
 
   return (

@@ -12,7 +12,7 @@ import * as React from 'react';
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & {
-    tooltip?: string;
+    tooltip?: string | JSX.Element;
   }
 >(({ className, tooltip, ...props }, ref) =>
   tooltip ? (
@@ -28,9 +28,7 @@ const Avatar = React.forwardRef<
             {...props}
           />
         </TooltipTrigger>
-        <TooltipContent>
-          <p>{tooltip}</p>
-        </TooltipContent>
+        <TooltipContent>{tooltip}</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   ) : (
@@ -75,7 +73,11 @@ AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 interface IAvatarGroupProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
-  avatars: { src?: string; fallback?: string; tooltip?: string }[];
+  avatars: {
+    src?: string;
+    fallback?: string;
+    tooltip?: string | JSX.Element;
+  }[];
   max?: number;
   onMore?: () => void;
 }

@@ -1,7 +1,15 @@
 import { AuthContext } from '@app/providers/auth';
 import { Button } from '@components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@components/ui/tooltip';
 import { cn, number2short } from '@lib/utils/tools';
+import * as AvatarPrimitive from '@radix-ui/react-avatar/dist';
 import { useContext } from 'react';
+import * as React from 'react';
 
 import { IReactionChip } from '../types';
 
@@ -18,7 +26,7 @@ export const ReactionCard = (props: IReactionCardProps) => {
       ? props.onReact(props.item.emoji)
       : authContext.openAuthDialog();
 
-  return (
+  const trigger = (
     <Button
       onClick={handleClick}
       variant="ghost"
@@ -34,5 +42,20 @@ export const ReactionCard = (props: IReactionCardProps) => {
         </span>
       ) : null}
     </Button>
+  );
+
+  return props.item.usersCount ? (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>{trigger}</TooltipTrigger>
+        <TooltipContent>
+          <p>
+            {props.item.nicknames.slice(0, 4).map(item => '@' + item + ' ')}
+          </p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  ) : (
+    trigger
   );
 };

@@ -14,7 +14,7 @@ export const CategoriesChip = (props: ICategoryChipProps) => {
         avatars={props.categories.map(item => ({
           src: item.avatar?.staticField?.url,
           fallback: item.name,
-          tooltip: item.name,
+          tooltip: <p>{item.name}</p>,
         }))}
       />
     </div>
