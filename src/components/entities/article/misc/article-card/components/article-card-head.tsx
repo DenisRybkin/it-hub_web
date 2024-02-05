@@ -1,7 +1,8 @@
 import { RoutePaths } from '@app/router';
+import { CategoriesChip } from '@components/entities/category/misc/categories-chip';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { Badge } from '@components/ui/badge';
-import { Hashtag, User } from '@lib/api/models';
+import { Category, Hashtag, User } from '@lib/api/models';
 import { RouteKeys } from '@lib/constants';
 import { getAvatar, getFallback, humanizeDate } from '@lib/utils/tools';
 import { MouseEvent } from 'react';
@@ -10,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 interface IArticleCardHeadProps {
   author: User;
   hashtags?: Hashtag[];
+  categories?: Category[];
   createdAt: string;
 }
 
@@ -23,9 +25,9 @@ export const ArticleCardHead = (props: IArticleCardHeadProps) => {
     navigate(RoutePaths[RouteKeys.USER] + `/${props.author.id}`);
 
   return (
-    <div className="flex items-center justify-between w-full">
-      <div className="flex items-center gap-2 mb-2">
-        <Avatar onClick={handleRedirectToAuthorPage}>
+    <div className="flex items-center justify-between w-full mb-2">
+      <div className="flex items-center gap-2">
+        <Avatar className="cursor-pointer" onClick={handleRedirectToAuthorPage}>
           <AvatarImage src={getAvatar(props.author)} />
           <AvatarFallback>{getFallback(props.author)}</AvatarFallback>
         </Avatar>
@@ -48,16 +50,21 @@ export const ArticleCardHead = (props: IArticleCardHeadProps) => {
           </time>
         </div>
       </div>
-      <div className="flex flex-wrap justify-end gap-2">
-        {props.hashtags?.map(hashtag => (
-          <Badge
-            variant="secondary"
-            className="inline-block truncate max-w-[200px] py-0 md:py-0.5"
-            key={hashtag.id}
-          >
-            {hashtag.name}
-          </Badge>
-        ))}
+      <div className="flex flex-col justify-start items-end gap-2">
+        {props.categories && <CategoriesChip categories={props.categories} />}
+        {props.hashtags && (
+          <div className="flex flex-wrap justify-end gap-2">
+            {props.hashtags.map(hashtag => (
+              <Badge
+                variant="secondary"
+                className="inline-block truncate max-w-[200px] py-0 md:py-0.5"
+                key={hashtag.id}
+              >
+                {hashtag.name}
+              </Badge>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

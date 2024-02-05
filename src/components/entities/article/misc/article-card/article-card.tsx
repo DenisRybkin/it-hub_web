@@ -4,11 +4,10 @@ import { ArticleCardHead } from '@components/entities/article/misc/article-card/
 import { TextEditor } from '@components/entities/article/misc/text-editor';
 import { Button } from '@components/ui/button';
 import { OutputData } from '@editorjs/editorjs';
-import { Hashtag, User } from '@lib/api/models';
+import { Category, Hashtag, User } from '@lib/api/models';
 import { RouteKeys } from '@lib/constants';
 import { useDeviceDetermine } from '@lib/utils/hooks';
 import { transform2PreviewMode } from '@lib/utils/tools';
-import { MouseEvent } from 'react';
 import { useMemo, useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +17,7 @@ export interface IArticleCard {
   body: string;
   author: User;
   hashtags?: Hashtag[];
+  categories?: Category[];
   likesCount: number;
   repostsCount: number;
   commentsCount: number;
@@ -59,13 +59,14 @@ export const ArticleCard = (props: IArticleCard) => {
   return (
     <article
       onClick={handleOpenArticle}
-      className="flex w-full flex-col rounded-xl bg-dark-2 p-3 md:p-7"
+      className="flex w-full flex-col rounded-xl bg-dark-2 p-3 md:p-7 cursor-pointer"
     >
       <div className="flex flex-col items-start justify-between">
         <ArticleCardHead
           author={props.author}
           hashtags={props.hashtags}
           createdAt={props.createdAt}
+          categories={props.categories}
         />
         <div className="flex w-full flex-1 flex-row gap-4 relative lg:[&>button]:hover:inline-flex">
           {body && <TextEditor defaultValue={body} value={body} readonly />}

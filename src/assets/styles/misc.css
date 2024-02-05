@@ -38,3 +38,7 @@
     color: #697C89;
     content: attr(data-placeholder)
 }
+
+a {
+    @apply transition-all underline hover:text-primary-500
+}

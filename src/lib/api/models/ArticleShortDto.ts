@@ -1,9 +1,10 @@
 /* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+/* eslint-disable */
 
 import type { ArticleHashtag } from './ArticleHashtag';
+import type { Category } from './Category';
 import type { User } from './User';
 
 export type ArticleShortDto = {
@@ -11,6 +12,7 @@ export type ArticleShortDto = {
     body: string;
     createdByUserId: number;
     createdByUser: User;
+    categories: Array<Category>;
     commentsCount: number;
     likesCount: number;
     repostsCount: number;

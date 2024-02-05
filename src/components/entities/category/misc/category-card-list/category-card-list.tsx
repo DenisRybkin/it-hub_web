@@ -8,7 +8,7 @@ import { searchParamToNumArray } from '@lib/utils/tools';
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-export const CATEGORIES_SEARCH_PARAMS = 'categories';
+export const CATEGORY_SEARCH_PARAMS = 'categoryId';
 
 export interface ICategoriesListProps {
   readonly?: boolean;
@@ -27,32 +27,38 @@ export const CategoryCardList = (props: ICategoriesListProps) => {
     { pageSize: -1 }
   );
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const selected: Category[] = useMemo(
+  const selected: Category | undefined = useMemo(
     () =>
       props.withSearchParams
-        ? searchParamToNumArray(searchParams.get(CATEGORIES_SEARCH_PARAMS))
-            ?.map(selectedId => items.find(item => item.id == selectedId))
-            .filter(Boolean) ?? []
-        : props.selectedCategories ?? [],
+        ? Number.isNaN(Number(searchParams.get(CATEGORY_SEARCH_PARAMS)))
+          ? undefined
+          : items.find(
+              item =>
+                item.id == Number(searchParams.get(CATEGORY_SEARCH_PARAMS))
+            )
+        : undefined,
     [props.withSearchParams, props.selectedCategories, searchParams]
   );
 
   const handleClick = (category: Category) => {
     if (!props.onChangeSelectedCategories && !props.withSearchParams) return;
-    const updatedCategories = selected.some(item => item.id == category.id)
-      ? selected.filter(item => item.id != category.id)
-      : [...selected, category];
 
-    if (props.onChangeSelectedCategories)
+    if (props.onChangeSelectedCategories) {
+      const updatedCategories = props.selectedCategories?.some(
+        item => category.id == item.id
+      )
+        ? props.selectedCategories?.filter(item => item.id != category.id)
+        : [...(props.selectedCategories ?? []), category];
       props.onChangeSelectedCategories(updatedCategories);
+    }
     if (props.withSearchParams) {
-      !updatedCategories.length
-        ? searchParams.delete(CATEGORIES_SEARCH_PARAMS)
+      const updatedCategory =
+        selected?.id == category.id ? undefined : category;
+      !updatedCategory
+        ? searchParams.delete(CATEGORY_SEARCH_PARAMS)
         : searchParams.set(
-            CATEGORIES_SEARCH_PARAMS,
-            updatedCategories.map(item => item.id).toString()
+            CATEGORY_SEARCH_PARAMS,
+            updatedCategory.id.toString()
           );
       setSearchParams(searchParams);
     }
@@ -60,24 +66,36 @@ export const CategoryCardList = (props: ICategoriesListProps) => {
 
   if (!isFetching && !isSuccess) return null;
 
+  console.log(props.selectedCategories);
+
   return (
     <HorizontalScrollArea
       containerClassName="mt-4"
       listClassName="gap-2"
-      itemsLength={(props.readonly ? selected : items).length}
+      itemsLength={
+        ((props.readonly ? props.selectedCategories : items) ?? []).length
+      }
     >
       {isFetching
         ? Array(10)
             .fill(null)
             .map((_, index) => <CategoryCardSkeleton key={index} />)
-        : (props.readonly ? selected : items).map(item => (
-            <CategoryCard
-              key={item.id}
-              isSelected={selected.some(selected => selected.id == item.id)}
-              category={item}
-              onClick={handleClick}
-            />
-          ))}
+        : ((props.readonly ? props.selectedCategories : items) ?? []).map(
+            item => (
+              <CategoryCard
+                key={item.id}
+                isSelected={
+                  selected?.id
+                    ? selected.id == item.id
+                    : props.selectedCategories?.some(
+                        category => item.id == category.id
+                      )
+                }
+                category={item}
+                onClick={handleClick}
+              />
+            )
+          )}
     </HorizontalScrollArea>
   );
 };

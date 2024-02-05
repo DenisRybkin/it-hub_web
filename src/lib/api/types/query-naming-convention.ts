@@ -17,4 +17,5 @@ export type QueryNamingConvention =
   | 'gt'
   | 'gte'
   | 'lt'
-  | 'lte';
+  | 'lte'
+  | 'or';

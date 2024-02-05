@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
-    "gen-models-local": "openapi --input http://localhost:8080/spec.json --output src/lib/api/models --exportServices false --exportCore false",
+    "gen-models-local": "openapi --input http://localhost:8080/spec.json --output src/lib/api --exportServices false --exportCore false",
     "prepare": "husky"
   },
   "husky": {
@@ -41,6 +41,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.4",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@tanstack/react-query": "^4.35.3",
     "async-mutex": "^0.4.0",
     "axios": "^1.5.0",

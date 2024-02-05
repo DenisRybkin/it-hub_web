@@ -72,7 +72,9 @@ export abstract class ApiControllerRead<
     return (opts?.filter ?? []).reduce(
       (acc, item) =>
         Object.assign(acc, {
-          [`${item.key as string}.${item.type}`]: item.value,
+          [`${item.key as string}.${item.type}${
+            item.associatedModel ? `.${item.associatedModel}` : ''
+          }`]: item.value,
         }),
       opts?.paging ?? {}
     );

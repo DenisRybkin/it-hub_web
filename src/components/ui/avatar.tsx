@@ -1,3 +1,9 @@
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@components/ui/tooltip';
 import { number2short } from '@lib/utils/tools';
 import { cn } from '@lib/utils/tools/cn';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
@@ -5,17 +11,39 @@ import * as React from 'react';
 
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn(
-      'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
-      className
-    )}
-    {...props}
-  />
-));
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & {
+    tooltip?: string;
+  }
+>(({ className, tooltip, ...props }, ref) =>
+  tooltip ? (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <AvatarPrimitive.Root
+            ref={ref}
+            className={cn(
+              'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
+              className
+            )}
+            {...props}
+          />
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{tooltip}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  ) : (
+    <AvatarPrimitive.Root
+      ref={ref}
+      className={cn(
+        'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
+        className
+      )}
+      {...props}
+    />
+  )
+);
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
 const AvatarImage = React.forwardRef<
@@ -47,7 +75,7 @@ AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 interface IAvatarGroupProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
-  avatars: { src?: string; fallback?: string }[];
+  avatars: { src?: string; fallback?: string; tooltip?: string }[];
   max?: number;
   onMore?: () => void;
 }
@@ -67,6 +95,7 @@ const AvatarGroup = ({
         <Avatar
           {...props}
           className={cn(props.className, 'border border-gray-1')}
+          tooltip={avatar.tooltip}
         >
           <AvatarImage src={avatar.src} />
           <AvatarFallback>{avatar.fallback}</AvatarFallback>
@@ -88,4 +117,4 @@ const AvatarGroup = ({
   );
 };
 
-export { Avatar, AvatarFallback, AvatarGroup,AvatarImage };
+export { Avatar, AvatarFallback, AvatarGroup, AvatarImage };

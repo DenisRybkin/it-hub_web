@@ -9,6 +9,7 @@ import { QueryProvider } from '@app/providers/query/query-provider';
 import { SetupApi } from '@app/providers/setup-api';
 import { ThemeProvider } from '@app/providers/theme';
 import { Toaster } from '@components/ui/toaster';
+import { TooltipProvider } from '@components/ui/tooltip';
 import { BrowserRouter } from 'react-router-dom';
 
 export const RootProvider = (props: IProviderProps) => {
