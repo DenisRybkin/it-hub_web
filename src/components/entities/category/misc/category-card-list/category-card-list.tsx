@@ -66,8 +66,6 @@ export const CategoryCardList = (props: ICategoriesListProps) => {
 
   if (!isFetching && !isSuccess) return null;
 
-  console.log(props.selectedCategories);
-
   return (
     <HorizontalScrollArea
       containerClassName="mt-4"

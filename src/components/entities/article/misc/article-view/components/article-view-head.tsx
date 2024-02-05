@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface IArticleViewHeadProps {
   readonly: boolean;
-  createdAt: string;
+  createdAt: Date;
   author: User;
   hashtags?: Hashtag[];
   categories?: Category[];
@@ -49,10 +49,10 @@ export const ArticleViewHead = forwardRef<
               @{props.author.nickname}
             </span>
             <time
-              dateTime={props.createdAt}
+              dateTime={props.createdAt.toString()}
               className="text-small-regular text-gray-1"
             >
-              {humanizeDate(new Date(props.createdAt), {
+              {humanizeDate(props.createdAt, {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric',

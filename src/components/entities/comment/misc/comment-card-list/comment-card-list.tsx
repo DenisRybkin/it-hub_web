@@ -2,6 +2,7 @@ import { ReactionController } from '@components/entities/comment/misc/comment-ca
 import { VisibleTrigger } from '@components/shared/visible-trigger';
 import { ArticleComment, ArticleCommentReaction } from '@lib/api/models';
 import { api } from '@lib/api/plugins';
+import { getLastDate } from '@lib/utils/tools/date';
 import React from 'react';
 
 import { CommentCard, CommentCardSkeleton } from '../comment-card';
@@ -49,12 +50,15 @@ export const CommentCardList = <
               key={item.id}
               id={item.id}
               author={item.createdByUser!}
-              createdAt={item.createdAt}
               text={item.text}
               reactionStrategy={getReactionStrategy(item.id)}
               reactions={(item.reactions ?? []) as R[]}
               refetchByCommentId={props.refetchPage}
               attachments={item.attachments?.map(item => item.staticField!)}
+              createdAt={getLastDate(
+                new Date(item.createdAt),
+                new Date(item.updatedAt)
+              )}
             />
           ))}
       <VisibleTrigger

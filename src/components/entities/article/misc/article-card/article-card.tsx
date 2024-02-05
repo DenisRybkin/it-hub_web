@@ -8,6 +8,7 @@ import { Category, Hashtag, User } from '@lib/api/models';
 import { RouteKeys } from '@lib/constants';
 import { useDeviceDetermine } from '@lib/utils/hooks';
 import { transform2PreviewMode } from '@lib/utils/tools';
+import { getLastDate } from '@lib/utils/tools/date';
 import { useMemo, useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +26,7 @@ export interface IArticleCard {
   isCommented: boolean;
   isReposted: boolean;
   createdAt: string;
+  updatedAt: string;
   onActionSuccess?: (articleId: number) => void;
 }
 
@@ -65,7 +67,10 @@ export const ArticleCard = (props: IArticleCard) => {
         <ArticleCardHead
           author={props.author}
           hashtags={props.hashtags}
-          createdAt={props.createdAt}
+          createdAt={getLastDate(
+            new Date(props.createdAt),
+            new Date(props.updatedAt)
+          )}
           categories={props.categories}
         />
         <div className="flex w-full flex-1 flex-row gap-4 relative lg:[&>button]:hover:inline-flex">

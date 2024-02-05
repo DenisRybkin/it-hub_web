@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 interface ICommentCardProps<R> {
   id: number;
   author: User;
-  createdAt: string;
+  createdAt: Date;
   text: string;
   reactions: R[];
   attachments?: StaticField[];
@@ -48,10 +48,10 @@ export const CommentCard = <R,>(props: ICommentCardProps<R>) => {
               @{props.author.nickname}
             </span>
             <time
-              dateTime={props.createdAt}
+              dateTime={props.createdAt.toString()}
               className="text-small-regular text-gray-1"
             >
-              {humanizeDate(new Date(props.createdAt), {
+              {humanizeDate(props.createdAt, {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric',

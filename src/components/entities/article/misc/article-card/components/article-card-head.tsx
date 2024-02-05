@@ -12,7 +12,7 @@ interface IArticleCardHeadProps {
   author: User;
   hashtags?: Hashtag[];
   categories?: Category[];
-  createdAt: string;
+  createdAt: Date;
 }
 
 export const ArticleCardHead = (props: IArticleCardHeadProps) => {
@@ -39,10 +39,10 @@ export const ArticleCardHead = (props: IArticleCardHeadProps) => {
             @{props.author.nickname}
           </span>
           <time
-            dateTime={props.createdAt}
+            dateTime={props.createdAt.toString()}
             className="text-small-regular text-gray-1"
           >
-            {humanizeDate(new Date(props.createdAt), {
+            {humanizeDate(props.createdAt, {
               day: '2-digit',
               month: '2-digit',
               year: 'numeric',

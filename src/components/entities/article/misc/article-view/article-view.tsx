@@ -7,6 +7,7 @@ import {
 import type { UpdateDto } from '@components/pages/article';
 import { OutputData } from '@editorjs/editorjs';
 import { Article, ArticleShortDto, Category, Hashtag } from '@lib/api/models';
+import { getLastDate } from '@lib/utils/tools/date';
 import { forwardRef, Ref, useImperativeHandle, useMemo, useRef } from 'react';
 
 interface IArticleViewProps {
@@ -43,11 +44,14 @@ export const ArticleView = forwardRef<
           readonly={props.readonly}
           author={props.article.createdByUser!}
           hashtags={props.article.hashtags?.map(item => item.hashtag!)}
-          createdAt={props.article.createdAt as string}
           categories={props.article.categories?.map(item => item.category!)}
           onChangeHashtags={props.onChangeHashtags}
           onChangeSelectedCategories={props.onChangeSelectedCategories}
           updateDto={props.updateDto}
+          createdAt={getLastDate(
+            new Date(props.article.createdAt),
+            new Date(props.article.updatedAt)
+          )}
         />
       </div>
       <TextEditor

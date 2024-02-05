@@ -26,14 +26,17 @@ const formattingByUnit = (unit: DateUnit, date: Date) => {
   return undefined;
 };
 
-export function humanizeDate(
+export const humanizeDate = (
   date: Date,
   options?: Intl.DateTimeFormatOptions,
   lang = getLocale()
-) {
+) => {
   for (const unit of units) {
     const result = formattingByUnit(unit, date);
     if (result) return result;
   }
   return date.toLocaleString(lang, options);
-}
+};
+
+export const getLastDate = (first: Date, second: Date) =>
+  first > second ? first : second;

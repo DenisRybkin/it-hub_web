@@ -40,6 +40,7 @@ export const ArticleCardList = (props: IArticleCardListProps) => {
             hashtags={item.hashtags?.map(item => item.hashtag!)}
             onActionSuccess={props.refetchPage}
             createdAt={item.createdAt}
+            updatedAt={item.updatedAt}
             categories={item.categories}
           />
         ))
