@@ -1,5 +1,5 @@
 import { AuthContext } from '@app/providers/auth';
-import { QuestionDto } from '@components/entities/test/misc/common/types';
+import { QuestionDto } from '@components/entities/test/common/types';
 import {
   changeAnswersIsRight,
   comparisonAnswers,
@@ -7,7 +7,7 @@ import {
   resetIsRightQuestion,
   setAnswersByQuestionId,
   swapAnswersIsRight,
-} from '@components/entities/test/misc/common/utils';
+} from '@components/entities/test/common/utils';
 import { FailedState } from '@components/entities/test/misc/test-runner/components/failed-state';
 import { QuestionCard } from '@components/entities/test/misc/test-runner/components/question-card';
 import { SuccessState } from '@components/entities/test/misc/test-runner/components/success-state';

@@ -33,7 +33,8 @@
     "technical_works_sorry": "Приносим свои извинения за временные неудобства!",
     "sign_in_subheader": "Введите имя пользователя и пароль",
     "empty_content" : "Ничего не найдено",
-    "languages": "Языки"
+    "languages": "Языки",
+    "generating_test": "Упрости себе жизнь и используй GPT :)"
   },
   "button": {
     "sign_in": "Войти",
@@ -81,7 +82,10 @@
     "start": "Начать",
     "retry": "Повторить",
     "edit": "Редактировать",
-    "exam": "Экзамен"
+    "exam": "Экзамен",
+    "generate": "Генерировать",
+    "options" : "Опции",
+    "result": "Результат"
   },
   "label": {
     "i_read": "Я ознакомился с",
@@ -91,7 +95,9 @@
     "nickname": "Никнейм",
     "email": "Почта",
     "password": "Пароль",
-    "password_confirm": "Подтверждение пароля"
+    "password_confirm": "Подтверждение пароля",
+    "count_questions": "Количество вопросов",
+    "test_topic": "Тема теста"
   },
   "title": {
     "sign_in": "Войти",
@@ -129,7 +135,9 @@
     "users_who_passed_test": "Пользователи которые прошли тест",
     "pass_examination": "Прохождение экзамена",
     "take_examination": "Пройдите экзамен, чтобы получить роль публикатора",
-    "technical_works": "Технические работы"
+    "technical_works": "Технические работы",
+    "hashtags": "Хэштеги",
+    "generating_test": "Генерация теста"
   },
   "tab": {},
   "table": {},
@@ -151,7 +159,9 @@
     "waiting": "Ожидание",
     "error": "Ошибка"
   },
-  "tooltip" : {},
+  "tooltip" : {
+    "gpt-generate": "Будут предложены варианты вопросов с помощью Alisa GPT"
+  },
   "select": {
     "language": {
       "russian": "Русский",

@@ -3,7 +3,7 @@ import {
   AnswerWithoutIdDto,
   QuestionDto,
   QuestionWithoutIdDto,
-} from '@components/entities/test/misc/common/types';
+} from '@components/entities/test/common/types';
 import { TestValidationErrorKeys } from '@components/entities/test/misc/test-constructor/constants';
 
 export const identifyQuestionType = (

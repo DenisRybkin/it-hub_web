@@ -1,7 +1,8 @@
 import {
   AnswerDto,
   QuestionDto,
-} from '@components/entities/test/misc/common/types';
+  QuestionWithoutIdDto,
+} from '@components/entities/test/common/types';
 import {
   changeAnswerName,
   changeAnswersIsRight,
@@ -10,9 +11,11 @@ import {
   deleteQuestion,
   getAnswersByQuestionId,
   setAnswersByQuestionId,
-} from '@components/entities/test/misc/common/utils';
+} from '@components/entities/test/common/utils';
+import { GenerateQuestionsDrawer } from '@components/entities/test/drawers/generate-test';
 import { Question } from '@components/entities/test/misc/test-constructor/components/question';
 import { Button } from '@components/ui/button';
+import { TooltipAdapter } from '@components/ui/tooltip';
 import { IdGenerator } from '@lib/utils/tools';
 import React, {
   forwardRef,
@@ -22,6 +25,8 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FiPlus } from 'react-icons/fi';
+import { RiAiGenerate } from 'react-icons/ri';
 
 export interface IQuestionGeneratorForwardRef {
   questions: QuestionDto[];
@@ -46,6 +51,9 @@ export const QuestionGenerator = forwardRef<
   const [questions, setQuestions] = useState<QuestionDto[]>([]);
   const [hasChanges, setHasChanges] = useState<boolean>(false);
 
+  const [isOpenGenerateQuestionsDrawer, setIsOpenGenerateQuestionsDrawer] =
+    useState<boolean>(false);
+
   const isDisabledAddQuestionButton = useMemo(
     () =>
       !questions.length
@@ -53,6 +61,9 @@ export const QuestionGenerator = forwardRef<
         : !questions[questions.length - 1].answers?.length,
     [questions]
   );
+
+  const handleOpenGenerateQuestionsDrawer = () =>
+    setIsOpenGenerateQuestionsDrawer(true);
 
   const handleMarkChanges = () => !hasChanges && setHasChanges(true);
 
@@ -121,6 +132,23 @@ export const QuestionGenerator = forwardRef<
     handleMarkChanges();
   };
 
+  const handleAddGeneratedQuestions = (DTOs: QuestionWithoutIdDto[]) =>
+    setQuestions(prev => [
+      ...prev,
+      ...DTOs.map(question => {
+        const questionId = questionIdQuestionGenerator.getId;
+        return {
+          id: questionId,
+          name: question.name,
+          answers: question.answers.map(answer => ({
+            id: answerIdAnswerGenerator.getId,
+            questionId: questionId,
+            ...answer,
+          })),
+        };
+      }),
+    ]);
+
   const handleAddEmptyAnswer = (questionId: number) => {
     const emptyAnswer: AnswerDto = {
       id: answerIdAnswerGenerator.getId,
@@ -149,32 +177,54 @@ export const QuestionGenerator = forwardRef<
   }, [hasChanges]);
 
   return (
-    <div className="w-full">
-      <div className="flex flex-col gap-2 items-start">
-        {questions.map(item => (
-          <Question
-            key={item.id}
-            name={item.name}
-            questionId={item.id}
-            answers={item.answers ?? []}
-            onChangeQuestionName={handleChangeQuestionName}
-            onDeleteQuestion={handleDeleteQuestion}
-            onAddEmptyAnswer={handleAddEmptyAnswer}
-            onChangeAnswerRight={handleChangeAnswerRight}
-            onChangeAnswerTitle={handleChangeAnswerTitle}
-            onDeleteAnswer={handleDeleteAnswer}
-          />
-        ))}
+    <>
+      <GenerateQuestionsDrawer
+        isOpen={isOpenGenerateQuestionsDrawer}
+        onOpenChange={setIsOpenGenerateQuestionsDrawer}
+        onAddQuestions={handleAddGeneratedQuestions}
+      />
+      <div className="w-full">
+        <div className="flex flex-col gap-2 items-start">
+          {questions.map(item => (
+            <Question
+              key={item.id}
+              name={item.name}
+              questionId={item.id}
+              answers={item.answers ?? []}
+              onChangeQuestionName={handleChangeQuestionName}
+              onDeleteQuestion={handleDeleteQuestion}
+              onAddEmptyAnswer={handleAddEmptyAnswer}
+              onChangeAnswerRight={handleChangeAnswerRight}
+              onChangeAnswerTitle={handleChangeAnswerTitle}
+              onDeleteAnswer={handleDeleteAnswer}
+            />
+          ))}
+        </div>
+        <div className="flex justify-start items-center mt-2 gap-2">
+          <Button
+            variant="primary"
+            disabled={isDisabledAddQuestionButton}
+            onClick={handleCreateQuestion}
+            data={{ leftIcon: <FiPlus /> }}
+          >
+            {t('ui:button.add_question')}
+          </Button>
+          <TooltipAdapter
+            trigger={
+              <Button
+                variant="primary"
+                disabled={isDisabledAddQuestionButton}
+                onClick={handleOpenGenerateQuestionsDrawer}
+                data={{ leftIcon: <RiAiGenerate /> }}
+              >
+                {t('ui:button.generate')}
+              </Button>
+            }
+          >
+            <p>{t('ui:tooltip.gpt-generate')}</p>
+          </TooltipAdapter>
+        </div>
       </div>
-      <div className="flex justify-start items-center mt-2">
-        <Button
-          variant="primary"
-          disabled={isDisabledAddQuestionButton}
-          onClick={handleCreateQuestion}
-        >
-          {t('ui:button.add_question')}
-        </Button>
-      </div>
-    </div>
+    </>
   );
 });

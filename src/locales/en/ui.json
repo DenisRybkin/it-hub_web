@@ -33,7 +33,8 @@
     "technical_works_sorry": "We apologize for the temporary inconvenience!",
     "sign_in_subheader": "Enter your username and password",
     "empty_content": "Nothing found",
-    "languages": "Languages"
+    "languages": "Languages",
+    "generating_test": "Simplify your life and use GPT :)"
   },
   "button": {
     "sign_in": "Sign in",
@@ -81,7 +82,10 @@
     "start": "Start",
     "retry": "Retry",
     "edit": "Edit",
-    "exam": "Exam"
+    "exam": "Exam",
+    "generate": "Generate",
+    "options" : "Options",
+    "result": "Result"
   },
   "label": {
     "i_read": "I have read the",
@@ -91,7 +95,9 @@
     "nickname": "Nickname",
     "email": "Email",
     "password": "Password",
-    "password_confirm": "Password confirm"
+    "password_confirm": "Password confirm",
+    "count_questions": "Count of questions",
+    "test_topic": "Topic of the test"
   },
   "title": {
     "sign_in": "Sign in",
@@ -129,7 +135,9 @@
     "users_who_passed_test": "Users who have passed the test",
     "pass_examination": "Passing the examination",
     "take_examination": "Take the exam to get the role of a publisher",
-    "technical_works": "Technical works"
+    "technical_works": "Technical works",
+    "hashtags": "Hashtags",
+    "generating_test": "Generating test"
   },
   "tab": {},
   "table": {},
@@ -152,7 +160,9 @@
     "error": "Error"
   },
   "category_support": {},
-  "tooltip" : {},
+  "tooltip" : {
+    "gpt-generate": "Will be offered variants of questions using Alisa GPT"
+  },
   "select": {
     "language": {
       "russian": "Russian",

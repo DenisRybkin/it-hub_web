@@ -171,9 +171,11 @@ export const WritePage = () => {
           withHeading
           ref={editorRef as Ref<ITextEditorForwardRef>}
         />
+        <h1 className="head-text text-left">{t('ui:title.testing')}</h1>
         <TestConstructor
           ref={testConstructorRef as Ref<ITestConstructorForwardRef>}
         />
+        <h1 className="head-text text-left">{t('ui:title.hashtags')}</h1>
         <HashtagsEditor
           className="mt-2"
           ref={hashtagsEditorRef as Ref<IHashtagsEditorForwardRef>}

@@ -1,7 +1,7 @@
 import {
   AnswerDto,
   AnswerWithoutIdDto,
-} from '@components/entities/test/misc/common/types/answer-dto';
+} from '@components/entities/test/common/types/answer-dto';
 
 export interface QuestionDto {
   id: number;

@@ -10,7 +10,7 @@ import { CommentCardList } from '@components/entities/comment/misc/comment-card-
 import type { SubmitCommentDto } from '@components/entities/comment/misc/comment-submit';
 import { CommentSubmit } from '@components/entities/comment/misc/comment-submit';
 import { SelectPreviewDialog } from '@components/entities/static-field/dialogs/select-preview';
-import { QuestionDto } from '@components/entities/test/misc/common/types';
+import { QuestionDto } from '@components/entities/test/common/types';
 import { TestRunner } from '@components/entities/test/misc/test-runner/test-runner';
 import { toast } from '@components/ui/use-toast';
 import {

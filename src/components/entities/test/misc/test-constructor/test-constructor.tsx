@@ -1,11 +1,8 @@
 import {
   QuestionDto,
   QuestionWithoutIdDto,
-} from '@components/entities/test/misc/common/types';
-import {
-  resetIds,
-  validateTest,
-} from '@components/entities/test/misc/common/utils';
+} from '@components/entities/test/common/types';
+import { resetIds, validateTest } from '@components/entities/test/common/utils';
 import type { IQuestionGeneratorForwardRef } from '@components/entities/test/misc/test-constructor/components/question-generator';
 import { QuestionGenerator } from '@components/entities/test/misc/test-constructor/components/question-generator';
 import { TestValidationErrorKeys } from '@components/entities/test/misc/test-constructor/constants';

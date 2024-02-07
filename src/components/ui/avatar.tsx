@@ -1,9 +1,4 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@components/ui/tooltip';
+import { TooltipAdapter } from '@components/ui/tooltip';
 import { number2short } from '@lib/utils/tools';
 import { cn } from '@lib/utils/tools/cn';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
@@ -16,21 +11,20 @@ const Avatar = React.forwardRef<
   }
 >(({ className, tooltip, ...props }, ref) =>
   tooltip ? (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>
-          <AvatarPrimitive.Root
-            ref={ref}
-            className={cn(
-              'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
-              className
-            )}
-            {...props}
-          />
-        </TooltipTrigger>
-        <TooltipContent>{tooltip}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <TooltipAdapter
+      trigger={
+        <AvatarPrimitive.Root
+          ref={ref}
+          className={cn(
+            'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
+            className
+          )}
+          {...props}
+        />
+      }
+    >
+      {tooltip}
+    </TooltipAdapter>
   ) : (
     <AvatarPrimitive.Root
       ref={ref}

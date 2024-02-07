@@ -1,4 +1,4 @@
-import { QuestionDto } from '@components/entities/test/misc/common/types';
+import { QuestionDto } from '@components/entities/test/common/types';
 import { TestRunner } from '@components/entities/test/misc/test-runner';
 import { DialogAdapter, IBaseDialogProps } from '@components/shared/dialog';
 import { CircularLoader } from '@components/ui/loader';

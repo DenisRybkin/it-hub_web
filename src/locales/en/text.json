@@ -36,5 +36,6 @@
   "question_number": "Question №{{number}}",
   "you_passed_test": "You passed the test! Pretty boy!",
   "more_pretty_boys": "More pretty boys:",
-  "you_not_passed_test": "Bro, there were mistakes, try again!"
+  "you_not_passed_test": "Bro, there were mistakes, try again!",
+  "generated_questions_info": "This is just a trial version, you can edit it"
 }

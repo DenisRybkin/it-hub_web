@@ -1,15 +1,9 @@
 import { AuthContext } from '@app/providers/auth';
 import { Button } from '@components/ui/button';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@components/ui/tooltip';
+import { TooltipAdapter } from '@components/ui/tooltip';
 import { cn, number2short } from '@lib/utils/tools';
-import * as AvatarPrimitive from '@radix-ui/react-avatar/dist';
-import { useContext } from 'react';
 import * as React from 'react';
+import { useContext } from 'react';
 
 import { IReactionChip } from '../types';
 
@@ -45,16 +39,18 @@ export const ReactionCard = (props: IReactionCardProps) => {
   );
 
   return props.item.usersCount ? (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>{trigger}</TooltipTrigger>
-        <TooltipContent>
-          <p>
-            {props.item.nicknames.slice(0, 4).map(item => '@' + item + ' ')}
-          </p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <TooltipAdapter trigger={trigger}>
+      <p>
+        {props.item.nicknames
+          .slice(0, 4)
+          .map(
+            (item, index) =>
+              '@' +
+              item +
+              (index != props.item.nicknames.length - 1 ? ', ' : '')
+          )}
+      </p>
+    </TooltipAdapter>
   ) : (
     trigger
   );

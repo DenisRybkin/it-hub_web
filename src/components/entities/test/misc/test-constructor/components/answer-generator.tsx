@@ -1,4 +1,4 @@
-import { AnswerDto } from '@components/entities/test/misc/common/types';
+import { AnswerDto } from '@components/entities/test/common/types';
 import { Answer } from '@components/entities/test/misc/test-constructor/components/answer';
 import { Button } from '@components/ui/button';
 import React from 'react';

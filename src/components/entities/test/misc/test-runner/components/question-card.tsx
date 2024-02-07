@@ -1,5 +1,5 @@
-import { QuestionDto } from '@components/entities/test/misc/common/types';
-import { identifyQuestionType } from '@components/entities/test/misc/common/utils';
+import { QuestionDto } from '@components/entities/test/common/types';
+import { identifyQuestionType } from '@components/entities/test/common/utils';
 import { Checkbox } from '@components/ui/checkbox';
 import { Label } from '@components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@components/ui/radio-group';

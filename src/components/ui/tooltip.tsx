@@ -24,4 +24,25 @@ const TooltipContent = React.forwardRef<
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
-export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger };
+interface ITooltipAdapterProps
+  extends React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> {
+  trigger: React.ReactNode;
+  children: React.ReactNode;
+}
+
+const TooltipAdapter = (props: ITooltipAdapterProps) => (
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger>{props.trigger}</TooltipTrigger>
+      <TooltipContent>{props.children}</TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+);
+
+export {
+  Tooltip,
+  TooltipAdapter,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+};
