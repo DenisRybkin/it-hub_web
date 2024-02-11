@@ -87,9 +87,10 @@ const AvatarGroup = ({
       className={cn('flex -space-x-2', onMore && 'cursor-pointer')}
       onClick={avatars.length > max ? onMore : undefined}
     >
-      {avatars.slice(0, max).map(avatar => (
+      {avatars.slice(0, max).map((avatar, index) => (
         <Avatar
           {...props}
+          key={(avatar.src ?? '') + (avatar.fallback ?? '') + index}
           className={cn(props.className, 'border border-gray-1')}
           tooltip={avatar.tooltip}
         >

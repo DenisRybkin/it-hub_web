@@ -10,6 +10,7 @@ import {
   User,
   UserAvatar,
   UserAvatarDto,
+  UserInfoDto,
 } from '@lib/api/models';
 import { LockerModel, PagingModel } from '@lib/api/types';
 import { AxiosInstance } from 'axios';
@@ -37,7 +38,11 @@ export class UserController extends ApiControllerCRUD<
     onSuccess?: (model: number) => void,
     onError?: (error: BaseProcessedError) => void
   ) {
-    return await this.process<number>(this.get(`follower/${userId}/count`));
+    return await this.process<number>(
+      this.get(`follower/${userId}/count`),
+      onSuccess,
+      onError
+    );
   }
 
   async getFollowers(
@@ -57,7 +62,11 @@ export class UserController extends ApiControllerCRUD<
     onSuccess?: (model: number) => void,
     onError?: (error: BaseProcessedError) => void
   ) {
-    return await this.process<number>(this.get(`following/${userId}/count`));
+    return await this.process<number>(
+      this.get(`following/${userId}/count`),
+      onSuccess,
+      onError
+    );
   }
 
   async getFollowings(
@@ -70,6 +79,14 @@ export class UserController extends ApiControllerCRUD<
       onSuccess,
       onError
     );
+  }
+
+  async getInfo(
+    userId: number,
+    onSuccess?: (model: UserInfoDto) => void,
+    onError?: (error: BaseProcessedError) => void
+  ) {
+    return await this.process(this.get(`info/${userId}`), onSuccess, onError);
   }
 
   async follow(
@@ -125,6 +142,20 @@ export class UserController extends ApiControllerCRUD<
     onSuccess?: (model: boolean) => void,
     onError?: (error: BaseProcessedError) => void
   ) {
-    return await this.process(this.remove(userId.toString()));
+    return await this.process(
+      this.remove(userId.toString()),
+      onSuccess,
+      onError
+    );
+  }
+
+  async toggleFavoriteCategory(
+    categoryId: number,
+    onSuccess?: () => void,
+    onError?: (error: BaseProcessedError) => void
+  ) {
+    return await this.process(
+      this.post('category/favorite', { data: { categoryId } })
+    );
   }
 }

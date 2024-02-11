@@ -26,7 +26,7 @@ export const CommentCard = <R,>(props: ICommentCardProps<R>) => {
   const navigate = useNavigate();
 
   const handleRedirectToAuthorPage = () =>
-    navigate(RoutePaths[RouteKeys.USER] + `/${props.author.id}`);
+    navigate(RoutePaths[RouteKeys.PROFILE_ID] + `/${props.author.id}`);
 
   const handleReactionSuccess = (reaction: R | number, commentId: number) =>
     props.refetchByCommentId?.(props.id);

@@ -2,6 +2,7 @@ import { ArticlePage } from '@components/pages/article';
 import { HomePage } from '@components/pages/home/';
 import { LatestPage } from '@components/pages/latest';
 import { UserPage } from '@components/pages/user';
+import { UsersPage } from '@components/pages/users';
 import { WritePage } from '@components/pages/write';
 import { Role } from '@lib/api/models';
 import { RouteKeys } from '@lib/constants';
@@ -67,12 +68,12 @@ export const routerConfig: RoutePropsType[] = [
   {
     isPrivate: false,
     path: RoutePaths[RouteKeys.USER],
-    element: <UserPage />,
+    element: <UsersPage />,
   },
   {
     isPrivate: false,
     path: RoutePaths[RouteKeys.USER_ID],
-    element: <div>USER_ID</div>,
+    element: <UserPage />,
   },
   {
     isPrivate: false,

@@ -1,10 +1,11 @@
-import { CategoryCard } from '@components/entities/category/misc/category-card';
-import { CategoryCardSkeleton } from '@components/entities/category/misc/category-card';
+import {
+  CategoryCard,
+  CategoryCardSkeleton,
+} from '@components/entities/category/misc/category-card';
 import { HorizontalScrollArea } from '@components/shared/horizontal-scroll-area';
-import { Category } from '@lib/api/models';
+import { Category, UserAchievement } from '@lib/api/models';
 import { api } from '@lib/api/plugins';
 import { useInfinityPaging } from '@lib/utils/hooks';
-import { searchParamToNumArray } from '@lib/utils/tools';
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ export interface ICategoriesListProps {
   selectedCategories?: Category[];
   onChangeSelectedCategories?: (value: Category[]) => void;
   withSearchParams?: boolean;
+  userAchievements?: UserAchievement[];
 }
 
 export const CategoryCardList = (props: ICategoriesListProps) => {
@@ -89,6 +91,9 @@ export const CategoryCardList = (props: ICategoriesListProps) => {
                         category => item.id == category.id
                       )
                 }
+                userAchievement={props.userAchievements?.find(
+                  achievement => achievement.categoryId == item.id
+                )}
                 category={item}
                 onClick={handleClick}
               />

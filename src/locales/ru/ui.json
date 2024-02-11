@@ -34,7 +34,10 @@
     "sign_in_subheader": "Введите имя пользователя и пароль",
     "empty_content" : "Ничего не найдено",
     "languages": "Языки",
-    "generating_test": "Упрости себе жизнь и используй GPT :)"
+    "generating_test": "Упрости себе жизнь и используй GPT :)",
+    "articles": "Публикации",
+    "followers": "Подписчики",
+    "followings": "Подписки"
   },
   "button": {
     "sign_in": "Войти",
@@ -139,7 +142,10 @@
     "hashtags": "Хэштеги",
     "generating_test": "Генерация теста"
   },
-  "tab": {},
+  "tab": {
+    "articles": "Публикации",
+    "reposts": "Репосты"
+  },
   "table": {},
   "checkbox": {},
   "sidebar": {

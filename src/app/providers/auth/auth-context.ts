@@ -9,6 +9,7 @@ interface IAuthContext {
   role?: Role;
   user?: User;
   setUser: (user?: User) => void;
+  refetch: () => void;
   openAuthDialog: () => void;
 }
 
@@ -18,4 +19,5 @@ export const AuthContext = createContext<IAuthContext>({
   setAccessToken: () => {},
   setUser: () => {},
   openAuthDialog: () => {},
+  refetch: () => {},
 });

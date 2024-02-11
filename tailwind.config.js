@@ -53,6 +53,13 @@ export default {
           fontWeight: '500',
         },
       ],
+      'heading4-bold': [
+        '20px',
+        {
+          lineHeight: '140%',
+          fontWeight: '700',
+        },
+      ],
       'heading4-medium': [
         '20px',
         {

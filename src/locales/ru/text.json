@@ -37,5 +37,6 @@
   "you_passed_test": "Ты прошел тест! Красавчик!",
   "more_pretty_boys": "Еще красавчики: ",
   "you_not_passed_test": "Бро, были ошибки, повтори попытку!",
-  "generated_questions_info": "Это пробный вариант, вы его сможете редактировать"
+  "generated_questions_info": "Это пробный вариант, вы его сможете редактировать",
+  "on_platform_since": "На платформе с"
 }

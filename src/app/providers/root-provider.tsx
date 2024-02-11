@@ -15,24 +15,24 @@ export const RootProvider = (props: IProviderProps) => {
   return (
     <BrowserRouter>
       <SetupApi />
-      <QueryProvider>
-        <ThemeProvider>
-          <LocaleProvider>
-            <LocationHistoryProvider>
-              <HealthProvider>
-                <PreloaderProvider>
-                  <AuthProvider>
-                    <Toaster />
-                    <ErrorBoundaryProvider>
+      <ErrorBoundaryProvider>
+        <QueryProvider>
+          <ThemeProvider>
+            <LocaleProvider>
+              <LocationHistoryProvider>
+                <HealthProvider>
+                  <PreloaderProvider>
+                    <AuthProvider>
+                      <Toaster />
                       {props.children}
-                    </ErrorBoundaryProvider>
-                  </AuthProvider>
-                </PreloaderProvider>
-              </HealthProvider>
-            </LocationHistoryProvider>
-          </LocaleProvider>
-        </ThemeProvider>
-      </QueryProvider>
+                    </AuthProvider>
+                  </PreloaderProvider>
+                </HealthProvider>
+              </LocationHistoryProvider>
+            </LocaleProvider>
+          </ThemeProvider>
+        </QueryProvider>
+      </ErrorBoundaryProvider>
     </BrowserRouter>
   );
 };

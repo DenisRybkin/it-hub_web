@@ -37,5 +37,6 @@
   "you_passed_test": "You passed the test! Pretty boy!",
   "more_pretty_boys": "More pretty boys:",
   "you_not_passed_test": "Bro, there were mistakes, try again!",
-  "generated_questions_info": "This is just a trial version, you can edit it"
+  "generated_questions_info": "This is just a trial version, you can edit it",
+  "on_platform_since": "On the platform since"
 }

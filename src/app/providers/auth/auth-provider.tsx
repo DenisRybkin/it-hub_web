@@ -26,7 +26,7 @@ export const AuthProvider = (props: IProviderProps) => {
     handleSetAccessToken(undefined);
   };
 
-  const { isFetching, isSuccess } = useQuery({
+  const { isFetching, isSuccess, refetch, isRefetching } = useQuery({
     queryKey: [QueryKeys.GET_ME],
     queryFn: async () => await api.user.getMe(handleSuccess, handleError),
     enabled: !user && !!accessToken,
@@ -63,6 +63,7 @@ export const AuthProvider = (props: IProviderProps) => {
           user,
           accessToken,
           role,
+          refetch,
           setAccessToken: handleSetAccessToken,
           openAuthDialog: handleOpenAuthDialog,
         }}

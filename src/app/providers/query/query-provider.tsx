@@ -15,21 +15,14 @@ const queryClient = new QueryClient({
 });
 
 export const QueryProvider = (props: IProviderProps) => {
-  queryClient.prefetchQuery([
-    {
-      queryKey: [QueryKeys.GET_ME],
-      queryFn: async () => await api.user.getMe(),
-      cacheTime: 2 * Number(import.meta.env.VITE_API_CACHE_TIME),
-      staleTime: 2 * Number(import.meta.env.VITE_API_CACHE_TIME),
-    },
-  ]);
-
-  queryClient.prefetchQuery({
+  queryClient.fetchQuery({
     queryKey: [QueryKeys.PING],
     queryFn: async () => await api.app.ping(),
     cacheTime: 2 * Number(import.meta.env.VITE_API_CACHE_TIME),
     staleTime: 2 * Number(import.meta.env.VITE_API_CACHE_TIME),
   });
+
+  queryClient.refetchQueries({ queryKey: [QueryKeys.GET_ME], type: 'all' });
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+/* eslint-disable */
 
 export type { Achievement } from './Achievement';
 export type { Article } from './Article';
@@ -109,8 +109,10 @@ export type { UserAchievement } from './UserAchievement';
 export type { UserAvatar } from './UserAvatar';
 export type { UserAvatarDto } from './UserAvatarDto';
 export type { UserCategory } from './UserCategory';
+export type { UserCategoryDto } from './UserCategoryDto';
 export type { UserFollower } from './UserFollower';
 export type { UserFollowing } from './UserFollowing';
+export type { UserInfoDto } from './UserInfoDto';
 export type { UserShortDto } from './UserShortDto';
 export type { ValidationErrorType } from './ValidationErrorType';
 export type { ValidationMessageType } from './ValidationMessageType';

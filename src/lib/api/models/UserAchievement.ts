@@ -1,8 +1,9 @@
 /* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+/* eslint-disable */
 
+import type { Achievement } from './Achievement';
 import type { Category } from './Category';
 import type { User } from './User';
 
@@ -23,6 +24,10 @@ export type UserAchievement = {
      * FK to achievement
      */
     achievementId: number;
+    /**
+     * achievement
+     */
+    achievement?: Achievement;
     /**
      * Category by achievement
      */

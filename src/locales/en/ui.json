@@ -34,7 +34,10 @@
     "sign_in_subheader": "Enter your username and password",
     "empty_content": "Nothing found",
     "languages": "Languages",
-    "generating_test": "Simplify your life and use GPT :)"
+    "generating_test": "Simplify your life and use GPT :)",
+    "articles": "Articles",
+    "followers": "Followers",
+    "followings": "Followings"
   },
   "button": {
     "sign_in": "Sign in",
@@ -139,7 +142,10 @@
     "hashtags": "Hashtags",
     "generating_test": "Generating test"
   },
-  "tab": {},
+  "tab": {
+    "articles": "Articles",
+    "reposts": "Reposts"
+  },
   "table": {},
   "checkbox": {},
   "sidebar": {

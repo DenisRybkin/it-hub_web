@@ -1,100 +1,109 @@
-import { AuthContext } from '@app/providers/auth';
-import { UserCard } from '@components/entities/user/misc/user-card';
-import { EmptyContent } from '@components/shared/empty-content/empty-content';
-import { Button } from '@components/ui/button';
-import { Separator } from '@components/ui/separator';
-import { User } from '@lib/api/models';
-import { cn } from '@lib/utils/tools';
-import { Collapsible, CollapsibleContent } from '@radix-ui/react-collapsible';
-import React, { useContext, useState } from 'react';
+import { ArticleCardList } from '@components/entities/article/misc/article-card-list';
+import {
+  UserView,
+  UserViewSkeleton,
+} from '@components/entities/user/misc/user-view';
+import { EmptyContent } from '@components/shared/empty-content';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs';
+import { toast } from '@components/ui/use-toast';
+import { api } from '@lib/api/plugins';
+import { QueryKeys } from '@lib/constants';
+import { useInfinityPaging } from '@lib/utils/hooks';
+import { useQuery } from '@tanstack/react-query';
+import { useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FiChevronDown } from 'react-icons/fi';
+import { useNavigate, useParams } from 'react-router-dom';
+
+type TabKeyType = 'articles' | 'reposts';
 
 export const UserPage = () => {
+  const { id: param } = useParams<'id'>();
   const { t } = useTranslation();
-  const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const [isOpenSubscriptions, setIsOpenSubscriptions] = useState<boolean>(true);
-  const [isOpenNotSubscriptions, setIsOpenNotSubscriptions] =
-    useState<boolean>(true);
+  const [tabKey, setTabKey] = useState<TabKeyType>('articles');
 
-  const handleCollapsibleSubscriptions = () =>
-    setIsOpenSubscriptions(prev => !prev);
+  const userId = Number(param);
+  const isInvalidId = Number.isNaN(userId);
 
-  const handleCollapsibleNotSubscriptions = () =>
-    setIsOpenNotSubscriptions(prev => !prev);
+  const handleRedirectBack = () => navigate(-1);
 
-  const result: User[] = authContext.user
-    ? [authContext.user, authContext.user, authContext.user, authContext.user]
-    : [];
+  const handleError = () =>
+    toast({ title: t('toast:error.default'), variant: 'destructive' });
+
+  const userInfo = useQuery({
+    queryKey: [api.user.toString(), QueryKeys.USER_INFO, userId],
+    queryFn: () => api.user.getInfo(userId, undefined, handleError),
+    enabled: !isInvalidId,
+  });
+
+  const userReposts = useInfinityPaging(
+    api.articleShort,
+    handleError,
+    [
+      {
+        key: 'userId',
+        associatedModel: 'reposts',
+        type: 'eq',
+        value: userId,
+      },
+    ],
+    undefined,
+    !isInvalidId && tabKey == 'reposts'
+  );
+
+  const userArticles = useInfinityPaging(
+    api.articleShort,
+    handleError,
+    [{ key: 'createdByUserId', type: 'eq', value: userId }],
+    undefined,
+    !isInvalidId && tabKey == 'articles'
+  );
+
+  useLayoutEffect(() => {
+    if (isInvalidId) handleRedirectBack();
+  }, [isInvalidId]);
+
+  if (userInfo.isError) return <EmptyContent />;
 
   return (
-    <section>
-      {authContext.isAuth && (
-        <Collapsible open={isOpenSubscriptions}>
-          <div className="flex items-center justify-between mb-10">
-            <h1 className="head-text">{t('ui:title.subscriptions')}</h1>
-            <Button
-              onClick={handleCollapsibleSubscriptions}
-              variant="ghost"
-              size="icon"
-            >
-              <FiChevronDown
-                size={22}
-                className={cn(
-                  'transition-all',
-                  isOpenSubscriptions && 'rotate-180'
-                )}
-              />
-            </Button>
-          </div>
-          <CollapsibleContent>
-            <div className="mt-14 flex flex-col gap-9">
-              {result.length == 0 ? (
-                <EmptyContent />
-              ) : (
-                <>
-                  {result.map(user => (
-                    <UserCard key={user.id} user={user} />
-                  ))}
-                </>
-              )}
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
+    <>
+      {userInfo.isLoading ? (
+        <UserViewSkeleton />
+      ) : (
+        <UserView
+          info={userInfo.data}
+          countArticles={userArticles.items.length}
+        />
       )}
-      {authContext.isAuth && <Separator className="my-4 h-[3px]" />}
-      <Collapsible open={isOpenNotSubscriptions}>
-        <div className="flex items-center justify-between mb-10">
-          <h1 className="head-text">{t('ui:title.users')}</h1>
-          <Button
-            onClick={handleCollapsibleNotSubscriptions}
-            variant="ghost"
-            size="icon"
-          >
-            <FiChevronDown
-              size={22}
-              className={cn(
-                'transition-all',
-                isOpenNotSubscriptions && 'rotate-180'
-              )}
-            />
-          </Button>
-        </div>
-        <CollapsibleContent>
-          <div className="mt-14 flex flex-col gap-9">
-            {result.length == 0 ? (
-              <EmptyContent />
-            ) : (
-              <>
-                {result.map(user => (
-                  <UserCard key={user.id} user={user} />
-                ))}
-              </>
-            )}
-          </div>
-        </CollapsibleContent>
-      </Collapsible>
-    </section>
+      <Tabs
+        value={tabKey}
+        onValueChange={key => setTabKey(key as TabKeyType)}
+        className="w-full mt-5"
+      >
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="articles">{t('ui:tab.articles')}</TabsTrigger>
+          <TabsTrigger value="reposts">{t('ui:tab.reposts')}</TabsTrigger>
+        </TabsList>
+        <TabsContent value="articles">
+          <ArticleCardList
+            loadNext={userArticles.loadNext}
+            isDone={userArticles.info.isDone}
+            refetchPage={userArticles.loadPage}
+            isLoading={userArticles.isLoading}
+            items={userArticles.items}
+          />
+        </TabsContent>
+        <TabsContent value="reposts">
+          <ArticleCardList
+            loadNext={userReposts.loadNext}
+            isDone={userReposts.info.isDone}
+            refetchPage={userReposts.loadPage}
+            isLoading={userReposts.isLoading}
+            items={userReposts.items}
+          />
+        </TabsContent>
+      </Tabs>
+    </>
   );
 };
