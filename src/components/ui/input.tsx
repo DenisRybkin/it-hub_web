@@ -25,17 +25,28 @@ const inputVariants = cva(
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
-    VariantProps<typeof inputVariants> {}
+    VariantProps<typeof inputVariants> {
+  leftIcon?: React.ReactNode;
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, variant, size, ...props }, ref) => {
-    return (
+  ({ className, type, variant, size, leftIcon, ...props }, ref) => {
+    const input = (
       <input
         type={type}
         className={cn(inputVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />
+    );
+
+    return leftIcon && variant && variant != 'default' ? (
+      <div className="flex items-center gap-1">
+        {leftIcon}
+        {input}
+      </div>
+    ) : (
+      input
     );
   }
 );

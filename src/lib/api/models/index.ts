@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+/* eslint-disable */
 
 export type { Achievement } from './Achievement';
 export type { Article } from './Article';
@@ -53,6 +53,7 @@ export type { Hashtag } from './Hashtag';
 export type { ImageUploadDto } from './ImageUploadDto';
 export type { LoginDto } from './LoginDto';
 export type { LoginResponseType } from './LoginResponseType';
+export { Order } from './Order';
 export type { PagingOptionsType } from './PagingOptionsType';
 export type { PagingType } from './PagingType';
 export type { ProcessedError400Type } from './ProcessedError400Type';

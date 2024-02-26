@@ -37,7 +37,8 @@
     "generating_test": "Simplify your life and use GPT :)",
     "articles": "Articles",
     "followers": "Followers",
-    "followings": "Followings"
+    "followings": "Followings",
+    "organize": "Organize"
   },
   "button": {
     "sign_in": "Sign in",
@@ -173,6 +174,10 @@
     "language": {
       "russian": "Russian",
       "english": "English"
+    },
+    "sort": {
+      "new_ones_first": "New ones first",
+      "old_ones_first": "Old ones first"
     }
   },
   "text_editor": {

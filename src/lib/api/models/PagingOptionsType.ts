@@ -1,7 +1,9 @@
 /* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+/* eslint-disable */
+
+import type { Order } from './Order';
 
 export type PagingOptionsType = {
     /**
@@ -12,10 +14,7 @@ export type PagingOptionsType = {
      * count items of page
      */
     pageSize?: number;
-    /**
-     * oder for sorting (asc | desc)
-     */
-    order?: string;
+    order?: Order;
     /**
      * filed for ordering
      */

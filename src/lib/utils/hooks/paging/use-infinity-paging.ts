@@ -12,7 +12,7 @@ import { fetchItems } from '@lib/utils/hooks/paging/common';
 import { filters2QueryKey } from '@lib/utils/tools';
 import { QueryFunctionContext } from '@tanstack/query-core';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const useInfinityPaging = <T extends ModelWithId, TFilter>(
@@ -26,7 +26,16 @@ export const useInfinityPaging = <T extends ModelWithId, TFilter>(
   const [page, setPage] = useState(1);
 
   if (!pagingOptions) pagingOptions = { pageSize: 10 };
-  const queryFilterKey = filters2QueryKey(filterOptions);
+  else
+    pagingOptions = {
+      ...pagingOptions,
+      pageSize: pagingOptions.pageSize ?? 10,
+    };
+
+  const queryFilterKey = filters2QueryKey(filterOptions, {
+    order: pagingOptions?.order,
+    orderBy: pagingOptions?.orderBy,
+  });
 
   const getNextPageParam = (lastPage: PagingModel<T>) => {
     const isDone = lastPage.items.length < (pagingOptions?.pageSize ?? 10);
@@ -73,17 +82,19 @@ export const useInfinityPaging = <T extends ModelWithId, TFilter>(
         page.items.some(item => item.id == updatedItemId),
     });
 
-  const getInfo = (): Required<PagingInfo> => {
+  const info: Required<PagingInfo> = useMemo(() => {
     const lastLoadedData = data?.pages.at(-1);
+    const pageSize =
+      pagingOptions!.pageSize! < 0 ? Infinity : pagingOptions!.pageSize!;
     return {
-      isDone: (lastLoadedData?.items.length ?? 0) < pagingOptions!.pageSize!,
+      isDone: (lastLoadedData?.items.length ?? 0) < pageSize,
       totalPages: lastLoadedData?.totalPages ?? 0,
       totalItems: lastLoadedData?.totalItems ?? 0,
     };
-  };
+  }, [pagingOptions?.pageSize, data?.pages]);
 
   return {
-    info: getInfo(),
+    info,
     isLoading,
     isFetching: isFetching || isFetchingNextPage || isRefetching,
     isError,

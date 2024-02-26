@@ -37,7 +37,8 @@
     "generating_test": "Упрости себе жизнь и используй GPT :)",
     "articles": "Публикации",
     "followers": "Подписчики",
-    "followings": "Подписки"
+    "followings": "Подписки",
+    "organize": "Упорядочить"
   },
   "button": {
     "sign_in": "Войти",
@@ -172,6 +173,10 @@
     "language": {
       "russian": "Русский",
       "english": "Английский"
+    },
+    "sort": {
+      "new_ones_first": "Сначала новые",
+      "old_ones_first": "Сначала старые"
     }
   },
   "text_editor": {
