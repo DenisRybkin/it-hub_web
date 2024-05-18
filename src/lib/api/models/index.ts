@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+/* eslint-disable */
 
 export type { Achievement } from './Achievement';
 export type { Article } from './Article';
@@ -72,6 +72,7 @@ export type { ReadExaminationAnswerFilterDto } from './ReadExaminationAnswerFilt
 export type { ReadExaminationFilterDto } from './ReadExaminationFilterDto';
 export type { ReadExaminationQuestionFilterDto } from './ReadExaminationQuestionFilterDto';
 export type { ReadHashtagFilterDto } from './ReadHashtagFilterDto';
+export type { ReadRatingFilterDto } from './ReadRatingFilterDto';
 export { ReadRoleFilterDto } from './ReadRoleFilterDto';
 export type { ReadStaticFieldFilterDto } from './ReadStaticFieldFilterDto';
 export type { ReadUserFilterDto } from './ReadUserFilterDto';

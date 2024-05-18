@@ -1,5 +1,5 @@
 import { toast } from '@components/ui/use-toast';
-import type { IApiControllerRead } from '@lib/api/interfaces';
+import { IApiControllerRead } from '@lib/api/interfaces';
 import { BaseProcessedError } from '@lib/api/models';
 import type {
   FilterOption,

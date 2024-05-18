@@ -11,13 +11,14 @@ import {
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { GenerateTestSchema } from '@lib/utils/validations';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 interface IGenerateTestFromProps {
   onSubmit: (dto: z.infer<typeof GenerateTestSchema>) => void;
+  getTopic: () => Promise<string>;
 }
 
 export const GenerateTestFrom = (props: IGenerateTestFromProps) => {
@@ -33,6 +34,14 @@ export const GenerateTestFrom = (props: IGenerateTestFromProps) => {
 
   const handleSubmit = (dto: z.infer<typeof GenerateTestSchema>) =>
     props.onSubmit(dto);
+
+  const handleInit = async () => {
+    form.setValue('topic', (await props.getTopic()) ?? '');
+  };
+
+  useEffect(() => {
+    handleInit();
+  }, []);
 
   return (
     <Form {...form}>

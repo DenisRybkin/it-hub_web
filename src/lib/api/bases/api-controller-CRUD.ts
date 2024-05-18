@@ -1,9 +1,8 @@
 import { ApiControllerRead } from '@lib/api/bases/api-controller-read';
+import { IApiControllerCrud } from '@lib/api/interfaces';
 import { BaseProcessedError } from '@lib/api/models';
 import { AxiosInstance } from 'axios';
-import { AxiosError } from 'axios';
 
-import { IApiControllerCrud } from '@/lib/api/interfaces';
 import { LockerModel } from '@/lib/api/types';
 
 export abstract class ApiControllerCRUD<

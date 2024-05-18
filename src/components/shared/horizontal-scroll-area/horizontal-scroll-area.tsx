@@ -71,7 +71,7 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
         <>
           {!leftScrollIsDisabled && (
             <Button
-              className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2"
+              className="absolute z-10 top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2"
               variant="ghost"
               size="icon"
               onClick={scrollToLeft}
@@ -82,7 +82,7 @@ export const HorizontalScrollArea = (props: IHorizontalScrollAreaProps) => {
           {!rightScrollIsDisabled && (
             <Button
               className={cn(
-                'absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2',
+                'absolute z-10 top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2',
                 rightScrollIsDisabled && 'hidden'
               )}
               variant="ghost"

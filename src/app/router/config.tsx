@@ -1,6 +1,7 @@
 import { ArticlePage } from '@components/pages/article';
 import { HomePage } from '@components/pages/home/';
 import { LatestPage } from '@components/pages/latest';
+import { RatingPage } from '@components/pages/rating';
 import { UserPage } from '@components/pages/user';
 import { UsersPage } from '@components/pages/users';
 import { WritePage } from '@components/pages/write';
@@ -26,6 +27,7 @@ export const RoutePaths = {
   [RouteKeys.ARTICLE]: '/article',
   [RouteKeys.ARTICLE_ID]: '/article/:id',
   [RouteKeys.WRITE]: '/write',
+  [RouteKeys.RATING]: '/rating',
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -79,6 +81,11 @@ export const routerConfig: RoutePropsType[] = [
     isPrivate: false,
     path: RoutePaths[RouteKeys.ARTICLE_ID],
     element: <ArticlePage />,
+  },
+  {
+    isPrivate: false,
+    path: RoutePaths[RouteKeys.RATING],
+    element: <RatingPage />,
   },
   {
     isPrivate: true,

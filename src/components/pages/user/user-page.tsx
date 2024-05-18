@@ -1,4 +1,6 @@
+import { AuthContext } from '@app/providers/auth';
 import { ArticleCardList } from '@components/entities/article/misc/article-card-list';
+import { FileUploader } from '@components/entities/static-field/misc/file-uploader';
 import {
   UserView,
   UserViewSkeleton,
@@ -9,8 +11,8 @@ import { toast } from '@components/ui/use-toast';
 import { api } from '@lib/api/plugins';
 import { QueryKeys } from '@lib/constants';
 import { useInfinityPaging } from '@lib/utils/hooks';
-import { useQuery } from '@tanstack/react-query';
-import { useLayoutEffect, useState } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useContext, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 

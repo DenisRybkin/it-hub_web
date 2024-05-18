@@ -14,6 +14,7 @@ export { ExaminationController } from './examination-controller';
 export { ExaminationQuestionController } from './examination-question-controller';
 export { HashtagController } from './hashtag-controller';
 export { OpenAiController } from './open-ai-controller';
+export { RatingController } from './rating-controller';
 export { RoleController } from './role-controller';
 export { StaticFieldController } from './static-field-controller';
 export { UserController } from './user-controller';

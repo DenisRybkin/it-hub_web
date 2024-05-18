@@ -141,7 +141,8 @@
     "take_examination": "Пройдите экзамен, чтобы получить роль публикатора",
     "technical_works": "Технические работы",
     "hashtags": "Хэштеги",
-    "generating_test": "Генерация теста"
+    "generating_test": "Генерация теста",
+    "rating": "Рейтинг"
   },
   "tab": {
     "articles": "Публикации",
@@ -155,7 +156,8 @@
     "latest": "Свежее",
     "companies": "Компании",
     "subscriptions": "Подписки",
-    "users": "Пользователи"
+    "users": "Пользователи",
+    "rating": "Рейтинг"
   },
   "link": {
     "go_home": "Вернуться"

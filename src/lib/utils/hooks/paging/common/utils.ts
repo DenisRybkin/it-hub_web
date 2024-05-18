@@ -1,6 +1,10 @@
-import { getOptions, IApiControllerRead } from '@lib/api/interfaces';
 import { BaseProcessedError } from '@lib/api/models';
 import { PagingModel } from '@lib/api/types';
+
+import {
+  getOptions,
+  IApiControllerRead,
+} from '../../../../../../../maks-soft/zarechny-admin_web/src/lib/api/interfaces';
 
 export const fetchItems = async <T, TFilter>(
   controller: IApiControllerRead<T, TFilter>,

@@ -14,12 +14,13 @@ import { SuccessState } from '@components/entities/test/misc/test-runner/compone
 import { SwitchableRender } from '@components/shared/switchable-render';
 import { Button } from '@components/ui/button';
 import { toast } from '@components/ui/use-toast';
-import { IApiControllerRead } from '@lib/api/interfaces';
 import { User } from '@lib/api/models';
 import type { ModelWithId } from '@lib/api/types';
 import { FilterOption } from '@lib/api/types';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { IApiControllerRead } from '../../../../../../../maks-soft/zarechny-admin_web/src/lib/api/interfaces';
 
 interface ITestRunnerProps<U extends ModelWithId, UFilter> {
   isPassed?: boolean;

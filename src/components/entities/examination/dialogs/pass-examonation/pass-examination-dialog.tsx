@@ -5,7 +5,8 @@ import { CircularLoader } from '@components/ui/loader';
 import { toast } from '@components/ui/use-toast';
 import { api } from '@lib/api/plugins';
 import { QueryKeys } from '@lib/constants';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const EXAMINATION_ID = 1;
@@ -14,11 +15,13 @@ interface IPassExaminationDialogProps extends IBaseDialogProps {}
 
 export const PassExaminationDialog = (props: IPassExaminationDialogProps) => {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
 
   const handleError = () =>
     toast({ title: t('toast:error.default'), variant: 'destructive' });
 
   const handleSuccess = () => {
+    queryClient.invalidateQueries([QueryKeys.GET_ME]);
     toast({ title: t('toast:success.publisher_received'), variant: 'success' });
     props.onOpenChange(false);
   };

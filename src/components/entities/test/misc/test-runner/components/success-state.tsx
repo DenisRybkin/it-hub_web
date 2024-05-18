@@ -3,7 +3,6 @@ import SmileWink from '@assets/images/smiles/wink.png';
 import { UsersWhoPassedTestDialog } from '@components/entities/user/dialogs/users-who-passed-test/users-who-passed-test-dialog';
 import { AvatarGroup } from '@components/ui/avatar';
 import { toast } from '@components/ui/use-toast';
-import { IApiControllerRead } from '@lib/api/interfaces';
 import { User } from '@lib/api/models';
 import type { ModelWithId } from '@lib/api/types';
 import { FilterOption } from '@lib/api/types';
@@ -11,6 +10,8 @@ import { useInfinityPaging } from '@lib/utils/hooks';
 import { getAvatar, getFallback } from '@lib/utils/tools';
 import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { IApiControllerRead } from '../../../../../../../../maks-soft/zarechny-admin_web/src/lib/api/interfaces';
 
 interface ISuccessStateProps<U extends ModelWithId, UFilter> {
   usersWhoPassedController: IApiControllerRead<U, UFilter>;

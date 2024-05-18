@@ -49,7 +49,7 @@ export const UsersPage = () => {
             </Button>
           </div>
           <CollapsibleContent>
-            <div className="mt-14 flex flex-col gap-9">
+            <div className="mt-14 flex flex-col gap-5">
               {result.length == 0 ? (
                 <EmptyContent />
               ) : (
@@ -82,7 +82,7 @@ export const UsersPage = () => {
           </Button>
         </div>
         <CollapsibleContent>
-          <div className="mt-14 flex flex-col gap-9">
+          <div className="mt-14 flex flex-col gap-5">
             {result.length == 0 ? (
               <EmptyContent />
             ) : (

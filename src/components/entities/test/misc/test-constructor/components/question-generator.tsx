@@ -38,6 +38,7 @@ interface IQuestionGeneratorProps {
   noImmediatelyCreateQuestion?: boolean;
   onChangeHasChanges?: (value: boolean) => void;
   defaultValue?: QuestionDto[];
+  getTopic: () => Promise<string>;
 }
 
 const questionIdQuestionGenerator = new IdGenerator(1);
@@ -180,6 +181,7 @@ export const QuestionGenerator = forwardRef<
     <>
       <GenerateQuestionsDrawer
         isOpen={isOpenGenerateQuestionsDrawer}
+        getTopic={props.getTopic}
         onOpenChange={setIsOpenGenerateQuestionsDrawer}
         onAddQuestions={handleAddGeneratedQuestions}
       />

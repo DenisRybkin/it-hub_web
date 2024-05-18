@@ -37,7 +37,10 @@ export const ArticleViewHead = forwardRef<
     <>
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-2 mb-2">
-          <Avatar onClick={handleRedirectToAuthorPage}>
+          <Avatar
+            className="cursor-pointer"
+            onClick={handleRedirectToAuthorPage}
+          >
             <AvatarImage src={getAvatar(props.author)} />
             <AvatarFallback>{getFallback(props.author)}</AvatarFallback>
           </Avatar>

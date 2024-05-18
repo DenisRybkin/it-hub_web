@@ -77,7 +77,12 @@ export const AuthDialog = (props: IAuthDialogProps) => {
   ) => {
     setIsLoading(true);
     await api.auth.registration(
-      dto,
+      {
+        name: dto.name,
+        email: dto.email,
+        password: dto.password,
+        nickname: dto.nickname,
+      },
       handleRegistrationSuccess,
       handleAuthError
     );

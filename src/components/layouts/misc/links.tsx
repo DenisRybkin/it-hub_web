@@ -1,7 +1,14 @@
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
 import { ReactNode } from 'react';
-import { FiClipboard, FiClock, FiHome, FiList, FiUsers } from 'react-icons/fi';
+import {
+  FiAward,
+  FiClipboard,
+  FiClock,
+  FiHome,
+  FiList,
+  FiUsers,
+} from 'react-icons/fi';
 import { LuBuilding2 } from 'react-icons/lu';
 
 interface ISidebarLink {
@@ -41,5 +48,10 @@ export const sidebarLinks: ISidebarLink[] = [
     route: RoutePaths[RouteKeys.USER],
     label: 'ui:sidebar.users',
     icon: <FiUsers size={24} />,
+  },
+  {
+    route: RoutePaths[RouteKeys.RATING],
+    label: 'ui:sidebar.rating',
+    icon: <FiAward size={24} />,
   },
 ];

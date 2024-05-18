@@ -67,6 +67,11 @@ export const WritePage = () => {
       throw new Error(t('validation:error.no_category_selected'));
   };
 
+  const getTopic = async () => {
+    const topic = (await editorRef.current?.getData())?.blocks[0].data.text;
+    return topic ?? '';
+  };
+
   const getAndValidateDto = async (): Promise<
     CreateComplexArticleDto | undefined
   > => {
@@ -173,6 +178,7 @@ export const WritePage = () => {
         />
         <h1 className="head-text text-left">{t('ui:title.testing')}</h1>
         <TestConstructor
+          getTopic={getTopic}
           ref={testConstructorRef as Ref<ITestConstructorForwardRef>}
         />
         <h1 className="head-text text-left">{t('ui:title.hashtags')}</h1>

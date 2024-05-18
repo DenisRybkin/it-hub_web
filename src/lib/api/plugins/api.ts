@@ -17,6 +17,7 @@ import {
   ExaminationQuestionController,
   HashtagController,
   OpenAiController,
+  RatingController,
   RoleController,
   StaticFieldController,
   UserController,
@@ -47,6 +48,7 @@ class Api {
   readonly articleShort: ArticleShortController;
   readonly achievement: AchievementController;
   readonly articleTestUser: ArticleTestUserController;
+  readonly rating: RatingController
 
   constructor(client: AxiosInstance, locker: LockerModel) {
     this.app = new AppController(client, locker);
@@ -75,6 +77,7 @@ class Api {
     this.article = new ArticleController(client, locker);
     this.articleShort = new ArticleShortController(client, locker);
     this.achievement = new AchievementController(client, locker);
+    this.rating = new RatingController(client, locker)
   }
 }
 export const api = new Api(client, mutexLocker);

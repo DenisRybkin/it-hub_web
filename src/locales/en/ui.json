@@ -141,7 +141,8 @@
     "take_examination": "Take the exam to get the role of a publisher",
     "technical_works": "Technical works",
     "hashtags": "Hashtags",
-    "generating_test": "Generating test"
+    "generating_test": "Generating test",
+    "rating": "Rating"
   },
   "tab": {
     "articles": "Articles",
@@ -155,7 +156,8 @@
     "latest": "Latest",
     "companies": "Companies",
     "subscriptions": "Subscriptions",
-    "users": "Users"
+    "users": "Users",
+    "rating": "Rating"
   },
   "link": {
     "go_home": "Go to home"

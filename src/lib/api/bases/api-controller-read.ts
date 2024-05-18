@@ -1,7 +1,4 @@
-import {
-  getOptions,
-  IApiControllerRead,
-} from '@lib/api/interfaces/i-api-controller-read';
+import { getOptions, IApiControllerRead } from '@lib/api/interfaces';
 import { BaseProcessedError } from '@lib/api/models';
 import { AxiosInstance } from 'axios';
 

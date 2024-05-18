@@ -1,8 +1,12 @@
+import { AuthContext } from '@app/providers/auth';
 import { CategoryCardList } from '@components/entities/category/misc/category-card-list';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { Button } from '@components/ui/button';
 import { UserInfoDto } from '@lib/api/models';
+import { QueryKeys } from '@lib/constants';
 import { getAvatar, getFallback, number2short } from '@lib/utils/tools';
+import { useQueryClient } from '@tanstack/react-query';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -13,14 +17,23 @@ interface IUserViewProps {
 
 export const UserView = (props: IUserViewProps) => {
   const { t, i18n } = useTranslation();
+  const authContext = useContext(AuthContext);
+  const queryClient = useQueryClient();
+  const isMe = props.info.id ? props.info.id == authContext.user?.id : false;
+
+  const handleReloadMe = () =>
+    queryClient.invalidateQueries([QueryKeys.GET_ME]);
 
   return (
     <div className="flex flex-col rounded-xl bg-dark-2 p-3 md:p-7">
       <div className="flex flex-wrap md:gap-2 items-center justify-between mb-2 md:mb-5">
-        <Avatar className="w-1/5 h-1/5 md:w-1/4 md:1/4">
-          <AvatarImage src={getAvatar(props.info)} />
-          <AvatarFallback>{getFallback(props.info)}</AvatarFallback>
-        </Avatar>
+        <div className="w-1/5 h-1/5 md:w-1/4 md:1/4">
+          <Avatar className="w-full h-full">
+            <AvatarImage src={getAvatar(props.info)} />
+            <AvatarFallback>{getFallback(props.info)}</AvatarFallback>
+          </Avatar>
+        </div>
+
         <div className="flex flex-col items-center">
           <p className="text-slate-500 dark:text-slate-400 text-small-semibold lg:text-heading4-bold">
             {t('ui:subheader.articles')}

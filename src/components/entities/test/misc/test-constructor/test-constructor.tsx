@@ -19,6 +19,7 @@ interface ITestConstructorProps {
   noImmediatelyCreateQuestion?: boolean;
   defaultValue?: QuestionDto[];
   onChangeHasChanges?: (value: boolean) => void;
+  getTopic: () => Promise<string>;
 }
 
 export const TestConstructor = forwardRef<
@@ -84,6 +85,7 @@ export const TestConstructor = forwardRef<
   return (
     <>
       <QuestionGenerator
+        getTopic={props.getTopic}
         ref={questionGeneratorRef as Ref<IQuestionGeneratorForwardRef>}
       />
     </>

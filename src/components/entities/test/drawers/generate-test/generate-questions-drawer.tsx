@@ -16,6 +16,7 @@ interface IGenerateQuestionsDrawerProps {
   isOpen: boolean;
   onOpenChange: (value: boolean) => void;
   onAddQuestions: (DTOs: QuestionWithoutIdDto[]) => void;
+  getTopic: () => Promise<string>;
 }
 
 export const GenerateQuestionsDrawer = (
@@ -98,7 +99,10 @@ export const GenerateQuestionsDrawer = (
             </Button>
           </div>
         ) : (
-          <GenerateTestFrom onSubmit={handleGenerateQuestions} />
+          <GenerateTestFrom
+            getTopic={props.getTopic}
+            onSubmit={handleGenerateQuestions}
+          />
         )}
       </div>
     </DrawerAdapter>

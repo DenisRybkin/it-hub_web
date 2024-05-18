@@ -38,5 +38,8 @@
   "more_pretty_boys": "More pretty boys:",
   "you_not_passed_test": "Bro, there were mistakes, try again!",
   "generated_questions_info": "This is just a trial version, you can edit it",
-  "on_platform_since": "On the platform since"
+  "on_platform_since": "On the platform since",
+  "point": "point",
+  "point_0d": "points",
+  "point_1d": "points"
 }
