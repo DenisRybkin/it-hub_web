@@ -81,6 +81,7 @@ export const WritePage = () => {
       const previewId = preview?.id;
       const categoryIds = selectedCategories.map(item => item.id);
       const hashtags = hashtagsEditorRef.current?.data;
+      if (questions === null) return;
       validation(body, categoryIds);
       return {
         body: JSON.stringify(body),

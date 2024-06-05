@@ -5,6 +5,7 @@ import LogoDark from '@assets/images/logo-dark-theme.svg';
 import LogoLight from '@assets/images/logo-light-theme.svg';
 import { PassExaminationDialog } from '@components/entities/examination/dialogs/pass-examonation/pass-examination-dialog';
 import { AccountBar } from '@components/layouts/topbar/account-bar';
+import { LocaleSwitcher } from '@components/shared/locale-switcher';
 import { Button } from '@components/ui/button';
 import { PermissionsKeys, RouteKeys } from '@lib/constants';
 import { useDeviceDetermine } from '@lib/utils/hooks';
@@ -67,7 +68,10 @@ export const Topbar = () => {
             {t('ui:button.exam')}
           </Button>
         )}
-        <AccountBar />
+        <div className="flex items-center md:gap-5 gap-3">
+          <LocaleSwitcher />
+          <AccountBar />
+        </div>
       </nav>
     </>
   );

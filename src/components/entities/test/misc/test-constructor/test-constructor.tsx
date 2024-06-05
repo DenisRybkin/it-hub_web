@@ -11,7 +11,7 @@ import React, { forwardRef, Ref, useImperativeHandle, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface ITestConstructorForwardRef {
-  getAndValidateData: () => QuestionWithoutIdDto[] | undefined;
+  getAndValidateData: () => QuestionWithoutIdDto[] | undefined | null;
 }
 
 interface ITestConstructorProps {
@@ -71,7 +71,7 @@ export const TestConstructor = forwardRef<
       return resetIds(questionGeneratorRef.current?.questions ?? []);
     } catch (e) {
       errorHandler((e as Error).message);
-      return undefined;
+      return null;
     }
   };
 

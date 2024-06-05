@@ -22,7 +22,7 @@ export const LocaleSwitcher = () => {
       items={LOCALES}
       value={i18n.language}
       placeholder={t('ui:placeholder.select')}
-      triggerClassName="w-[180px]"
+      triggerClassName="md:w-[180px] w-[120px]"
     />
   );
 };

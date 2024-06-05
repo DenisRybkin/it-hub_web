@@ -8,6 +8,6 @@ export class ArticleTestUserController extends ApiControllerRead<
   ReadArticleTestUserFilterDto
 > {
   constructor(client: AxiosInstance, locker: LockerModel) {
-    super(client, locker, 'article-test-users');
+    super(client, locker, 'article-test-user');
   }
 }
